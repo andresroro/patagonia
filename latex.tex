@@ -1,0 +1,404 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[table]{xcolor}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{euscript}
+\usepackage{boxedminipage}
+\usepackage{lscape}
+\usepackage{minitoc}
+\usepackage{epsfig,psfrag,graphicx,verbatim}
+\usepackage{natbib}
+\usepackage{booktabs, longtable}
+\usepackage{url}
+\usepackage{makeidx}
+
+%% Define a new 'code' style for the url package that will use a sans serif font.
+\makeatletter
+\def\url@codestyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\sffamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{code}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23cm}
+\title{GlobalDefs Reference Manual}
+\author{Author names to add}
+\date{\today}
+
+\makeindex
+
+\begin{document}
+\rowcolors[]{2}{lightgray!40}{yellow!25} %% color table rows with alternating colors
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{GlobalDefs FLAME Implementation}
+
+\subsection{indv}
+
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of memory variables for indv agent.}}
+\label{Table: indv Memory}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{int} \url{indvID}} \index{\url{indvID}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{int} \url{cID}} \index{\url{cID}} & \parbox{10cm}{clan id} \\
+\midrule
+\parbox{5cm}{\url{int} \url{cal_needs}} \index{\url{cal_needs}} & \parbox{10cm}{the amount of calories needed every day} \\
+\midrule
+\parbox{5cm}{\url{int} \url{icalories}} \index{\url{icalories}} & \parbox{10cm}{the amount of calories needed} \\
+\midrule
+\parbox{5cm}{\url{int} \url{patchID}} \index{\url{patchID}} & \parbox{10cm}{the current patch where the individual is} \\
+\midrule
+\parbox{5cm}{\url{int} \url{age}} \index{\url{age}} & \parbox{10cm}{individual age} \\
+\midrule
+\parbox{5cm}{\url{int} \url{sex}} \index{\url{sex}} & \parbox{10cm}{individual genre} \\
+\midrule
+\parbox{5cm}{\url{int} \url{pregnant}} \index{\url{pregnant}} & \parbox{10cm}{0 if I am not pregnant, 1 if I am} \\
+\midrule
+\parbox{5cm}{\url{int} \url{lead}} \index{\url{lead}} & \parbox{10cm}{0 if I am not the leader, 1 if I am} \\
+\end{longtable}
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of functions for indv agent.}}
+\label{Table: indv Functions}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{indvInformation}} \index{\url{indvInformation}} & \parbox{10cm}{postindvinformation} \\
+\midrule
+\parbox{5cm}{\url{extractcalories}} \index{\url{extractcalories}} & \parbox{10cm}{every indv takes calories in their own patch} \\
+\midrule
+\parbox{5cm}{\url{getolder}} \index{\url{getolder}} & \parbox{10cm}{Each month we increment the age of each individual, here we will decide set variables such as fertile, marriable, post-fertile, etc.} \\
+\midrule
+\parbox{5cm}{\url{idle_indv}} \index{\url{idle_indv}} & \parbox{10cm}{The rest of the month there are no age increments} \\
+\midrule
+\parbox{5cm}{\url{survive}} \index{\url{survive}} & \parbox{10cm}{Depending on the age, calories gotten, pregnancy, and so on, the probability of survival is computed and according to that probability and a random value the survival of the individual determined} \\
+\end{longtable}
+
+\subsection{clan}
+
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of memory variables for clan agent.}}
+\label{Table: clan Memory}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{int} \url{cID}} \index{\url{cID}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{int} \url{cal_need}} \index{\url{cal_need}} & \parbox{10cm}{the amount of calories needed by all clan members} \\
+\midrule
+\parbox{5cm}{\url{int} \url{cal_got}} \index{\url{cal_got}} & \parbox{10cm}{calories gotten from the patch} \\
+\midrule
+\parbox{5cm}{\url{int} \url{cal_stored}} \index{\url{cal_stored}} & \parbox{10cm}{calories available and not consumed} \\
+\midrule
+\parbox{5cm}{\url{int} \url{xcord}} \index{\url{xcord}} & \parbox{10cm}{x coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)} \\
+\midrule
+\parbox{5cm}{\url{int} \url{ycord}} \index{\url{ycord}} & \parbox{10cm}{y coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)} \\
+\midrule
+\parbox{5cm}{\url{int} \url{tcalories}} \index{\url{tcalories}} & \parbox{10cm}{extra carrying capacity of the clan (depending of the resources in the patch, maybe the clan can get something else, or maybe the reserves should be used to complement a poor recollection} \\
+\midrule
+\parbox{5cm}{\url{int} \url{leaderID}} \index{\url{leaderID}} & \parbox{10cm}{who is the clan leader} \\
+\midrule
+\parbox{5cm}{\url{members_needs} \url{mneeds}} \index{\url{mneeds}} & \parbox{10cm}{place for storing the needs of every clan member} \\
+\end{longtable}
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of functions for clan agent.}}
+\label{Table: clan Functions}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{clan_Information}} \index{\url{clan_Information}} & \parbox{10cm}{gets individual info and posts clan information to see if the patch can satisfy its needs} \\
+\midrule
+\parbox{5cm}{\url{clan_extract_calories}} \index{\url{clan_extract_calories}} & \parbox{10cm}{every clan takes calories in their own patch} \\
+\midrule
+\parbox{5cm}{\url{distribute_calories}} \index{\url{distribute_calories}} & \parbox{10cm}{now the clan should distribute calories among its members} \\
+\midrule
+\parbox{5cm}{\url{new_leader}} \index{\url{new_leader}} & \parbox{10cm}{Some individuals may die, maybe the leader, so after this step all survivors send a message to the clan in order to decide if there should be a new leader... it can be because the leader has died, but also because the leader is too old and a new male becomes the leader} \\
+\end{longtable}
+
+\subsection{patch}
+
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of memory variables for patch agent.}}
+\label{Table: patch Memory}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{int} \url{patchID}} \index{\url{patchID}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{int} \url{pcalories}} \index{\url{pcalories}} & \parbox{10cm}{calories of the patch} \\
+\midrule
+\parbox{5cm}{\url{float} \url{repo}} \index{\url{repo}} & \parbox{10cm}{reposition rate} \\
+\midrule
+\parbox{5cm}{\url{int} \url{tpatch}} \index{\url{tpatch}} & \parbox{10cm}{type of patch such as high/low/dry/wet/coastal} \\
+\midrule
+\parbox{5cm}{\url{int} \url{xcord}} \index{\url{xcord}} & \parbox{10cm}{xcordinate of the patch} \\
+\midrule
+\parbox{5cm}{\url{int} \url{ycord}} \index{\url{ycord}} & \parbox{10cm}{ycordinate of the patch} \\
+\midrule
+\parbox{5cm}{\url{float} \url{repows}} \index{\url{repows}} & \parbox{10cm}{reposition rate for wet season} \\
+\midrule
+\parbox{5cm}{\url{float} \url{repods}} \index{\url{repods}} & \parbox{10cm}{reposition rate for dry season} \\
+\midrule
+\parbox{5cm}{\url{int} \url{season}} \index{\url{season}} & \parbox{10cm}{current season, initially it must be wet season} \\
+\end{longtable}
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of functions for patch agent.}}
+\label{Table: patch Functions}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{patchtype}} \index{\url{patchtype}} & \parbox{10cm}{the type of patch} \\
+\midrule
+\parbox{5cm}{\url{patchcalories}} \index{\url{patchcalories}} & \parbox{10cm}{patch sends available calories} \\
+\midrule
+\parbox{5cm}{\url{regenerate}} \index{\url{regenerate}} & \parbox{10cm}{calorias aportadas por los guanacos} \\
+\midrule
+\parbox{5cm}{\url{snregenerate}} \index{\url{snregenerate}} & \parbox{10cm}{status of new regenaration based on reposition rate} \\
+\midrule
+\parbox{5cm}{\url{idle_patch}} \index{\url{idle_patch}} & \parbox{10cm}{the time the patch does not generate new calories this function should be executed instead of regenerate 
+                } \\
+\end{longtable}
+
+\subsection{manada\_guanacos}
+
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of memory variables for manada\_guanacos agent.}}
+\label{Table: manada\_guanacos Memory}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{int} \url{id}} \index{\url{id}} & \parbox{10cm}{Identificador de la manada} \\
+\midrule
+\parbox{5cm}{\url{int} \url{familia}} \index{\url{familia}} & \parbox{10cm}{Identificador si es manada(=0) o si es familia (!=0)} \\
+\midrule
+\parbox{5cm}{\url{int} \url{xcord}} \index{\url{xcord}} & \parbox{10cm}{Coordenada x de la manada} \\
+\midrule
+\parbox{5cm}{\url{int} \url{ycord}} \index{\url{ycord}} & \parbox{10cm}{Coordenada y de la manada} \\
+\midrule
+\parbox{5cm}{\url{int} \url{count}} \index{\url{count}} & \parbox{10cm}{Numero de guanacos de la manada} \\
+\midrule
+\parbox{5cm}{\url{int} \url{calorias}} \index{\url{calorias}} & \parbox{10cm}{Numero de calorias que proporciona la manada} \\
+\midrule
+\parbox{5cm}{\url{int} \url{adultos}} \index{\url{adultos}} & \parbox{10cm}{Numero de adultos que contiene la manada} \\
+\end{longtable}
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of functions for manada\_guanacos agent.}}
+\label{Table: manada\_guanacos Functions}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\midrule
+\parbox{5cm}{\url{manadaInfo}} \index{\url{manadaInfo}} & \parbox{10cm}{informacion de la manada} \\
+\midrule
+\parbox{5cm}{\url{manada_idle}} \index{\url{manada_idle}} & \parbox{10cm}{no se hace nada} \\
+\midrule
+\parbox{5cm}{\url{move}} \index{\url{move}} & \parbox{10cm}{Calculamos el movimiento de la manada (depende de la estación)} \\
+\midrule
+\parbox{5cm}{\url{post_calorias}} \index{\url{post_calorias}} & \parbox{10cm}{Decimos cuantas calorias aporta la manada al patch} \\
+\end{longtable}
+\subsection{Messages}
+See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of messages.}}
+\label{Table: Messages}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\url{information} & \parbox{10cm}{}\\
+    \url{int} \url{id} \index{\url{id}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{cal} \index{\url{cal}} & \parbox{10cm}{}\\
+    \url{int} \url{age} \index{\url{age}} & \parbox{10cm}{}\\
+    \url{int} \url{pregnant} \index{\url{pregnant}} & \parbox{10cm}{}\\
+\midrule
+\url{indgetcalories} & \parbox{10cm}{ind information}\\
+    \url{int} \url{icalories} \index{\url{icalories}} & \parbox{10cm}{}\\
+    \url{int} \url{indvID} \index{\url{indvID}} & \parbox{10cm}{}\\
+\midrule
+\url{leader} & \parbox{10cm}{After deciding who is alive and who dies, all survivors send a message to the clan to decide who is the leader}\\
+    \url{int} \url{id} \index{\url{id}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{leader} \index{\url{leader}} & \parbox{10cm}{}\\
+    \url{int} \url{sex} \index{\url{sex}} & \parbox{10cm}{}\\
+    \url{int} \url{age} \index{\url{age}} & \parbox{10cm}{}\\
+\midrule
+\url{clan_info} & \parbox{10cm}{}\\
+    \url{int} \url{px} \index{\url{px}} & \parbox{10cm}{The x-axis}\\
+    \url{int} \url{py} \index{\url{py}} & \parbox{10cm}{The y-axis}\\
+    \url{int} \url{cID} \index{\url{cID}} & \parbox{10cm}{clan id}\\
+    \url{int} \url{wf} \index{\url{wf}} & \parbox{10cm}{num of working individuals of the clan}\\
+    \url{int} \url{maxcc} \index{\url{maxcc}} & \parbox{10cm}{max number of calories the clan can carry, so recollect}\\
+\midrule
+\url{clangetcalories} & \parbox{10cm}{amount of calories gotten by the clan from the patch}\\
+    \url{int} \url{cID} \index{\url{cID}} & \parbox{10cm}{}\\
+    \url{int} \url{clcalories} \index{\url{clcalories}} & \parbox{10cm}{}\\
+\midrule
+\url{calguanacos} & \parbox{10cm}{manda las calorias de los guanacos}\\
+    \url{int} \url{xcord} \index{\url{xcord}} & \parbox{10cm}{posicion x de la manada de guanacos}\\
+    \url{int} \url{ycord} \index{\url{ycord}} & \parbox{10cm}{posicion y de la manada de guanacos}\\
+    \url{int} \url{calorias} \index{\url{calorias}} & \parbox{10cm}{calorias aportadas por la manada de guanacos}\\
+\end{longtable}
+\subsection{Constants}
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of constants.}}
+\label{Table: constants}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\url{int} \url{max_manada} \index{\url{max_manada}} & \parbox{10cm}{numero maximo de guanacos por manada}\\
+\url{int} \url{max_familia} \index{\url{max_familia}} & \parbox{10cm}{numero maximo de guanacos por familia}\\
+\url{int} \url{cal_adulto} \index{\url{cal_adulto}} & \parbox{10cm}{numero de calorias dadas por cada guanaco adulto}\\
+\end{longtable}
+\subsection{Datatypes}
+\begin{longtable}[H!]{ll}
+\caption{{\bfseries List of attributes for ADTs.}}
+\label{Table: datatypes}\\
+\toprule 
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\bfseries Name & \bfseries Description \\ \hline 
+\midrule
+\endhead
+\multicolumn{2}{r}{{\emph{Continued on next page}}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\url{members_needs} \index{\url{members_needs}} & \parbox{10cm}{Structure to remember how many calories each member of the clan needs to survive} \\
+    \url{int} \url{id_list} & \parbox{8cm}{list of individual ids}\\
+    \url{int} \url{cal_list} & \parbox{8cm}{list of corresponding calory needs}\\
+    \url{int} \url{age} & \parbox{8cm}{age of each individual (needed for the distribution)}\\
+\end{longtable}
+
+\printindex
+
+\end{document}

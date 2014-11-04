@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmodel version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://flame.ac.uk/schema/xmml_v2.xsd">
+    <name>Individual Model</name>
+    <version>1</version>
+    <author></author>
+    <description>Defining individual agent and its realation to patch agent (which will be changed in version 0.2 because there will be a new family agent)</description>
+    <environment>
+        <functionFiles>
+            <file>indv.c</file>
+        </functionFiles>
+    </environment>
+    <agents>
+        <xagent>
+            <name>indv</name>
+            <description></description>
+            <memory>
+                <variable>
+                    <type>int</type>
+                    <name>indvID</name>
+                    <description></description>
+                </variable>
+		<variable>
+		    <type>int</type>
+		    <name>cID</name>
+		    <description>clan id</description>
+		</variable>
+                <variable>
+                    <type>int</type>
+                    <name>cal_needs</name>
+                    <description>the amount of calories needed every day</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>icalories</name>
+                    <description>the amount of calories needed</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>patchID</name>
+                    <description>the current patch where the individual is</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>age</name>
+                    <description>individual age</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>sex</name>
+                    <description>individual genre</description>
+                </variable>
+		<variable>
+		    <type>int</type>
+		    <name>pregnant</name>
+		    <description>0 if I am not pregnant, 1 if I am</description>
+		</variable>
+		<variable>
+		    <type>int</type>
+		    <name>lead</name>
+		    <description>0 if I am not the leader, 1 if I am</description>
+		</variable>
+            </memory>
+            <functions>
+                <function>
+                    <name>indvInformation</name>
+                    <description>postindvinformation</description>
+                    <currentState>start</currentState>
+                    <nextState>01</nextState>
+                    <outputs>
+                        <output>
+                            <messageName>information</messageName>
+                        </output>
+                    </outputs>
+                </function>
+                <function>
+                    <name>extractcalories</name>
+                    <description>every indv takes calories in their own patch</description>
+                    <currentState>01</currentState>
+                    <nextState>02</nextState>
+                    <inputs>
+                        <input>
+                            <messageName>indgetcalories</messageName>
+                            <filter>
+      				<lhs><value>a.indvID</value></lhs>
+      				<op>EQ</op>
+      				<rhs><value>m.indvID</value></rhs>
+    			    </filter>
+		        </input>
+                    </inputs>
+                </function>
+	        <function>
+		    <name>getolder</name>
+		    <description>Each month we increment the age of each individual, here we will decide set variables such as fertile, marriable, post-fertile, etc.</description>
+		    <currentState>02</currentState>
+		    <nextState>03</nextState>
+		    <condition>
+			<time>
+				<period>monthly</period>
+				<phase>29</phase>
+			</time>
+		    </condition>
+		</function>
+		<function>
+		    <name>idle_indv</name>
+		    <description>The rest of the month there are no age increments</description>
+                    <currentState>02</currentState>
+                    <nextState>03</nextState>
+                    <condition>
+			<not>
+                            <time>
+                                <period>monthly</period>
+                                <phase>29</phase>
+                            </time>
+			</not>
+                    </condition>
+		</function>
+		<function>
+		    <name>survive</name>
+		    <description>Depending on the age, calories gotten, pregnancy, and so on, the probability of survival is computed and according to that probability and a random value the survival of the individual determined</description> 
+		    <currentState>03</currentState>
+		    <nextState>end</nextState>
+		    <outputs>
+			<output>
+				<messageName>leader</messageName>
+			</output>
+		    </outputs>
+		</function>
+            </functions>
+        </xagent>
+   </agents>
+   <messages>
+        <message>
+            <name>information</name>
+            <description></description>
+            <variables>
+                <variable>
+                    <type>int</type>
+                    <name>id</name>
+                    <description></description>
+                </variable>
+		<variable>
+		    <type>int</type>
+		    <name>clanID</name>
+		    <description></description>
+		</variable>
+                <variable>
+                    <type>int</type>
+                    <name>cal</name>
+                    <description></description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>age</name>
+                    <description></description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>pregnant</name>
+                    <description></description>
+                </variable>
+            </variables>
+        </message>
+        <message>
+            <name>indgetcalories</name>
+            <description>ind information</description>
+            <variables>
+                <variable>
+                    <type>int</type>
+                    <name>icalories</name>
+                    <description></description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>indvID</name>
+                    <description></description>
+                </variable>
+            </variables>
+        </message>
+	<message>
+	    <name>leader</name>
+	    <description>After deciding who is alive and who dies, all survivors send a message to the clan to decide who is the leader</description>
+	    <variables>
+		<variable>
+		    <type>int</type>
+		    <name>id</name>
+		</variable>
+		<variable>
+		    <type>int</type>
+		    <name>clanID</name>
+		</variable>
+		<variable>
+		    <type>int</type>
+		    <name>leader</name>
+		</variable>
+		<variable>
+		    <type>int</type>
+		    <name>sex</name>
+		</variable>
+                <variable>
+                    <type>int</type>
+                    <name>age</name>
+                </variable>
+	    </variables>	
+	</message>
+    </messages>
+</xmodel>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmodel version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://flame.ac.uk/schema/xmml_v2.xsd">
+
+    <name>GlobalDefs</name>
+    <version>1</version>
+    <author></author>
+    <description>Defining constants, time units, and other global stuff</description>
+    <environment> 
+       <timeUnits>
+	    <timeUnit>
+      		<name>daily</name>
+      		<unit>iteration</unit>
+      		<period>1</period>
+    	    </timeUnit>
+    
+    	    <timeUnit>
+      		<name>weekly</name>
+      		<unit>daily</unit>
+      		<period>7</period>
+    	    </timeUnit>
+    
+    	    <timeUnit>
+      		<name>monthly</name>
+      		<unit>daily</unit>
+      		<period>30</period>
+    	    </timeUnit>
+    
+    	    <timeUnit>
+      		<name>quarterly</name>
+      		<unit>monthly</unit>
+      		<period>3</period>
+    	    </timeUnit>
+
+    	    <timeUnit>
+      		<name>season</name>
+      		<unit>monthly</unit>
+      		<period>6</period>
+    	    </timeUnit> 
+   
+    	    <timeUnit>
+      		<name>yearly</name>
+      		<unit>monthly</unit>
+      		<period>12</period>
+    	    </timeUnit>
+      </timeUnits>
+  </environment>
+</xmodel>

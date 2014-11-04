@@ -1,0 +1,117 @@
+digraph communication_graph {
+	rankdir=BT;
+	size="8,5;"
+	layer_0 [ color="#ff0000" label="layer 0"];
+	indv_indvInformation_start_01 [ shape = rect label="indv_indvInformation_start_01 [-3]" ];
+	indv_indvInformation_start_01 -> layer_0;
+	manada_guanacos_manadaInfo_start_1 [ shape = rect label="manada_guanacos_manadaInfo_start_1 [0]" ];
+	manada_guanacos_manadaInfo_start_1 -> indv_indvInformation_start_01;
+	patch_patchtype_start_1 [ shape = rect label="patch_patchtype_start_1 [0]" ];
+	patch_patchtype_start_1 -> manada_guanacos_manadaInfo_start_1;
+	layer_1 [ color="#ff0000" label="layer 1"];
+	layer_1 ->patch_patchtype_start_1;
+	manada_guanacos_move_1_2 [ shape = rect label="manada_guanacos_move_1_2 [0]" ];
+	manada_guanacos_move_1_2 -> layer_1;
+	manada_guanacos_manada_idle_1_2 [ shape = rect label="manada_guanacos_manada_idle_1_2 [0]" ];
+	manada_guanacos_manada_idle_1_2 -> manada_guanacos_move_1_2;
+	clan_clan_Information_start_01 [ shape = rect label="clan_clan_Information_start_01 [3]" ];
+	clan_clan_Information_start_01 -> manada_guanacos_manada_idle_1_2;
+	layer_2 [ color="#ff0000" label="layer 2"];
+	layer_2 ->clan_clan_Information_start_01;
+	manada_guanacos_post_calorias_2_end [ shape = rect label="manada_guanacos_post_calorias_2_end [-2]" ];
+	manada_guanacos_post_calorias_2_end -> layer_2;
+	patch_patchcalories_1_2 [ shape = rect label="patch_patchcalories_1_2 [0]" ];
+	patch_patchcalories_1_2 -> manada_guanacos_post_calorias_2_end;
+	layer_3 [ color="#ff0000" label="layer 3"];
+	layer_3 ->patch_patchcalories_1_2;
+	patch_regenerate_2_3 [ shape = rect label="patch_regenerate_2_3 [2]" ];
+	patch_regenerate_2_3 -> layer_3;
+	clan_clan_extract_calories_01_02 [ shape = rect label="clan_clan_extract_calories_01_02 [2]" ];
+	clan_clan_extract_calories_01_02 -> patch_regenerate_2_3;
+	layer_4 [ color="#ff0000" label="layer 4"];
+	layer_4 ->clan_clan_extract_calories_01_02;
+	clan_distribute_calories_02_03 [ shape = rect label="clan_distribute_calories_02_03 [-1]" ];
+	clan_distribute_calories_02_03 -> layer_4;
+	patch_idle_patch_3_end [ shape = rect label="patch_idle_patch_3_end [0]" ];
+	patch_idle_patch_3_end -> clan_distribute_calories_02_03;
+	patch_snregenerate_3_end [ shape = rect label="patch_snregenerate_3_end [0]" ];
+	patch_snregenerate_3_end -> patch_idle_patch_3_end;
+	layer_5 [ color="#ff0000" label="layer 5"];
+	layer_5 ->patch_snregenerate_3_end;
+	indv_extractcalories_01_02 [ shape = rect label="indv_extractcalories_01_02 [1]" ];
+	indv_extractcalories_01_02 -> layer_5;
+	layer_6 [ color="#ff0000" label="layer 6"];
+	layer_6 ->indv_extractcalories_01_02;
+	indv_idle_indv_02_03 [ shape = rect label="indv_idle_indv_02_03 [0]" ];
+	indv_idle_indv_02_03 -> layer_6;
+	indv_getolder_02_03 [ shape = rect label="indv_getolder_02_03 [0]" ];
+	indv_getolder_02_03 -> indv_idle_indv_02_03;
+	layer_7 [ color="#ff0000" label="layer 7"];
+	layer_7 ->indv_getolder_02_03;
+	indv_survive_03_end [ shape = rect label="indv_survive_03_end [-1]" ];
+	indv_survive_03_end -> layer_7;
+	layer_8 [ color="#ff0000" label="layer 8"];
+	layer_8 ->indv_survive_03_end;
+	clan_new_leader_03_end [ shape = rect label="clan_new_leader_03_end [1]" ];
+	clan_new_leader_03_end -> layer_8;
+	information_message [ label = "information" color="#00ff00" shape = parallelogram];
+	information_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	information_message_sync_start_0 -> information_message [ color="#00ff00" label="information_1"];
+	{ rank=same; indv_indvInformation_start_01; information_message_sync_start_0; }
+	information_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	information_message_sync_end_0 -> information_message_sync_start_0 [ color="#00ff00" ];
+	information_message_sync_end_0 -> clan_clan_Information_start_01 [ color="#00ff00" constraint=false ];
+	information_message_sync_start_0 -> indv_indvInformation_start_01 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_clan_Information_start_01; information_message_sync_end_0; }
+	indgetcalories_message [ label = "indgetcalories" color="#00ff00" shape = parallelogram];
+	indgetcalories_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	indgetcalories_message_sync_start_0 -> indgetcalories_message [ color="#00ff00" label="indgetcalories_5"];
+	{ rank=same; clan_distribute_calories_02_03; indgetcalories_message_sync_start_0; }
+	indgetcalories_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	indgetcalories_message_sync_end_0 -> indgetcalories_message_sync_start_0 [ color="#00ff00" ];
+	indgetcalories_message_sync_end_0 -> indv_extractcalories_01_02 [ color="#00ff00" constraint=false ];
+	indgetcalories_message_sync_start_0 -> clan_distribute_calories_02_03 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; indv_extractcalories_01_02; indgetcalories_message_sync_end_0; }
+	leader_message [ label = "leader" color="#00ff00" shape = parallelogram];
+	leader_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	leader_message_sync_start_0 -> leader_message [ color="#00ff00" label="leader_8"];
+	{ rank=same; indv_survive_03_end; leader_message_sync_start_0; }
+	leader_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	leader_message_sync_end_0 -> leader_message_sync_start_0 [ color="#00ff00" ];
+	leader_message_sync_end_0 -> clan_new_leader_03_end [ color="#00ff00" constraint=false ];
+	leader_message_sync_start_0 -> indv_survive_03_end [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_new_leader_03_end; leader_message_sync_end_0; }
+	clan_info_message [ label = "clan_info" color="#00ff00" shape = parallelogram];
+	clan_info_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	clan_info_message_sync_start_0 -> clan_info_message [ color="#00ff00" label="clan_info_2"];
+	{ rank=same; clan_clan_Information_start_01; clan_info_message_sync_start_0; }
+	clan_info_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	clan_info_message_sync_end_0 -> clan_info_message_sync_start_0 [ color="#00ff00" ];
+	clan_info_message_sync_end_0 -> patch_patchcalories_1_2 [ color="#00ff00" constraint=false ];
+	clan_info_message_sync_start_0 -> clan_clan_Information_start_01 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; patch_patchcalories_1_2; clan_info_message_sync_end_0; }
+	clangetcalories_message [ label = "clangetcalories" color="#00ff00" shape = parallelogram];
+	clangetcalories_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	clangetcalories_message_sync_start_0 -> clangetcalories_message [ color="#00ff00" label="clangetcalories_3"];
+	{ rank=same; patch_patchcalories_1_2; clangetcalories_message_sync_start_0; }
+	clangetcalories_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	clangetcalories_message_sync_end_0 -> clangetcalories_message_sync_start_0 [ color="#00ff00" ];
+	clangetcalories_message_sync_end_0 -> clan_clan_extract_calories_01_02 [ color="#00ff00" constraint=false ];
+	clangetcalories_message_sync_start_0 -> patch_patchcalories_1_2 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_clan_extract_calories_01_02; clangetcalories_message_sync_end_0; }
+	calguanacos_message [ label = "calguanacos" color="#00ff00" shape = parallelogram];
+	calguanacos_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	calguanacos_message_sync_start_0 -> calguanacos_message [ color="#00ff00" label="calguanacos_3"];
+	{ rank=same; manada_guanacos_post_calorias_2_end; calguanacos_message_sync_start_0; }
+	calguanacos_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	calguanacos_message_sync_end_0 -> calguanacos_message_sync_start_0 [ color="#00ff00" ];
+	calguanacos_message_sync_end_0 -> patch_regenerate_2_3 [ color="#00ff00" constraint=false ];
+	calguanacos_message_sync_start_0 -> manada_guanacos_post_calorias_2_end [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; patch_regenerate_2_3; calguanacos_message_sync_end_0; }
+	indv_indvInformation_start_01 -> information_message [ color="#00ff00" constraint=false ];
+	indv_survive_03_end -> leader_message [ color="#00ff00" constraint=false ];
+	clan_clan_Information_start_01 -> clan_info_message [ color="#00ff00" constraint=false ];
+	clan_distribute_calories_02_03 -> indgetcalories_message [ color="#00ff00" constraint=false ];
+	patch_patchcalories_1_2 -> clangetcalories_message [ color="#00ff00" constraint=false ];
+	manada_guanacos_post_calorias_2_end -> calguanacos_message [ color="#00ff00" constraint=false ];
+}

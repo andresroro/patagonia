@@ -1,0 +1,145 @@
+<xmodel version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation='http://flame.ac.uk/schema/xmml_v2.xsd'>
+	<name>guanacos</name>
+    <version>1</version>
+    <description>modelo de las manadas o familias de guanacos</description>
+	<environment>
+		<constants>
+			<variable>
+				<type>int</type>
+				<name>max_manada</name>
+				<description>numero maximo de guanacos por manada</description>
+			</variable>
+			<variable>
+				<type>int</type>
+				<name>max_familia</name>
+				<description>numero maximo de guanacos por familia</description>
+			</variable>
+			<variable>
+				<type>int</type>
+				<name>cal_adulto</name>
+				<description>numero de calorias dadas por cada guanaco adulto</description>
+			</variable>
+		</constants>
+		<functionFiles>
+			<file>guanacos.c</file>
+		</functionFiles>
+		<timeUnits>
+			<timeUnit>
+				<name>dias_por_patch</name>
+				<unit>iteration</unit>
+				<period>10</period>
+			</timeUnit>
+		</timeUnits>
+		<dataTypes>
+		</dataTypes>		
+	</environment>
+	<agents>
+		<xagent>
+			<name>manada_guanacos</name>
+			<description>agente manada de guanacos</description>
+			<memory>
+				<variable>
+					<type>int</type>
+					<name>id</name>
+					<description>Identificador de la manada</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>familia</name>
+					<description>Identificador si es manada(=0) o si es familia (!=0)</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>xcord</name>
+					<description>Coordenada x de la manada</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>ycord</name>
+					<description>Coordenada y de la manada</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>count</name>
+					<description>Numero de guanacos de la manada</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>calorias</name>
+					<description>Numero de calorias que proporciona la manada</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>adultos</name>
+					<description>Numero de adultos que contiene la manada</description>
+				</variable>
+			</memory>
+			<functions>
+				<function>
+					<name>manadaInfo</name>
+					<description>informacion de la manada</description>
+					<currentState>start</currentState>
+					<nextState>1</nextState>
+				</function>
+				<function>
+					<name>manada_idle</name>
+					<description>no se hace nada</description>
+					<currentState>1</currentState>
+					<nextState>2</nextState>
+					<condition><not>
+						<time>
+							<period>dias_por_patch</period>
+							<phase>10</phase>
+						</time>
+					</not></condition>
+				</function>
+				<function>
+					<name>move</name>
+					<description>Calculamos el movimiento de la manada (depende de la estación)</description>
+					<currentState>1</currentState>
+					<nextState>2</nextState>
+					<condition>
+						<time>
+							<period>dias_por_patch</period>
+							<phase>10</phase>
+						</time>
+					</condition>
+				</function>
+				<function>
+					<name>post_calorias</name>
+					<description>Decimos cuantas calorias aporta la manada al patch</description>
+					<currentState>2</currentState>
+					<nextState>end</nextState>
+					<outputs>
+						<output>
+							<messageName>calguanacos</messageName>
+						</output>
+					</outputs>
+				</function>
+			</functions>
+		</xagent>
+	</agents>
+	<messages>
+		<message>
+			<name>calguanacos</name>
+			<description>manda las calorias de los guanacos</description>
+			<variables>
+				<variable>
+					<type>int</type>
+					<name>xcord</name>
+					<description>posicion x de la manada de guanacos</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>ycord</name>
+					<description>posicion y de la manada de guanacos</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>calorias</name>
+					<description>calorias aportadas por la manada de guanacos</description>
+				</variable>
+			</variables>
+		</message>
+	</messages>
+</xmodel>

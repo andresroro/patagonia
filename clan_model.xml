@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmodel version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://flame.ac.uk/schema/xmml_v2.xsd">
+    <name>Clan Model</name>
+    <version>1</version>
+    <author></author>
+    <description>Defining clan agent and its realationships, as an intermediary, to patch and individual agents</description>
+    <environment>
+        <functionFiles>
+            <file>clan.c</file>
+        </functionFiles>
+<dataTypes>
+		<dataType>
+			<name>members_needs</name>
+			<description>Structure to remember how many calories each member of the clan needs to survive</description>
+			<variables>
+                          <variable>	
+				<type>int</type>
+				<name>id_list[100]</name>
+				<description>list of individual ids</description>
+			    </variable>
+			    <variable>
+				<type>int</type>
+				<name>cal_list[100]</name>
+				<description>list of corresponding calory needs</description>
+			    </variable>
+			    <variable>
+				<type>int</type>
+				<name>age[100]</name>
+				<description>age of each individual (needed for the distribution)</description>
+			    </variable>
+			  </variables>		
+		</dataType>
+</dataTypes>
+    </environment>
+    <agents>
+        <xagent>
+            <name>clan</name>
+            <description></description>
+            <memory>
+                <variable>
+                    <type>int</type>
+                    <name>cID</name>
+                    <description></description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>cal_need</name>
+                    <description>the amount of calories needed by all clan members</description>
+                </variable>
+		<variable>
+		    <type>int</type>
+		    <name>cal_got</name>
+		    <description>calories gotten from the patch</description>
+		</variable>
+		<variable>
+		    <type>int</type>
+		    <name>cal_stored</name>
+		    <description>calories available and not consumed</description>
+		</variable>
+                <variable>
+                    <type>int</type>
+                    <name>xcord</name>
+                    <description>x coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>ycord</name>
+                    <description>y coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>tcalories</name>
+                    <description>extra carrying capacity of the clan (depending of the resources in the patch, maybe the clan can get something else, or maybe the reserves should be used to complement a poor recollection</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>leaderID</name>
+                    <description>who is the clan leader</description>
+                </variable>
+		<variable>
+		    <type>members_needs</type>
+		    <name>mneeds</name>
+		    <description>place for storing the needs of every clan member</description>
+		</variable>			
+            </memory>
+            <functions>
+                <function>
+                    <name>clan_Information</name>
+                    <description>gets individual info and posts clan information to see if the patch can satisfy its needs</description>
+                    <currentState>start</currentState>
+                    <nextState>01</nextState>
+		    <inputs>
+			<input>
+			    <messageName>information</messageName>
+                            <filter>
+                                <lhs><value>a.cID</value></lhs>
+                                <op>EQ</op>
+                                <rhs><value>m.clanID</value></rhs>
+                            </filter>
+			</input>
+                    </inputs>
+                    <outputs>
+                        <output>
+                            <messageName>clan_info</messageName>
+                        </output>
+                    </outputs>
+                </function>
+                <function>
+                    <name>clan_extract_calories</name>
+                    <description>every clan takes calories in their own patch</description>
+                    <currentState>01</currentState>
+                    <nextState>02</nextState>
+                    <inputs>
+                        <input>
+                            <messageName>clangetcalories</messageName>
+                            <filter>
+      				<lhs><value>a.cID</value></lhs>
+      				<op>EQ</op>
+      				<rhs><value>m.cID</value></rhs>
+    			    </filter>
+		        </input>
+                    </inputs>
+                </function>
+		<function>
+		    <name>distribute_calories</name>
+		    <description>now the clan should distribute calories among its members</description>
+		    <currentState>02</currentState>
+		    <nextState>03</nextState>
+		    <outputs>
+			<output>
+			<messageName>indgetcalories</messageName>
+			</output>
+		    </outputs>
+		</function>
+		<function>
+		    <name>new_leader</name>
+		    <description>Some individuals may die, maybe the leader, so after this step all survivors send a message to the clan in order to decide if there should be a new leader... it can be because the leader has died, but also because the leader is too old and a new male becomes the leader</description>
+		    <currentState>03</currentState>
+		    <nextState>end</nextState>
+		    <inputs>
+			<input>
+			    <messageName>leader</messageName>
+			    <filter>
+                                <lhs><value>a.cID</value></lhs>
+                                <op>EQ</op>
+                                <rhs><value>m.clanID</value></rhs>
+			    </filter>	
+			</input>
+		    </inputs>
+		</function>
+            </functions>
+        </xagent>
+   </agents>
+   <messages>
+        <message>
+            <name>clan_info</name>
+            <description></description>
+        <variables>
+              <variable>
+                        <type>int</type>
+                        <name>px</name>
+                        <description>The x-axis</description>
+              </variable>
+              <variable>
+                         <type>int</type>
+                         <name>py</name>
+                        <description>The y-axis</description>
+              </variable>
+               <variable>
+                         <type>int</type>
+                         <name>cID</name>
+                        <description>clan id</description>
+               </variable>
+                <variable>
+                         <type>int</type>
+                         <name>wf</name>
+                         <description>num of working individuals of the clan</description>
+                </variable>
+                 <variable>
+                         <type>int</type>
+                          <name>maxcc</name>
+                          <description>max number of calories the clan can carry, so recollect</description>
+                 </variable>
+        </variables>
+        </message>
+            <message>
+                <name>clangetcalories</name>
+                <description>amount of calories gotten by the clan from the patch</description>
+            <variables>
+              <variable>
+                    <type>int</type>
+                    <name>cID</name>
+                    <description></description>
+                </variable>
+               <variable>
+                    <type>int</type>
+                    <name>clcalories</name>
+                    <description></description>
+                </variable>
+            </variables>
+        </message>
+    </messages>
+</xmodel>
+

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmodel version="2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://flame.ac.uk/schema/xmml_v2.xsd">
+    <name>Patch Model</name>
+    <version>1</version>
+    <author></author>
+    <description>patch model, just trying to satisfy individuals needs</description>
+    <environment>
+        <functionFiles>
+	    <file>patch.c</file>
+        </functionFiles>
+  </environment>
+    <agents>
+        <xagent>
+            <name>patch</name>
+            <description>a resource to consume calories for energy</description>
+            <memory>
+                <variable>
+                    <type>int</type>
+                    <name>patchID</name>
+                    <description></description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>pcalories</name>
+                    <description>calories of the patch</description>
+                </variable>
+                <variable>
+                    <type>float</type>
+                    <name>repo</name>
+                    <description>reposition rate</description>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>tpatch</name>
+                    <description>type of patch such as high/low/dry/wet/coastal</description>
+                 </variable>
+               <variable>
+                    <type>int</type>
+                    <name>xcord</name>
+                    <description>xcordinate of the patch</description>
+                 </variable>
+               <variable>
+                    <type>int</type>
+                    <name>ycord</name>
+                    <description>ycordinate of the patch</description>
+                 </variable>
+                <variable>
+                    <type>float</type>
+                    <name>repows</name>
+                    <description>reposition rate for wet season</description>
+                 </variable>
+                <variable>
+                    <type>float</type>
+                    <name>repods</name>
+                    <description>reposition rate for dry season</description>
+                 </variable>
+                <variable>
+                    <type>int</type>
+                    <name>season</name>
+                    <description>current season, initially it must be wet season</description>
+                 </variable>
+               </memory>
+            <functions>
+                <function>
+                 <name>patchtype</name>
+                    <description>the type of patch</description>
+                    <currentState>start</currentState>
+                    <nextState>1</nextState>
+                 </function>
+                 <function>
+                 <name>patchcalories</name>
+                    <description>patch sends available calories</description>
+                    <currentState>1</currentState>
+                    <nextState>2</nextState>
+                   <inputs>
+		    <input>
+                            <messageName>clan_info</messageName>
+                             <filter>
+				<lhs>
+                                <lhs><value>a.xcord</value></lhs>
+                                <op>EQ</op>
+                                <rhs><value>m.px</value></rhs>
+				</lhs>
+                                <op>AND</op>
+				<rhs>
+                                <lhs><value>a.ycord</value></lhs>
+                                <op>EQ</op>
+                                <rhs><value>m.py</value></rhs>
+				</rhs>
+                            </filter>
+                     </input>
+                     </inputs>
+                    <outputs>
+                        <output>
+                            <messageName>clangetcalories</messageName>
+                        </output>
+                    </outputs>
+                </function>
+		<function>
+		    <!--
+            <name>regenerate</name>
+		    <description>patch generates some new calories each week</description>
+		    <currentState>2</currentState>
+		    <nextState>3</nextState>
+  		    <condition>
+			<time>
+				<period>weekly</period>
+				<phase>6</phase>
+			</time>
+		    </condition>
+            -->
+            <name>regenerate</name>
+                <description>calorias aportadas por los guanacos</description>
+                <currentState>2</currentState>
+                <nextState>3</nextState>
+                <inputs>
+                    <input>
+                        <messageName>calguanacos</messageName>
+                        <filter><lhs>
+                            <lhs><value>a.xcord</value></lhs>
+                            <op>EQ</op>
+                            <rhs><value>m.xcord</value></rhs>
+                        </lhs>
+                            <op>AND</op>
+                        <rhs>
+                            <lhs><value>a.ycord</value></lhs>
+                            <op>EQ</op>
+                            <rhs><value>m.ycord</value></rhs>
+                        </rhs></filter>
+                    </input>
+                </inputs>
+		</function>
+	        <!--<function>
+		    <name>idle_patch</name>
+           <description>the days the patch does not generate new calories this function should be executed instead of regenerate
+           </description>
+                    <currentState>2</currentState>
+                    <nextState>3</nextState>
+		    <condition>
+			<not>
+				<time>
+				<period>weekly</period>
+				<phase>6</phase>
+				</time>
+                      </not>
+		    </condition>
+		</function>-->
+               <function>
+		    <name>snregenerate</name>
+		    <description>status of new regenaration based on reposition rate</description>
+		    <currentState>3</currentState>
+		    <nextState>end</nextState>
+		    <condition>
+			<time>
+                           <period>season</period>
+                           <phase>6</phase>
+			</time>
+		    </condition>
+  		   </function>
+             <function>
+		    <name>idle_patch</name>
+		    <description>the time the patch does not generate new calories this function should be executed instead of regenerate 
+                </description>
+                    <currentState>3</currentState>
+                    <nextState>end</nextState>
+		    <condition>
+			<not>
+			   <time>	
+                              <period>season</period>
+                              <phase>6</phase>
+			    </time>
+			</not>
+		    </condition>
+		</function>
+            </functions>
+        </xagent>
+    </agents>
+<messages>
+</messages>
+</xmodel>

@@ -1,0 +1,115 @@
+digraph state_graph {
+	rankdir=TB;
+	size="8,5;"
+	layer_0 [shape=plaintext, label="layer 0"];
+	layer_1 [shape=plaintext, label="layer 1"];
+	layer_0 -> layer_1 [style=invis];
+	layer_2 [shape=plaintext, label="layer 2"];
+	layer_1 -> layer_2 [style=invis];
+	layer_3 [shape=plaintext, label="layer 3"];
+	layer_2 -> layer_3 [style=invis];
+	layer_4 [shape=plaintext, label="layer 4"];
+	layer_3 -> layer_4 [style=invis];
+	layer_5 [shape=plaintext, label="layer 5"];
+	layer_4 -> layer_5 [style=invis];
+	layer_6 [shape=plaintext, label="layer 6"];
+	layer_5 -> layer_6 [style=invis];
+	layer_7 [shape=plaintext, label="layer 7"];
+	layer_6 -> layer_7 [style=invis];
+	layer_8 [shape=plaintext, label="layer 8"];
+	layer_7 -> layer_8 [style=invis];
+	
+	/* States */
+	indv_end [label = "end"]
+	indv_03 [label = "03"]
+	indv_02 [label = "02"]
+	indv_01 [label = "01"]
+	indv_start [label = "start"]
+	clan_end [label = "end"]
+	clan_03 [label = "03"]
+	clan_02 [label = "02"]
+	clan_01 [label = "01"]
+	clan_start [label = "start"]
+	patch_end [label = "end"]
+	patch_3 [label = "3"]
+	patch_2 [label = "2"]
+	patch_1 [label = "1"]
+	patch_start [label = "start"]
+	manada_guanacos_end [label = "end"]
+	manada_guanacos_2 [label = "2"]
+	manada_guanacos_1 [label = "1"]
+	manada_guanacos_start [label = "start"]
+	indv_indvInformation_start_01 [label = "indvInformation", shape = box,style=filled,color=antiquewhite];
+	indv_extractcalories_01_02 [label = "extractcalories", shape = box,style=filled,color=antiquewhite];
+	indv_getolder_02_03 [label = "getolder", shape = box,style=filled,color=antiquewhite];
+	indv_idle_indv_02_03 [label = "idle_indv", shape = box,style=filled,color=antiquewhite];
+	indv_survive_03_end [label = "survive", shape = box,style=filled,color=antiquewhite];
+	clan_clan_Information_start_01 [label = "clan_Information", shape = box,style=filled,color=aquamarine];
+	clan_clan_extract_calories_01_02 [label = "clan_extract_calories", shape = box,style=filled,color=aquamarine];
+	clan_distribute_calories_02_03 [label = "distribute_calories", shape = box,style=filled,color=aquamarine];
+	clan_new_leader_03_end [label = "new_leader", shape = box,style=filled,color=aquamarine];
+	patch_patchtype_start_1 [label = "patchtype", shape = box,style=filled,color=azure3];
+	patch_patchcalories_1_2 [label = "patchcalories", shape = box,style=filled,color=azure3];
+	patch_regenerate_2_3 [label = "regenerate", shape = box,style=filled,color=azure3];
+	patch_snregenerate_3_end [label = "snregenerate", shape = box,style=filled,color=azure3];
+	patch_idle_patch_3_end [label = "idle_patch", shape = box,style=filled,color=azure3];
+	manada_guanacos_manadaInfo_start_1 [label = "manadaInfo", shape = box,style=filled,color=brown1];
+	manada_guanacos_manada_idle_1_2 [label = "manada_idle", shape = box,style=filled,color=brown1];
+	manada_guanacos_move_1_2 [label = "move", shape = box,style=filled,color=brown1];
+	manada_guanacos_post_calorias_2_end [label = "post_calorias", shape = box,style=filled,color=brown1];
+	
+	/* Transitions */
+	indv_start -> indv_indvInformation_start_01;
+	indv_indvInformation_start_01 -> indv_01;
+	indv_01 -> indv_extractcalories_01_02;
+	indv_extractcalories_01_02 -> indv_02;
+	indv_02 -> indv_getolder_02_03 [ label = "Periodicity: monthly\nPhase: 29"];
+	indv_getolder_02_03 -> indv_03;
+	indv_02 -> indv_idle_indv_02_03 [ label = "not ( Periodicity: monthly\nPhase: 29 )"];
+	indv_idle_indv_02_03 -> indv_03;
+	indv_03 -> indv_survive_03_end;
+	indv_survive_03_end -> indv_end;
+	clan_start -> clan_clan_Information_start_01;
+	clan_clan_Information_start_01 -> clan_01;
+	clan_01 -> clan_clan_extract_calories_01_02;
+	clan_clan_extract_calories_01_02 -> clan_02;
+	clan_02 -> clan_distribute_calories_02_03;
+	clan_distribute_calories_02_03 -> clan_03;
+	clan_03 -> clan_new_leader_03_end;
+	clan_new_leader_03_end -> clan_end;
+	patch_start -> patch_patchtype_start_1;
+	patch_patchtype_start_1 -> patch_1;
+	patch_1 -> patch_patchcalories_1_2;
+	patch_patchcalories_1_2 -> patch_2;
+	patch_2 -> patch_regenerate_2_3;
+	patch_regenerate_2_3 -> patch_3;
+	patch_3 -> patch_snregenerate_3_end [ label = "Periodicity: season\nPhase: 6"];
+	patch_snregenerate_3_end -> patch_end;
+	patch_3 -> patch_idle_patch_3_end [ label = "not ( Periodicity: season\nPhase: 6 )"];
+	patch_idle_patch_3_end -> patch_end;
+	manada_guanacos_start -> manada_guanacos_manadaInfo_start_1;
+	manada_guanacos_manadaInfo_start_1 -> manada_guanacos_1;
+	manada_guanacos_1 -> manada_guanacos_manada_idle_1_2 [ label = "not ( Periodicity: dias_por_patch\nPhase: 10 )"];
+	manada_guanacos_manada_idle_1_2 -> manada_guanacos_2;
+	manada_guanacos_1 -> manada_guanacos_move_1_2 [ label = "Periodicity: dias_por_patch\nPhase: 10"];
+	manada_guanacos_move_1_2 -> manada_guanacos_2;
+	manada_guanacos_2 -> manada_guanacos_post_calorias_2_end;
+	manada_guanacos_post_calorias_2_end -> manada_guanacos_end;
+	
+	/* Communications */
+	manada_guanacos_post_calorias_2_end -> patch_regenerate_2_3 [ label = "calguanacos" color="#00ff00" constraint=false];
+	clan_clan_Information_start_01 -> patch_patchcalories_1_2 [ label = "clan_info" color="#00ff00" constraint=false];
+	indv_survive_03_end -> clan_new_leader_03_end [ label = "leader" color="#00ff00" constraint=false];
+	patch_patchcalories_1_2 -> clan_clan_extract_calories_01_02 [ label = "clangetcalories" color="#00ff00" constraint=false];
+	indv_indvInformation_start_01 -> clan_clan_Information_start_01 [ label = "information" color="#00ff00" constraint=false];
+	clan_distribute_calories_02_03 -> indv_extractcalories_01_02 [ label = "indgetcalories" color="#00ff00" constraint=false];
+	{ rank=same; layer_0;  indv_indvInformation_start_01;  patch_patchtype_start_1;  manada_guanacos_manadaInfo_start_1; }
+	{ rank=same; layer_1;  clan_clan_Information_start_01;  manada_guanacos_manada_idle_1_2;  manada_guanacos_move_1_2; }
+	{ rank=same; layer_2;  patch_patchcalories_1_2;  manada_guanacos_post_calorias_2_end; }
+	{ rank=same; layer_3;  clan_clan_extract_calories_01_02;  patch_regenerate_2_3; }
+	{ rank=same; layer_4;  clan_distribute_calories_02_03;  patch_snregenerate_3_end;  patch_idle_patch_3_end; }
+	{ rank=same; layer_5;  indv_extractcalories_01_02; }
+	{ rank=same; layer_6;  indv_getolder_02_03;  indv_idle_indv_02_03; }
+	{ rank=same; layer_7;  indv_survive_03_end; }
+	{ rank=same; layer_8;  clan_new_leader_03_end; }
+}
