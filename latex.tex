@@ -210,6 +210,8 @@
 \parbox{5cm}{\url{float} \url{repods}} \index{\url{repods}} & \parbox{10cm}{reposition rate for dry season} \\
 \midrule
 \parbox{5cm}{\url{int} \url{season}} \index{\url{season}} & \parbox{10cm}{current season, initially it must be wet season} \\
+\midrule
+\parbox{5cm}{\url{int} \url{adultos}} \index{\url{adultos}} & \parbox{10cm}{numero de guanacos adultos} \\
 \end{longtable}
 \begin{longtable}[H!]{ll}
 \caption{{\bfseries List of functions for patch agent.}}
@@ -235,7 +237,7 @@
 \midrule
 \parbox{5cm}{\url{regenerate}} \index{\url{regenerate}} & \parbox{10cm}{calorias aportadas por los guanacos} \\
 \midrule
-\parbox{5cm}{\url{snregenerate}} \index{\url{snregenerate}} & \parbox{10cm}{status of new regenaration based on reposition rate} \\
+\parbox{5cm}{\url{snregenerate}} \index{\url{snregenerate}} & \parbox{10cm}{reproduccion de guanacos} \\
 \midrule
 \parbox{5cm}{\url{idle_patch}} \index{\url{idle_patch}} & \parbox{10cm}{the time the patch does not generate new calories this function should be executed instead of regenerate 
                 } \\
@@ -299,7 +301,9 @@
 \midrule
 \parbox{5cm}{\url{move}} \index{\url{move}} & \parbox{10cm}{Calculamos el movimiento de la manada (depende de la estación)} \\
 \midrule
-\parbox{5cm}{\url{post_calorias}} \index{\url{post_calorias}} & \parbox{10cm}{Decimos cuantas calorias aporta la manada al patch} \\
+\parbox{5cm}{\url{reproduccion}} \index{\url{reproduccion}} & \parbox{10cm}{los guanacos dentro del patch crean nuevas manadas} \\
+\midrule
+\parbox{5cm}{\url{manada_idle2}} \index{\url{manada_idle2}} & \parbox{10cm}{la manada no hace nada} \\
 \end{longtable}
 \subsection{Messages}
 See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
@@ -348,10 +352,17 @@ See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
     \url{int} \url{cID} \index{\url{cID}} & \parbox{10cm}{}\\
     \url{int} \url{clcalories} \index{\url{clcalories}} & \parbox{10cm}{}\\
 \midrule
-\url{calguanacos} & \parbox{10cm}{manda las calorias de los guanacos}\\
+\url{adultospatch} & \parbox{10cm}{manda los adultos que hay en el patch}\\
     \url{int} \url{xcord} \index{\url{xcord}} & \parbox{10cm}{posicion x de la manada de guanacos}\\
     \url{int} \url{ycord} \index{\url{ycord}} & \parbox{10cm}{posicion y de la manada de guanacos}\\
-    \url{int} \url{calorias} \index{\url{calorias}} & \parbox{10cm}{calorias aportadas por la manada de guanacos}\\
+    \url{int} \url{adultos} \index{\url{adultos}} & \parbox{10cm}{adultos de la manada de guanacos}\\
+    \url{int} \url{sentido} \index{\url{sentido}} & \parbox{10cm}{indica si se van o llegan al patch(0 se van, 1 llegan)}\\
+\midrule
+\url{reproduccionguanacos} & \parbox{10cm}{manda los guanacos a reproducirse}\\
+    \url{int} \url{xcord} \index{\url{xcord}} & \parbox{10cm}{posicion x de la manada de guanacos}\\
+    \url{int} \url{ycord} \index{\url{ycord}} & \parbox{10cm}{posicion y de la manada de guanacos}\\
+    \url{int} \url{count} \index{\url{count}} & \parbox{10cm}{numero de guanacos (incluido crias)}\\
+    \url{int} \url{familia} \index{\url{familia}} & \parbox{10cm}{indica si son familias o no(0 no son, 1 son familia)}\\
 \end{longtable}
 \subsection{Constants}
 \begin{longtable}[H!]{ll}

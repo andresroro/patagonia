@@ -41,8 +41,10 @@ int main(int argc, char * argv[])
 	int FLAME_clan_info_message_board_read;
 	int FLAME_clangetcalories_message_board_write;
 	int FLAME_clangetcalories_message_board_read;
-	int FLAME_calguanacos_message_board_write;
-	int FLAME_calguanacos_message_board_read;
+	int FLAME_adultospatch_message_board_write;
+	int FLAME_adultospatch_message_board_read;
+	int FLAME_reproduccionguanacos_message_board_write;
+	int FLAME_reproduccionguanacos_message_board_read;
 
 	/* Particle cloud data */
 	double cloud_data[6] = {0.0,0.0,0.0,0.0,0.0,0.0};
@@ -503,37 +505,83 @@ printf("Iterations: %i\n", iteration_total);
 		   exit(rc);
 	}
 	#endif
-	FLAME_calguanacos_message_board_write = 0;
-	FLAME_calguanacos_message_board_read = 0;
+	FLAME_adultospatch_message_board_write = 0;
+	FLAME_adultospatch_message_board_read = 0;
 	/* Sending agents */
-	if(manada_guanacos_start_state->agents != NULL) FLAME_calguanacos_message_board_write = 1;
+	if(manada_guanacos_start_state->agents != NULL) FLAME_adultospatch_message_board_write = 1;
 	
 	/* Reading agents */
-	if(patch_start_state->agents != NULL) FLAME_calguanacos_message_board_read = 1;
+	if(patch_start_state->agents != NULL) FLAME_adultospatch_message_board_read = 1;
 	
 	/* Call message board library with details */
-	if(FLAME_calguanacos_message_board_write == 0 &&
-		FLAME_calguanacos_message_board_read == 0)
-			rc = MB_SetAccessMode(b_calguanacos, MB_MODE_IDLE);
-	if(FLAME_calguanacos_message_board_write == 1 &&
-		FLAME_calguanacos_message_board_read == 0)
-			rc = MB_SetAccessMode(b_calguanacos, MB_MODE_WRITEONLY);
-	if(FLAME_calguanacos_message_board_write == 0 &&
-		FLAME_calguanacos_message_board_read == 1)
-			rc = MB_SetAccessMode(b_calguanacos, MB_MODE_READONLY);
-	if(FLAME_calguanacos_message_board_write == 1 &&
-		FLAME_calguanacos_message_board_read == 1)
-			rc = MB_SetAccessMode(b_calguanacos, MB_MODE_READWRITE);
+	if(FLAME_adultospatch_message_board_write == 0 &&
+		FLAME_adultospatch_message_board_read == 0)
+			rc = MB_SetAccessMode(b_adultospatch, MB_MODE_IDLE);
+	if(FLAME_adultospatch_message_board_write == 1 &&
+		FLAME_adultospatch_message_board_read == 0)
+			rc = MB_SetAccessMode(b_adultospatch, MB_MODE_WRITEONLY);
+	if(FLAME_adultospatch_message_board_write == 0 &&
+		FLAME_adultospatch_message_board_read == 1)
+			rc = MB_SetAccessMode(b_adultospatch, MB_MODE_READONLY);
+	if(FLAME_adultospatch_message_board_write == 1 &&
+		FLAME_adultospatch_message_board_read == 1)
+			rc = MB_SetAccessMode(b_adultospatch, MB_MODE_READWRITE);
 	#ifdef ERRCHECK
 	if (rc != MB_SUCCESS)
 	{
-	   fprintf(stderr, "ERROR: Could not set access mode of 'calguanacos' board\n");
+	   fprintf(stderr, "ERROR: Could not set access mode of 'adultospatch' board\n");
 	   switch(rc) {
 		   case MB_ERR_INVALID:
-			   fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+			   fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
 			   break;
 		   case MB_ERR_LOCKED:
-			   fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+			   fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_reproduccionguanacos_message_board_write = 0;
+	FLAME_reproduccionguanacos_message_board_read = 0;
+	/* Sending agents */
+	if(manada_guanacos_start_state->agents != NULL) FLAME_reproduccionguanacos_message_board_write = 1;
+	
+	/* Reading agents */
+	if(patch_start_state->agents != NULL) FLAME_reproduccionguanacos_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_reproduccionguanacos_message_board_write == 0 &&
+		FLAME_reproduccionguanacos_message_board_read == 0)
+			rc = MB_SetAccessMode(b_reproduccionguanacos, MB_MODE_IDLE);
+	if(FLAME_reproduccionguanacos_message_board_write == 1 &&
+		FLAME_reproduccionguanacos_message_board_read == 0)
+			rc = MB_SetAccessMode(b_reproduccionguanacos, MB_MODE_WRITEONLY);
+	if(FLAME_reproduccionguanacos_message_board_write == 0 &&
+		FLAME_reproduccionguanacos_message_board_read == 1)
+			rc = MB_SetAccessMode(b_reproduccionguanacos, MB_MODE_READONLY);
+	if(FLAME_reproduccionguanacos_message_board_write == 1 &&
+		FLAME_reproduccionguanacos_message_board_read == 1)
+			rc = MB_SetAccessMode(b_reproduccionguanacos, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'reproduccionguanacos' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
 			   break;
 		   case MB_ERR_MEMALLOC:
 			   fprintf(stderr, "\t reason: out of memory\n");
@@ -751,24 +799,61 @@ printf("Iterations: %i\n", iteration_total);
 		}
 		
 		/* Start sync message boards that don't write */
-		if(FLAME_calguanacos_message_board_write == 0)
+		if(FLAME_adultospatch_message_board_write == 0)
 		{
-			/*printf("%d> calguanacos message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			/*printf("%d> adultospatch message board sync start early as no agents sending any messages of this type\n", node_number);*/
 			
 			/* ********** sync message board here **********  */
-			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_calguanacos)\n");
-			rc = MB_SyncStart(b_calguanacos);
-			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_calguanacos)\n");
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_adultospatch)\n");
+			rc = MB_SyncStart(b_adultospatch);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_adultospatch)\n");
 			#ifdef ERRCHECK
 			if (rc != MB_SUCCESS)
 			{
-			   fprintf(stderr, "ERROR: Could not start sync of 'calguanacos' board\n");
+			   fprintf(stderr, "ERROR: Could not start sync of 'adultospatch' board\n");
 			   switch(rc) {
 				   case MB_ERR_INVALID:
-					   fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+					   fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
 					   break;
 				   case MB_ERR_LOCKED:
-					   fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+					   fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_reproduccionguanacos_message_board_write == 0)
+		{
+			/*printf("%d> reproduccionguanacos message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_reproduccionguanacos)\n");
+			rc = MB_SyncStart(b_reproduccionguanacos);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_reproduccionguanacos)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'reproduccionguanacos' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
 					   break;
 				   case MB_ERR_MEMALLOC:
 					   fprintf(stderr, "\t reason: out of memory\n");
@@ -1008,6 +1093,41 @@ printf("Iterations: %i\n", iteration_total);
 		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
 	}
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish move\n");
+
+	if(FLAME_adultospatch_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_adultospatch)\n");
+		rc = MB_SyncStart(b_adultospatch);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_adultospatch)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'adultospatch' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
 
 
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start manada_idle\n");
@@ -1284,8 +1404,31 @@ if(FLAME_information_message_board_read == 0)
     }
     #endif
 
-
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start post_calorias\n");
+	/* DEBUG: States with branching functions */
+		current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
+		while(current_xmachine_manada_guanacos_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: manada_idle2 */
+			if(FLAME_condition_manada_guanacos_manada_idle2_2_end(current_xmachine_manada_guanacos_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: reproduccion */
+			if(FLAME_condition_manada_guanacos_reproduccion_2_end(current_xmachine_manada_guanacos_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'manada_guanacos' leaving state '2'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start reproduccion\n");
 	current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
 	while(current_xmachine_manada_guanacos_holder)
 	{
@@ -1299,11 +1442,12 @@ if(FLAME_information_message_board_read == 0)
 		current_xmachine->xmachine_manada_guanacos = NULL;
 		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
 
-		
+		if(FLAME_condition_manada_guanacos_reproduccion_2_end(current_xmachine_manada_guanacos)==1)
+		{
 
 		
 
-			i = post_calorias();
+			i = reproduccion();
 
 		
 
@@ -1315,30 +1459,30 @@ if(FLAME_information_message_board_read == 0)
 			{
 				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state, manada_guanacos_end_state);
 			}
-		
+		}
 
 		current_xmachine_manada_guanacos = NULL;
 
 		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
 	}
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish post_calorias\n");
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish reproduccion\n");
 
-	if(FLAME_calguanacos_message_board_write == 1)
+	if(FLAME_reproduccionguanacos_message_board_write == 1)
 	{
 
-		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_calguanacos)\n");
-		rc = MB_SyncStart(b_calguanacos);
-		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_calguanacos)\n");
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_reproduccionguanacos)\n");
+		rc = MB_SyncStart(b_reproduccionguanacos);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_reproduccionguanacos)\n");
 		#ifdef ERRCHECK
 		if (rc != MB_SUCCESS)
 		{
-		   fprintf(stderr, "ERROR: Could not start sync of 'calguanacos' board\n");
+		   fprintf(stderr, "ERROR: Could not start sync of 'reproduccionguanacos' board\n");
 		   switch(rc) {
 			   case MB_ERR_INVALID:
-				   fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+				   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
 				   break;
 			   case MB_ERR_LOCKED:
-				   fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+				   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
 				   break;
 			   case MB_ERR_MEMALLOC:
 				   fprintf(stderr, "\t reason: out of memory\n");
@@ -1357,6 +1501,46 @@ if(FLAME_information_message_board_read == 0)
 		#endif
     }
     
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start manada_idle2\n");
+	current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
+	while(current_xmachine_manada_guanacos_holder)
+	{
+		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		current_xmachine_manada_guanacos = current_xmachine_manada_guanacos_holder->agent;
+		current_xmachine_manada_guanacos_next_state = manada_guanacos_end_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
+
+		if(FLAME_condition_manada_guanacos_manada_idle2_2_end(current_xmachine_manada_guanacos)==1)
+		{
+
+		
+
+			i = manada_idle2();
+
+		
+
+			if(i == 1)
+			{
+				free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state);
+			}
+			else
+			{
+				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state, manada_guanacos_end_state);
+			}
+		}
+
+		current_xmachine_manada_guanacos = NULL;
+
+		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish manada_idle2\n");
 
 
 	/* If mb is not read then leave sync complete until last possible moment */
@@ -1595,18 +1779,18 @@ if(FLAME_clan_info_message_board_read == 0)
 
 
 	/* If mb is not read then leave sync complete until last possible moment */
-	if(FLAME_calguanacos_message_board_read == 1)
+	if(FLAME_adultospatch_message_board_read == 1)
 	{
-		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_calguanacos)\n");
-		rc = MB_SyncComplete(b_calguanacos);
-		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_calguanacos)\n");
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_adultospatch)\n");
+		rc = MB_SyncComplete(b_adultospatch);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_adultospatch)\n");
 		#ifdef ERRCHECK
 		if (rc != MB_SUCCESS)
 		{
-		   fprintf(stderr, "ERROR: Could not complete sync of 'calguanacos' board\n");
+		   fprintf(stderr, "ERROR: Could not complete sync of 'adultospatch' board\n");
 		   switch(rc) {
 				case MB_ERR_INVALID:
-				   fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+				   fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
 				   break;
 			   case MB_ERR_MEMALLOC:
 				   fprintf(stderr, "\t reason: out of memory\n");
@@ -1649,20 +1833,20 @@ if(FLAME_clan_info_message_board_read == 0)
           
                   
           
-		    rc = MB_Iterator_CreateFiltered(b_calguanacos, &i_calguanacos, &FLAME_filter_patch_regenerate_2_3_calguanacos, current_xmachine_patch);
+		    rc = MB_Iterator_CreateFiltered(b_adultospatch, &i_adultospatch, &FLAME_filter_patch_regenerate_2_3_adultospatch, current_xmachine_patch);
 		    
 		  
 		
 		#ifdef ERRCHECK
 		if (rc != MB_SUCCESS)
 		{
-		   fprintf(stderr, "ERROR: Could not create Iterator for 'calguanacos'\n");
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'adultospatch'\n");
 		   switch(rc) {
 		       case MB_ERR_INVALID:
-		           fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+		           fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
 		           break;
 		       case MB_ERR_LOCKED:
-	               fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+	               fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
 	               break;
 	           case MB_ERR_MEMALLOC:
 	               fprintf(stderr, "\t reason: out of memory\n");
@@ -1688,14 +1872,14 @@ if(FLAME_clan_info_message_board_read == 0)
 			i = regenerate();
 
 		
-		    rc = MB_Iterator_Delete(&i_calguanacos);
+		    rc = MB_Iterator_Delete(&i_adultospatch);
 		    #ifdef ERRCHECK
 		    if (rc != MB_SUCCESS)
 		    {
-		       fprintf(stderr, "ERROR: Could not delete 'calguanacos' iterator\n");
+		       fprintf(stderr, "ERROR: Could not delete 'adultospatch' iterator\n");
 		       switch(rc) {
 		           case MB_ERR_INVALID:
-		               fprintf(stderr, "\t reason: 'calguanacos' iterator is invalid\n");
+		               fprintf(stderr, "\t reason: 'adultospatch' iterator is invalid\n");
 		               break;
 		           case MB_ERR_INTERNAL:
 		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
@@ -1927,20 +2111,20 @@ if(FLAME_clangetcalories_message_board_read == 0)
     }
     #endif
 
-if(FLAME_calguanacos_message_board_read == 0)
+if(FLAME_adultospatch_message_board_read == 0)
 {
-	/*printf("%d> calguanacos message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	/*printf("%d> adultospatch message board sync complete late as no agents reading any messages of this type\n", node_number);*/
 	
-	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_calguanacos)\n");
-	rc = MB_SyncComplete(b_calguanacos);
-	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_calguanacos)\n");
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_adultospatch)\n");
+	rc = MB_SyncComplete(b_adultospatch);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_adultospatch)\n");
 	#ifdef ERRCHECK
 	if (rc != MB_SUCCESS)
 	{
-	   fprintf(stderr, "ERROR: Could not complete sync of 'calguanacos' board\n");
+	   fprintf(stderr, "ERROR: Could not complete sync of 'adultospatch' board\n");
 	   switch(rc) {
 			case MB_ERR_INVALID:
-			   fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+			   fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
 			   break;
 		   case MB_ERR_MEMALLOC:
 			   fprintf(stderr, "\t reason: out of memory\n");
@@ -1961,17 +2145,17 @@ if(FLAME_calguanacos_message_board_read == 0)
 
     /* Delete any search trees */
 
-    rc = MB_Clear(b_calguanacos);
+    rc = MB_Clear(b_adultospatch);
     #ifdef ERRCHECK
     if (rc != MB_SUCCESS)
     {
-       fprintf(stderr, "ERROR: Could not clear 'calguanacos' board\n");
+       fprintf(stderr, "ERROR: Could not clear 'adultospatch' board\n");
        switch(rc) {
            case MB_ERR_INVALID:
-               fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+               fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
                break;
            case MB_ERR_LOCKED:
-               fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+               fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
                break;
            case MB_ERR_INTERNAL:
                fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
@@ -2125,6 +2309,40 @@ if(FLAME_calguanacos_message_board_read == 0)
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle_patch\n");
 
 
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_reproduccionguanacos_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_reproduccionguanacos)\n");
+		rc = MB_SyncComplete(b_reproduccionguanacos);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_reproduccionguanacos)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'reproduccionguanacos' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start snregenerate\n");
 	current_xmachine_patch_holder = patch_3_state->agents;
 	while(current_xmachine_patch_holder)
@@ -2143,9 +2361,70 @@ if(FLAME_calguanacos_message_board_read == 0)
 		{
 
 		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_reproduccionguanacos, &i_reproduccionguanacos, &FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos, current_xmachine_patch);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'reproduccionguanacos'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
 
 			i = snregenerate();
 
+		
+		    rc = MB_Iterator_Delete(&i_reproduccionguanacos);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'reproduccionguanacos' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'reproduccionguanacos' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
 		
 
 			if(i == 1)
@@ -2169,6 +2448,66 @@ if(FLAME_calguanacos_message_board_read == 0)
 
 /* Clear message boards that have finished being used
  * and sync complete if doing late sync complete */
+
+if(FLAME_reproduccionguanacos_message_board_read == 0)
+{
+	/*printf("%d> reproduccionguanacos message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_reproduccionguanacos)\n");
+	rc = MB_SyncComplete(b_reproduccionguanacos);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_reproduccionguanacos)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'reproduccionguanacos' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_reproduccionguanacos);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'reproduccionguanacos' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
 
 
 	/* If mb is not read then leave sync complete until last possible moment */

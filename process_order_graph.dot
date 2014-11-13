@@ -10,21 +10,23 @@ digraph communication_graph {
 	patch_patchtype_start_1 -> manada_guanacos_manadaInfo_start_1;
 	layer_1 [ color="#ff0000" label="layer 1"];
 	layer_1 ->patch_patchtype_start_1;
-	manada_guanacos_move_1_2 [ shape = rect label="manada_guanacos_move_1_2 [0]" ];
+	manada_guanacos_move_1_2 [ shape = rect label="manada_guanacos_move_1_2 [-6]" ];
 	manada_guanacos_move_1_2 -> layer_1;
 	manada_guanacos_manada_idle_1_2 [ shape = rect label="manada_guanacos_manada_idle_1_2 [0]" ];
 	manada_guanacos_manada_idle_1_2 -> manada_guanacos_move_1_2;
-	clan_clan_Information_start_01 [ shape = rect label="clan_clan_Information_start_01 [3]" ];
+	clan_clan_Information_start_01 [ shape = rect label="clan_clan_Information_start_01 [0]" ];
 	clan_clan_Information_start_01 -> manada_guanacos_manada_idle_1_2;
 	layer_2 [ color="#ff0000" label="layer 2"];
 	layer_2 ->clan_clan_Information_start_01;
-	manada_guanacos_post_calorias_2_end [ shape = rect label="manada_guanacos_post_calorias_2_end [-2]" ];
-	manada_guanacos_post_calorias_2_end -> layer_2;
-	patch_patchcalories_1_2 [ shape = rect label="patch_patchcalories_1_2 [0]" ];
-	patch_patchcalories_1_2 -> manada_guanacos_post_calorias_2_end;
+	manada_guanacos_reproduccion_2_end [ shape = rect label="manada_guanacos_reproduccion_2_end [-5]" ];
+	manada_guanacos_reproduccion_2_end -> layer_2;
+	manada_guanacos_manada_idle2_2_end [ shape = rect label="manada_guanacos_manada_idle2_2_end [0]" ];
+	manada_guanacos_manada_idle2_2_end -> manada_guanacos_reproduccion_2_end;
+	patch_patchcalories_1_2 [ shape = rect label="patch_patchcalories_1_2 [3]" ];
+	patch_patchcalories_1_2 -> manada_guanacos_manada_idle2_2_end;
 	layer_3 [ color="#ff0000" label="layer 3"];
 	layer_3 ->patch_patchcalories_1_2;
-	patch_regenerate_2_3 [ shape = rect label="patch_regenerate_2_3 [2]" ];
+	patch_regenerate_2_3 [ shape = rect label="patch_regenerate_2_3 [6]" ];
 	patch_regenerate_2_3 -> layer_3;
 	clan_clan_extract_calories_01_02 [ shape = rect label="clan_clan_extract_calories_01_02 [2]" ];
 	clan_clan_extract_calories_01_02 -> patch_regenerate_2_3;
@@ -34,7 +36,7 @@ digraph communication_graph {
 	clan_distribute_calories_02_03 -> layer_4;
 	patch_idle_patch_3_end [ shape = rect label="patch_idle_patch_3_end [0]" ];
 	patch_idle_patch_3_end -> clan_distribute_calories_02_03;
-	patch_snregenerate_3_end [ shape = rect label="patch_snregenerate_3_end [0]" ];
+	patch_snregenerate_3_end [ shape = rect label="patch_snregenerate_3_end [5]" ];
 	patch_snregenerate_3_end -> patch_idle_patch_3_end;
 	layer_5 [ color="#ff0000" label="layer 5"];
 	layer_5 ->patch_snregenerate_3_end;
@@ -99,19 +101,29 @@ digraph communication_graph {
 	clangetcalories_message_sync_end_0 -> clan_clan_extract_calories_01_02 [ color="#00ff00" constraint=false ];
 	clangetcalories_message_sync_start_0 -> patch_patchcalories_1_2 [ color="#00ff00", constraint=false, style=dashed ];
 	{ rank=same; clan_clan_extract_calories_01_02; clangetcalories_message_sync_end_0; }
-	calguanacos_message [ label = "calguanacos" color="#00ff00" shape = parallelogram];
-	calguanacos_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
-	calguanacos_message_sync_start_0 -> calguanacos_message [ color="#00ff00" label="calguanacos_3"];
-	{ rank=same; manada_guanacos_post_calorias_2_end; calguanacos_message_sync_start_0; }
-	calguanacos_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
-	calguanacos_message_sync_end_0 -> calguanacos_message_sync_start_0 [ color="#00ff00" ];
-	calguanacos_message_sync_end_0 -> patch_regenerate_2_3 [ color="#00ff00" constraint=false ];
-	calguanacos_message_sync_start_0 -> manada_guanacos_post_calorias_2_end [ color="#00ff00", constraint=false, style=dashed ];
-	{ rank=same; patch_regenerate_2_3; calguanacos_message_sync_end_0; }
+	adultospatch_message [ label = "adultospatch" color="#00ff00" shape = parallelogram];
+	adultospatch_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	adultospatch_message_sync_start_0 -> adultospatch_message [ color="#00ff00" label="adultospatch_3"];
+	{ rank=same; manada_guanacos_move_1_2; adultospatch_message_sync_start_0; }
+	adultospatch_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	adultospatch_message_sync_end_0 -> adultospatch_message_sync_start_0 [ color="#00ff00" ];
+	adultospatch_message_sync_end_0 -> patch_regenerate_2_3 [ color="#00ff00" constraint=false ];
+	adultospatch_message_sync_start_0 -> manada_guanacos_move_1_2 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; patch_regenerate_2_3; adultospatch_message_sync_end_0; }
+	reproduccionguanacos_message [ label = "reproduccionguanacos" color="#00ff00" shape = parallelogram];
+	reproduccionguanacos_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	reproduccionguanacos_message_sync_start_0 -> reproduccionguanacos_message [ color="#00ff00" label="reproduccionguanacos_4"];
+	{ rank=same; manada_guanacos_reproduccion_2_end; reproduccionguanacos_message_sync_start_0; }
+	reproduccionguanacos_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	reproduccionguanacos_message_sync_end_0 -> reproduccionguanacos_message_sync_start_0 [ color="#00ff00" ];
+	reproduccionguanacos_message_sync_end_0 -> patch_snregenerate_3_end [ color="#00ff00" constraint=false ];
+	reproduccionguanacos_message_sync_start_0 -> manada_guanacos_reproduccion_2_end [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; patch_snregenerate_3_end; reproduccionguanacos_message_sync_end_0; }
 	indv_indvInformation_start_01 -> information_message [ color="#00ff00" constraint=false ];
 	indv_survive_03_end -> leader_message [ color="#00ff00" constraint=false ];
 	clan_clan_Information_start_01 -> clan_info_message [ color="#00ff00" constraint=false ];
 	clan_distribute_calories_02_03 -> indgetcalories_message [ color="#00ff00" constraint=false ];
 	patch_patchcalories_1_2 -> clangetcalories_message [ color="#00ff00" constraint=false ];
-	manada_guanacos_post_calorias_2_end -> calguanacos_message [ color="#00ff00" constraint=false ];
+	manada_guanacos_move_1_2 -> adultospatch_message [ color="#00ff00" constraint=false ];
+	manada_guanacos_reproduccion_2_end -> reproduccionguanacos_message [ color="#00ff00" constraint=false ];
 }

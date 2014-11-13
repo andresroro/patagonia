@@ -89,9 +89,8 @@
 					<condition><not>
 						<time>
 							<period>dias_por_patch</period>
-							<phase>10</phase>
-						</time>
-					</not></condition>
+							<phase>0</phase>
+					</time></not></condition>
 				</function>
 				<function>
 					<name>move</name>
@@ -101,28 +100,51 @@
 					<condition>
 						<time>
 							<period>dias_por_patch</period>
-							<phase>10</phase>
+							<phase>0</phase>
 						</time>
 					</condition>
-				</function>
-				<function>
-					<name>post_calorias</name>
-					<description>Decimos cuantas calorias aporta la manada al patch</description>
-					<currentState>2</currentState>
-					<nextState>end</nextState>
 					<outputs>
 						<output>
-							<messageName>calguanacos</messageName>
+							<messageName>adultospatch</messageName>
 						</output>
 					</outputs>
+				</function>
+				<function>
+					<name>reproduccion</name>
+					<description>los guanacos dentro del patch crean nuevas manadas</description>
+					<currentState>2</currentState>
+					<nextState>end</nextState>
+					<condition>
+						<time>
+							<period>yearly</period>
+							<phase>0</phase>
+						</time>
+					</condition>
+					<outputs>
+						<output>
+							<messageName>reproduccionguanacos</messageName>
+						</output>
+					</outputs>
+				</function>
+				<function>
+					<name>manada_idle2</name>
+					<description>la manada no hace nada</description>
+					<currentState>2</currentState>
+					<nextState>end</nextState>
+					<condition>
+						<not><time>
+							<period>yearly</period>
+							<phase>0</phase>
+						</time></not>
+					</condition>
 				</function>
 			</functions>
 		</xagent>
 	</agents>
 	<messages>
 		<message>
-			<name>calguanacos</name>
-			<description>manda las calorias de los guanacos</description>
+			<name>adultospatch</name>
+			<description>manda los adultos que hay en el patch</description>
 			<variables>
 				<variable>
 					<type>int</type>
@@ -136,8 +158,39 @@
 				</variable>
 				<variable>
 					<type>int</type>
-					<name>calorias</name>
-					<description>calorias aportadas por la manada de guanacos</description>
+					<name>adultos</name>
+					<description>adultos de la manada de guanacos</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>sentido</name>
+					<description>indica si se van o llegan al patch(0 se van, 1 llegan)</description>
+				</variable>
+			</variables>
+		</message>
+		<message>
+			<name>reproduccionguanacos</name>
+			<description>manda los guanacos a reproducirse</description>
+			<variables>
+				<variable>
+					<type>int</type>
+					<name>xcord</name>
+					<description>posicion x de la manada de guanacos</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>ycord</name>
+					<description>posicion y de la manada de guanacos</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>count</name>
+					<description>numero de guanacos (incluido crias)</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>familia</name>
+					<description>indica si son familias o no(0 no son, 1 son familia)</description>
 				</variable>
 			</variables>
 		</message>

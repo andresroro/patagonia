@@ -524,11 +524,11 @@ int readAgentXML(char * location,
 	int in_repows = 0;
 	int in_repods = 0;
 	int in_season = 0;
+	int in_adultos = 0;
 	int in_id = 0;
 	int in_familia = 0;
 	int in_count = 0;
 	int in_calorias = 0;
-	int in_adultos = 0;
 	
 	xmachine_memory_indv * current_indv_agent = NULL;
 	xmachine_memory_clan * current_clan_agent = NULL;
@@ -830,6 +830,8 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/repods") == 0) { in_repods = 0; }
 			if(strcmp(buffer, "season") == 0) { in_season = 1; }
 			if(strcmp(buffer, "/season") == 0) { in_season = 0; }
+			if(strcmp(buffer, "adultos") == 0) { in_adultos = 1; }
+			if(strcmp(buffer, "/adultos") == 0) { in_adultos = 0; }
 			if(strcmp(buffer, "id") == 0) { in_id = 1; }
 			if(strcmp(buffer, "/id") == 0) { in_id = 0; }
 			if(strcmp(buffer, "familia") == 0) { in_familia = 1; }
@@ -838,8 +840,6 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/count") == 0) { in_count = 0; }
 			if(strcmp(buffer, "calorias") == 0) { in_calorias = 1; }
 			if(strcmp(buffer, "/calorias") == 0) { in_calorias = 0; }
-			if(strcmp(buffer, "adultos") == 0) { in_adultos = 1; }
-			if(strcmp(buffer, "/adultos") == 0) { in_adultos = 0; }
 			
 			index = 0;
 			buffer[index] = '\0';
@@ -916,6 +916,7 @@ int readAgentXML(char * location,
 					if(in_repows) { current_patch_agent->repows = atof(buffer); }
 					if(in_repods) { current_patch_agent->repods = atof(buffer); }
 					if(in_season) { current_patch_agent->season = atoi(buffer); }
+					if(in_adultos) { current_patch_agent->adultos = atoi(buffer); }
 				 }else if(in_manada_guanacos_agent == 1)
 				{
 					if(in_id) { current_manada_guanacos_agent->id = atoi(buffer); }
@@ -1643,6 +1644,10 @@ void write_patch_agent(FILE *file, xmachine_memory_patch * current)
 	sprintf(data, "%i", current->season);
 	fputs(data, file);
 	fputs("</season>\n", file);
+		fputs("<adultos>", file);
+	sprintf(data, "%i", current->adultos);
+	fputs(data, file);
+	fputs("</adultos>\n", file);
 
 	fputs("</xagent>\n", file);
 }

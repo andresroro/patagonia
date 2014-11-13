@@ -1,5 +1,7 @@
 #include "header.h"
 #include "manada_guanacos_agent_header.h"
+#include "commons.h"
+#include <time.h>
 
 //variables
 
@@ -25,10 +27,10 @@ int manada_idle(){
 
 int move(){
 	int r;
-	srand(time(NULL));
 	r = rand();	
+	add_adultospatch_message(get_xcord(), get_ycord(), get_adultos(), 0);
 	if (season==DRY){
-		if(ycord <= 7){
+		if(ycord <= (GRIDSIZE/2)){
 			switch(r%3){
 				case 0:
 					if(xcord > 1){
@@ -44,7 +46,7 @@ int move(){
 					}
 					break;
 				case 2:
-					if(xcord < 13){
+					if(xcord < (GRIDSIZE-2)){
 						set_xcord(xcord+1);
 					}
 					if(ycord > 0){
@@ -58,20 +60,20 @@ int move(){
 					if(xcord > 1){
 						set_xcord(xcord-1);
 					}
-					if(ycord < 14){
+					if(ycord < (GRIDSIZE-1)){
 						set_ycord(ycord+1);
 					}
 					break;
 				case 1:
-					if(ycord < 14){
+					if(ycord < (GRIDSIZE-1)){
 						set_ycord(ycord+1);
 					}
 					break;
 				case 2:
-					if(xcord < 13){
+					if(xcord < (GRIDSIZE-2)){
 						set_xcord(xcord+1);
 					}
-					if(ycord < 14){
+					if(ycord < (GRIDSIZE-1)){
 						set_ycord(ycord+1);
 					}
 					break; 
@@ -93,7 +95,7 @@ int move(){
 				}
 				break;
 			case 2:
-				if(xcord < 13){
+				if(xcord < (GRIDSIZE-2)){
 					set_xcord(xcord+1);
 				}
 				if(ycord > 0){
@@ -101,20 +103,20 @@ int move(){
 				}
 				break;
 			case 3:
-				if(xcord < 13){
+				if(xcord < (GRIDSIZE-2)){
 					set_xcord(xcord+1);
 				}
 				break;
 			case 4:
-				if(xcord < 13){
+				if(xcord < (GRIDSIZE-2)){
 					set_xcord(xcord+1);
 				}
-				if(ycord < 14){
+				if(ycord < (GRIDSIZE-1)){
 					set_ycord(ycord+1);
 				}
 				break;
 			case 5:
-				if(ycord < 14){
+				if(ycord < (GRIDSIZE-1)){
 					set_ycord(ycord+1);
 				}
 				break;
@@ -122,7 +124,7 @@ int move(){
 				if(xcord > 1){
 					set_xcord(xcord-1);
 				}
-				if(ycord < 14){
+				if(ycord < (GRIDSIZE-1)){
 					set_ycord(ycord+1);
 				}
 				break;
@@ -133,10 +135,20 @@ int move(){
 				break;
 		}
 	}
+	add_adultospatch_message(get_xcord(), get_ycord(), get_adultos(), 1);
 	return 0;
 }
-
+/*
 int post_calorias(){
 	add_calguanacos_message(xcord, ycord, calorias);
+	return 0;
+}*/
+
+int reproduccion(){
+	add_reproduccionguanacos_message(get_xcord(), get_ycord(), get_count(), get_familia());
+	return 1;
+}
+
+int manada_idle2(){
 	return 0;
 }

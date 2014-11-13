@@ -30,3 +30,6 @@
 /** \def SEASON
  * \brief Direct access to season of patch agent memory variable. */
 #define SEASON (current_xmachine_patch->season)
+/** \def ADULTOS
+ * \brief Direct access to adultos of patch agent memory variable. */
+#define ADULTOS (current_xmachine_patch->adultos)

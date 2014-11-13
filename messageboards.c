@@ -710,42 +710,44 @@ m_clangetcalories * get_next_clangetcalories_message(m_clangetcalories * current
 
 
 
-union pu_calguanacos 
+union pu_adultospatch 
 {
-    m_calguanacos *ptr;
+    m_adultospatch *ptr;
     void *ptr_anon;
 };
 
-/** \fn void add_calguanacos_message(int xcord, int ycord, int calorias)
- * \brief Add calguanacos message by calling internal and processing.
+/** \fn void add_adultospatch_message(int xcord, int ycord, int adultos, int sentido)
+ * \brief Add adultospatch message by calling internal and processing.
  * \param xcord Message variable.
  * \param ycord Message variable.
- * \param calorias Message variable.
+ * \param adultos Message variable.
+ * \param sentido Message variable.
  */
-void add_calguanacos_message(int xcord, int ycord, int calorias)
+void add_adultospatch_message(int xcord, int ycord, int adultos, int sentido)
 {
     int rc;
-	m_calguanacos msg;
+	m_adultospatch msg;
     
     msg.xcord = xcord;
     msg.ycord = ycord;
-    msg.calorias = calorias;
+    msg.adultos = adultos;
+    msg.sentido = sentido;
     
     
-    rc = MB_AddMessage(b_calguanacos, &msg);
+    rc = MB_AddMessage(b_adultospatch, &msg);
     #ifdef ERRCHECK
     if (rc != MB_SUCCESS)
     {
-       fprintf(stderr, "ERROR: Could not add message to 'calguanacos' board\n");
+       fprintf(stderr, "ERROR: Could not add message to 'adultospatch' board\n");
        switch(rc) {
            case MB_ERR_INVALID:
-               fprintf(stderr, "\t reason: 'calguanacos' board has not been created?\n");
+               fprintf(stderr, "\t reason: 'adultospatch' board has not been created?\n");
                break;
            case MB_ERR_MEMALLOC:
                fprintf(stderr, "\t reason: out of memory\n");
                break;
            case MB_ERR_LOCKED:
-               fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+               fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
                break;
            case MB_ERR_INTERNAL:
                fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
@@ -761,10 +763,10 @@ void add_calguanacos_message(int xcord, int ycord, int calorias)
     #endif
 }
 
-inline static m_calguanacos* getInternalMessage_calguanacos(void)
+inline static m_adultospatch* getInternalMessage_adultospatch(void)
 {
-    static m_calguanacos *msg_prev = NULL;
-    union pu_calguanacos msg_pu;
+    static m_adultospatch *msg_prev = NULL;
+    union pu_adultospatch msg_pu;
     int rc;
     
     /* deallocate previously returned message */
@@ -774,14 +776,14 @@ inline static m_calguanacos* getInternalMessage_calguanacos(void)
     }
     else 
     {
-        rc = MB_Iterator_Rewind(i_calguanacos); 
+        rc = MB_Iterator_Rewind(i_adultospatch); 
         #ifdef ERRCHECK
         if (rc != MB_SUCCESS)
         {
-            fprintf(stderr, "ERROR: Could not rewind 'calguanacos' Iterator\n");
+            fprintf(stderr, "ERROR: Could not rewind 'adultospatch' Iterator\n");
             switch(rc) {
                 case MB_ERR_INVALID:
-                    fprintf(stderr, "\t reason: 'calguanacos' Iterator has not been created?\n");
+                    fprintf(stderr, "\t reason: 'adultospatch' Iterator has not been created?\n");
                     break;
 	            default:
                     fprintf(stderr, "\t MB_Iterator_Rewind returned error code: %d (see libmboard docs for details)\n", rc);
@@ -795,14 +797,14 @@ inline static m_calguanacos* getInternalMessage_calguanacos(void)
     }
     
     /* get next message from iterator */
-    rc = MB_Iterator_GetMessage(i_calguanacos, &(msg_pu.ptr_anon));
+    rc = MB_Iterator_GetMessage(i_adultospatch, &(msg_pu.ptr_anon));
     #ifdef ERRCHECK
     if (rc != MB_SUCCESS)
     {
-       fprintf(stderr, "ERROR: Could not get message from 'calguanacos' Iterator\n");
+       fprintf(stderr, "ERROR: Could not get message from 'adultospatch' Iterator\n");
        switch(rc) {
            case MB_ERR_INVALID:
-               fprintf(stderr, "\t reason: 'calguanacos' Iterator has not been created?\n");
+               fprintf(stderr, "\t reason: 'adultospatch' Iterator has not been created?\n");
                break;
            case MB_ERR_MEMALLOC:
                fprintf(stderr, "\t reason: out of memory\n");
@@ -823,22 +825,162 @@ inline static m_calguanacos* getInternalMessage_calguanacos(void)
     return msg_pu.ptr;
 }
 
-/** \fn xmachine_message_calguanacos * get_first_calguanacos_message()
- * \brief Get the first calguanacos message in the calguanacos message list.
+/** \fn xmachine_message_adultospatch * get_first_adultospatch_message()
+ * \brief Get the first adultospatch message in the adultospatch message list.
  * \return The first message in the list.
  */
-m_calguanacos * get_first_calguanacos_message()
+m_adultospatch * get_first_adultospatch_message()
 {
-	return getInternalMessage_calguanacos();
+	return getInternalMessage_adultospatch();
 }
 
-/** \fn xmachine_message_calguanacos * get_next_calguanacos_message(xmachine_message_calguanacos * current)
- * \brief Get the next calguanacos message in the calguanacos message list after the current message.
+/** \fn xmachine_message_adultospatch * get_next_adultospatch_message(xmachine_message_adultospatch * current)
+ * \brief Get the next adultospatch message in the adultospatch message list after the current message.
  * \param current The current message in the list.
  * \return The next message in the list.
  */
-m_calguanacos * get_next_calguanacos_message(m_calguanacos * current)
+m_adultospatch * get_next_adultospatch_message(m_adultospatch * current)
 {
-	return getInternalMessage_calguanacos();
+	return getInternalMessage_adultospatch();
+}
+
+
+/* Box filtering functions */
+
+
+
+
+union pu_reproduccionguanacos 
+{
+    m_reproduccionguanacos *ptr;
+    void *ptr_anon;
+};
+
+/** \fn void add_reproduccionguanacos_message(int xcord, int ycord, int count, int familia)
+ * \brief Add reproduccionguanacos message by calling internal and processing.
+ * \param xcord Message variable.
+ * \param ycord Message variable.
+ * \param count Message variable.
+ * \param familia Message variable.
+ */
+void add_reproduccionguanacos_message(int xcord, int ycord, int count, int familia)
+{
+    int rc;
+	m_reproduccionguanacos msg;
+    
+    msg.xcord = xcord;
+    msg.ycord = ycord;
+    msg.count = count;
+    msg.familia = familia;
+    
+    
+    rc = MB_AddMessage(b_reproduccionguanacos, &msg);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not add message to 'reproduccionguanacos' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' board has not been created?\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_AddMessage returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	   }
+	      
+	   
+       exit(rc);
+    }
+    #endif
+}
+
+inline static m_reproduccionguanacos* getInternalMessage_reproduccionguanacos(void)
+{
+    static m_reproduccionguanacos *msg_prev = NULL;
+    union pu_reproduccionguanacos msg_pu;
+    int rc;
+    
+    /* deallocate previously returned message */
+    if (msg_prev != NULL) 
+    {
+        free(msg_prev);
+    }
+    else 
+    {
+        rc = MB_Iterator_Rewind(i_reproduccionguanacos); 
+        #ifdef ERRCHECK
+        if (rc != MB_SUCCESS)
+        {
+            fprintf(stderr, "ERROR: Could not rewind 'reproduccionguanacos' Iterator\n");
+            switch(rc) {
+                case MB_ERR_INVALID:
+                    fprintf(stderr, "\t reason: 'reproduccionguanacos' Iterator has not been created?\n");
+                    break;
+	            default:
+                    fprintf(stderr, "\t MB_Iterator_Rewind returned error code: %d (see libmboard docs for details)\n", rc);
+                    break;
+	        }
+	       
+	       
+       	   exit(rc);
+        }
+        #endif
+    }
+    
+    /* get next message from iterator */
+    rc = MB_Iterator_GetMessage(i_reproduccionguanacos, &(msg_pu.ptr_anon));
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not get message from 'reproduccionguanacos' Iterator\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' Iterator has not been created?\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Iterator_GetMessage returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+	       
+	       
+       	   exit(rc);
+    }
+    #endif
+    
+    /* store pointer so memory can be deallocated later */
+    msg_prev = msg_pu.ptr;
+    
+    return msg_pu.ptr;
+}
+
+/** \fn xmachine_message_reproduccionguanacos * get_first_reproduccionguanacos_message()
+ * \brief Get the first reproduccionguanacos message in the reproduccionguanacos message list.
+ * \return The first message in the list.
+ */
+m_reproduccionguanacos * get_first_reproduccionguanacos_message()
+{
+	return getInternalMessage_reproduccionguanacos();
+}
+
+/** \fn xmachine_message_reproduccionguanacos * get_next_reproduccionguanacos_message(xmachine_message_reproduccionguanacos * current)
+ * \brief Get the next reproduccionguanacos message in the reproduccionguanacos message list after the current message.
+ * \param current The current message in the list.
+ * \return The next message in the list.
+ */
+m_reproduccionguanacos * get_next_reproduccionguanacos_message(m_reproduccionguanacos * current)
+{
+	return getInternalMessage_reproduccionguanacos();
 }
 

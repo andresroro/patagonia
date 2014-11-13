@@ -59,6 +59,11 @@
                     <name>season</name>
                     <description>current season, initially it must be wet season</description>
                  </variable>
+                 <variable>
+                    <type>int</type>
+                    <name>adultos</name>
+                    <description>numero de guanacos adultos</description>
+                 </variable>
                </memory>
             <functions>
                 <function>
@@ -115,7 +120,7 @@
                 <nextState>3</nextState>
                 <inputs>
                     <input>
-                        <messageName>calguanacos</messageName>
+                        <messageName>adultospatch</messageName>
                         <filter><lhs>
                             <lhs><value>a.xcord</value></lhs>
                             <op>EQ</op>
@@ -147,15 +152,31 @@
 		</function>-->
                <function>
 		    <name>snregenerate</name>
-		    <description>status of new regenaration based on reposition rate</description>
+		    <description>reproduccion de guanacos</description>
 		    <currentState>3</currentState>
 		    <nextState>end</nextState>
 		    <condition>
 			<time>
-                           <period>season</period>
-                           <phase>6</phase>
+                           <period>yearly</period>
+                           <phase>0</phase>
 			</time>
 		    </condition>
+        <inputs>
+                    <input>
+                        <messageName>reproduccionguanacos</messageName>
+                        <filter><lhs>
+                            <lhs><value>a.xcord</value></lhs>
+                            <op>EQ</op>
+                            <rhs><value>m.xcord</value></rhs>
+                        </lhs>
+                            <op>AND</op>
+                        <rhs>
+                            <lhs><value>a.ycord</value></lhs>
+                            <op>EQ</op>
+                            <rhs><value>m.ycord</value></rhs>
+                        </rhs></filter>
+                    </input>
+        </inputs>
   		   </function>
              <function>
 		    <name>idle_patch</name>
@@ -166,8 +187,8 @@
 		    <condition>
 			<not>
 			   <time>	
-                              <period>season</period>
-                              <phase>6</phase>
+                              <period>yearly</period>
+                              <phase>0</phase>
 			    </time>
 			</not>
 		    </condition>

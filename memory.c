@@ -202,18 +202,18 @@ void unittest_regenerate_2_3()
 {
 	int rc;
 	
-	rc = MB_Iterator_CreateFiltered(b_calguanacos, &i_calguanacos, &FLAME_filter_patch_regenerate_2_3_calguanacos, current_xmachine_patch);
+	rc = MB_Iterator_CreateFiltered(b_adultospatch, &i_adultospatch, &FLAME_filter_patch_regenerate_2_3_adultospatch, current_xmachine_patch);
 	
 	#ifdef ERRCHECK
 	if (rc != MB_SUCCESS)
 	{
-	   fprintf(stderr, "ERROR: Could not create Iterator for 'calguanacos'\n");
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'adultospatch'\n");
 	   switch(rc) {
 	       case MB_ERR_INVALID:
-	           fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+	           fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
 	           break;
 	       case MB_ERR_LOCKED:
-               fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+               fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
                break;
            case MB_ERR_MEMALLOC:
                fprintf(stderr, "\t reason: out of memory\n");
@@ -230,7 +230,30 @@ void unittest_regenerate_2_3()
 
 void unittest_snregenerate_3_end()
 {
+	int rc;
 	
+	rc = MB_Iterator_CreateFiltered(b_reproduccionguanacos, &i_reproduccionguanacos, &FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos, current_xmachine_patch);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'reproduccionguanacos'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
 	
 	//return snregenerate();
 }
@@ -263,11 +286,18 @@ void unittest_move_1_2()
 	//return move();
 }
 
-void unittest_post_calorias_2_end()
+void unittest_reproduccion_2_end()
 {
 	
 	
-	//return post_calorias();
+	//return reproduccion();
+}
+
+void unittest_manada_idle2_2_end()
+{
+	
+	
+	//return manada_idle2();
 }
 
 
@@ -400,17 +430,42 @@ void free_messages()
 	    }
 	    #endif
 	
-	    rc = MB_Clear(b_calguanacos);
+	    rc = MB_Clear(b_adultospatch);
 	    #ifdef ERRCHECK
 	    if (rc != MB_SUCCESS)
 	    {
-	       fprintf(stderr, "ERROR: Could not clear 'calguanacos' board\n");
+	       fprintf(stderr, "ERROR: Could not clear 'adultospatch' board\n");
 	       switch(rc) {
 	           case MB_ERR_INVALID:
-	               fprintf(stderr, "\t reason: 'calguanacos' board is invalid\n");
+	               fprintf(stderr, "\t reason: 'adultospatch' board is invalid\n");
 	               break;
 	           case MB_ERR_LOCKED:
-	               fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+	               fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_reproduccionguanacos);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'reproduccionguanacos' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
 	               break;
 	           case MB_ERR_INTERNAL:
 	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
@@ -575,13 +630,41 @@ int rc;
 	    #endif
 	
 	/* Initialise message sync composite params as NULL */
-	FLAME_m_calguanacos_composite_params = NULL;
+	FLAME_m_adultospatch_composite_params = NULL;
 
-	    rc = MB_Create(&b_calguanacos, sizeof(m_calguanacos));
+	    rc = MB_Create(&b_adultospatch, sizeof(m_adultospatch));
 	    #ifdef ERRCHECK
 	    if (rc != MB_SUCCESS)
 	    {
-	       fprintf(stderr, "ERROR: Could not create 'calguanacos' board\n");
+	       fprintf(stderr, "ERROR: Could not create 'adultospatch' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_reproduccionguanacos_composite_params = NULL;
+
+	    rc = MB_Create(&b_reproduccionguanacos, sizeof(m_reproduccionguanacos));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'reproduccionguanacos' board\n");
 	       switch(rc) {
 	           case MB_ERR_INVALID:
 	               fprintf(stderr, "\t reason: Invalid message size\n");
@@ -1221,6 +1304,7 @@ xmachine_memory_patch * init_patch_agent()
 	current->repows = 0.0;
 	current->repods = 0.0;
 	current->season = 0;
+	current->adultos = 0;
 
 	return current;
 }
@@ -1251,6 +1335,7 @@ void unittest_init_patch_agent()
 		current_xmachine_patch->repows = 0.0;
 		current_xmachine_patch->repods = 0.0;
 		current_xmachine_patch->season = 0;
+		current_xmachine_patch->adultos = 0;
 	
 }
 
@@ -1338,7 +1423,7 @@ void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_pat
 
 }
 
-/** \fn void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season)
+/** \fn void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
  * \brief Add patch X-machine to the current being used X-machine list.
  * \param patchID Variable for the X-machine memory.
  * \param pcalories Variable for the X-machine memory.
@@ -1349,8 +1434,9 @@ void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_pat
  * \param repows Variable for the X-machine memory.
  * \param repods Variable for the X-machine memory.
  * \param season Variable for the X-machine memory.
+ * \param adultos Variable for the X-machine memory.
  */
-void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season)
+void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
 {
 	xmachine_memory_patch * current;
 
@@ -1368,6 +1454,7 @@ void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xco
 	current->repows = repows;
 	current->repods = repods;
 	current->season = season;
+	current->adultos = adultos;
 }
 
 xmachine_memory_manada_guanacos_state * init_manada_guanacos_state()
@@ -2051,6 +2138,30 @@ int get_season()
     return (int)0;
 }
 
+/** \fn void set_adultos(int adultos)
+ * \brief Set adultos memory variable for current X-machine.
+ * \param adultos New value for variable.
+ */
+void set_adultos(int adultos)
+{
+	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).adultos = adultos;
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).adultos = adultos;
+}
+
+/** \fn int get_adultos()
+ * \brief Get adultos memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_adultos()
+{
+	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).adultos;
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).adultos;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
 /** \fn void set_id(int id)
  * \brief Set id memory variable for current X-machine.
  * \param id New value for variable.
@@ -2133,28 +2244,6 @@ void set_calorias(int calorias)
 int get_calorias()
 {
 	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).calorias;
-
-    // suppress compiler warning by returning dummy value /
-    // this statement should rightfully NEVER be reached /
-    return (int)0;
-}
-
-/** \fn void set_adultos(int adultos)
- * \brief Set adultos memory variable for current X-machine.
- * \param adultos New value for variable.
- */
-void set_adultos(int adultos)
-{
-	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).adultos = adultos;
-}
-
-/** \fn int get_adultos()
- * \brief Get adultos memory variable from current X-machine.
- * \return Value for variable.
- */
-int get_adultos()
-{
-	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).adultos;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -2274,7 +2363,8 @@ void add_node(int node_id, double minx, double maxx, double miny, double maxy, d
 	current->leader_messages = NULL;
 	current->clan_info_messages = NULL;
 	current->clangetcalories_messages = NULL;
-	current->calguanacos_messages = NULL;
+	current->adultospatch_messages = NULL;
+	current->reproduccionguanacos_messages = NULL;
 
 
 	current->partition_data[0] = minx;
@@ -2457,17 +2547,42 @@ void clean_up(int code)
     }
     #endif
 
-	rc = MB_Delete(&b_calguanacos);
+	rc = MB_Delete(&b_adultospatch);
 	#ifdef ERRCHECK
     if (rc != MB_SUCCESS)
     {
-       fprintf(stderr, "ERROR: Could not delete 'calguanacos' board\n");
+       fprintf(stderr, "ERROR: Could not delete 'adultospatch' board\n");
        switch(rc) {
            case MB_ERR_INVALID:
-               fprintf(stderr, "\t reason: 'calguanacos' board has not been created?\n");
+               fprintf(stderr, "\t reason: 'adultospatch' board has not been created?\n");
                break;
            case MB_ERR_LOCKED:
-               fprintf(stderr, "\t reason: 'calguanacos' board is locked\n");
+               fprintf(stderr, "\t reason: 'adultospatch' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_reproduccionguanacos);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'reproduccionguanacos' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
                break;
            case MB_ERR_INTERNAL:
                fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");

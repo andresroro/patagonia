@@ -96,7 +96,7 @@ int FLAME_condition_indv_idle_indv_02_03(xmachine_memory_indv *a)
  */
 int FLAME_condition_patch_snregenerate_3_end(xmachine_memory_patch *a)
 {
-	if((iteration_loop%180 == 6)) return 1;
+	if((iteration_loop%360 == 0)) return 1;
 	else return 0;
 }
 
@@ -108,7 +108,7 @@ int FLAME_condition_patch_snregenerate_3_end(xmachine_memory_patch *a)
  */
 int FLAME_condition_patch_idle_patch_3_end(xmachine_memory_patch *a)
 {
-	if(!(iteration_loop%180 == 6)) return 1;
+	if(!(iteration_loop%360 == 0)) return 1;
 	else return 0;
 }
 
@@ -120,7 +120,7 @@ int FLAME_condition_patch_idle_patch_3_end(xmachine_memory_patch *a)
  */
 int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guanacos *a)
 {
-	if(!(iteration_loop%10 == 10)) return 1;
+	if(!(iteration_loop%10 == 0)) return 1;
 	else return 0;
 }
 
@@ -132,7 +132,31 @@ int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guana
  */
 int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a)
 {
-	if((iteration_loop%10 == 10)) return 1;
+	if((iteration_loop%10 == 0)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_manada_guanacos_reproduccion_2_end(xmachine_memory_manada_guanacos *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_manada_guanacos_reproduccion_2_end(xmachine_memory_manada_guanacos *a)
+{
+	if((iteration_loop%360 == 0)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_manada_guanacos_manada_idle2_2_end(xmachine_memory_manada_guanacos *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_manada_guanacos_manada_idle2_2_end(xmachine_memory_manada_guanacos *a)
+{
+	if(!(iteration_loop%360 == 0)) return 1;
 	else return 0;
 }
 
@@ -238,18 +262,38 @@ int FLAME_filter_patch_patchcalories_1_2_clan_info(const void *msg, const void *
 	else return 0;
 }
 
-/** \fn int FLAME_filter_patch_regenerate_2_3_calguanacos(const void *msg, const void *params)
+/** \fn int FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params)
  * \brief The filter function for a message input used in serial for each agent.
  * \param msg The pointer to the message to be filtered.
  * \param params The pointer to the agent memory.
  * \return The success (1) or failure (0) of the filter on the message.
  */
-int FLAME_filter_patch_regenerate_2_3_calguanacos(const void *msg, const void *params)
+int FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params)
 {
-	//printf("**** FLAME_filter_patch_regenerate_2_3_calguanacos(const void *msg, const void *params)\n");
+	//printf("**** FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params)\n");
 	
 	/* Cast the message pointer to the correct message type */
-	m_calguanacos *m = (m_calguanacos*)msg;
+	m_adultospatch *m = (m_adultospatch*)msg;
+	/* Cast the params pointer to the correct agent type */
+	xmachine_memory_patch *a = (xmachine_memory_patch *)params;
+
+	/* The filter */
+	if(((a->xcord == m->xcord) && (a->ycord == m->ycord))) return 1;
+	else return 0;
+}
+
+/** \fn int FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params)
+ * \brief The filter function for a message input used in serial for each agent.
+ * \param msg The pointer to the message to be filtered.
+ * \param params The pointer to the agent memory.
+ * \return The success (1) or failure (0) of the filter on the message.
+ */
+int FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params)
+{
+	//printf("**** FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params)\n");
+	
+	/* Cast the message pointer to the correct message type */
+	m_reproduccionguanacos *m = (m_reproduccionguanacos*)msg;
 	/* Cast the params pointer to the correct agent type */
 	xmachine_memory_patch *a = (xmachine_memory_patch *)params;
 

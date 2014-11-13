@@ -1,6 +1,7 @@
 #include "header.h"
 #include "patch_agent_header.h" 
 #include "commons.h"
+#include <math.h>
 
 /* patch calories and patch information and calorie proportion of ecah clan workforce over the total clans in the patch*/
 int patchtype()
@@ -73,17 +74,22 @@ int regenerate()
 	if ( !avail ) avail = 1000;
 	else avail = avail*get_repo();
 	set_pcalories( avail );*/
-	int cals =0;
-	START_CALGUANACOS_MESSAGE_LOOP
-		cals+=calguanacos_message->calorias;
-	FINISH_CALGUANACOS_MESSAGE_LOOP
-	set_pcalories(cals);
+	int adultos = get_adultos();
+	START_ADULTOSPATCH_MESSAGE_LOOP
+		if(adultospatch_message->sentido == 1){
+			adultos+=adultospatch_message->adultos;
+		}
+		if(adultospatch_message->sentido == 0){
+			adultos-=adultospatch_message->adultos;
+		}
+	FINISH_ADULTOSPATCH_MESSAGE_LOOP
+	set_adultos(adultos);
 	return 0;
 }
 
 int snregenerate()
 {
-    int pt=get_tpatch();
+    /*int pt=get_tpatch();
     int season = get_season(); 
 
     if (season == DRY){
@@ -92,6 +98,49 @@ int snregenerate()
     } else {
         set_season( WET );
 	set_repo( get_repows());
+    }*/
+    if( get_adultos()>0){
+		int r, i, aux;
+	    int familias=0, crias=0, hembras=0, machos=0;
+
+	    START_REPRODUCCIONGUANACOS_MESSAGE_LOOP
+	    	familias += reproduccionguanacos_message->familia; //cuento las familias
+	    	if(reproduccionguanacos_message->familia){
+	    		machos += reproduccionguanacos_message->familia; //cuento el macho de cada familia
+	    		crias += reproduccionguanacos_message->count; 
+	    	}
+	    	else machos += reproduccionguanacos_message->count; //si no es familia todos son machos (incluidas las crias)
+	    FINISH_REPRODUCCIONGUANACOS_MESSAGE_LOOP
+
+	    crias -= get_adultos(); //sabemos el numero de crias que contiene el patch
+	    hembras = familias*9; //calculamos el numero de hembras
+	    r = rand();
+	    if(crias >0){
+	    r = r % crias;}
+	    r = crias - r;
+	    hembras += r; //hembras que eran crias ahora son adultas
+	    crias -= r;
+	    machos += crias; //nuevos machos
+	    aux = ceil(hembras/9); //numero de familias nuevas que se crean
+	    for(i = 0; i < aux; i++){
+	    	if(hembras > 9){
+		    	add_manada_guanacos_agent(0, 1, get_xcord(), get_ycord(), 19, 0, 10); //creamos familias
+		    	machos--;
+		    	hembras -= 9;
+		    }
+		    else{
+		    	add_manada_guanacos_agent(0, 1, get_xcord(), get_ycord(), (2*hembras)+1, 0, hembras+1);
+		    	hembras = 0;
+		    }
+	    }
+	    while(machos >= 50){
+	    	add_manada_guanacos_agent(0, 0, get_xcord(), get_ycord(), 50, 0, 50); //creamos manadas
+	    	machos-=50;
+	    }
+	    if(machos > 1){
+	    	add_manada_guanacos_agent(0, 0, get_xcord(), get_ycord(), machos, 0, machos); //creamos la manada con los ultimos machos
+	    	machos= 0;
+	    }
     }
     
     return 0;

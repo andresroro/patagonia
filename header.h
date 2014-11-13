@@ -81,12 +81,18 @@
 /** \def FINISH_CLANGETCALORIES_MESSAGE_LOOP
  * \brief Finish of loop to process clangetcalories messages. */
 #define FINISH_CLANGETCALORIES_MESSAGE_LOOP }
-/** \def START_CALGUANACOS_MESSAGE_LOOP
- * \brief Start of loop to process calguanacos messages. */
-#define START_CALGUANACOS_MESSAGE_LOOP  for(calguanacos_message = get_first_calguanacos_message(); calguanacos_message != NULL; calguanacos_message = get_next_calguanacos_message(calguanacos_message)) {
-/** \def FINISH_CALGUANACOS_MESSAGE_LOOP
- * \brief Finish of loop to process calguanacos messages. */
-#define FINISH_CALGUANACOS_MESSAGE_LOOP }
+/** \def START_ADULTOSPATCH_MESSAGE_LOOP
+ * \brief Start of loop to process adultospatch messages. */
+#define START_ADULTOSPATCH_MESSAGE_LOOP  for(adultospatch_message = get_first_adultospatch_message(); adultospatch_message != NULL; adultospatch_message = get_next_adultospatch_message(adultospatch_message)) {
+/** \def FINISH_ADULTOSPATCH_MESSAGE_LOOP
+ * \brief Finish of loop to process adultospatch messages. */
+#define FINISH_ADULTOSPATCH_MESSAGE_LOOP }
+/** \def START_REPRODUCCIONGUANACOS_MESSAGE_LOOP
+ * \brief Start of loop to process reproduccionguanacos messages. */
+#define START_REPRODUCCIONGUANACOS_MESSAGE_LOOP  for(reproduccionguanacos_message = get_first_reproduccionguanacos_message(); reproduccionguanacos_message != NULL; reproduccionguanacos_message = get_next_reproduccionguanacos_message(reproduccionguanacos_message)) {
+/** \def FINISH_REPRODUCCIONGUANACOS_MESSAGE_LOOP
+ * \brief Finish of loop to process reproduccionguanacos messages. */
+#define FINISH_REPRODUCCIONGUANACOS_MESSAGE_LOOP }
 
 
 struct FLAME_output
@@ -291,6 +297,7 @@ struct xmachine_memory_patch
 	float repows;	/**< X-machine memory variable repows of type float. */
 	float repods;	/**< X-machine memory variable repods of type float. */
 	int season;	/**< X-machine memory variable season of type int. */
+	int adultos;	/**< X-machine memory variable adultos of type int. */
 };
 
 /** \struct xmachine_memory_patch_holder
@@ -434,18 +441,34 @@ struct m_clangetcalories
 	int clcalories;	/**< Message memory variable clcalories of type int. */
 };
 
-/** \var void* FLAME_m_calguanacos_composite_params\n
+/** \var void* FLAME_m_adultospatch_composite_params\n
  * \brief Pointer to message sync agent composite params */
-void* FLAME_m_calguanacos_composite_params;
+void* FLAME_m_adultospatch_composite_params;
 
-/** \struct m_calguanacos
- * \brief Holds message of type calguanacos_message.
+/** \struct m_adultospatch
+ * \brief Holds message of type adultospatch_message.
  */
-struct m_calguanacos
+struct m_adultospatch
 {
 	int xcord;	/**< Message memory variable xcord of type int. */
 	int ycord;	/**< Message memory variable ycord of type int. */
-	int calorias;	/**< Message memory variable calorias of type int. */
+	int adultos;	/**< Message memory variable adultos of type int. */
+	int sentido;	/**< Message memory variable sentido of type int. */
+};
+
+/** \var void* FLAME_m_reproduccionguanacos_composite_params\n
+ * \brief Pointer to message sync agent composite params */
+void* FLAME_m_reproduccionguanacos_composite_params;
+
+/** \struct m_reproduccionguanacos
+ * \brief Holds message of type reproduccionguanacos_message.
+ */
+struct m_reproduccionguanacos
+{
+	int xcord;	/**< Message memory variable xcord of type int. */
+	int ycord;	/**< Message memory variable ycord of type int. */
+	int count;	/**< Message memory variable count of type int. */
+	int familia;	/**< Message memory variable familia of type int. */
 };
 
 /** \typedef struct xmachine xmachine
@@ -525,10 +548,15 @@ typedef struct m_clan_info m_clan_info;
  */
 typedef struct m_clangetcalories m_clangetcalories;
 
-/** \typedef m_calguanacos m_calguanacos
- * \brief Typedef for m_calguanacos struct.
+/** \typedef m_adultospatch m_adultospatch
+ * \brief Typedef for m_adultospatch struct.
  */
-typedef struct m_calguanacos m_calguanacos;
+typedef struct m_adultospatch m_adultospatch;
+
+/** \typedef m_reproduccionguanacos m_reproduccionguanacos
+ * \brief Typedef for m_reproduccionguanacos struct.
+ */
+typedef struct m_reproduccionguanacos m_reproduccionguanacos;
 
 
 /** \struct location
@@ -556,7 +584,8 @@ struct node_information
 	struct m_leader * leader_messages;	/**< Pointer to leader message list. */
 	struct m_clan_info * clan_info_messages;	/**< Pointer to clan_info message list. */
 	struct m_clangetcalories * clangetcalories_messages;	/**< Pointer to clangetcalories message list. */
-	struct m_calguanacos * calguanacos_messages;	/**< Pointer to calguanacos message list. */
+	struct m_adultospatch * adultospatch_messages;	/**< Pointer to adultospatch message list. */
+	struct m_reproduccionguanacos * reproduccionguanacos_messages;	/**< Pointer to reproduccionguanacos message list. */
 
 	struct node_information * next;	/**< Pointer to next node on the list. */
 };
@@ -599,9 +628,12 @@ m_clan_info * temp_clan_info_message;
 /** \var m_clangetcalories * temp_clangetcalories_message
 * \brief Pointer to m_clangetcalories to initialise linked list. */
 m_clangetcalories * temp_clangetcalories_message;
-/** \var m_calguanacos * temp_calguanacos_message
-* \brief Pointer to m_calguanacos to initialise linked list. */
-m_calguanacos * temp_calguanacos_message;
+/** \var m_adultospatch * temp_adultospatch_message
+* \brief Pointer to m_adultospatch to initialise linked list. */
+m_adultospatch * temp_adultospatch_message;
+/** \var m_reproduccionguanacos * temp_reproduccionguanacos_message
+* \brief Pointer to m_reproduccionguanacos to initialise linked list. */
+m_reproduccionguanacos * temp_reproduccionguanacos_message;
 /** \var node_information * temp_node_info
 * \brief Pointer to node_information to initialise linked list. */
 node_information * temp_node_info;
@@ -718,8 +750,11 @@ MBt_Iterator i_clan_info;
 MBt_Board b_clangetcalories;
 MBt_Iterator i_clangetcalories;
 
-MBt_Board b_calguanacos;
-MBt_Iterator i_calguanacos;
+MBt_Board b_adultospatch;
+MBt_Iterator i_adultospatch;
+
+MBt_Board b_reproduccionguanacos;
+MBt_Iterator i_reproduccionguanacos;
 
 
 /** \var m_information * information_message
@@ -737,9 +772,12 @@ m_clan_info * clan_info_message;
 /** \var m_clangetcalories * clangetcalories_message
 * \brief Pointer to message struct for looping through clangetcalories message list */
 m_clangetcalories * clangetcalories_message;
-/** \var m_calguanacos * calguanacos_message
-* \brief Pointer to message struct for looping through calguanacos message list */
-m_calguanacos * calguanacos_message;
+/** \var m_adultospatch * adultospatch_message
+* \brief Pointer to message struct for looping through adultospatch message list */
+m_adultospatch * adultospatch_message;
+/** \var m_reproduccionguanacos * reproduccionguanacos_message
+* \brief Pointer to message struct for looping through reproduccionguanacos message list */
+m_reproduccionguanacos * reproduccionguanacos_message;
 /** \var FLAME_output ** FLAME_outputs
 * \brief Pointer to list of outputs */
 FLAME_output * FLAME_outputs;
@@ -883,7 +921,7 @@ xmachine_memory_patch * init_patch_agent();
 void free_patch_agent(xmachine_memory_patch_holder * tmp, xmachine_memory_patch_state * state);
 void transition_patch_agent(xmachine_memory_patch_holder * tmp, xmachine_memory_patch_state * from_state, xmachine_memory_patch_state * to_state);
 void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_patch_state * state);
-void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season);
+void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos);
 void unittest_init_patch_agent();
 void unittest_free_patch_agent();
 xmachine_memory_manada_guanacos_state * init_manada_guanacos_state();
@@ -925,11 +963,17 @@ m_clangetcalories * get_first_clangetcalories_message(void);
 m_clangetcalories * get_next_clangetcalories_message(m_clangetcalories * current);
 void freeclangetcaloriesmessages(void);
 
-void add_calguanacos_message(int xcord, int ycord, int calorias);
-m_calguanacos * add_calguanacos_message_internal(void);
-m_calguanacos * get_first_calguanacos_message(void);
-m_calguanacos * get_next_calguanacos_message(m_calguanacos * current);
-void freecalguanacosmessages(void);
+void add_adultospatch_message(int xcord, int ycord, int adultos, int sentido);
+m_adultospatch * add_adultospatch_message_internal(void);
+m_adultospatch * get_first_adultospatch_message(void);
+m_adultospatch * get_next_adultospatch_message(m_adultospatch * current);
+void freeadultospatchmessages(void);
+
+void add_reproduccionguanacos_message(int xcord, int ycord, int count, int familia);
+m_reproduccionguanacos * add_reproduccionguanacos_message_internal(void);
+m_reproduccionguanacos * get_first_reproduccionguanacos_message(void);
+m_reproduccionguanacos * get_next_reproduccionguanacos_message(m_reproduccionguanacos * current);
+void freereproduccionguanacosmessages(void);
 
 
 void set_indvID(int indvID);
@@ -977,6 +1021,8 @@ void set_repods(float repods);
 float get_repods();
 void set_season(int season);
 int get_season();
+void set_adultos(int adultos);
+int get_adultos();
 void set_id(int id);
 int get_id();
 void set_familia(int familia);
@@ -985,8 +1031,6 @@ void set_count(int count);
 int get_count();
 void set_calorias(int calorias);
 int get_calorias();
-void set_adultos(int adultos);
-int get_adultos();
 int agent_get_id(void);
 double agent_get_x(void);
 double agent_get_y(void);
@@ -1019,7 +1063,11 @@ m_clangetcalories * get_next_message_clangetcalories_in_range(m_clangetcalories 
 
 
 
-m_calguanacos * get_next_message_calguanacos_in_range(m_calguanacos * current);
+m_adultospatch * get_next_message_adultospatch_in_range(m_adultospatch * current);
+
+
+
+m_reproduccionguanacos * get_next_message_reproduccionguanacos_in_range(m_reproduccionguanacos * current);
 
 
 
@@ -1056,9 +1104,10 @@ int patchtype(void);
 int patchcalories(void);
 int FLAME_filter_patch_patchcalories_1_2_clan_info(const void *msg, const void *params);
 int regenerate(void);
-int FLAME_filter_patch_regenerate_2_3_calguanacos(const void *msg, const void *params);
+int FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params);
 int snregenerate(void);
 int FLAME_condition_patch_snregenerate_3_end(xmachine_memory_patch *a);
+int FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params);
 int idle_patch(void);
 int FLAME_condition_patch_idle_patch_3_end(xmachine_memory_patch *a);
 int manadaInfo(void);
@@ -1066,5 +1115,8 @@ int manada_idle(void);
 int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guanacos *a);
 int move(void);
 int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a);
-int post_calorias(void);
+int reproduccion(void);
+int FLAME_condition_manada_guanacos_reproduccion_2_end(xmachine_memory_manada_guanacos *a);
+int manada_idle2(void);
+int FLAME_condition_manada_guanacos_manada_idle2_2_end(xmachine_memory_manada_guanacos *a);
 #endif
