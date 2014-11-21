@@ -99,9 +99,12 @@ int snregenerate()
         set_season( WET );
 	set_repo( get_repows());
     }*/
-    if( get_adultos()>0){
+    
 		int r, i, aux;
 	    int familias=0, crias=0, hembras=0, machos=0;
+
+
+	if( get_adultos() > 0){
 
 	    START_REPRODUCCIONGUANACOS_MESSAGE_LOOP
 	    	familias += reproduccionguanacos_message->familia; //cuento las familias
@@ -113,31 +116,44 @@ int snregenerate()
 	    FINISH_REPRODUCCIONGUANACOS_MESSAGE_LOOP
 
 	    crias -= get_adultos(); //sabemos el numero de crias que contiene el patch
-	    hembras = familias*9; //calculamos el numero de hembras
+	    hembras = familias*(MAX_FAMILIA-1); //calculamos el numero de hembras
 	    r = rand();
 	    if(crias >0){
-	    r = r % crias;}
+	    r = r % crias;
 	    r = crias - r;
 	    hembras += r; //hembras que eran crias ahora son adultas
 	    crias -= r;
 	    machos += crias; //nuevos machos
-	    aux = ceil(hembras/9); //numero de familias nuevas que se crean
-	    for(i = 0; i < aux; i++){
-	    	if(hembras > 9){
-		    	add_manada_guanacos_agent(0, 1, get_xcord(), get_ycord(), 19, 0, 10); //creamos familias
+	    } 
+	    aux = 1+((hembras-1)/MAX_FAMILIA); //numero de familias nuevas que se crean
+	    /*for(i = 0; i < aux; i++){
+	    	if(hembras > MAX_FAMILIA-1){
+		    	add_manada_guanacos_agent(0, 1, get_xcord(), get_ycord(), (MAX_FAMILIA*2)-1, 0, MAX_FAMILIA); //creamos familias
 		    	machos--;
-		    	hembras -= 9;
+		    	hembras -= MAX_FAMILIA-1;
 		    }
 		    else{
 		    	add_manada_guanacos_agent(0, 1, get_xcord(), get_ycord(), (2*hembras)+1, 0, hembras+1);
 		    	hembras = 0;
+		    	machos--;
 		    }
+	    }*/
+		while (hembras > MAX_FAMILIA-1){
+			add_manada_guanacos_agent(0, 1, get_xcord(), get_ycord(), (MAX_FAMILIA*2)-1, 0, MAX_FAMILIA); //creamos familias
+		    machos--;
+		    hembras -= MAX_FAMILIA-1;
+		}
+		if (hembras >= 1){
+			add_manada_guanacos_agent(0, 1, get_xcord(), get_ycord(), (hembras*2)+1, 0, hembras+1);
+			machos--;
+			hembras = 0;
+		}
+
+	    while(machos >= MAX_MANADA){
+	    	add_manada_guanacos_agent(0, 0, get_xcord(), get_ycord(), MAX_MANADA, 0, MAX_MANADA); //creamos manadas
+	    	machos-= MAX_MANADA;
 	    }
-	    while(machos >= 50){
-	    	add_manada_guanacos_agent(0, 0, get_xcord(), get_ycord(), 50, 0, 50); //creamos manadas
-	    	machos-=50;
-	    }
-	    if(machos > 1){
+	    if(machos >= 1){
 	    	add_manada_guanacos_agent(0, 0, get_xcord(), get_ycord(), machos, 0, machos); //creamos la manada con los ultimos machos
 	    	machos= 0;
 	    }

@@ -1,64 +1,5 @@
 <agents>
-    <xagent>
-        <name>manada_guanacos</name>
-        <id>99</id>
-        <familia>0</familia>
-        <xcord>7</xcord>
-        <ycord>5</ycord>
-        <count>40</count>
-        <calorias>0</calorias>
-        <adultos>40</adultos>
-    </xagent>
-    <xagent>
-        <name>manada_guanacos</name>
-        <id>1</id>
-        <familia>1</familia>
-        <xcord>7</xcord>
-        <ycord>5</ycord>
-        <count>19</count>
-        <calorias>0</calorias>
-        <adultos>10</adultos>
-    </xagent>
-    <xagent>
-        <name>manada_guanacos</name>
-        <id>1</id>
-        <familia>1</familia>
-        <xcord>7</xcord>
-        <ycord>5</ycord>
-        <count>19</count>
-        <calorias>0</calorias>
-        <adultos>10</adultos>
-    </xagent>
-    <xagent>
-        <name>manada_guanacos</name>
-        <id>1</id>
-        <familia>1</familia>
-        <xcord>7</xcord>
-        <ycord>5</ycord>
-        <count>19</count>
-        <calorias>0</calorias>
-        <adultos>10</adultos>
-    </xagent>
-    <xagent>
-        <name>manada_guanacos</name>
-        <id>1</id>
-        <familia>1</familia>
-        <xcord>7</xcord>
-        <ycord>5</ycord>
-        <count>19</count>
-        <calorias>0</calorias>
-        <adultos>10</adultos>
-    </xagent>
-        <xagent>
-        <name>manada_guanacos</name>
-        <id>1</id>
-        <familia>1</familia>
-        <xcord>7</xcord>
-        <ycord>5</ycord>
-        <count>19</count>
-        <calorias>0</calorias>
-        <adultos>10</adultos>
-    </xagent>
+
     <xagent>
         <name>manada_guanacos</name>
         <id>1</id>
@@ -70,5 +11,3 @@
         <adultos>10</adultos>
     </xagent>
 </agents>
-
-

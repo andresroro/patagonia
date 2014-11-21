@@ -1,12 +1,16 @@
 <states>
 <itno>0</itno>
-<environment>
-</environment>
+
 <imports>
 	<import>
     <location>0_prueba.xml</location>
     <format>xml</format>
     <type>agent</type>
+	</import>
+	<import>
+	<location>0_environment.xml</location>
+    <format>xml</format>
+    <type>environment</type>
 	</import>
 </imports>
 <outputs>
