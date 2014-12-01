@@ -200,9 +200,37 @@ void unittest_patchcalories_1_2()
 
 void unittest_regenerate_2_3()
 {
+	
+	
+	//return regenerate();
+}
+
+void unittest_idle_patch_2_3()
+{
+	
+	
+	//return idle_patch();
+}
+
+void unittest_snregenerate_3_4()
+{
+	
+	
+	//return snregenerate();
+}
+
+void unittest_idle_patch_3_4()
+{
+	
+	
+	//return idle_patch();
+}
+
+void unittest_guanacos_move_4_5()
+{
 	int rc;
 	
-	rc = MB_Iterator_CreateFiltered(b_adultospatch, &i_adultospatch, &FLAME_filter_patch_regenerate_2_3_adultospatch, current_xmachine_patch);
+	rc = MB_Iterator_CreateFiltered(b_adultospatch, &i_adultospatch, &FLAME_filter_patch_guanacos_move_4_5_adultospatch, current_xmachine_patch);
 	
 	#ifdef ERRCHECK
 	if (rc != MB_SUCCESS)
@@ -225,14 +253,14 @@ void unittest_regenerate_2_3()
 	}
 	#endif
 	
-	//return regenerate();
+	//return guanacos_move();
 }
 
-void unittest_snregenerate_3_end()
+void unittest_reproduccion_guanacos_5_end()
 {
 	int rc;
 	
-	rc = MB_Iterator_CreateFiltered(b_reproduccionguanacos, &i_reproduccionguanacos, &FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos, current_xmachine_patch);
+	rc = MB_Iterator_CreateFiltered(b_reproduccionguanacos, &i_reproduccionguanacos, &FLAME_filter_patch_reproduccion_guanacos_5_end_reproduccionguanacos, current_xmachine_patch);
 	
 	#ifdef ERRCHECK
 	if (rc != MB_SUCCESS)
@@ -255,10 +283,10 @@ void unittest_snregenerate_3_end()
 	}
 	#endif
 	
-	//return snregenerate();
+	//return reproduccion_guanacos();
 }
 
-void unittest_idle_patch_3_end()
+void unittest_idle_patch_5_end()
 {
 	
 	
@@ -706,6 +734,10 @@ int rc;
 	clan_start_state = init_clan_state();
 
 	patch_end_state = init_patch_state();
+
+	patch_5_state = init_patch_state();
+
+	patch_4_state = init_patch_state();
 
 	patch_3_state = init_patch_state();
 
@@ -1297,6 +1329,7 @@ xmachine_memory_patch * init_patch_agent()
 
 	current->patchID = 0;
 	current->pcalories = 0;
+	current->gcalories = 0;
 	current->repo = 0.0;
 	current->tpatch = 0;
 	current->xcord = 0;
@@ -1328,6 +1361,7 @@ void unittest_init_patch_agent()
 
 		current_xmachine_patch->patchID = 0;
 		current_xmachine_patch->pcalories = 0;
+		current_xmachine_patch->gcalories = 0;
 		current_xmachine_patch->repo = 0.0;
 		current_xmachine_patch->tpatch = 0;
 		current_xmachine_patch->xcord = 0;
@@ -1355,6 +1389,22 @@ void free_patch_agents()
 		current_xmachine_patch_holder = temp_xmachine_patch_holder;
 	}
 	patch_end_state->count = 0;
+	current_xmachine_patch_holder = patch_5_state->agents;
+	while(current_xmachine_patch_holder)
+	{
+		temp_xmachine_patch_holder = current_xmachine_patch_holder->next;
+		free_patch_agent(current_xmachine_patch_holder, patch_5_state);
+		current_xmachine_patch_holder = temp_xmachine_patch_holder;
+	}
+	patch_5_state->count = 0;
+	current_xmachine_patch_holder = patch_4_state->agents;
+	while(current_xmachine_patch_holder)
+	{
+		temp_xmachine_patch_holder = current_xmachine_patch_holder->next;
+		free_patch_agent(current_xmachine_patch_holder, patch_4_state);
+		current_xmachine_patch_holder = temp_xmachine_patch_holder;
+	}
+	patch_4_state->count = 0;
 	current_xmachine_patch_holder = patch_3_state->agents;
 	while(current_xmachine_patch_holder)
 	{
@@ -1392,6 +1442,8 @@ void free_patch_agents()
 void free_patch_states()
 {
 	free(patch_end_state);
+	free(patch_5_state);
+	free(patch_4_state);
 	free(patch_3_state);
 	free(patch_2_state);
 	free(patch_1_state);
@@ -1423,10 +1475,11 @@ void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_pat
 
 }
 
-/** \fn void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
+/** \fn void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
  * \brief Add patch X-machine to the current being used X-machine list.
  * \param patchID Variable for the X-machine memory.
  * \param pcalories Variable for the X-machine memory.
+ * \param gcalories Variable for the X-machine memory.
  * \param repo Variable for the X-machine memory.
  * \param tpatch Variable for the X-machine memory.
  * \param xcord Variable for the X-machine memory.
@@ -1436,7 +1489,7 @@ void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_pat
  * \param season Variable for the X-machine memory.
  * \param adultos Variable for the X-machine memory.
  */
-void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
+void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
 {
 	xmachine_memory_patch * current;
 
@@ -1447,6 +1500,7 @@ void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xco
 
 	current->patchID = patchID;
 	current->pcalories = pcalories;
+	current->gcalories = gcalories;
 	current->repo = repo;
 	current->tpatch = tpatch;
 	current->xcord = xcord;
@@ -1473,7 +1527,6 @@ xmachine_memory_manada_guanacos * init_manada_guanacos_agent()
 	xmachine_memory_manada_guanacos * current = (xmachine_memory_manada_guanacos *)malloc(sizeof(xmachine_memory_manada_guanacos));
 	CHECK_POINTER(current);
 
-	current->id = 0;
 	current->familia = 0;
 	current->xcord = 0;
 	current->ycord = 0;
@@ -1501,7 +1554,6 @@ void unittest_init_manada_guanacos_agent()
 	current_xmachine_manada_guanacos = (xmachine_memory_manada_guanacos *)malloc(sizeof(xmachine_memory_manada_guanacos));
 	CHECK_POINTER(current);
 
-		current_xmachine_manada_guanacos->id = 0;
 		current_xmachine_manada_guanacos->familia = 0;
 		current_xmachine_manada_guanacos->xcord = 0;
 		current_xmachine_manada_guanacos->ycord = 0;
@@ -1586,9 +1638,8 @@ void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent,
 
 }
 
-/** \fn void add_manada_guanacos_agent(int id, int familia, int xcord, int ycord, int count, int calorias, int adultos)
+/** \fn void add_manada_guanacos_agent(int familia, int xcord, int ycord, int count, int calorias, int adultos)
  * \brief Add manada_guanacos X-machine to the current being used X-machine list.
- * \param id Variable for the X-machine memory.
  * \param familia Variable for the X-machine memory.
  * \param xcord Variable for the X-machine memory.
  * \param ycord Variable for the X-machine memory.
@@ -1596,7 +1647,7 @@ void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent,
  * \param calorias Variable for the X-machine memory.
  * \param adultos Variable for the X-machine memory.
  */
-void add_manada_guanacos_agent(int id, int familia, int xcord, int ycord, int count, int calorias, int adultos)
+void add_manada_guanacos_agent(int familia, int xcord, int ycord, int count, int calorias, int adultos)
 {
 	xmachine_memory_manada_guanacos * current;
 
@@ -1605,7 +1656,6 @@ void add_manada_guanacos_agent(int id, int familia, int xcord, int ycord, int co
 	current_xmachine_manada_guanacos_next_state = manada_guanacos_start_state;
 	add_manada_guanacos_agent_internal(current, current_xmachine_manada_guanacos_next_state);
 
-	current->id = id;
 	current->familia = familia;
 	current->xcord = xcord;
 	current->ycord = ycord;
@@ -2028,6 +2078,28 @@ int get_pcalories()
     return (int)0;
 }
 
+/** \fn void set_gcalories(int gcalories)
+ * \brief Set gcalories memory variable for current X-machine.
+ * \param gcalories New value for variable.
+ */
+void set_gcalories(int gcalories)
+{
+	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).gcalories = gcalories;
+}
+
+/** \fn int get_gcalories()
+ * \brief Get gcalories memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_gcalories()
+{
+	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).gcalories;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
 /** \fn void set_repo(float repo)
  * \brief Set repo memory variable for current X-machine.
  * \param repo New value for variable.
@@ -2162,28 +2234,6 @@ int get_adultos()
     return (int)0;
 }
 
-/** \fn void set_id(int id)
- * \brief Set id memory variable for current X-machine.
- * \param id New value for variable.
- */
-void set_id(int id)
-{
-	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).id = id;
-}
-
-/** \fn int get_id()
- * \brief Get id memory variable from current X-machine.
- * \return Value for variable.
- */
-int get_id()
-{
-	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).id;
-
-    // suppress compiler warning by returning dummy value /
-    // this statement should rightfully NEVER be reached /
-    return (int)0;
-}
-
 /** \fn void set_familia(int familia)
  * \brief Set familia memory variable for current X-machine.
  * \param familia New value for variable.
@@ -2276,7 +2326,7 @@ int agent_get_id()
     /*if (current_xmachine->xmachine_indv) value = current_xmachine->xmachine_indv->;*/
     /*if (current_xmachine->xmachine_clan) value = current_xmachine->xmachine_clan->;*/
     /*if (current_xmachine->xmachine_patch) value = current_xmachine->xmachine_patch->;*/
-    /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->id;*/
+    /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->;*/
 
     return value;
 }

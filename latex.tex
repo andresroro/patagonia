@@ -197,6 +197,8 @@
 \midrule
 \parbox{5cm}{\url{int} \url{pcalories}} \index{\url{pcalories}} & \parbox{10cm}{calories of the patch} \\
 \midrule
+\parbox{5cm}{\url{int} \url{gcalories}} \index{\url{gcalories}} & \parbox{10cm}{calories given by the guanacos to the patch} \\
+\midrule
 \parbox{5cm}{\url{float} \url{repo}} \index{\url{repo}} & \parbox{10cm}{reposition rate} \\
 \midrule
 \parbox{5cm}{\url{int} \url{tpatch}} \index{\url{tpatch}} & \parbox{10cm}{type of patch such as high/low/dry/wet/coastal} \\
@@ -235,9 +237,17 @@
 \midrule
 \parbox{5cm}{\url{patchcalories}} \index{\url{patchcalories}} & \parbox{10cm}{patch sends available calories} \\
 \midrule
-\parbox{5cm}{\url{regenerate}} \index{\url{regenerate}} & \parbox{10cm}{calorias aportadas por los guanacos} \\
+\parbox{5cm}{\url{regenerate}} \index{\url{regenerate}} & \parbox{10cm}{patch generates some new calories each week} \\
 \midrule
-\parbox{5cm}{\url{snregenerate}} \index{\url{snregenerate}} & \parbox{10cm}{reproduccion de guanacos} \\
+\parbox{5cm}{\url{idle_patch}} \index{\url{idle_patch}} & \parbox{10cm}{the days the patch does not generate new calories this function should be executed instead of regenerate} \\
+\midrule
+\parbox{5cm}{\url{snregenerate}} \index{\url{snregenerate}} & \parbox{10cm}{status of new regenaration based on reposition rate} \\
+\midrule
+\parbox{5cm}{\url{idle_patch}} \index{\url{idle_patch}} & \parbox{10cm}{the time the patch does not generate new calories this function should be executed instead of regenerate } \\
+\midrule
+\parbox{5cm}{\url{guanacos_move}} \index{\url{guanacos_move}} & \parbox{10cm}{calorias aportadas por los guanacos} \\
+\midrule
+\parbox{5cm}{\url{reproduccion_guanacos}} \index{\url{reproduccion_guanacos}} & \parbox{10cm}{reproduccion de guanacos} \\
 \midrule
 \parbox{5cm}{\url{idle_patch}} \index{\url{idle_patch}} & \parbox{10cm}{the time the patch does not generate new calories this function should be executed instead of regenerate 
                 } \\
@@ -262,8 +272,6 @@
 \endfoot
 \bottomrule
 \endlastfoot
-\midrule
-\parbox{5cm}{\url{int} \url{id}} \index{\url{id}} & \parbox{10cm}{Identificador de la manada} \\
 \midrule
 \parbox{5cm}{\url{int} \url{familia}} \index{\url{familia}} & \parbox{10cm}{Identificador si es manada(=0) o si es familia (!=0)} \\
 \midrule

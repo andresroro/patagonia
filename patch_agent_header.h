@@ -9,6 +9,9 @@
 /** \def PCALORIES
  * \brief Direct access to pcalories of patch agent memory variable. */
 #define PCALORIES (current_xmachine_patch->pcalories)
+/** \def GCALORIES
+ * \brief Direct access to gcalories of patch agent memory variable. */
+#define GCALORIES (current_xmachine_patch->gcalories)
 /** \def REPO
  * \brief Direct access to repo of patch agent memory variable. */
 #define REPO (current_xmachine_patch->repo)

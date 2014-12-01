@@ -3,9 +3,6 @@
  * \brief Header for agent type memory access.
  */
 
-/** \def ID
- * \brief Direct access to id of manada_guanacos agent memory variable. */
-#define ID (current_xmachine_manada_guanacos->id)
 /** \def FAMILIA
  * \brief Direct access to familia of manada_guanacos agent memory variable. */
 #define FAMILIA (current_xmachine_manada_guanacos->familia)

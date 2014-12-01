@@ -40,11 +40,6 @@
 			<memory>
 				<variable>
 					<type>int</type>
-					<name>id</name>
-					<description>Identificador de la manada</description>
-				</variable>
-				<variable>
-					<type>int</type>
 					<name>familia</name>
 					<description>Identificador si es manada(=0) o si es familia (!=0)</description>
 				</variable>

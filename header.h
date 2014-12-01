@@ -290,6 +290,7 @@ struct xmachine_memory_patch
 {
 	int patchID;	/**< X-machine memory variable patchID of type int. */
 	int pcalories;	/**< X-machine memory variable pcalories of type int. */
+	int gcalories;	/**< X-machine memory variable gcalories of type int. */
 	float repo;	/**< X-machine memory variable repo of type float. */
 	int tpatch;	/**< X-machine memory variable tpatch of type int. */
 	int xcord;	/**< X-machine memory variable xcord of type int. */
@@ -326,7 +327,6 @@ struct xmachine_memory_patch_state
  */
 struct xmachine_memory_manada_guanacos
 {
-	int id;	/**< X-machine memory variable id of type int. */
 	int familia;	/**< X-machine memory variable familia of type int. */
 	int xcord;	/**< X-machine memory variable xcord of type int. */
 	int ycord;	/**< X-machine memory variable ycord of type int. */
@@ -703,6 +703,12 @@ xmachine_memory_patch_state * current_xmachine_patch_next_state; /* New agents a
 /* Pointer to list of patch agents in state end state */
 //xmachine_memory_patch * temp_xmachine_patch_end;
 xmachine_memory_patch_state * patch_end_state;
+/* Pointer to list of patch agents in state 5 state */
+//xmachine_memory_patch * temp_xmachine_patch_5;
+xmachine_memory_patch_state * patch_5_state;
+/* Pointer to list of patch agents in state 4 state */
+//xmachine_memory_patch * temp_xmachine_patch_4;
+xmachine_memory_patch_state * patch_4_state;
 /* Pointer to list of patch agents in state 3 state */
 //xmachine_memory_patch * temp_xmachine_patch_3;
 xmachine_memory_patch_state * patch_3_state;
@@ -921,7 +927,7 @@ xmachine_memory_patch * init_patch_agent();
 void free_patch_agent(xmachine_memory_patch_holder * tmp, xmachine_memory_patch_state * state);
 void transition_patch_agent(xmachine_memory_patch_holder * tmp, xmachine_memory_patch_state * from_state, xmachine_memory_patch_state * to_state);
 void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_patch_state * state);
-void add_patch_agent(int patchID, int pcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos);
+void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos);
 void unittest_init_patch_agent();
 void unittest_free_patch_agent();
 xmachine_memory_manada_guanacos_state * init_manada_guanacos_state();
@@ -929,7 +935,7 @@ xmachine_memory_manada_guanacos * init_manada_guanacos_agent();
 void free_manada_guanacos_agent(xmachine_memory_manada_guanacos_holder * tmp, xmachine_memory_manada_guanacos_state * state);
 void transition_manada_guanacos_agent(xmachine_memory_manada_guanacos_holder * tmp, xmachine_memory_manada_guanacos_state * from_state, xmachine_memory_manada_guanacos_state * to_state);
 void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent, xmachine_memory_manada_guanacos_state * state);
-void add_manada_guanacos_agent(int id, int familia, int xcord, int ycord, int count, int calorias, int adultos);
+void add_manada_guanacos_agent(int familia, int xcord, int ycord, int count, int calorias, int adultos);
 void unittest_init_manada_guanacos_agent();
 void unittest_free_manada_guanacos_agent();
 
@@ -1011,6 +1017,8 @@ int get_leaderID();
 members_needs * get_mneeds();
 void set_pcalories(int pcalories);
 int get_pcalories();
+void set_gcalories(int gcalories);
+int get_gcalories();
 void set_repo(float repo);
 float get_repo();
 void set_tpatch(int tpatch);
@@ -1023,8 +1031,6 @@ void set_season(int season);
 int get_season();
 void set_adultos(int adultos);
 int get_adultos();
-void set_id(int id);
-int get_id();
 void set_familia(int familia);
 int get_familia();
 void set_count(int count);
@@ -1104,12 +1110,20 @@ int patchtype(void);
 int patchcalories(void);
 int FLAME_filter_patch_patchcalories_1_2_clan_info(const void *msg, const void *params);
 int regenerate(void);
-int FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params);
-int snregenerate(void);
-int FLAME_condition_patch_snregenerate_3_end(xmachine_memory_patch *a);
-int FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params);
+int FLAME_condition_patch_regenerate_2_3(xmachine_memory_patch *a);
 int idle_patch(void);
-int FLAME_condition_patch_idle_patch_3_end(xmachine_memory_patch *a);
+int FLAME_condition_patch_idle_patch_2_3(xmachine_memory_patch *a);
+int snregenerate(void);
+int FLAME_condition_patch_snregenerate_3_4(xmachine_memory_patch *a);
+int idle_patch(void);
+int FLAME_condition_patch_idle_patch_3_4(xmachine_memory_patch *a);
+int guanacos_move(void);
+int FLAME_filter_patch_guanacos_move_4_5_adultospatch(const void *msg, const void *params);
+int reproduccion_guanacos(void);
+int FLAME_condition_patch_reproduccion_guanacos_5_end(xmachine_memory_patch *a);
+int FLAME_filter_patch_reproduccion_guanacos_5_end_reproduccionguanacos(const void *msg, const void *params);
+int idle_patch(void);
+int FLAME_condition_patch_idle_patch_5_end(xmachine_memory_patch *a);
 int manadaInfo(void);
 int manada_idle(void);
 int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guanacos *a);

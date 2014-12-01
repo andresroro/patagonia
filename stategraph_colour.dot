@@ -31,6 +31,8 @@ digraph state_graph {
 	clan_01 [label = "01"]
 	clan_start [label = "start"]
 	patch_end [label = "end"]
+	patch_5 [label = "5"]
+	patch_4 [label = "4"]
 	patch_3 [label = "3"]
 	patch_2 [label = "2"]
 	patch_1 [label = "1"]
@@ -51,8 +53,12 @@ digraph state_graph {
 	patch_patchtype_start_1 [label = "patchtype", shape = box,style=filled,color=azure3];
 	patch_patchcalories_1_2 [label = "patchcalories", shape = box,style=filled,color=azure3];
 	patch_regenerate_2_3 [label = "regenerate", shape = box,style=filled,color=azure3];
-	patch_snregenerate_3_end [label = "snregenerate", shape = box,style=filled,color=azure3];
-	patch_idle_patch_3_end [label = "idle_patch", shape = box,style=filled,color=azure3];
+	patch_idle_patch_2_3 [label = "idle_patch", shape = box,style=filled,color=azure3];
+	patch_snregenerate_3_4 [label = "snregenerate", shape = box,style=filled,color=azure3];
+	patch_idle_patch_3_4 [label = "idle_patch", shape = box,style=filled,color=azure3];
+	patch_guanacos_move_4_5 [label = "guanacos_move", shape = box,style=filled,color=azure3];
+	patch_reproduccion_guanacos_5_end [label = "reproduccion_guanacos", shape = box,style=filled,color=azure3];
+	patch_idle_patch_5_end [label = "idle_patch", shape = box,style=filled,color=azure3];
 	manada_guanacos_manadaInfo_start_1 [label = "manadaInfo", shape = box,style=filled,color=brown1];
 	manada_guanacos_manada_idle_1_2 [label = "manada_idle", shape = box,style=filled,color=brown1];
 	manada_guanacos_move_1_2 [label = "move", shape = box,style=filled,color=brown1];
@@ -82,12 +88,20 @@ digraph state_graph {
 	patch_patchtype_start_1 -> patch_1;
 	patch_1 -> patch_patchcalories_1_2;
 	patch_patchcalories_1_2 -> patch_2;
-	patch_2 -> patch_regenerate_2_3;
+	patch_2 -> patch_regenerate_2_3 [ label = "Periodicity: weekly\nPhase: 6"];
 	patch_regenerate_2_3 -> patch_3;
-	patch_3 -> patch_snregenerate_3_end [ label = "Periodicity: yearly\nPhase: 0"];
-	patch_snregenerate_3_end -> patch_end;
-	patch_3 -> patch_idle_patch_3_end [ label = "not ( Periodicity: yearly\nPhase: 0 )"];
-	patch_idle_patch_3_end -> patch_end;
+	patch_2 -> patch_idle_patch_2_3 [ label = "not ( Periodicity: weekly\nPhase: 6 )"];
+	patch_idle_patch_2_3 -> patch_3;
+	patch_3 -> patch_snregenerate_3_4 [ label = "Periodicity: season\nPhase: 6"];
+	patch_snregenerate_3_4 -> patch_4;
+	patch_3 -> patch_idle_patch_3_4 [ label = "not ( Periodicity: season\nPhase: 6 )"];
+	patch_idle_patch_3_4 -> patch_4;
+	patch_4 -> patch_guanacos_move_4_5;
+	patch_guanacos_move_4_5 -> patch_5;
+	patch_5 -> patch_reproduccion_guanacos_5_end [ label = "Periodicity: yearly\nPhase: 0"];
+	patch_reproduccion_guanacos_5_end -> patch_end;
+	patch_5 -> patch_idle_patch_5_end [ label = "not ( Periodicity: yearly\nPhase: 0 )"];
+	patch_idle_patch_5_end -> patch_end;
 	manada_guanacos_start -> manada_guanacos_manadaInfo_start_1;
 	manada_guanacos_manadaInfo_start_1 -> manada_guanacos_1;
 	manada_guanacos_1 -> manada_guanacos_manada_idle_1_2 [ label = "not ( Periodicity: dias_por_patch\nPhase: 0 )"];
@@ -100,8 +114,8 @@ digraph state_graph {
 	manada_guanacos_manada_idle2_2_end -> manada_guanacos_end;
 	
 	/* Communications */
-	manada_guanacos_reproduccion_2_end -> patch_snregenerate_3_end [ label = "reproduccionguanacos" color="#00ff00" constraint=false];
-	manada_guanacos_move_1_2 -> patch_regenerate_2_3 [ label = "adultospatch" color="#00ff00" constraint=false];
+	manada_guanacos_reproduccion_2_end -> patch_reproduccion_guanacos_5_end [ label = "reproduccionguanacos" color="#00ff00" constraint=false];
+	manada_guanacos_move_1_2 -> patch_guanacos_move_4_5 [ label = "adultospatch" color="#00ff00" constraint=false];
 	clan_clan_Information_start_01 -> patch_patchcalories_1_2 [ label = "clan_info" color="#00ff00" constraint=false];
 	indv_survive_03_end -> clan_new_leader_03_end [ label = "leader" color="#00ff00" constraint=false];
 	patch_patchcalories_1_2 -> clan_clan_extract_calories_01_02 [ label = "clangetcalories" color="#00ff00" constraint=false];
@@ -110,10 +124,10 @@ digraph state_graph {
 	{ rank=same; layer_0;  indv_indvInformation_start_01;  patch_patchtype_start_1;  manada_guanacos_manadaInfo_start_1; }
 	{ rank=same; layer_1;  clan_clan_Information_start_01;  manada_guanacos_manada_idle_1_2;  manada_guanacos_move_1_2; }
 	{ rank=same; layer_2;  patch_patchcalories_1_2;  manada_guanacos_reproduccion_2_end;  manada_guanacos_manada_idle2_2_end; }
-	{ rank=same; layer_3;  clan_clan_extract_calories_01_02;  patch_regenerate_2_3; }
-	{ rank=same; layer_4;  clan_distribute_calories_02_03;  patch_snregenerate_3_end;  patch_idle_patch_3_end; }
-	{ rank=same; layer_5;  indv_extractcalories_01_02; }
-	{ rank=same; layer_6;  indv_getolder_02_03;  indv_idle_indv_02_03; }
+	{ rank=same; layer_3;  clan_clan_extract_calories_01_02;  patch_regenerate_2_3;  patch_idle_patch_2_3; }
+	{ rank=same; layer_4;  clan_distribute_calories_02_03;  patch_snregenerate_3_4;  patch_idle_patch_3_4; }
+	{ rank=same; layer_5;  indv_extractcalories_01_02;  patch_guanacos_move_4_5; }
+	{ rank=same; layer_6;  indv_getolder_02_03;  indv_idle_indv_02_03;  patch_reproduccion_guanacos_5_end;  patch_idle_patch_5_end; }
 	{ rank=same; layer_7;  indv_survive_03_end; }
 	{ rank=same; layer_8;  clan_new_leader_03_end; }
 }

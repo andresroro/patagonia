@@ -89,24 +89,72 @@ int FLAME_condition_indv_idle_indv_02_03(xmachine_memory_indv *a)
 }
 
 
-/** \fn int FLAME_condition_patch_snregenerate_3_end(xmachine_memory_patch *a)
+/** \fn int FLAME_condition_patch_regenerate_2_3(xmachine_memory_patch *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
  * \return The success (1) or failure (0) of the condition.
  */
-int FLAME_condition_patch_snregenerate_3_end(xmachine_memory_patch *a)
+int FLAME_condition_patch_regenerate_2_3(xmachine_memory_patch *a)
+{
+	if((iteration_loop%7 == 6)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_patch_idle_patch_2_3(xmachine_memory_patch *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_patch_idle_patch_2_3(xmachine_memory_patch *a)
+{
+	if(!(iteration_loop%7 == 6)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_patch_snregenerate_3_4(xmachine_memory_patch *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_patch_snregenerate_3_4(xmachine_memory_patch *a)
+{
+	if((iteration_loop%180 == 6)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_patch_idle_patch_3_4(xmachine_memory_patch *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_patch_idle_patch_3_4(xmachine_memory_patch *a)
+{
+	if(!(iteration_loop%180 == 6)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_patch_reproduccion_guanacos_5_end(xmachine_memory_patch *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_patch_reproduccion_guanacos_5_end(xmachine_memory_patch *a)
 {
 	if((iteration_loop%360 == 0)) return 1;
 	else return 0;
 }
 
 
-/** \fn int FLAME_condition_patch_idle_patch_3_end(xmachine_memory_patch *a)
+/** \fn int FLAME_condition_patch_idle_patch_5_end(xmachine_memory_patch *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
  * \return The success (1) or failure (0) of the condition.
  */
-int FLAME_condition_patch_idle_patch_3_end(xmachine_memory_patch *a)
+int FLAME_condition_patch_idle_patch_5_end(xmachine_memory_patch *a)
 {
 	if(!(iteration_loop%360 == 0)) return 1;
 	else return 0;
@@ -262,15 +310,15 @@ int FLAME_filter_patch_patchcalories_1_2_clan_info(const void *msg, const void *
 	else return 0;
 }
 
-/** \fn int FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params)
+/** \fn int FLAME_filter_patch_guanacos_move_4_5_adultospatch(const void *msg, const void *params)
  * \brief The filter function for a message input used in serial for each agent.
  * \param msg The pointer to the message to be filtered.
  * \param params The pointer to the agent memory.
  * \return The success (1) or failure (0) of the filter on the message.
  */
-int FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params)
+int FLAME_filter_patch_guanacos_move_4_5_adultospatch(const void *msg, const void *params)
 {
-	//printf("**** FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *params)\n");
+	//printf("**** FLAME_filter_patch_guanacos_move_4_5_adultospatch(const void *msg, const void *params)\n");
 	
 	/* Cast the message pointer to the correct message type */
 	m_adultospatch *m = (m_adultospatch*)msg;
@@ -282,15 +330,15 @@ int FLAME_filter_patch_regenerate_2_3_adultospatch(const void *msg, const void *
 	else return 0;
 }
 
-/** \fn int FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params)
+/** \fn int FLAME_filter_patch_reproduccion_guanacos_5_end_reproduccionguanacos(const void *msg, const void *params)
  * \brief The filter function for a message input used in serial for each agent.
  * \param msg The pointer to the message to be filtered.
  * \param params The pointer to the agent memory.
  * \return The success (1) or failure (0) of the filter on the message.
  */
-int FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params)
+int FLAME_filter_patch_reproduccion_guanacos_5_end_reproduccionguanacos(const void *msg, const void *params)
 {
-	//printf("**** FLAME_filter_patch_snregenerate_3_end_reproduccionguanacos(const void *msg, const void *params)\n");
+	//printf("**** FLAME_filter_patch_reproduccion_guanacos_5_end_reproduccionguanacos(const void *msg, const void *params)\n");
 	
 	/* Cast the message pointer to the correct message type */
 	m_reproduccionguanacos *m = (m_reproduccionguanacos*)msg;

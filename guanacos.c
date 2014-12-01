@@ -5,11 +5,10 @@
 
 //variables
 
-int id, familia, xcord, ycord, count, calorias, adultos, season;
+int familia, xcord, ycord, count, calorias, adultos, season;
 
 int manadaInfo(){
 
-	id= get_id();
 	familia=get_familia();
 	xcord = get_xcord();
 	ycord = get_ycord();

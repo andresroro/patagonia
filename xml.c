@@ -519,13 +519,13 @@ int readAgentXML(char * location,
 	int in_leaderID = 0;
 	int in_mneeds = 0;
 	int in_pcalories = 0;
+	int in_gcalories = 0;
 	int in_repo = 0;
 	int in_tpatch = 0;
 	int in_repows = 0;
 	int in_repods = 0;
 	int in_season = 0;
 	int in_adultos = 0;
-	int in_id = 0;
 	int in_familia = 0;
 	int in_count = 0;
 	int in_calorias = 0;
@@ -820,6 +820,8 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/mneeds") == 0) { in_mneeds = 0; }
 			if(strcmp(buffer, "pcalories") == 0) { in_pcalories = 1; }
 			if(strcmp(buffer, "/pcalories") == 0) { in_pcalories = 0; }
+			if(strcmp(buffer, "gcalories") == 0) { in_gcalories = 1; }
+			if(strcmp(buffer, "/gcalories") == 0) { in_gcalories = 0; }
 			if(strcmp(buffer, "repo") == 0) { in_repo = 1; }
 			if(strcmp(buffer, "/repo") == 0) { in_repo = 0; }
 			if(strcmp(buffer, "tpatch") == 0) { in_tpatch = 1; }
@@ -832,8 +834,6 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/season") == 0) { in_season = 0; }
 			if(strcmp(buffer, "adultos") == 0) { in_adultos = 1; }
 			if(strcmp(buffer, "/adultos") == 0) { in_adultos = 0; }
-			if(strcmp(buffer, "id") == 0) { in_id = 1; }
-			if(strcmp(buffer, "/id") == 0) { in_id = 0; }
 			if(strcmp(buffer, "familia") == 0) { in_familia = 1; }
 			if(strcmp(buffer, "/familia") == 0) { in_familia = 0; }
 			if(strcmp(buffer, "count") == 0) { in_count = 1; }
@@ -909,6 +909,7 @@ int readAgentXML(char * location,
 				{
 					if(in_patchID) { current_patch_agent->patchID = atoi(buffer); }
 					if(in_pcalories) { current_patch_agent->pcalories = atoi(buffer); }
+					if(in_gcalories) { current_patch_agent->gcalories = atoi(buffer); }
 					if(in_repo) { current_patch_agent->repo = atof(buffer); }
 					if(in_tpatch) { current_patch_agent->tpatch = atoi(buffer); }
 					if(in_xcord) { current_patch_agent->xcord = atoi(buffer); }
@@ -919,7 +920,6 @@ int readAgentXML(char * location,
 					if(in_adultos) { current_patch_agent->adultos = atoi(buffer); }
 				 }else if(in_manada_guanacos_agent == 1)
 				{
-					if(in_id) { current_manada_guanacos_agent->id = atoi(buffer); }
 					if(in_familia) { current_manada_guanacos_agent->familia = atoi(buffer); }
 					if(in_xcord) { current_manada_guanacos_agent->xcord = atoi(buffer); }
 					if(in_ycord) { current_manada_guanacos_agent->ycord = atoi(buffer); }
@@ -1616,6 +1616,10 @@ void write_patch_agent(FILE *file, xmachine_memory_patch * current)
 	sprintf(data, "%i", current->pcalories);
 	fputs(data, file);
 	fputs("</pcalories>\n", file);
+		fputs("<gcalories>", file);
+	sprintf(data, "%i", current->gcalories);
+	fputs(data, file);
+	fputs("</gcalories>\n", file);
 		fputs("<repo>", file);
 	sprintf(data, "%f", current->repo);
 	fputs(data, file);
@@ -1657,10 +1661,6 @@ void write_manada_guanacos_agent(FILE *file, xmachine_memory_manada_guanacos * c
 	char data[1000];
 	fputs("<xagent>\n" , file);
 	fputs("<name>manada_guanacos</name>\n", file);
-		fputs("<id>", file);
-	sprintf(data, "%i", current->id);
-	fputs(data, file);
-	fputs("</id>\n", file);
 		fputs("<familia>", file);
 	sprintf(data, "%i", current->familia);
 	fputs(data, file);
