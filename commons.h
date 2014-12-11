@@ -21,3 +21,4 @@ struct CInfo{
 
 struct CInfo clans_in_patch[50];
 
+int leviflight(int posX, int posY, int *targetX, int *targetY);
