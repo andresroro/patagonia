@@ -58,12 +58,106 @@ digraph communication_graph {
 	patch_reproduccion_guanacos_5_end -> indv_getolder_02_03;
 	layer_7 [ color="#ff0000" label="layer 7"];
 	layer_7 ->patch_reproduccion_guanacos_5_end;
-	indv_survive_03_end [ shape = rect label="indv_survive_03_end [-1]" ];
-	indv_survive_03_end -> layer_7;
+	indv_freeIndv_03_04 [ shape = rect label="indv_freeIndv_03_04 [-1]" ];
+	indv_freeIndv_03_04 -> layer_7;
+	indv_idle_03_06 [ shape = rect label="indv_idle_03_06 [0]" ];
+	indv_idle_03_06 -> indv_freeIndv_03_04;
 	layer_8 [ color="#ff0000" label="layer 8"];
-	layer_8 ->indv_survive_03_end;
-	clan_new_leader_03_end [ shape = rect label="clan_new_leader_03_end [1]" ];
-	clan_new_leader_03_end -> layer_8;
+	layer_8 ->indv_idle_03_06;
+	clan_marriable_indv_03_04 [ shape = rect label="clan_marriable_indv_03_04 [1]" ];
+	clan_marriable_indv_03_04 -> layer_8;
+	layer_9 [ color="#ff0000" label="layer 9"];
+	layer_9 ->clan_marriable_indv_03_04;
+	clan_send_girls_04_05 [ shape = rect label="clan_send_girls_04_05 [-1]" ];
+	clan_send_girls_04_05 -> layer_9;
+	layer_10 [ color="#ff0000" label="layer 10"];
+	layer_10 ->clan_send_girls_04_05;
+	clan_match_05_06 [ shape = rect label="clan_match_05_06 [0]" ];
+	clan_match_05_06 -> layer_10;
+	layer_11 [ color="#ff0000" label="layer 11"];
+	layer_11 ->clan_match_05_06;
+	clan_aceptar_prop_06_07 [ shape = rect label="clan_aceptar_prop_06_07 [0]" ];
+	clan_aceptar_prop_06_07 -> layer_11;
+	layer_12 [ color="#ff0000" label="layer 12"];
+	layer_12 ->clan_aceptar_prop_06_07;
+	clan_recive_conf_07_08 [ shape = rect label="clan_recive_conf_07_08 [0]" ];
+	clan_recive_conf_07_08 -> layer_12;
+	layer_13 [ color="#ff0000" label="layer 13"];
+	layer_13 ->clan_recive_conf_07_08;
+	indv_casamiento_male_04_06 [ shape = rect label="indv_casamiento_male_04_06 [-3]" ];
+	indv_casamiento_male_04_06 -> layer_13;
+	indv_casamiento_female_04_05 [ shape = rect label="indv_casamiento_female_04_05 [2]" ];
+	indv_casamiento_female_04_05 -> indv_casamiento_male_04_06;
+	layer_14 [ color="#ff0000" label="layer 14"];
+	layer_14 ->indv_casamiento_female_04_05;
+	indv_idle_05_06 [ shape = rect label="indv_idle_05_06 [0]" ];
+	indv_idle_05_06 -> layer_14;
+	indv_info_husband_05_06 [ shape = rect label="indv_info_husband_05_06 [3]" ];
+	indv_info_husband_05_06 -> indv_idle_05_06;
+	layer_15 [ color="#ff0000" label="layer 15"];
+	layer_15 ->indv_info_husband_05_06;
+	indv_idle_06_07 [ shape = rect label="indv_idle_06_07 [0]" ];
+	indv_idle_06_07 -> layer_15;
+	indv_pregnancy_06_09 [ shape = rect label="indv_pregnancy_06_09 [0]" ];
+	indv_pregnancy_06_09 -> indv_idle_06_07;
+	layer_16 [ color="#ff0000" label="layer 16"];
+	layer_16 ->indv_pregnancy_06_09;
+	indv_child_inf_07_08 [ shape = rect label="indv_child_inf_07_08 [-1]" ];
+	indv_child_inf_07_08 -> layer_16;
+	indv_idle_07_09 [ shape = rect label="indv_idle_07_09 [0]" ];
+	indv_idle_07_09 -> indv_child_inf_07_08;
+	layer_17 [ color="#ff0000" label="layer 17"];
+	layer_17 ->indv_idle_07_09;
+	clan_repartir_id_08_09 [ shape = rect label="clan_repartir_id_08_09 [0]" ];
+	clan_repartir_id_08_09 -> layer_17;
+	layer_18 [ color="#ff0000" label="layer 18"];
+	layer_18 ->clan_repartir_id_08_09;
+	indv_birth_08_09 [ shape = rect label="indv_birth_08_09 [1]" ];
+	indv_birth_08_09 -> layer_18;
+	layer_19 [ color="#ff0000" label="layer 19"];
+	layer_19 ->indv_birth_08_09;
+	indv_survive_09_10 [ shape = rect label="indv_survive_09_10 [-3]" ];
+	indv_survive_09_10 -> layer_19;
+	layer_20 [ color="#ff0000" label="layer 20"];
+	layer_20 ->indv_survive_09_10;
+	indv_update_status_10_11 [ shape = rect label="indv_update_status_10_11 [2]" ];
+	indv_update_status_10_11 -> layer_20;
+	clan_new_leader_09_10 [ shape = rect label="clan_new_leader_09_10 [1]" ];
+	clan_new_leader_09_10 -> indv_update_status_10_11;
+	layer_21 [ color="#ff0000" label="layer 21"];
+	layer_21 ->clan_new_leader_09_10;
+	indv_husband_request_11_12 [ shape = rect label="indv_husband_request_11_12 [-1]" ];
+	indv_husband_request_11_12 -> layer_21;
+	indv_idle_11_12 [ shape = rect label="indv_idle_11_12 [0]" ];
+	indv_idle_11_12 -> indv_husband_request_11_12;
+	layer_22 [ color="#ff0000" label="layer 22"];
+	layer_22 ->indv_idle_11_12;
+	clan_again_marriable_10_11 [ shape = rect label="clan_again_marriable_10_11 [-4]" ];
+	clan_again_marriable_10_11 -> layer_22;
+	indv_idle_12_13 [ shape = rect label="indv_idle_12_13 [0]" ];
+	indv_idle_12_13 -> clan_again_marriable_10_11;
+	layer_23 [ color="#ff0000" label="layer 23"];
+	layer_23 ->indv_idle_12_13;
+	clan_dividir_clan_11_12 [ shape = rect label="clan_dividir_clan_11_12 [-2]" ];
+	clan_dividir_clan_11_12 -> layer_23;
+	clan_idle_11_13 [ shape = rect label="clan_idle_11_13 [0]" ];
+	clan_idle_11_13 -> clan_dividir_clan_11_12;
+	indv_local_marriage_12_13 [ shape = rect label="indv_local_marriage_12_13 [4]" ];
+	indv_local_marriage_12_13 -> clan_idle_11_13;
+	layer_24 [ color="#ff0000" label="layer 24"];
+	layer_24 ->indv_local_marriage_12_13;
+	indv_dividir_info_13_end [ shape = rect label="indv_dividir_info_13_end [2]" ];
+	indv_dividir_info_13_end -> layer_24;
+	layer_25 [ color="#ff0000" label="layer 25"];
+	layer_25 ->indv_dividir_info_13_end;
+	clan_creacion_clan_12_13 [ shape = rect label="clan_creacion_clan_12_13 [1]" ];
+	clan_creacion_clan_12_13 -> layer_25;
+	layer_26 [ color="#ff0000" label="layer 26"];
+	layer_26 ->clan_creacion_clan_12_13;
+	clan_idle_13_end [ shape = rect label="clan_idle_13_end [0]" ];
+	clan_idle_13_end -> layer_26;
+	clan_vocabulary_review_13_end [ shape = rect label="clan_vocabulary_review_13_end [0]" ];
+	clan_vocabulary_review_13_end -> clan_idle_13_end;
 	information_message [ label = "information" color="#00ff00" shape = parallelogram];
 	information_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
 	information_message_sync_start_0 -> information_message [ color="#00ff00" label="information_1"];
@@ -84,13 +178,67 @@ digraph communication_graph {
 	{ rank=same; indv_extractcalories_01_02; indgetcalories_message_sync_end_0; }
 	leader_message [ label = "leader" color="#00ff00" shape = parallelogram];
 	leader_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
-	leader_message_sync_start_0 -> leader_message [ color="#00ff00" label="leader_8"];
-	{ rank=same; indv_survive_03_end; leader_message_sync_start_0; }
+	leader_message_sync_start_0 -> leader_message [ color="#00ff00" label="leader_20"];
+	{ rank=same; indv_survive_09_10; leader_message_sync_start_0; }
 	leader_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
 	leader_message_sync_end_0 -> leader_message_sync_start_0 [ color="#00ff00" ];
-	leader_message_sync_end_0 -> clan_new_leader_03_end [ color="#00ff00" constraint=false ];
-	leader_message_sync_start_0 -> indv_survive_03_end [ color="#00ff00", constraint=false, style=dashed ];
-	{ rank=same; clan_new_leader_03_end; leader_message_sync_end_0; }
+	leader_message_sync_end_0 -> clan_new_leader_09_10 [ color="#00ff00" constraint=false ];
+	leader_message_sync_start_0 -> indv_survive_09_10 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_new_leader_09_10; leader_message_sync_end_0; }
+	ancestor_message [ label = "ancestor" color="#00ff00" shape = parallelogram];
+	ancestor_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	ancestor_message_sync_start_0 -> ancestor_message [ color="#00ff00" label="ancestor_8"];
+	{ rank=same; indv_freeIndv_03_04; ancestor_message_sync_start_0; }
+	ancestor_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	ancestor_message_sync_end_0 -> ancestor_message_sync_start_0 [ color="#00ff00" ];
+	ancestor_message_sync_end_0 -> clan_marriable_indv_03_04 [ color="#00ff00" constraint=false ];
+	ancestor_message_sync_start_0 -> indv_freeIndv_03_04 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_marriable_indv_03_04; ancestor_message_sync_end_0; }
+	peticionID_message [ label = "peticionID" color="#00ff00" shape = parallelogram];
+	peticionID_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	peticionID_message_sync_start_0 -> peticionID_message [ color="#00ff00" label="peticionID_17"];
+	{ rank=same; indv_child_inf_07_08; peticionID_message_sync_start_0; }
+	peticionID_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	peticionID_message_sync_end_0 -> peticionID_message_sync_start_0 [ color="#00ff00" ];
+	peticionID_message_sync_end_0 -> clan_repartir_id_08_09 [ color="#00ff00" constraint=false ];
+	peticionID_message_sync_start_0 -> indv_child_inf_07_08 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_repartir_id_08_09; peticionID_message_sync_end_0; }
+	family_message [ label = "family" color="#00ff00" shape = parallelogram];
+	family_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	family_message_sync_start_0 -> family_message [ color="#00ff00" label="family_14"];
+	{ rank=same; indv_casamiento_male_04_06; family_message_sync_start_0; }
+	family_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	family_message_sync_end_0 -> family_message_sync_start_0 [ color="#00ff00" ];
+	family_message_sync_end_0 -> indv_info_husband_05_06 [ color="#00ff00" constraint=false ];
+	family_message_sync_start_0 -> indv_casamiento_male_04_06 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; indv_info_husband_05_06; family_message_sync_end_0; }
+	death_message [ label = "death" color="#00ff00" shape = parallelogram];
+	death_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	death_message_sync_start_0 -> death_message [ color="#00ff00" label="death_20"];
+	{ rank=same; indv_survive_09_10; death_message_sync_start_0; }
+	death_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	death_message_sync_end_0 -> death_message_sync_start_0 [ color="#00ff00" ];
+	death_message_sync_end_0 -> indv_update_status_10_11 [ color="#00ff00" constraint=false ];
+	death_message_sync_start_0 -> indv_survive_09_10 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; indv_update_status_10_11; death_message_sync_end_0; }
+	widow_message [ label = "widow" color="#00ff00" shape = parallelogram];
+	widow_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	widow_message_sync_start_0 -> widow_message [ color="#00ff00" label="widow_22"];
+	{ rank=same; indv_husband_request_11_12; widow_message_sync_start_0; }
+	widow_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	widow_message_sync_end_0 -> widow_message_sync_start_0 [ color="#00ff00" ];
+	widow_message_sync_end_0 -> clan_again_marriable_10_11 [ color="#00ff00" constraint=false ];
+	widow_message_sync_start_0 -> indv_husband_request_11_12 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_again_marriable_10_11; widow_message_sync_end_0; }
+	informationDivide_message [ label = "informationDivide" color="#00ff00" shape = parallelogram];
+	informationDivide_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	informationDivide_message_sync_start_0 -> informationDivide_message [ color="#00ff00" label="informationDivide_25"];
+	{ rank=same; indv_dividir_info_13_end; informationDivide_message_sync_start_0; }
+	informationDivide_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	informationDivide_message_sync_end_0 -> informationDivide_message_sync_start_0 [ color="#00ff00" ];
+	informationDivide_message_sync_end_0 -> clan_creacion_clan_12_13 [ color="#00ff00" constraint=false ];
+	informationDivide_message_sync_start_0 -> indv_dividir_info_13_end [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_creacion_clan_12_13; informationDivide_message_sync_end_0; }
 	clan_info_message [ label = "clan_info" color="#00ff00" shape = parallelogram];
 	clan_info_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
 	clan_info_message_sync_start_0 -> clan_info_message [ color="#00ff00" label="clan_info_2"];
@@ -109,6 +257,70 @@ digraph communication_graph {
 	clangetcalories_message_sync_end_0 -> clan_clan_extract_calories_01_02 [ color="#00ff00" constraint=false ];
 	clangetcalories_message_sync_start_0 -> patch_patchcalories_1_2 [ color="#00ff00", constraint=false, style=dashed ];
 	{ rank=same; clan_clan_extract_calories_01_02; clangetcalories_message_sync_end_0; }
+	freeGirls_message [ label = "freeGirls" color="#00ff00" shape = parallelogram];
+	freeGirls_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	freeGirls_message_sync_start_0 -> freeGirls_message [ color="#00ff00" label="freeGirls_10"];
+	{ rank=same; clan_send_girls_04_05; freeGirls_message_sync_start_0; }
+	freeGirls_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	freeGirls_message_sync_end_0 -> freeGirls_message_sync_start_0 [ color="#00ff00" ];
+	freeGirls_message_sync_end_0 -> clan_match_05_06 [ color="#00ff00" constraint=false ];
+	freeGirls_message_sync_start_0 -> clan_send_girls_04_05 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_match_05_06; freeGirls_message_sync_end_0; }
+	propuesta_message [ label = "propuesta" color="#00ff00" shape = parallelogram];
+	propuesta_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	propuesta_message_sync_start_0 -> propuesta_message [ color="#00ff00" label="propuesta_11"];
+	{ rank=same; clan_match_05_06; propuesta_message_sync_start_0; }
+	propuesta_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	propuesta_message_sync_end_0 -> propuesta_message_sync_start_0 [ color="#00ff00" ];
+	propuesta_message_sync_end_0 -> clan_aceptar_prop_06_07 [ color="#00ff00" constraint=false ];
+	propuesta_message_sync_start_0 -> clan_match_05_06 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_aceptar_prop_06_07; propuesta_message_sync_end_0; }
+	confirProp_message [ label = "confirProp" color="#00ff00" shape = parallelogram];
+	confirProp_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	confirProp_message_sync_start_0 -> confirProp_message [ color="#00ff00" label="confirProp_12"];
+	{ rank=same; clan_aceptar_prop_06_07; confirProp_message_sync_start_0; }
+	confirProp_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	confirProp_message_sync_end_0 -> confirProp_message_sync_start_0 [ color="#00ff00" ];
+	confirProp_message_sync_end_0 -> clan_recive_conf_07_08 [ color="#00ff00" constraint=false ];
+	confirProp_message_sync_start_0 -> clan_aceptar_prop_06_07 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; clan_recive_conf_07_08; confirProp_message_sync_end_0; }
+	marriage_message [ label = "marriage" color="#00ff00" shape = parallelogram];
+	marriage_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	marriage_message_sync_start_0 -> marriage_message [ color="#00ff00" label="marriage_13"];
+	{ rank=same; clan_recive_conf_07_08; marriage_message_sync_start_0; }
+	marriage_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	marriage_message_sync_end_0 -> marriage_message_sync_start_0 [ color="#00ff00" ];
+	marriage_message_sync_end_0 -> indv_casamiento_female_04_05 [ color="#00ff00" constraint=false ];
+	marriage_message_sync_end_0 -> indv_casamiento_male_04_06 [ color="#00ff00" constraint=false ];
+	marriage_message_sync_start_0 -> clan_recive_conf_07_08 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; indv_casamiento_male_04_06; marriage_message_sync_end_0; }
+	respuestaID_message [ label = "respuestaID" color="#00ff00" shape = parallelogram];
+	respuestaID_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	respuestaID_message_sync_start_0 -> respuestaID_message [ color="#00ff00" label="respuestaID_18"];
+	{ rank=same; clan_repartir_id_08_09; respuestaID_message_sync_start_0; }
+	respuestaID_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	respuestaID_message_sync_end_0 -> respuestaID_message_sync_start_0 [ color="#00ff00" ];
+	respuestaID_message_sync_end_0 -> indv_birth_08_09 [ color="#00ff00" constraint=false ];
+	respuestaID_message_sync_start_0 -> clan_repartir_id_08_09 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; indv_birth_08_09; respuestaID_message_sync_end_0; }
+	lmarriage_message [ label = "lmarriage" color="#00ff00" shape = parallelogram];
+	lmarriage_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	lmarriage_message_sync_start_0 -> lmarriage_message [ color="#00ff00" label="lmarriage_23"];
+	{ rank=same; clan_again_marriable_10_11; lmarriage_message_sync_start_0; }
+	lmarriage_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	lmarriage_message_sync_end_0 -> lmarriage_message_sync_start_0 [ color="#00ff00" ];
+	lmarriage_message_sync_end_0 -> indv_local_marriage_12_13 [ color="#00ff00" constraint=false ];
+	lmarriage_message_sync_start_0 -> clan_again_marriable_10_11 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; indv_local_marriage_12_13; lmarriage_message_sync_end_0; }
+	warningDivide_message [ label = "warningDivide" color="#00ff00" shape = parallelogram];
+	warningDivide_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
+	warningDivide_message_sync_start_0 -> warningDivide_message [ color="#00ff00" label="warningDivide_24"];
+	{ rank=same; clan_dividir_clan_11_12; warningDivide_message_sync_start_0; }
+	warningDivide_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
+	warningDivide_message_sync_end_0 -> warningDivide_message_sync_start_0 [ color="#00ff00" ];
+	warningDivide_message_sync_end_0 -> indv_dividir_info_13_end [ color="#00ff00" constraint=false ];
+	warningDivide_message_sync_start_0 -> clan_dividir_clan_11_12 [ color="#00ff00", constraint=false, style=dashed ];
+	{ rank=same; indv_dividir_info_13_end; warningDivide_message_sync_end_0; }
 	adultospatch_message [ label = "adultospatch" color="#00ff00" shape = parallelogram];
 	adultospatch_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
 	adultospatch_message_sync_start_0 -> adultospatch_message [ color="#00ff00" label="adultospatch_5"];
@@ -128,9 +340,22 @@ digraph communication_graph {
 	reproduccionguanacos_message_sync_start_0 -> manada_guanacos_reproduccion_2_end [ color="#00ff00", constraint=false, style=dashed ];
 	{ rank=same; patch_reproduccion_guanacos_5_end; reproduccionguanacos_message_sync_end_0; }
 	indv_indvInformation_start_01 -> information_message [ color="#00ff00" constraint=false ];
-	indv_survive_03_end -> leader_message [ color="#00ff00" constraint=false ];
+	indv_freeIndv_03_04 -> ancestor_message [ color="#00ff00" constraint=false ];
+	indv_casamiento_male_04_06 -> family_message [ color="#00ff00" constraint=false ];
+	indv_child_inf_07_08 -> peticionID_message [ color="#00ff00" constraint=false ];
+	indv_survive_09_10 -> leader_message [ color="#00ff00" constraint=false ];
+	indv_survive_09_10 -> death_message [ color="#00ff00" constraint=false ];
+	indv_husband_request_11_12 -> widow_message [ color="#00ff00" constraint=false ];
+	indv_dividir_info_13_end -> informationDivide_message [ color="#00ff00" constraint=false ];
 	clan_clan_Information_start_01 -> clan_info_message [ color="#00ff00" constraint=false ];
 	clan_distribute_calories_02_03 -> indgetcalories_message [ color="#00ff00" constraint=false ];
+	clan_send_girls_04_05 -> freeGirls_message [ color="#00ff00" constraint=false ];
+	clan_match_05_06 -> propuesta_message [ color="#00ff00" constraint=false ];
+	clan_aceptar_prop_06_07 -> confirProp_message [ color="#00ff00" constraint=false ];
+	clan_recive_conf_07_08 -> marriage_message [ color="#00ff00" constraint=false ];
+	clan_repartir_id_08_09 -> respuestaID_message [ color="#00ff00" constraint=false ];
+	clan_again_marriable_10_11 -> lmarriage_message [ color="#00ff00" constraint=false ];
+	clan_dividir_clan_11_12 -> warningDivide_message [ color="#00ff00" constraint=false ];
 	patch_patchcalories_1_2 -> clangetcalories_message [ color="#00ff00" constraint=false ];
 	manada_guanacos_move_1_2 -> adultospatch_message [ color="#00ff00" constraint=false ];
 	manada_guanacos_reproduccion_2_end -> reproduccionguanacos_message [ color="#00ff00" constraint=false ];

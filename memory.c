@@ -57,11 +57,291 @@ void unittest_idle_indv_02_03()
 	//return idle_indv();
 }
 
-void unittest_survive_03_end()
+void unittest_freeIndv_03_04()
+{
+	
+	
+	//return freeIndv();
+}
+
+void unittest_idle_03_06()
+{
+	
+	
+	//return idle();
+}
+
+void unittest_casamiento_female_04_05()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_marriage, &i_marriage, &FLAME_filter_indv_casamiento_female_04_05_marriage, current_xmachine_indv);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'marriage'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return casamiento_female();
+}
+
+void unittest_casamiento_male_04_06()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_marriage, &i_marriage, &FLAME_filter_indv_casamiento_male_04_06_marriage, current_xmachine_indv);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'marriage'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return casamiento_male();
+}
+
+void unittest_info_husband_05_06()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_family, &i_family, &FLAME_filter_indv_info_husband_05_06_family, current_xmachine_indv);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'family'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'family' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'family' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return info_husband();
+}
+
+void unittest_idle_05_06()
+{
+	
+	
+	//return idle();
+}
+
+void unittest_pregnancy_06_09()
+{
+	
+	
+	//return pregnancy();
+}
+
+void unittest_idle_06_07()
+{
+	
+	
+	//return idle();
+}
+
+void unittest_child_inf_07_08()
+{
+	
+	
+	//return child_inf();
+}
+
+void unittest_idle_07_09()
+{
+	
+	
+	//return idle();
+}
+
+void unittest_birth_08_09()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_respuestaID, &i_respuestaID, &FLAME_filter_indv_birth_08_09_respuestaID, current_xmachine_indv);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'respuestaID'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return birth();
+}
+
+void unittest_survive_09_10()
 {
 	
 	
 	//return survive();
+}
+
+void unittest_update_status_10_11()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_death, &i_death, &FLAME_filter_indv_update_status_10_11_death, current_xmachine_indv);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'death'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'death' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'death' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return update_status();
+}
+
+void unittest_husband_request_11_12()
+{
+	
+	
+	//return husband_request();
+}
+
+void unittest_idle_11_12()
+{
+	
+	
+	//return idle();
+}
+
+void unittest_local_marriage_12_13()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_lmarriage, &i_lmarriage, &FLAME_filter_indv_local_marriage_12_13_lmarriage, current_xmachine_indv);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'lmarriage'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return local_marriage();
+}
+
+void unittest_idle_12_13()
+{
+	
+	
+	//return idle();
+}
+
+void unittest_dividir_info_13_end()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_warningDivide, &i_warningDivide, &FLAME_filter_indv_dividir_info_13_end_warningDivide, current_xmachine_indv);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'warningDivide'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return dividir_info();
 }
 
 void unittest_clan_Information_start_01()
@@ -131,11 +411,168 @@ void unittest_distribute_calories_02_03()
 	//return distribute_calories();
 }
 
-void unittest_new_leader_03_end()
+void unittest_marriable_indv_03_04()
 {
 	int rc;
 	
-	rc = MB_Iterator_CreateFiltered(b_leader, &i_leader, &FLAME_filter_clan_new_leader_03_end_leader, current_xmachine_clan);
+	rc = MB_Iterator_CreateFiltered(b_ancestor, &i_ancestor, &FLAME_filter_clan_marriable_indv_03_04_ancestor, current_xmachine_clan);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'ancestor'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return marriable_indv();
+}
+
+void unittest_send_girls_04_05()
+{
+	
+	
+	//return send_girls();
+}
+
+void unittest_match_05_06()
+{
+	int rc;
+	
+	
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'freeGirls'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return match();
+}
+
+void unittest_aceptar_prop_06_07()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_propuesta, &i_propuesta, &FLAME_filter_clan_aceptar_prop_06_07_propuesta, current_xmachine_clan);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'propuesta'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return aceptar_prop();
+}
+
+void unittest_recive_conf_07_08()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_confirProp, &i_confirProp, &FLAME_filter_clan_recive_conf_07_08_confirProp, current_xmachine_clan);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'confirProp'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return recive_conf();
+}
+
+void unittest_repartir_id_08_09()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_peticionID, &i_peticionID, &FLAME_filter_clan_repartir_id_08_09_peticionID, current_xmachine_clan);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'peticionID'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return repartir_id();
+}
+
+void unittest_new_leader_09_10()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_leader, &i_leader, &FLAME_filter_clan_new_leader_09_10_leader, current_xmachine_clan);
 	
 	#ifdef ERRCHECK
 	if (rc != MB_SUCCESS)
@@ -159,6 +596,94 @@ void unittest_new_leader_03_end()
 	#endif
 	
 	//return new_leader();
+}
+
+void unittest_again_marriable_10_11()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_widow, &i_widow, &FLAME_filter_clan_again_marriable_10_11_widow, current_xmachine_clan);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'widow'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'widow' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return again_marriable();
+}
+
+void unittest_dividir_clan_11_12()
+{
+	
+	
+	//return dividir_clan();
+}
+
+void unittest_idle_11_13()
+{
+	
+	
+	//return idle();
+}
+
+void unittest_creacion_clan_12_13()
+{
+	int rc;
+	
+	rc = MB_Iterator_CreateFiltered(b_informationDivide, &i_informationDivide, &FLAME_filter_clan_creacion_clan_12_13_informationDivide, current_xmachine_clan);
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'informationDivide'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
+	
+	//return creacion_clan();
+}
+
+void unittest_vocabulary_review_13_end()
+{
+	
+	
+	//return vocabulary_review();
+}
+
+void unittest_idle_13_end()
+{
+	
+	
+	//return idle();
 }
 
 void unittest_patchtype_start_1()
@@ -408,6 +933,156 @@ void free_messages()
 	    }
 	    #endif
 	
+	    rc = MB_Clear(b_ancestor);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'ancestor' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_peticionID);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'peticionID' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_family);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'family' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'family' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'family' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_death);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'death' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'death' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'death' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_widow);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'widow' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'widow' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_informationDivide);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'informationDivide' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
 	    rc = MB_Clear(b_clan_info);
 	    #ifdef ERRCHECK
 	    if (rc != MB_SUCCESS)
@@ -444,6 +1119,181 @@ void free_messages()
 	               break;
 	           case MB_ERR_LOCKED:
 	               fprintf(stderr, "\t reason: 'clangetcalories' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_freeGirls);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'freeGirls' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_propuesta);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'propuesta' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_confirProp);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'confirProp' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_marriage);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'marriage' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_respuestaID);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'respuestaID' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_lmarriage);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'lmarriage' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_warningDivide);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'warningDivide' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
 	               break;
 	           case MB_ERR_INTERNAL:
 	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
@@ -602,6 +1452,174 @@ int rc;
 	    #endif
 	
 	/* Initialise message sync composite params as NULL */
+	FLAME_m_ancestor_composite_params = NULL;
+
+	    rc = MB_Create(&b_ancestor, sizeof(m_ancestor));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'ancestor' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_peticionID_composite_params = NULL;
+
+	    rc = MB_Create(&b_peticionID, sizeof(m_peticionID));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'peticionID' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_family_composite_params = NULL;
+
+	    rc = MB_Create(&b_family, sizeof(m_family));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'family' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_death_composite_params = NULL;
+
+	    rc = MB_Create(&b_death, sizeof(m_death));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'death' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_widow_composite_params = NULL;
+
+	    rc = MB_Create(&b_widow, sizeof(m_widow));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'widow' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_informationDivide_composite_params = NULL;
+
+	    rc = MB_Create(&b_informationDivide, sizeof(m_informationDivide));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'informationDivide' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
 	FLAME_m_clan_info_composite_params = NULL;
 
 	    rc = MB_Create(&b_clan_info, sizeof(m_clan_info));
@@ -637,6 +1655,202 @@ int rc;
 	    if (rc != MB_SUCCESS)
 	    {
 	       fprintf(stderr, "ERROR: Could not create 'clangetcalories' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_freeGirls_composite_params = NULL;
+
+	    rc = MB_Create(&b_freeGirls, sizeof(m_freeGirls));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'freeGirls' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_propuesta_composite_params = NULL;
+
+	    rc = MB_Create(&b_propuesta, sizeof(m_propuesta));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'propuesta' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_confirProp_composite_params = NULL;
+
+	    rc = MB_Create(&b_confirProp, sizeof(m_confirProp));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'confirProp' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_marriage_composite_params = NULL;
+
+	    rc = MB_Create(&b_marriage, sizeof(m_marriage));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'marriage' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_respuestaID_composite_params = NULL;
+
+	    rc = MB_Create(&b_respuestaID, sizeof(m_respuestaID));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'respuestaID' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_lmarriage_composite_params = NULL;
+
+	    rc = MB_Create(&b_lmarriage, sizeof(m_lmarriage));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'lmarriage' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_warningDivide_composite_params = NULL;
+
+	    rc = MB_Create(&b_warningDivide, sizeof(m_warningDivide));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'warningDivide' board\n");
 	       switch(rc) {
 	           case MB_ERR_INVALID:
 	               fprintf(stderr, "\t reason: Invalid message size\n");
@@ -715,6 +1929,26 @@ int rc;
 	
 	indv_end_state = init_indv_state();
 
+	indv_13_state = init_indv_state();
+
+	indv_12_state = init_indv_state();
+
+	indv_11_state = init_indv_state();
+
+	indv_10_state = init_indv_state();
+
+	indv_08_state = init_indv_state();
+
+	indv_07_state = init_indv_state();
+
+	indv_09_state = init_indv_state();
+
+	indv_05_state = init_indv_state();
+
+	indv_06_state = init_indv_state();
+
+	indv_04_state = init_indv_state();
+
 	indv_03_state = init_indv_state();
 
 	indv_02_state = init_indv_state();
@@ -724,6 +1958,26 @@ int rc;
 	indv_start_state = init_indv_state();
 
 	clan_end_state = init_clan_state();
+
+	clan_13_state = init_clan_state();
+
+	clan_12_state = init_clan_state();
+
+	clan_11_state = init_clan_state();
+
+	clan_10_state = init_clan_state();
+
+	clan_09_state = init_clan_state();
+
+	clan_08_state = init_clan_state();
+
+	clan_07_state = init_clan_state();
+
+	clan_06_state = init_clan_state();
+
+	clan_05_state = init_clan_state();
+
+	clan_04_state = init_clan_state();
 
 	clan_03_state = init_clan_state();
 
@@ -960,6 +2214,61 @@ void copy_members_needs_static_array(members_needs * from, members_needs * to, i
 }
 
 
+void init_indv_free(/*@out@*/ indv_free * temp)
+{
+	init_int_static_array((*temp).male_list, 100);
+	init_int_static_array((*temp).female_list, 100);
+	init_int_static_array((*temp).mancestor_list, 600);
+	init_int_static_array((*temp).fancestor_list, 600);
+	init_int_static_array((*temp).mancestorClan_list, 600);
+	init_int_static_array((*temp).fancestorClan_list, 600);
+	(*temp).numMale = 0;
+	(*temp).numFemale = 0;
+
+}
+
+void init_indv_free_static_array(/*@out@*/ indv_free * array, int size)
+{
+	int i;
+
+	for(i = 0; i < size; i++) init_indv_free(&array[i]);
+}
+
+void free_indv_free(indv_free * temp)
+{
+
+}
+
+void free_indv_free_static_array(indv_free * array, int size)
+{
+	int i;
+
+	for(i = 0; i < size; i++) free_indv_free(&array[i]);
+}
+
+void copy_indv_free(indv_free * from, indv_free * to)
+{
+	memcpy((*to).male_list, (*from).male_list, 100*sizeof(int));
+	memcpy((*to).female_list, (*from).female_list, 100*sizeof(int));
+	memcpy((*to).mancestor_list, (*from).mancestor_list, 600*sizeof(int));
+	memcpy((*to).fancestor_list, (*from).fancestor_list, 600*sizeof(int));
+	memcpy((*to).mancestorClan_list, (*from).mancestorClan_list, 600*sizeof(int));
+	memcpy((*to).fancestorClan_list, (*from).fancestorClan_list, 600*sizeof(int));
+	(*to).numMale = (*from).numMale;
+	(*to).numFemale = (*from).numFemale;
+}
+
+void copy_indv_free_static_array(indv_free * from, indv_free * to, int size)
+{
+	int i;
+
+	for(i = 0; i < size; i++)
+	{
+		copy_indv_free(&from[i], &to[i]);
+	}
+}
+
+
 
 xmachine_memory_indv_state * init_indv_state()
 {
@@ -986,6 +2295,16 @@ xmachine_memory_indv * init_indv_agent()
 	current->sex = 0;
 	current->pregnant = 0;
 	current->lead = 0;
+	current->marriable = 0;
+	init_int_static_array(current->ancestors, 6);
+	init_int_static_array(current->ancestorsClan, 6);
+	current->married = 0;
+	current->pareja = 0;
+	current->embarazable = 0;
+	current->month = 0;
+	current->motherID = 0;
+	init_int_static_array(current->husband_info, 4);
+	current->widow = 0;
 
 	return current;
 }
@@ -1016,6 +2335,16 @@ void unittest_init_indv_agent()
 		current_xmachine_indv->sex = 0;
 		current_xmachine_indv->pregnant = 0;
 		current_xmachine_indv->lead = 0;
+		current_xmachine_indv->marriable = 0;
+		init_int_static_array(current_xmachine_indv->ancestors, 6);
+		init_int_static_array(current_xmachine_indv->ancestorsClan, 6);
+		current_xmachine_indv->married = 0;
+		current_xmachine_indv->pareja = 0;
+		current_xmachine_indv->embarazable = 0;
+		current_xmachine_indv->month = 0;
+		current_xmachine_indv->motherID = 0;
+		init_int_static_array(current_xmachine_indv->husband_info, 4);
+		current_xmachine_indv->widow = 0;
 	
 }
 
@@ -1035,6 +2364,86 @@ void free_indv_agents()
 		current_xmachine_indv_holder = temp_xmachine_indv_holder;
 	}
 	indv_end_state->count = 0;
+	current_xmachine_indv_holder = indv_13_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_13_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_13_state->count = 0;
+	current_xmachine_indv_holder = indv_12_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_12_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_12_state->count = 0;
+	current_xmachine_indv_holder = indv_11_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_11_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_11_state->count = 0;
+	current_xmachine_indv_holder = indv_10_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_10_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_10_state->count = 0;
+	current_xmachine_indv_holder = indv_08_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_08_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_08_state->count = 0;
+	current_xmachine_indv_holder = indv_07_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_07_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_07_state->count = 0;
+	current_xmachine_indv_holder = indv_09_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_09_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_09_state->count = 0;
+	current_xmachine_indv_holder = indv_05_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_05_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_05_state->count = 0;
+	current_xmachine_indv_holder = indv_06_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_06_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_06_state->count = 0;
+	current_xmachine_indv_holder = indv_04_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		free_indv_agent(current_xmachine_indv_holder, indv_04_state);
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	indv_04_state->count = 0;
 	current_xmachine_indv_holder = indv_03_state->agents;
 	while(current_xmachine_indv_holder)
 	{
@@ -1072,6 +2481,16 @@ void free_indv_agents()
 void free_indv_states()
 {
 	free(indv_end_state);
+	free(indv_13_state);
+	free(indv_12_state);
+	free(indv_11_state);
+	free(indv_10_state);
+	free(indv_08_state);
+	free(indv_07_state);
+	free(indv_09_state);
+	free(indv_05_state);
+	free(indv_06_state);
+	free(indv_04_state);
 	free(indv_03_state);
 	free(indv_02_state);
 	free(indv_01_state);
@@ -1103,7 +2522,7 @@ void add_indv_agent_internal(xmachine_memory_indv * agent, xmachine_memory_indv_
 
 }
 
-/** \fn void add_indv_agent(int indvID, int cID, int cal_needs, int icalories, int patchID, int age, int sex, int pregnant, int lead)
+/** \fn void add_indv_agent(int indvID, int cID, int cal_needs, int icalories, int patchID, int age, int sex, int pregnant, int lead, int marriable, int ancestors[], int ancestorsClan[], int married, int pareja, int embarazable, int month, int motherID, int husband_info[], int widow)
  * \brief Add indv X-machine to the current being used X-machine list.
  * \param indvID Variable for the X-machine memory.
  * \param cID Variable for the X-machine memory.
@@ -1114,8 +2533,18 @@ void add_indv_agent_internal(xmachine_memory_indv * agent, xmachine_memory_indv_
  * \param sex Variable for the X-machine memory.
  * \param pregnant Variable for the X-machine memory.
  * \param lead Variable for the X-machine memory.
+ * \param marriable Variable for the X-machine memory.
+ * \param ancestors Variable for the X-machine memory.
+ * \param ancestorsClan Variable for the X-machine memory.
+ * \param married Variable for the X-machine memory.
+ * \param pareja Variable for the X-machine memory.
+ * \param embarazable Variable for the X-machine memory.
+ * \param month Variable for the X-machine memory.
+ * \param motherID Variable for the X-machine memory.
+ * \param husband_info Variable for the X-machine memory.
+ * \param widow Variable for the X-machine memory.
  */
-void add_indv_agent(int indvID, int cID, int cal_needs, int icalories, int patchID, int age, int sex, int pregnant, int lead)
+void add_indv_agent(int indvID, int cID, int cal_needs, int icalories, int patchID, int age, int sex, int pregnant, int lead, int marriable, int ancestors[], int ancestorsClan[], int married, int pareja, int embarazable, int month, int motherID, int husband_info[], int widow)
 {
 	xmachine_memory_indv * current;
 
@@ -1133,6 +2562,16 @@ void add_indv_agent(int indvID, int cID, int cal_needs, int icalories, int patch
 	current->sex = sex;
 	current->pregnant = pregnant;
 	current->lead = lead;
+	current->marriable = marriable;
+	memcpy(current->ancestors, ancestors, 6*sizeof(int));
+	memcpy(current->ancestorsClan, ancestorsClan, 6*sizeof(int));
+	current->married = married;
+	current->pareja = pareja;
+	current->embarazable = embarazable;
+	current->month = month;
+	current->motherID = motherID;
+	memcpy(current->husband_info, husband_info, 4*sizeof(int));
+	current->widow = widow;
 }
 
 xmachine_memory_clan_state * init_clan_state()
@@ -1155,11 +2594,15 @@ xmachine_memory_clan * init_clan_agent()
 	current->cal_need = 0;
 	current->cal_got = 0;
 	current->cal_stored = 0;
-	current->xcord = 0;
-	current->ycord = 0;
+	current->x = 0;
+	current->y = 0;
 	current->tcalories = 0;
 	current->leaderID = 0;
 	init_members_needs(&current->mneeds);
+	init_indv_free(&current->ifree);
+	current->indexID = 0;
+	current->members = 0;
+	init_int_static_array(current->linguistics, 100);
 
 	return current;
 }
@@ -1171,6 +2614,7 @@ void free_clan_agent(xmachine_memory_clan_holder * tmp, xmachine_memory_clan_sta
 	if(tmp->next != NULL) tmp->next->prev = tmp->prev;
 
 	free_members_needs(&tmp->agent->mneeds);
+	free_indv_free(&tmp->agent->ifree);
 	
 
 	free(tmp->agent);
@@ -1186,17 +2630,22 @@ void unittest_init_clan_agent()
 		current_xmachine_clan->cal_need = 0;
 		current_xmachine_clan->cal_got = 0;
 		current_xmachine_clan->cal_stored = 0;
-		current_xmachine_clan->xcord = 0;
-		current_xmachine_clan->ycord = 0;
+		current_xmachine_clan->x = 0;
+		current_xmachine_clan->y = 0;
 		current_xmachine_clan->tcalories = 0;
 		current_xmachine_clan->leaderID = 0;
 		init_members_needs(&current_xmachine_clan->mneeds);
+		init_indv_free(&current_xmachine_clan->ifree);
+		current_xmachine_clan->indexID = 0;
+		current_xmachine_clan->members = 0;
+		init_int_static_array(current_xmachine_clan->linguistics, 100);
 	
 }
 
 void unittest_free_clan_agent()
 {
 	free_members_needs(&current_xmachine_clan->mneeds);
+	free_indv_free(&current_xmachine_clan->ifree);
 	
 	free(current_xmachine_clan);
 }
@@ -1211,6 +2660,86 @@ void free_clan_agents()
 		current_xmachine_clan_holder = temp_xmachine_clan_holder;
 	}
 	clan_end_state->count = 0;
+	current_xmachine_clan_holder = clan_13_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_13_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_13_state->count = 0;
+	current_xmachine_clan_holder = clan_12_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_12_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_12_state->count = 0;
+	current_xmachine_clan_holder = clan_11_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_11_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_11_state->count = 0;
+	current_xmachine_clan_holder = clan_10_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_10_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_10_state->count = 0;
+	current_xmachine_clan_holder = clan_09_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_09_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_09_state->count = 0;
+	current_xmachine_clan_holder = clan_08_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_08_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_08_state->count = 0;
+	current_xmachine_clan_holder = clan_07_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_07_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_07_state->count = 0;
+	current_xmachine_clan_holder = clan_06_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_06_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_06_state->count = 0;
+	current_xmachine_clan_holder = clan_05_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_05_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_05_state->count = 0;
+	current_xmachine_clan_holder = clan_04_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		free_clan_agent(current_xmachine_clan_holder, clan_04_state);
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	clan_04_state->count = 0;
 	current_xmachine_clan_holder = clan_03_state->agents;
 	while(current_xmachine_clan_holder)
 	{
@@ -1248,6 +2777,16 @@ void free_clan_agents()
 void free_clan_states()
 {
 	free(clan_end_state);
+	free(clan_13_state);
+	free(clan_12_state);
+	free(clan_11_state);
+	free(clan_10_state);
+	free(clan_09_state);
+	free(clan_08_state);
+	free(clan_07_state);
+	free(clan_06_state);
+	free(clan_05_state);
+	free(clan_04_state);
 	free(clan_03_state);
 	free(clan_02_state);
 	free(clan_01_state);
@@ -1279,19 +2818,23 @@ void add_clan_agent_internal(xmachine_memory_clan * agent, xmachine_memory_clan_
 
 }
 
-/** \fn void add_clan_agent(int cID, int cal_need, int cal_got, int cal_stored, int xcord, int ycord, int tcalories, int leaderID, members_needs * mneeds)
+/** \fn void add_clan_agent(int cID, int cal_need, int cal_got, int cal_stored, int x, int y, int tcalories, int leaderID, members_needs * mneeds, indv_free * ifree, int indexID, int members, int linguistics[])
  * \brief Add clan X-machine to the current being used X-machine list.
  * \param cID Variable for the X-machine memory.
  * \param cal_need Variable for the X-machine memory.
  * \param cal_got Variable for the X-machine memory.
  * \param cal_stored Variable for the X-machine memory.
- * \param xcord Variable for the X-machine memory.
- * \param ycord Variable for the X-machine memory.
+ * \param x Variable for the X-machine memory.
+ * \param y Variable for the X-machine memory.
  * \param tcalories Variable for the X-machine memory.
  * \param leaderID Variable for the X-machine memory.
  * \param mneeds Variable for the X-machine memory.
+ * \param ifree Variable for the X-machine memory.
+ * \param indexID Variable for the X-machine memory.
+ * \param members Variable for the X-machine memory.
+ * \param linguistics Variable for the X-machine memory.
  */
-void add_clan_agent(int cID, int cal_need, int cal_got, int cal_stored, int xcord, int ycord, int tcalories, int leaderID, members_needs mneeds)
+void add_clan_agent(int cID, int cal_need, int cal_got, int cal_stored, int x, int y, int tcalories, int leaderID, members_needs mneeds, indv_free ifree, int indexID, int members, int linguistics[])
 {
 	xmachine_memory_clan * current;
 
@@ -1304,11 +2847,15 @@ void add_clan_agent(int cID, int cal_need, int cal_got, int cal_stored, int xcor
 	current->cal_need = cal_need;
 	current->cal_got = cal_got;
 	current->cal_stored = cal_stored;
-	current->xcord = xcord;
-	current->ycord = ycord;
+	current->x = x;
+	current->y = y;
 	current->tcalories = tcalories;
 	current->leaderID = leaderID;
 	copy_members_needs(&mneeds, &current->mneeds);
+	copy_indv_free(&ifree, &current->ifree);
+	current->indexID = indexID;
+	current->members = members;
+	memcpy(current->linguistics, linguistics, 100*sizeof(int));
 }
 
 xmachine_memory_patch_state * init_patch_state()
@@ -1881,6 +3428,199 @@ int get_lead()
     return (int)0;
 }
 
+/** \fn void set_marriable(int marriable)
+ * \brief Set marriable memory variable for current X-machine.
+ * \param marriable New value for variable.
+ */
+void set_marriable(int marriable)
+{
+	if(current_xmachine->xmachine_indv) (*current_xmachine->xmachine_indv).marriable = marriable;
+}
+
+/** \fn int get_marriable()
+ * \brief Get marriable memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_marriable()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).marriable;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn int get_ancestors()
+ * \brief Get ancestors memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int * get_ancestors()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).ancestors;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return NULL;
+}
+
+/** \fn int get_ancestorsClan()
+ * \brief Get ancestorsClan memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int * get_ancestorsClan()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).ancestorsClan;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return NULL;
+}
+
+/** \fn void set_married(int married)
+ * \brief Set married memory variable for current X-machine.
+ * \param married New value for variable.
+ */
+void set_married(int married)
+{
+	if(current_xmachine->xmachine_indv) (*current_xmachine->xmachine_indv).married = married;
+}
+
+/** \fn int get_married()
+ * \brief Get married memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_married()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).married;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_pareja(int pareja)
+ * \brief Set pareja memory variable for current X-machine.
+ * \param pareja New value for variable.
+ */
+void set_pareja(int pareja)
+{
+	if(current_xmachine->xmachine_indv) (*current_xmachine->xmachine_indv).pareja = pareja;
+}
+
+/** \fn int get_pareja()
+ * \brief Get pareja memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_pareja()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).pareja;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_embarazable(int embarazable)
+ * \brief Set embarazable memory variable for current X-machine.
+ * \param embarazable New value for variable.
+ */
+void set_embarazable(int embarazable)
+{
+	if(current_xmachine->xmachine_indv) (*current_xmachine->xmachine_indv).embarazable = embarazable;
+}
+
+/** \fn int get_embarazable()
+ * \brief Get embarazable memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_embarazable()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).embarazable;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_month(int month)
+ * \brief Set month memory variable for current X-machine.
+ * \param month New value for variable.
+ */
+void set_month(int month)
+{
+	if(current_xmachine->xmachine_indv) (*current_xmachine->xmachine_indv).month = month;
+}
+
+/** \fn int get_month()
+ * \brief Get month memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_month()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).month;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_motherID(int motherID)
+ * \brief Set motherID memory variable for current X-machine.
+ * \param motherID New value for variable.
+ */
+void set_motherID(int motherID)
+{
+	if(current_xmachine->xmachine_indv) (*current_xmachine->xmachine_indv).motherID = motherID;
+}
+
+/** \fn int get_motherID()
+ * \brief Get motherID memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_motherID()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).motherID;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn int get_husband_info()
+ * \brief Get husband_info memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int * get_husband_info()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).husband_info;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return NULL;
+}
+
+/** \fn void set_widow(int widow)
+ * \brief Set widow memory variable for current X-machine.
+ * \param widow New value for variable.
+ */
+void set_widow(int widow)
+{
+	if(current_xmachine->xmachine_indv) (*current_xmachine->xmachine_indv).widow = widow;
+}
+
+/** \fn int get_widow()
+ * \brief Get widow memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_widow()
+{
+	if(current_xmachine->xmachine_indv) return (*current_xmachine->xmachine_indv).widow;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
 /** \fn void set_cal_need(int cal_need)
  * \brief Set cal_need memory variable for current X-machine.
  * \param cal_need New value for variable.
@@ -1947,52 +3687,44 @@ int get_cal_stored()
     return (int)0;
 }
 
-/** \fn void set_xcord(int xcord)
- * \brief Set xcord memory variable for current X-machine.
- * \param xcord New value for variable.
+/** \fn void set_x(int x)
+ * \brief Set x memory variable for current X-machine.
+ * \param x New value for variable.
  */
-void set_xcord(int xcord)
+void set_x(int x)
 {
-	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).xcord = xcord;
-	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).xcord = xcord;
-	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).xcord = xcord;
+	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).x = x;
 }
 
-/** \fn int get_xcord()
- * \brief Get xcord memory variable from current X-machine.
+/** \fn int get_x()
+ * \brief Get x memory variable from current X-machine.
  * \return Value for variable.
  */
-int get_xcord()
+int get_x()
 {
-	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).xcord;
-	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).xcord;
-	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).xcord;
+	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).x;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
     return (int)0;
 }
 
-/** \fn void set_ycord(int ycord)
- * \brief Set ycord memory variable for current X-machine.
- * \param ycord New value for variable.
+/** \fn void set_y(int y)
+ * \brief Set y memory variable for current X-machine.
+ * \param y New value for variable.
  */
-void set_ycord(int ycord)
+void set_y(int y)
 {
-	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).ycord = ycord;
-	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).ycord = ycord;
-	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).ycord = ycord;
+	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).y = y;
 }
 
-/** \fn int get_ycord()
- * \brief Get ycord memory variable from current X-machine.
+/** \fn int get_y()
+ * \brief Get y memory variable from current X-machine.
  * \return Value for variable.
  */
-int get_ycord()
+int get_y()
 {
-	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).ycord;
-	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).ycord;
-	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).ycord;
+	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).y;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -2050,6 +3782,76 @@ int get_leaderID()
 members_needs * get_mneeds()
 {
 	if(current_xmachine->xmachine_clan) return &(*current_xmachine->xmachine_clan).mneeds;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return NULL;
+}
+
+/** \fn indv_free get_ifree()
+ * \brief Get ifree memory variable from current X-machine.
+ * \return Value for variable.
+ */
+indv_free * get_ifree()
+{
+	if(current_xmachine->xmachine_clan) return &(*current_xmachine->xmachine_clan).ifree;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return NULL;
+}
+
+/** \fn void set_indexID(int indexID)
+ * \brief Set indexID memory variable for current X-machine.
+ * \param indexID New value for variable.
+ */
+void set_indexID(int indexID)
+{
+	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).indexID = indexID;
+}
+
+/** \fn int get_indexID()
+ * \brief Get indexID memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_indexID()
+{
+	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).indexID;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_members(int members)
+ * \brief Set members memory variable for current X-machine.
+ * \param members New value for variable.
+ */
+void set_members(int members)
+{
+	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).members = members;
+}
+
+/** \fn int get_members()
+ * \brief Get members memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_members()
+{
+	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).members;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn int get_linguistics()
+ * \brief Get linguistics memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int * get_linguistics()
+{
+	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).linguistics;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -2138,6 +3940,54 @@ void set_tpatch(int tpatch)
 int get_tpatch()
 {
 	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).tpatch;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_xcord(int xcord)
+ * \brief Set xcord memory variable for current X-machine.
+ * \param xcord New value for variable.
+ */
+void set_xcord(int xcord)
+{
+	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).xcord = xcord;
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).xcord = xcord;
+}
+
+/** \fn int get_xcord()
+ * \brief Get xcord memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_xcord()
+{
+	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).xcord;
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).xcord;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_ycord(int ycord)
+ * \brief Set ycord memory variable for current X-machine.
+ * \param ycord New value for variable.
+ */
+void set_ycord(int ycord)
+{
+	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).ycord = ycord;
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).ycord = ycord;
+}
+
+/** \fn int get_ycord()
+ * \brief Get ycord memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_ycord()
+{
+	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).ycord;
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).ycord;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -2339,7 +4189,7 @@ double agent_get_x()
 {
     double value = 0.0;
     /*if (current_xmachine->xmachine_indv) value = current_xmachine->xmachine_indv->0.0;*/
-    /*if (current_xmachine->xmachine_clan) value = current_xmachine->xmachine_clan->0.0;*/
+    /*if (current_xmachine->xmachine_clan) value = current_xmachine->xmachine_clan->x;*/
     /*if (current_xmachine->xmachine_patch) value = current_xmachine->xmachine_patch->0.0;*/
     /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->0.0;*/
 
@@ -2353,7 +4203,7 @@ double agent_get_y()
 {
     double value = 0.0;
     /*if (current_xmachine->xmachine_indv) value = current_xmachine->xmachine_indv->0.0;*/
-    /*if (current_xmachine->xmachine_clan) value = current_xmachine->xmachine_clan->0.0;*/
+    /*if (current_xmachine->xmachine_clan) value = current_xmachine->xmachine_clan->y;*/
     /*if (current_xmachine->xmachine_patch) value = current_xmachine->xmachine_patch->0.0;*/
     /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->0.0;*/
 
@@ -2411,8 +4261,21 @@ void add_node(int node_id, double minx, double maxx, double miny, double maxy, d
 	current->information_messages = NULL;
 	current->indgetcalories_messages = NULL;
 	current->leader_messages = NULL;
+	current->ancestor_messages = NULL;
+	current->peticionID_messages = NULL;
+	current->family_messages = NULL;
+	current->death_messages = NULL;
+	current->widow_messages = NULL;
+	current->informationDivide_messages = NULL;
 	current->clan_info_messages = NULL;
 	current->clangetcalories_messages = NULL;
+	current->freeGirls_messages = NULL;
+	current->propuesta_messages = NULL;
+	current->confirProp_messages = NULL;
+	current->marriage_messages = NULL;
+	current->respuestaID_messages = NULL;
+	current->lmarriage_messages = NULL;
+	current->warningDivide_messages = NULL;
 	current->adultospatch_messages = NULL;
 	current->reproduccionguanacos_messages = NULL;
 
@@ -2547,6 +4410,156 @@ void clean_up(int code)
     }
     #endif
 
+	rc = MB_Delete(&b_ancestor);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'ancestor' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'ancestor' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_peticionID);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'peticionID' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'peticionID' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_family);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'family' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'family' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'family' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_death);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'death' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'death' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'death' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_widow);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'widow' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'widow' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'widow' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_informationDivide);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'informationDivide' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'informationDivide' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
 	rc = MB_Delete(&b_clan_info);
 	#ifdef ERRCHECK
     if (rc != MB_SUCCESS)
@@ -2583,6 +4596,181 @@ void clean_up(int code)
                break;
            case MB_ERR_LOCKED:
                fprintf(stderr, "\t reason: 'clangetcalories' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_freeGirls);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'freeGirls' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'freeGirls' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_propuesta);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'propuesta' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'propuesta' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_confirProp);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'confirProp' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'confirProp' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_marriage);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'marriage' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'marriage' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_respuestaID);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'respuestaID' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'respuestaID' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_lmarriage);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'lmarriage' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'lmarriage' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
+	rc = MB_Delete(&b_warningDivide);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'warningDivide' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'warningDivide' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
                break;
            case MB_ERR_INTERNAL:
                fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
@@ -2718,8 +4906,8 @@ void propagate_agents()
 		}
 		else if(current_xmachine->xmachine_clan != NULL)
 		{
-			x_xmachine = current_xmachine->xmachine_clan->0.0;
-			y_xmachine = current_xmachine->xmachine_clan->0.0;
+			x_xmachine = current_xmachine->xmachine_clan->x;
+			y_xmachine = current_xmachine->xmachine_clan->y;
 			z_xmachine = 0.0;
 		}
 		else if(current_xmachine->xmachine_patch != NULL)
@@ -3421,6 +5609,103 @@ void remove_members_needs(members_needs_array * array, int index)
 		(*array).size--;
 	}
 }
+/* Functions for the indv_free datatype */
+/** \fn indv_free_array * init_indv_free_array()
+ * \brief Allocate memory for a dynamic indv_free array.
+ * \return indv_free_array Pointer to the new dynamic indv_free array.
+ */
+void init_indv_free_array(indv_free_array * array)
+{
+	(*array).size = 0;
+	(*array).total_size = ARRAY_BLOCK_SIZE;
+	(*array).array = (indv_free *)malloc(ARRAY_BLOCK_SIZE * sizeof(indv_free));
+	CHECK_POINTER((*array).array);
+}
+
+/** \fn void reset_indv_free_array(indv_free_array* array)
+* \brief Reset the indv_free array to hold nothing.
+* \param array Pointer to the dynamic indv_free array.
+*/
+void reset_indv_free_array(indv_free_array * array)
+{
+	(*array).size = 0;
+}
+
+/** \fn void free_indv_free_array(indv_free_array * array)
+* \brief Free the memory of a dynamic indv_free array.
+* \param array Pointer to the dynamic indv_free array.
+*/
+void free_indv_free_array(indv_free_array * array)
+{
+	int i;
+	
+	for(i = 0; i < array->size; i++)
+	{
+		free_indv_free(&(*array).array[i]);
+	}
+	
+	free((*array).array);
+}
+
+void copy_indv_free_array(indv_free_array * from, indv_free_array * to)
+{
+	int i;
+
+	//to = init_indv_free_array();
+
+	for(i = 0; i < (*from).size; i++)
+	{
+		add_indv_free(to, (*from).array[i].male_list, (*from).array[i].female_list, (*from).array[i].mancestor_list, (*from).array[i].fancestor_list, (*from).array[i].mancestorClan_list, (*from).array[i].fancestorClan_list, (*from).array[i].numMale, (*from).array[i].numFemale);
+	}
+}
+
+/** \fn void add_indv_free(indv_free_array * array, int male_list, int female_list, int mancestor_list, int fancestor_list, int mancestorClan_list, int fancestorClan_list, int numMale, int numFemale)
+* \brief Add an indv_free to the dynamic indv_free array.
+* \param array Pointer to the dynamic indv_free array.
+* \param new_int The indv_free to add
+*/
+void add_indv_free(indv_free_array * array, /*@out@*/ int * male_list, /*@out@*/ int * female_list, /*@out@*/ int * mancestor_list, /*@out@*/ int * fancestor_list, /*@out@*/ int * mancestorClan_list, /*@out@*/ int * fancestorClan_list,  int numMale,  int numFemale)
+{
+	if((*array).size == (*array).total_size)
+	{
+		(*array).total_size = (int)((*array).total_size * ARRAY_GROWTH_RATE);
+		(*array).array = (indv_free *)realloc((*array).array, ((*array).total_size * sizeof(indv_free)));
+	}
+	init_indv_free(&(*array).array[(*array).size]);
+	if(male_list != NULL) memcpy((*array).array[(*array).size].male_list, male_list, 100*sizeof(int));
+	if(female_list != NULL) memcpy((*array).array[(*array).size].female_list, female_list, 100*sizeof(int));
+	if(mancestor_list != NULL) memcpy((*array).array[(*array).size].mancestor_list, mancestor_list, 600*sizeof(int));
+	if(fancestor_list != NULL) memcpy((*array).array[(*array).size].fancestor_list, fancestor_list, 600*sizeof(int));
+	if(mancestorClan_list != NULL) memcpy((*array).array[(*array).size].mancestorClan_list, mancestorClan_list, 600*sizeof(int));
+	if(fancestorClan_list != NULL) memcpy((*array).array[(*array).size].fancestorClan_list, fancestorClan_list, 600*sizeof(int));
+	(*array).array[(*array).size].numMale = numMale;
+	(*array).array[(*array).size].numFemale = numFemale;
+
+	(*array).size++;
+}
+
+/** \fn void remove_indv_free(indv_free_array * array, int index)
+ * \brief Remove an indv_free from a dynamic indv_free array.
+ * \param array Pointer to the dynamic indv_free array.
+ * \param index The index of the indv_free to remove.
+ */
+void remove_indv_free(indv_free_array * array, int index)
+{
+	int i;
+
+	/* Free element at index index */
+	free_indv_free(&(*array).array[index]);
+
+	/* Copy all elements up by one */
+	if(index < (*array).size)
+	{
+		for(i = index; i < (*array).size - 1; i++)
+		{
+			copy_indv_free(&(*array).array[i+1], &(*array).array[i]);
+		}
+		(*array).size--;
+	}
+}
 
 /** \fn int idle()
  * \brief an idle function for use by agents.
@@ -3430,6 +5715,26 @@ int idle()
 	return 0;
 }
 
+int FLAME_get_environment_variable_propegnant()
+{
+	return FLAME_environment_variable_propegnant;
+}
+int FLAME_get_environment_variable_nancestors()
+{
+	return FLAME_environment_variable_nancestors;
+}
+int FLAME_get_environment_variable_learn()
+{
+	return FLAME_environment_variable_learn;
+}
+int FLAME_get_environment_variable_forget()
+{
+	return FLAME_environment_variable_forget;
+}
+int FLAME_get_environment_variable_lang_threshold()
+{
+	return FLAME_environment_variable_lang_threshold;
+}
 int FLAME_get_environment_variable_max_manada()
 {
 	return FLAME_environment_variable_max_manada;

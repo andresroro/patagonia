@@ -50,6 +50,6 @@ int leviflight(int posX, int posY, int *targetX, int *targetY){
  				return 0;
  			}
 		}
-
 	}
+	else return 1;
 }

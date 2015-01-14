@@ -8,6 +8,13 @@
         <functionFiles>
             <file>indv.c</file>
         </functionFiles>
+	<constants>
+	    <variable>
+		<type>int</type>
+		<name>propegnant</name>
+		<description>probabilidad de embarazo</description>
+	    </variable>
+	</constants>
     </environment>
     <agents>
         <xagent>
@@ -59,6 +66,58 @@
 		    <name>lead</name>
 		    <description>0 if I am not the leader, 1 if I am</description>
 		</variable>
+<!-- new ************************************************************ -->
+		<variable>
+		    <type>int</type>
+		    <name>marriable</name>
+		    <description> 0 if i am not marriable, 1 if i am</description>	
+		</variable>
+		<variable>
+		    <type>int</type>
+		    <name>ancestors[6]</name>
+		    <description> array with ancestors information</description>
+		</variable>
+		<variable>
+		    <type>int</type>
+		    <name>ancestorsClan[6]</name>
+		    <description> array with ancestors information</description>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>married</name>
+			<description>0 if i'm not married, 1 if i'm </description>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>pareja</name>
+			<description>id de la pareja , sino -1 </description>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>embarazable</name>
+			<description>si es 1 cumple con: casada + no embarazada + fertil, sino 0 </description>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>month</name>
+			<description>contador de mes para embarazos</description>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>motherID</name>
+			<description>id de la madre </description>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>husband_info[4]</name>
+			<description>informacion de la familia del marido </description>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>widow</name>
+			<description>indicador para la mujer que vuelva a casarse con alguien de su clan </description>
+		</variable>
+<!-- new ********************************************************** -->
             </memory>
             <functions>
                 <function>
@@ -114,16 +173,360 @@
 			</not>
                     </condition>
 		</function>
+<!-- new *************************************************** -->
+		<function>
+		    <name>freeIndv</name>
+		    <description>free indv send to clan their information </description>
+		    <currentState>03</currentState>
+	   	    <nextState>04</nextState>
+		    <condition>
+			<lhs><lhs>
+			<lhs><value>a.marriable</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+			</lhs>
+			<op>AND</op>
+			<rhs>
+			<lhs><value>a.married</value></lhs>
+			<op>EQ</op>
+			<rhs><value>0</value></rhs>
+			</rhs></lhs>
+			<op>AND</op>
+			<rhs>
+			<lhs><value>a.widow</value></lhs>
+			<op>EQ</op>
+			<rhs><value>0</value></rhs>
+			</rhs>
+		    </condition>
+		    <output>
+			<messageName>ancestor</messageName>
+		    </output>
+		</function>
+		<function>
+		    <name>idle</name>
+		    <description></description>
+		    <currentState>03</currentState>
+	   	    <nextState>06</nextState>
+		    <condition>
+			<not>
+			<lhs><lhs>
+			<lhs><value>a.marriable</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+			</lhs>
+			<op>AND</op>
+			<rhs>
+			<lhs><value>a.married</value></lhs>
+			<op>EQ</op>
+			<rhs><value>0</value></rhs>
+			</rhs></lhs>
+			<op>AND</op>
+			<rhs>
+			<lhs><value>a.widow</value></lhs>
+			<op>EQ</op>
+			<rhs><value>0</value></rhs>
+			</rhs>
+			</not>
+		    </condition>
+		</function>
+		<function>
+		    <name>casamiento_female</name>
+		    <description>chica recive los datos de su pareja</description>
+		    <currentState>04</currentState>
+	   	    <nextState>05</nextState>
+		    <condition>
+			<lhs><value>a.sex</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+		    </condition>
+		    <input>
+		    	<messageName>marriage</messageName> 
+			<filter>
+				<lhs>
+					<lhs><value>a.indvID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.girlID</value></rhs>
+				</lhs>
+				<op>AND</op>
+				<rhs>
+					<lhs><value>a.cID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.oclanID</value></rhs>
+				</rhs>
+			</filter> 
+		    </input>
+		</function>
+		<function>
+		    <name>casamiento_male</name>
+		    <description>hombre recive los datos de su pareja</description>
+		    <currentState>04</currentState>
+	   	    <nextState>06</nextState>
+		    <condition>
+			<lhs><value>a.sex</value></lhs>
+			<op>EQ</op>
+			<rhs><value>0</value></rhs>
+		    </condition>
+		    <input>
+		    	<messageName>marriage</messageName> 
+			<filter>
+				<lhs>
+					<lhs><value>a.indvID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.manID</value></rhs>
+				</lhs>
+				<op>AND</op>
+				<rhs>
+					<lhs><value>a.cID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.clanID</value></rhs>
+				</rhs>
+			</filter> 
+		    </input>
+		    <output>
+			<messageName>family</messageName>
+		     </output>
+		</function>
+		<function>
+		    <name>info_husband</name>
+		    <description>la chica recive los ancestros de su marido nesesarios en caso de embarazo</description> 
+		    <currentState>05</currentState>
+		    <nextState>06</nextState>
+		    <condition>
+			<lhs><value>a.married</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+		    </condition>
+		    <input>
+		    	<messageName>family</messageName> 
+			<filter>
+				<lhs>
+					<lhs><value>a.indvID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.wife</value></rhs>
+				</lhs>
+				<op>AND</op>
+				<rhs>
+					<lhs><value>a.cID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.clanID</value></rhs>
+				</rhs>
+			</filter> 
+		    </input>
+		</function>
+		<function>
+		    <name>idle</name>
+		    <description></description>
+		    <currentState>05</currentState>
+	   	    <nextState>06</nextState>
+		    <condition>
+			<not>
+			<lhs><value>a.married</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+			</not>
+		    </condition>
+		</function>
+		<function>
+		    <name>pregnancy</name>
+		    <description>comprobacion si la mujer esta embarazada</description> 
+		    <currentState>06</currentState>
+		    <nextState>09</nextState>
+		    <condition>
+			<lhs><value>a.embarazable</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+		    </condition>
+		</function>
+		<function>
+		    <name>idle</name>
+		    <description></description>
+		    <currentState>06</currentState>
+	   	    <nextState>07</nextState>
+		    <condition>
+			<not>
+			<lhs><value>a.embarazable</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+			</not>
+		    </condition>
+		</function>
+		<function>
+		    <name>child_inf</name>
+		    <description>peticion de un id disponible</description>
+		    <currentState>07</currentState>
+	   	    <nextState>08</nextState>
+		    <condition>
+			<lhs><value>a.month</value></lhs>
+			<op>EQ</op>
+			<rhs><value>9</value></rhs>
+		    </condition>
+		    <outputs>
+			<output><messageName>peticionID</messageName></output>
+		    </outputs>
+		</function>
+		<function>
+		    <name>idle</name>
+		    <description></description>
+		    <currentState>07</currentState>
+	   	    <nextState>09</nextState>
+		    <condition>
+			<not>
+			<lhs><value>a.month</value></lhs>
+			<op>EQ</op>
+			<rhs><value>9</value></rhs>
+			</not>
+		    </condition>
+		</function>
+		<function>
+		    <name>birth</name>
+		    <description>creacion del nuevo individuo por parte de la madre</description>
+		    <currentState>08</currentState>
+	   	    <nextState>09</nextState>
+		    <input>
+			<messageName>respuestaID</messageName>
+			<filter>
+				<lhs>
+					<lhs><value>a.indvID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.indvID</value></rhs>
+				</lhs>
+				<op>AND</op>
+				<rhs>
+					<lhs><value>a.cID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.clanID</value></rhs>
+				</rhs>
+			</filter> 
+		    </input>
+		</function>			
+<!--   *********************************************** -->
 		<function>
 		    <name>survive</name>
 		    <description>Depending on the age, calories gotten, pregnancy, and so on, the probability of survival is computed and according to that probability and a random value the survival of the individual determined</description> 
-		    <currentState>03</currentState>
-		    <nextState>end</nextState>
+		    <currentState>09</currentState>
+		    <nextState>10</nextState>
 		    <outputs>
 			<output>
 				<messageName>leader</messageName>
 			</output>
+			<output>
+				<messageName>death</messageName>
+			</output>
 		    </outputs>
+		</function>
+		<function>
+		    <name>update_status</name>
+		    <description>indv receives a notification if their couple is death </description> 
+		    <currentState>10</currentState>
+		    <nextState>11</nextState>
+		    <input>
+			<messageName>death</messageName>
+			<filter>
+				<lhs>
+					<lhs><value>a.indvID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.parejaID</value></rhs>
+				</lhs>
+				<op>AND</op>
+				<rhs>
+					<lhs><value>a.cID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.clanID</value></rhs>
+				</rhs>
+			</filter> 
+		    </input>
+		</function>
+		<function>
+		    <name>husband_request</name>
+		    <description>girl send husband request to their clan </description> 
+		    <currentState>11</currentState>
+		    <nextState>12</nextState>
+ 		    <condition>
+			<lhs><value>a.widow</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+		    </condition>
+		    <output>
+			<messageName>widow</messageName>
+		    </output>
+		</function>
+		<function>
+		    <name>idle</name>
+		    <description></description>
+		    <currentState>11</currentState>
+	   	    <nextState>12</nextState>
+		    <condition>
+			<not>
+			<lhs><value>a.widow</value></lhs>
+			<op>EQ</op>
+			<rhs><value>1</value></rhs>
+			</not>
+		    </condition>
+		</function>
+		<function>
+		    <name>local_marriage</name>
+		    <description>Se comprueba si hay casamiento local </description> 
+		    <currentState>12</currentState>
+		    <nextState>13</nextState>
+ 		    <condition>
+			<lhs><value>a.married</value></lhs>
+			<op>EQ</op>
+			<rhs><value>0</value></rhs>
+		    </condition>
+		    <input>
+			<messageName>lmarriage</messageName>
+			<filter>
+				<lhs>
+					<lhs><!-- ya seas la chica -->
+					<lhs><value>a.indvID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.girlID</value></rhs>
+					</lhs>
+					<op>OR</op>
+					<rhs><!-- como el chico, recives el mensaje -->
+					<lhs><value>a.indvID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.manID</value></rhs>
+					</rhs>
+				</lhs>
+				<op>AND</op>
+				<rhs>
+					<lhs><value>a.cID</value></lhs>
+					<op>EQ</op>
+					<rhs><value>m.clanID</value></rhs>
+				</rhs>
+			</filter>  
+		    </input>
+		</function>
+		<function>
+		    <name>idle</name>
+		    <description></description>
+		    <currentState>12</currentState>
+	   	    <nextState>13</nextState>
+		    <condition>
+			<not>
+			<lhs><value>a.married</value></lhs>
+			<op>EQ</op>
+			<rhs><value>0</value></rhs>
+			</not>
+		    </condition>
+		</function>
+		<function>
+		    <name>dividir_info</name>
+		    <description>Envia informacion al clan cuando comienza la division del clan</description>
+		    <currentState>13</currentState>
+	   	    <nextState>end</nextState>
+		    <input>
+			<messageName>warningDivide</messageName>
+			<filter>
+				<lhs><value>a.cID</value></lhs>
+				<op>EQ</op>
+				<rhs><value>m.clanID</value></rhs>
+			</filter> 
+		    </input>
+		    <output>
+			<messageName>informationDivide</messageName>
+		    </output>
 		</function>
             </functions>
         </xagent>
@@ -202,6 +605,136 @@
                 </variable>
 	    </variables>	
 	</message>
+<!-- new ********************************************* -->
+	<message>
+	   <name>ancestor</name>
+	   <description>indv send their information ancestors</description>
+	   <variables>
+		<variable>
+			<type>int</type>
+			<name>ancest[6]</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>ancestClan[6]</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>clanID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>indvID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>sex</name>
+		</variable>
+	   </variables>
+	</message>
+	<message>
+	   <name>peticionID</name>
+	   <description>la madre notifica al padre el nacimiento de su hijo</description>
+	   <variables>
+		<variable>
+			<type>int</type>
+			<name>clanID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>id</name>
+		</variable>
+	   </variables>
+	</message>
+	<message>
+	   <name>family</name>
+	   <description>el marido envia a su mujer la parte de sus ancestros para el hijo</description>
+	   <variables>
+		<variable>
+			<type>int</type>
+			<name>wife</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>clanID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>husband</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>info[4]</name>
+		</variable>
+	   </variables>
+	</message>
+	<message>
+	   <name>death</name>
+	   <description>el fallecido notifica a su pareja que vuelve a estar libre</description>
+	   <variables>
+		<variable>
+			<type>int</type>
+			<name>parejaID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>clanID</name>
+		</variable>
+	   </variables>
+	</message>
+	<message>
+	   <name>widow</name>
+	   <description>ju</description>
+	   <variables>
+		<variable>
+			<type>int</type>
+			<name>ancestors[6]</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>Cancestors[6]</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>clanID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>indvID</name>
+		</variable>
+	   </variables>
+	</message>
+	<message>
+	   <name>informationDivide</name>
+	   <description>informacion nesesaria del indv para la division del clan</description>
+	   <variables>
+		<variable>
+			<type>int</type>
+			<name>clanID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>indvID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>parejaID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>sex</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>momID</name>
+		</variable>
+		<variable>
+			<type>int</type>
+			<name>age</name>
+		</variable>
+	   </variables>
+	</message>
+<!-- ************************************************ -->
     </messages>
 </xmodel>
 

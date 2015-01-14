@@ -37,10 +37,37 @@ int main(int argc, char * argv[])
 	int FLAME_indgetcalories_message_board_read;
 	int FLAME_leader_message_board_write;
 	int FLAME_leader_message_board_read;
+	int FLAME_ancestor_message_board_write;
+	int FLAME_ancestor_message_board_read;
+	int FLAME_peticionID_message_board_write;
+	int FLAME_peticionID_message_board_read;
+	int FLAME_family_message_board_write;
+	int FLAME_family_message_board_read;
+	int FLAME_death_message_board_write;
+	int FLAME_death_message_board_read;
+	int FLAME_widow_message_board_write;
+	int FLAME_widow_message_board_read;
+	int FLAME_informationDivide_message_board_write;
+	int FLAME_informationDivide_message_board_read;
 	int FLAME_clan_info_message_board_write;
 	int FLAME_clan_info_message_board_read;
 	int FLAME_clangetcalories_message_board_write;
 	int FLAME_clangetcalories_message_board_read;
+	int FLAME_freeGirls_message_board_write;
+	int FLAME_freeGirls_message_board_read;
+	MBt_SearchTree tree_ptr_2d_freeGirls;
+	int FLAME_propuesta_message_board_write;
+	int FLAME_propuesta_message_board_read;
+	int FLAME_confirProp_message_board_write;
+	int FLAME_confirProp_message_board_read;
+	int FLAME_marriage_message_board_write;
+	int FLAME_marriage_message_board_read;
+	int FLAME_respuestaID_message_board_write;
+	int FLAME_respuestaID_message_board_read;
+	int FLAME_lmarriage_message_board_write;
+	int FLAME_lmarriage_message_board_read;
+	int FLAME_warningDivide_message_board_write;
+	int FLAME_warningDivide_message_board_read;
 	int FLAME_adultospatch_message_board_write;
 	int FLAME_adultospatch_message_board_read;
 	int FLAME_reproduccionguanacos_message_board_write;
@@ -413,6 +440,282 @@ printf("Iterations: %i\n", iteration_total);
 		   exit(rc);
 	}
 	#endif
+	FLAME_ancestor_message_board_write = 0;
+	FLAME_ancestor_message_board_read = 0;
+	/* Sending agents */
+	if(indv_start_state->agents != NULL) FLAME_ancestor_message_board_write = 1;
+	
+	/* Reading agents */
+	if(clan_start_state->agents != NULL) FLAME_ancestor_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_ancestor_message_board_write == 0 &&
+		FLAME_ancestor_message_board_read == 0)
+			rc = MB_SetAccessMode(b_ancestor, MB_MODE_IDLE);
+	if(FLAME_ancestor_message_board_write == 1 &&
+		FLAME_ancestor_message_board_read == 0)
+			rc = MB_SetAccessMode(b_ancestor, MB_MODE_WRITEONLY);
+	if(FLAME_ancestor_message_board_write == 0 &&
+		FLAME_ancestor_message_board_read == 1)
+			rc = MB_SetAccessMode(b_ancestor, MB_MODE_READONLY);
+	if(FLAME_ancestor_message_board_write == 1 &&
+		FLAME_ancestor_message_board_read == 1)
+			rc = MB_SetAccessMode(b_ancestor, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'ancestor' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_peticionID_message_board_write = 0;
+	FLAME_peticionID_message_board_read = 0;
+	/* Sending agents */
+	if(indv_start_state->agents != NULL) FLAME_peticionID_message_board_write = 1;
+	
+	/* Reading agents */
+	if(clan_start_state->agents != NULL) FLAME_peticionID_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_peticionID_message_board_write == 0 &&
+		FLAME_peticionID_message_board_read == 0)
+			rc = MB_SetAccessMode(b_peticionID, MB_MODE_IDLE);
+	if(FLAME_peticionID_message_board_write == 1 &&
+		FLAME_peticionID_message_board_read == 0)
+			rc = MB_SetAccessMode(b_peticionID, MB_MODE_WRITEONLY);
+	if(FLAME_peticionID_message_board_write == 0 &&
+		FLAME_peticionID_message_board_read == 1)
+			rc = MB_SetAccessMode(b_peticionID, MB_MODE_READONLY);
+	if(FLAME_peticionID_message_board_write == 1 &&
+		FLAME_peticionID_message_board_read == 1)
+			rc = MB_SetAccessMode(b_peticionID, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'peticionID' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_family_message_board_write = 0;
+	FLAME_family_message_board_read = 0;
+	/* Sending agents */
+	if(indv_start_state->agents != NULL) FLAME_family_message_board_write = 1;
+	
+	/* Reading agents */
+	if(indv_start_state->agents != NULL) FLAME_family_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_family_message_board_write == 0 &&
+		FLAME_family_message_board_read == 0)
+			rc = MB_SetAccessMode(b_family, MB_MODE_IDLE);
+	if(FLAME_family_message_board_write == 1 &&
+		FLAME_family_message_board_read == 0)
+			rc = MB_SetAccessMode(b_family, MB_MODE_WRITEONLY);
+	if(FLAME_family_message_board_write == 0 &&
+		FLAME_family_message_board_read == 1)
+			rc = MB_SetAccessMode(b_family, MB_MODE_READONLY);
+	if(FLAME_family_message_board_write == 1 &&
+		FLAME_family_message_board_read == 1)
+			rc = MB_SetAccessMode(b_family, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'family' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'family' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'family' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_death_message_board_write = 0;
+	FLAME_death_message_board_read = 0;
+	/* Sending agents */
+	if(indv_start_state->agents != NULL) FLAME_death_message_board_write = 1;
+	
+	/* Reading agents */
+	if(indv_start_state->agents != NULL) FLAME_death_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_death_message_board_write == 0 &&
+		FLAME_death_message_board_read == 0)
+			rc = MB_SetAccessMode(b_death, MB_MODE_IDLE);
+	if(FLAME_death_message_board_write == 1 &&
+		FLAME_death_message_board_read == 0)
+			rc = MB_SetAccessMode(b_death, MB_MODE_WRITEONLY);
+	if(FLAME_death_message_board_write == 0 &&
+		FLAME_death_message_board_read == 1)
+			rc = MB_SetAccessMode(b_death, MB_MODE_READONLY);
+	if(FLAME_death_message_board_write == 1 &&
+		FLAME_death_message_board_read == 1)
+			rc = MB_SetAccessMode(b_death, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'death' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'death' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'death' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_widow_message_board_write = 0;
+	FLAME_widow_message_board_read = 0;
+	/* Sending agents */
+	if(indv_start_state->agents != NULL) FLAME_widow_message_board_write = 1;
+	
+	/* Reading agents */
+	if(clan_start_state->agents != NULL) FLAME_widow_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_widow_message_board_write == 0 &&
+		FLAME_widow_message_board_read == 0)
+			rc = MB_SetAccessMode(b_widow, MB_MODE_IDLE);
+	if(FLAME_widow_message_board_write == 1 &&
+		FLAME_widow_message_board_read == 0)
+			rc = MB_SetAccessMode(b_widow, MB_MODE_WRITEONLY);
+	if(FLAME_widow_message_board_write == 0 &&
+		FLAME_widow_message_board_read == 1)
+			rc = MB_SetAccessMode(b_widow, MB_MODE_READONLY);
+	if(FLAME_widow_message_board_write == 1 &&
+		FLAME_widow_message_board_read == 1)
+			rc = MB_SetAccessMode(b_widow, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'widow' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'widow' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_informationDivide_message_board_write = 0;
+	FLAME_informationDivide_message_board_read = 0;
+	/* Sending agents */
+	if(indv_start_state->agents != NULL) FLAME_informationDivide_message_board_write = 1;
+	
+	/* Reading agents */
+	if(clan_start_state->agents != NULL) FLAME_informationDivide_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_informationDivide_message_board_write == 0 &&
+		FLAME_informationDivide_message_board_read == 0)
+			rc = MB_SetAccessMode(b_informationDivide, MB_MODE_IDLE);
+	if(FLAME_informationDivide_message_board_write == 1 &&
+		FLAME_informationDivide_message_board_read == 0)
+			rc = MB_SetAccessMode(b_informationDivide, MB_MODE_WRITEONLY);
+	if(FLAME_informationDivide_message_board_write == 0 &&
+		FLAME_informationDivide_message_board_read == 1)
+			rc = MB_SetAccessMode(b_informationDivide, MB_MODE_READONLY);
+	if(FLAME_informationDivide_message_board_write == 1 &&
+		FLAME_informationDivide_message_board_read == 1)
+			rc = MB_SetAccessMode(b_informationDivide, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'informationDivide' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
 	FLAME_clan_info_message_board_write = 0;
 	FLAME_clan_info_message_board_read = 0;
 	/* Sending agents */
@@ -490,6 +793,328 @@ printf("Iterations: %i\n", iteration_total);
 			   break;
 		   case MB_ERR_LOCKED:
 			   fprintf(stderr, "\t reason: 'clangetcalories' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_freeGirls_message_board_write = 0;
+	FLAME_freeGirls_message_board_read = 0;
+	/* Sending agents */
+	if(clan_start_state->agents != NULL) FLAME_freeGirls_message_board_write = 1;
+	
+	/* Reading agents */
+	if(clan_start_state->agents != NULL) FLAME_freeGirls_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_freeGirls_message_board_write == 0 &&
+		FLAME_freeGirls_message_board_read == 0)
+			rc = MB_SetAccessMode(b_freeGirls, MB_MODE_IDLE);
+	if(FLAME_freeGirls_message_board_write == 1 &&
+		FLAME_freeGirls_message_board_read == 0)
+			rc = MB_SetAccessMode(b_freeGirls, MB_MODE_WRITEONLY);
+	if(FLAME_freeGirls_message_board_write == 0 &&
+		FLAME_freeGirls_message_board_read == 1)
+			rc = MB_SetAccessMode(b_freeGirls, MB_MODE_READONLY);
+	if(FLAME_freeGirls_message_board_write == 1 &&
+		FLAME_freeGirls_message_board_read == 1)
+			rc = MB_SetAccessMode(b_freeGirls, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'freeGirls' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_propuesta_message_board_write = 0;
+	FLAME_propuesta_message_board_read = 0;
+	/* Sending agents */
+	if(clan_start_state->agents != NULL) FLAME_propuesta_message_board_write = 1;
+	
+	/* Reading agents */
+	if(clan_start_state->agents != NULL) FLAME_propuesta_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_propuesta_message_board_write == 0 &&
+		FLAME_propuesta_message_board_read == 0)
+			rc = MB_SetAccessMode(b_propuesta, MB_MODE_IDLE);
+	if(FLAME_propuesta_message_board_write == 1 &&
+		FLAME_propuesta_message_board_read == 0)
+			rc = MB_SetAccessMode(b_propuesta, MB_MODE_WRITEONLY);
+	if(FLAME_propuesta_message_board_write == 0 &&
+		FLAME_propuesta_message_board_read == 1)
+			rc = MB_SetAccessMode(b_propuesta, MB_MODE_READONLY);
+	if(FLAME_propuesta_message_board_write == 1 &&
+		FLAME_propuesta_message_board_read == 1)
+			rc = MB_SetAccessMode(b_propuesta, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'propuesta' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_confirProp_message_board_write = 0;
+	FLAME_confirProp_message_board_read = 0;
+	/* Sending agents */
+	if(clan_start_state->agents != NULL) FLAME_confirProp_message_board_write = 1;
+	
+	/* Reading agents */
+	if(clan_start_state->agents != NULL) FLAME_confirProp_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_confirProp_message_board_write == 0 &&
+		FLAME_confirProp_message_board_read == 0)
+			rc = MB_SetAccessMode(b_confirProp, MB_MODE_IDLE);
+	if(FLAME_confirProp_message_board_write == 1 &&
+		FLAME_confirProp_message_board_read == 0)
+			rc = MB_SetAccessMode(b_confirProp, MB_MODE_WRITEONLY);
+	if(FLAME_confirProp_message_board_write == 0 &&
+		FLAME_confirProp_message_board_read == 1)
+			rc = MB_SetAccessMode(b_confirProp, MB_MODE_READONLY);
+	if(FLAME_confirProp_message_board_write == 1 &&
+		FLAME_confirProp_message_board_read == 1)
+			rc = MB_SetAccessMode(b_confirProp, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'confirProp' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_marriage_message_board_write = 0;
+	FLAME_marriage_message_board_read = 0;
+	/* Sending agents */
+	if(clan_start_state->agents != NULL) FLAME_marriage_message_board_write = 1;
+	
+	/* Reading agents */
+	if(indv_start_state->agents != NULL) FLAME_marriage_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_marriage_message_board_write == 0 &&
+		FLAME_marriage_message_board_read == 0)
+			rc = MB_SetAccessMode(b_marriage, MB_MODE_IDLE);
+	if(FLAME_marriage_message_board_write == 1 &&
+		FLAME_marriage_message_board_read == 0)
+			rc = MB_SetAccessMode(b_marriage, MB_MODE_WRITEONLY);
+	if(FLAME_marriage_message_board_write == 0 &&
+		FLAME_marriage_message_board_read == 1)
+			rc = MB_SetAccessMode(b_marriage, MB_MODE_READONLY);
+	if(FLAME_marriage_message_board_write == 1 &&
+		FLAME_marriage_message_board_read == 1)
+			rc = MB_SetAccessMode(b_marriage, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'marriage' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_respuestaID_message_board_write = 0;
+	FLAME_respuestaID_message_board_read = 0;
+	/* Sending agents */
+	if(clan_start_state->agents != NULL) FLAME_respuestaID_message_board_write = 1;
+	
+	/* Reading agents */
+	if(indv_start_state->agents != NULL) FLAME_respuestaID_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_respuestaID_message_board_write == 0 &&
+		FLAME_respuestaID_message_board_read == 0)
+			rc = MB_SetAccessMode(b_respuestaID, MB_MODE_IDLE);
+	if(FLAME_respuestaID_message_board_write == 1 &&
+		FLAME_respuestaID_message_board_read == 0)
+			rc = MB_SetAccessMode(b_respuestaID, MB_MODE_WRITEONLY);
+	if(FLAME_respuestaID_message_board_write == 0 &&
+		FLAME_respuestaID_message_board_read == 1)
+			rc = MB_SetAccessMode(b_respuestaID, MB_MODE_READONLY);
+	if(FLAME_respuestaID_message_board_write == 1 &&
+		FLAME_respuestaID_message_board_read == 1)
+			rc = MB_SetAccessMode(b_respuestaID, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'respuestaID' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_lmarriage_message_board_write = 0;
+	FLAME_lmarriage_message_board_read = 0;
+	/* Sending agents */
+	if(clan_start_state->agents != NULL) FLAME_lmarriage_message_board_write = 1;
+	
+	/* Reading agents */
+	if(indv_start_state->agents != NULL) FLAME_lmarriage_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_lmarriage_message_board_write == 0 &&
+		FLAME_lmarriage_message_board_read == 0)
+			rc = MB_SetAccessMode(b_lmarriage, MB_MODE_IDLE);
+	if(FLAME_lmarriage_message_board_write == 1 &&
+		FLAME_lmarriage_message_board_read == 0)
+			rc = MB_SetAccessMode(b_lmarriage, MB_MODE_WRITEONLY);
+	if(FLAME_lmarriage_message_board_write == 0 &&
+		FLAME_lmarriage_message_board_read == 1)
+			rc = MB_SetAccessMode(b_lmarriage, MB_MODE_READONLY);
+	if(FLAME_lmarriage_message_board_write == 1 &&
+		FLAME_lmarriage_message_board_read == 1)
+			rc = MB_SetAccessMode(b_lmarriage, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'lmarriage' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
+	FLAME_warningDivide_message_board_write = 0;
+	FLAME_warningDivide_message_board_read = 0;
+	/* Sending agents */
+	if(clan_start_state->agents != NULL) FLAME_warningDivide_message_board_write = 1;
+	
+	/* Reading agents */
+	if(indv_start_state->agents != NULL) FLAME_warningDivide_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_warningDivide_message_board_write == 0 &&
+		FLAME_warningDivide_message_board_read == 0)
+			rc = MB_SetAccessMode(b_warningDivide, MB_MODE_IDLE);
+	if(FLAME_warningDivide_message_board_write == 1 &&
+		FLAME_warningDivide_message_board_read == 0)
+			rc = MB_SetAccessMode(b_warningDivide, MB_MODE_WRITEONLY);
+	if(FLAME_warningDivide_message_board_write == 0 &&
+		FLAME_warningDivide_message_board_read == 1)
+			rc = MB_SetAccessMode(b_warningDivide, MB_MODE_READONLY);
+	if(FLAME_warningDivide_message_board_write == 1 &&
+		FLAME_warningDivide_message_board_read == 1)
+			rc = MB_SetAccessMode(b_warningDivide, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'warningDivide' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
 			   break;
 		   case MB_ERR_MEMALLOC:
 			   fprintf(stderr, "\t reason: out of memory\n");
@@ -725,6 +1350,228 @@ printf("Iterations: %i\n", iteration_total);
 		}
 		
 		/* Start sync message boards that don't write */
+		if(FLAME_ancestor_message_board_write == 0)
+		{
+			/*printf("%d> ancestor message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_ancestor)\n");
+			rc = MB_SyncStart(b_ancestor);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_ancestor)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'ancestor' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_peticionID_message_board_write == 0)
+		{
+			/*printf("%d> peticionID message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_peticionID)\n");
+			rc = MB_SyncStart(b_peticionID);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_peticionID)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'peticionID' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_family_message_board_write == 0)
+		{
+			/*printf("%d> family message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_family)\n");
+			rc = MB_SyncStart(b_family);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_family)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'family' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'family' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'family' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_death_message_board_write == 0)
+		{
+			/*printf("%d> death message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_death)\n");
+			rc = MB_SyncStart(b_death);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_death)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'death' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'death' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'death' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_widow_message_board_write == 0)
+		{
+			/*printf("%d> widow message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_widow)\n");
+			rc = MB_SyncStart(b_widow);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_widow)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'widow' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'widow' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_informationDivide_message_board_write == 0)
+		{
+			/*printf("%d> informationDivide message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_informationDivide)\n");
+			rc = MB_SyncStart(b_informationDivide);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_informationDivide)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'informationDivide' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
 		if(FLAME_clan_info_message_board_write == 0)
 		{
 			/*printf("%d> clan_info message board sync start early as no agents sending any messages of this type\n", node_number);*/
@@ -780,6 +1627,265 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 				   case MB_ERR_LOCKED:
 					   fprintf(stderr, "\t reason: 'clangetcalories' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_freeGirls_message_board_write == 0)
+		{
+			/*printf("%d> freeGirls message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_freeGirls)\n");
+			rc = MB_SyncStart(b_freeGirls);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_freeGirls)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'freeGirls' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_propuesta_message_board_write == 0)
+		{
+			/*printf("%d> propuesta message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_propuesta)\n");
+			rc = MB_SyncStart(b_propuesta);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_propuesta)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'propuesta' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_confirProp_message_board_write == 0)
+		{
+			/*printf("%d> confirProp message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_confirProp)\n");
+			rc = MB_SyncStart(b_confirProp);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_confirProp)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'confirProp' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_marriage_message_board_write == 0)
+		{
+			/*printf("%d> marriage message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_marriage)\n");
+			rc = MB_SyncStart(b_marriage);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_marriage)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'marriage' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_respuestaID_message_board_write == 0)
+		{
+			/*printf("%d> respuestaID message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_respuestaID)\n");
+			rc = MB_SyncStart(b_respuestaID);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_respuestaID)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'respuestaID' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_lmarriage_message_board_write == 0)
+		{
+			/*printf("%d> lmarriage message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_lmarriage)\n");
+			rc = MB_SyncStart(b_lmarriage);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_lmarriage)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'lmarriage' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
+		if(FLAME_warningDivide_message_board_write == 0)
+		{
+			/*printf("%d> warningDivide message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_warningDivide)\n");
+			rc = MB_SyncStart(b_warningDivide);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_warningDivide)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'warningDivide' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
 					   break;
 				   case MB_ERR_MEMALLOC:
 					   fprintf(stderr, "\t reason: out of memory\n");
@@ -3024,14 +4130,2470 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
     }
     #endif
 
-
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start survive\n");
+	/* DEBUG: States with branching functions */
+		current_xmachine_indv_holder = indv_03_state->agents;
+		while(current_xmachine_indv_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_indv_idle_03_06(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: freeIndv */
+			if(FLAME_condition_indv_freeIndv_03_04(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'indv' leaving state '03'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start freeIndv\n");
 	current_xmachine_indv_holder = indv_03_state->agents;
 	while(current_xmachine_indv_holder)
 	{
 		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
 		current_xmachine_indv = current_xmachine_indv_holder->agent;
-		current_xmachine_indv_next_state = indv_end_state;
+		current_xmachine_indv_next_state = indv_04_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_freeIndv_03_04(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = freeIndv();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_03_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_03_state, indv_04_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish freeIndv\n");
+
+	if(FLAME_ancestor_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_ancestor)\n");
+		rc = MB_SyncStart(b_ancestor);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_ancestor)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'ancestor' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_indv_holder = indv_03_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_06_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_idle_03_06(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_03_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_03_state, indv_06_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+/* End of layer number 7 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_indv_holder = indv_04_state->agents;
+		while(current_xmachine_indv_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: casamiento_male */
+			if(FLAME_condition_indv_casamiento_male_04_06(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: casamiento_female */
+			if(FLAME_condition_indv_casamiento_female_04_05(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'indv' leaving state '04'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		}
+	
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_ancestor_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_ancestor)\n");
+		rc = MB_SyncComplete(b_ancestor);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_ancestor)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'ancestor' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start marriable_indv\n");
+	current_xmachine_clan_holder = clan_03_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_04_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_ancestor, &i_ancestor, &FLAME_filter_clan_marriable_indv_03_04_ancestor, current_xmachine_clan);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'ancestor'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = marriable_indv();
+
+		
+		    rc = MB_Iterator_Delete(&i_ancestor);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'ancestor' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'ancestor' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_03_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_03_state, clan_04_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish marriable_indv\n");
+
+
+/* End of layer number 8 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_ancestor_message_board_read == 0)
+{
+	/*printf("%d> ancestor message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_ancestor)\n");
+	rc = MB_SyncComplete(b_ancestor);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_ancestor)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'ancestor' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_ancestor);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'ancestor' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'ancestor' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'ancestor' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start send_girls\n");
+	current_xmachine_clan_holder = clan_04_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_05_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+
+			i = send_girls();
+
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_04_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_04_state, clan_05_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish send_girls\n");
+
+	if(FLAME_freeGirls_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_freeGirls)\n");
+		rc = MB_SyncStart(b_freeGirls);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_freeGirls)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'freeGirls' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+/* End of layer number 9 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_freeGirls_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_freeGirls)\n");
+		rc = MB_SyncComplete(b_freeGirls);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_freeGirls)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'freeGirls' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    /* Built 2d tree */
+    rc = MB_SearchTree_Create2D(b_freeGirls, &tree_ptr_2d_freeGirls,
+                           &freeGirls_message_extract_x,
+                           &freeGirls_message_extract_y);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not create MB_SearchTree_Create2D for 'freeGirls'\n");
+       
+       exit(rc);
+    }
+    #endif
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start match\n");
+	current_xmachine_clan_holder = clan_05_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_06_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+		
+          /* MB_Iterator 2d tree */
+          rc = MB_SearchTree_Search2D(tree_ptr_2d_freeGirls, &i_freeGirls,
+                           (double)current_xmachine_clan->x - (double)15.0,
+                           (double)current_xmachine_clan->x + (double)15.0,
+                           (double)current_xmachine_clan->y - (double)15.0,
+                           (double)current_xmachine_clan->y + (double)15.0);
+                  
+          
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'freeGirls'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = match();
+
+		
+		    rc = MB_Iterator_Delete(&i_freeGirls);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'freeGirls' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'freeGirls' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_05_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_05_state, clan_06_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish match\n");
+
+	if(FLAME_propuesta_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_propuesta)\n");
+		rc = MB_SyncStart(b_propuesta);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_propuesta)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'propuesta' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+/* End of layer number 10 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_freeGirls_message_board_read == 0)
+{
+	/*printf("%d> freeGirls message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_freeGirls)\n");
+	rc = MB_SyncComplete(b_freeGirls);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_freeGirls)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'freeGirls' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+    rc = MB_SearchTree_Delete(&tree_ptr_2d_freeGirls);
+
+    rc = MB_Clear(b_freeGirls);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'freeGirls' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'freeGirls' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'freeGirls' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_propuesta_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_propuesta)\n");
+		rc = MB_SyncComplete(b_propuesta);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_propuesta)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'propuesta' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start aceptar_prop\n");
+	current_xmachine_clan_holder = clan_06_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_07_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_propuesta, &i_propuesta, &FLAME_filter_clan_aceptar_prop_06_07_propuesta, current_xmachine_clan);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'propuesta'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = aceptar_prop();
+
+		
+		    rc = MB_Iterator_Delete(&i_propuesta);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'propuesta' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'propuesta' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_06_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_06_state, clan_07_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish aceptar_prop\n");
+
+	if(FLAME_confirProp_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_confirProp)\n");
+		rc = MB_SyncStart(b_confirProp);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_confirProp)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'confirProp' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+/* End of layer number 11 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_propuesta_message_board_read == 0)
+{
+	/*printf("%d> propuesta message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_propuesta)\n");
+	rc = MB_SyncComplete(b_propuesta);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_propuesta)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'propuesta' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_propuesta);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'propuesta' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'propuesta' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'propuesta' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_confirProp_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_confirProp)\n");
+		rc = MB_SyncComplete(b_confirProp);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_confirProp)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'confirProp' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start recive_conf\n");
+	current_xmachine_clan_holder = clan_07_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_08_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_confirProp, &i_confirProp, &FLAME_filter_clan_recive_conf_07_08_confirProp, current_xmachine_clan);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'confirProp'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = recive_conf();
+
+		
+		    rc = MB_Iterator_Delete(&i_confirProp);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'confirProp' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'confirProp' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_07_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_07_state, clan_08_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish recive_conf\n");
+
+	if(FLAME_marriage_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_marriage)\n");
+		rc = MB_SyncStart(b_marriage);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_marriage)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'marriage' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+/* End of layer number 12 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_confirProp_message_board_read == 0)
+{
+	/*printf("%d> confirProp message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_confirProp)\n");
+	rc = MB_SyncComplete(b_confirProp);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_confirProp)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'confirProp' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_confirProp);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'confirProp' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'confirProp' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'confirProp' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_marriage_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_marriage)\n");
+		rc = MB_SyncComplete(b_marriage);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_marriage)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'marriage' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start casamiento_male\n");
+	current_xmachine_indv_holder = indv_04_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_06_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_casamiento_male_04_06(current_xmachine_indv)==1)
+		{
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_marriage, &i_marriage, &FLAME_filter_indv_casamiento_male_04_06_marriage, current_xmachine_indv);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'marriage'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = casamiento_male();
+
+		
+		    rc = MB_Iterator_Delete(&i_marriage);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'marriage' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'marriage' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_04_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_04_state, indv_06_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish casamiento_male\n");
+
+	if(FLAME_family_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_family)\n");
+		rc = MB_SyncStart(b_family);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_family)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'family' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'family' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'family' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start casamiento_female\n");
+	current_xmachine_indv_holder = indv_04_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_05_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_casamiento_female_04_05(current_xmachine_indv)==1)
+		{
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_marriage, &i_marriage, &FLAME_filter_indv_casamiento_female_04_05_marriage, current_xmachine_indv);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'marriage'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = casamiento_female();
+
+		
+		    rc = MB_Iterator_Delete(&i_marriage);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'marriage' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'marriage' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_04_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_04_state, indv_05_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish casamiento_female\n");
+
+
+/* End of layer number 13 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_marriage_message_board_read == 0)
+{
+	/*printf("%d> marriage message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_marriage)\n");
+	rc = MB_SyncComplete(b_marriage);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_marriage)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'marriage' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_marriage);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'marriage' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'marriage' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'marriage' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_indv_holder = indv_05_state->agents;
+		while(current_xmachine_indv_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_indv_idle_05_06(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: info_husband */
+			if(FLAME_condition_indv_info_husband_05_06(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'indv' leaving state '05'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_indv_holder = indv_05_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_06_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_idle_05_06(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_05_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_05_state, indv_06_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_family_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_family)\n");
+		rc = MB_SyncComplete(b_family);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_family)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'family' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'family' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start info_husband\n");
+	current_xmachine_indv_holder = indv_05_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_06_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_info_husband_05_06(current_xmachine_indv)==1)
+		{
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_family, &i_family, &FLAME_filter_indv_info_husband_05_06_family, current_xmachine_indv);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'family'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'family' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'family' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = info_husband();
+
+		
+		    rc = MB_Iterator_Delete(&i_family);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'family' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'family' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_05_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_05_state, indv_06_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish info_husband\n");
+
+
+/* End of layer number 14 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_family_message_board_read == 0)
+{
+	/*printf("%d> family message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_family)\n");
+	rc = MB_SyncComplete(b_family);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_family)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'family' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'family' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_family);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'family' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'family' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'family' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_indv_holder = indv_06_state->agents;
+		while(current_xmachine_indv_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_indv_idle_06_07(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: pregnancy */
+			if(FLAME_condition_indv_pregnancy_06_09(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'indv' leaving state '06'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_indv_holder = indv_06_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_07_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_idle_06_07(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_06_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_06_state, indv_07_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start pregnancy\n");
+	current_xmachine_indv_holder = indv_06_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_09_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_pregnancy_06_09(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = pregnancy();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_06_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_06_state, indv_09_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish pregnancy\n");
+
+
+/* End of layer number 15 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_indv_holder = indv_07_state->agents;
+		while(current_xmachine_indv_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_indv_idle_07_09(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: child_inf */
+			if(FLAME_condition_indv_child_inf_07_08(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'indv' leaving state '07'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start child_inf\n");
+	current_xmachine_indv_holder = indv_07_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_08_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_child_inf_07_08(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = child_inf();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_07_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_07_state, indv_08_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish child_inf\n");
+
+	if(FLAME_peticionID_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_peticionID)\n");
+		rc = MB_SyncStart(b_peticionID);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_peticionID)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'peticionID' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_indv_holder = indv_07_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_09_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_idle_07_09(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_07_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_07_state, indv_09_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+/* End of layer number 16 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_peticionID_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_peticionID)\n");
+		rc = MB_SyncComplete(b_peticionID);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_peticionID)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'peticionID' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start repartir_id\n");
+	current_xmachine_clan_holder = clan_08_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_09_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_peticionID, &i_peticionID, &FLAME_filter_clan_repartir_id_08_09_peticionID, current_xmachine_clan);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'peticionID'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = repartir_id();
+
+		
+		    rc = MB_Iterator_Delete(&i_peticionID);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'peticionID' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'peticionID' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_08_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_08_state, clan_09_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish repartir_id\n");
+
+	if(FLAME_respuestaID_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_respuestaID)\n");
+		rc = MB_SyncStart(b_respuestaID);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_respuestaID)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'respuestaID' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+/* End of layer number 17 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_peticionID_message_board_read == 0)
+{
+	/*printf("%d> peticionID message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_peticionID)\n");
+	rc = MB_SyncComplete(b_peticionID);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_peticionID)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'peticionID' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_peticionID);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'peticionID' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'peticionID' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'peticionID' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_respuestaID_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_respuestaID)\n");
+		rc = MB_SyncComplete(b_respuestaID);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_respuestaID)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'respuestaID' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start birth\n");
+	current_xmachine_indv_holder = indv_08_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_09_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_respuestaID, &i_respuestaID, &FLAME_filter_indv_birth_08_09_respuestaID, current_xmachine_indv);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'respuestaID'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = birth();
+
+		
+		    rc = MB_Iterator_Delete(&i_respuestaID);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'respuestaID' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'respuestaID' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_08_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_08_state, indv_09_state);
+			}
+		
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish birth\n");
+
+
+/* End of layer number 18 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_respuestaID_message_board_read == 0)
+{
+	/*printf("%d> respuestaID message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_respuestaID)\n");
+	rc = MB_SyncComplete(b_respuestaID);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_respuestaID)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'respuestaID' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_respuestaID);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'respuestaID' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'respuestaID' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'respuestaID' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start survive\n");
+	current_xmachine_indv_holder = indv_09_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_10_state;
 		/* For backwards compatibility set current_xmachine */
 		current_xmachine->xmachine_indv = NULL;
 		current_xmachine->xmachine_clan = NULL;
@@ -3049,11 +6611,11 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 
 			if(i == 1)
 			{
-				free_indv_agent(current_xmachine_indv_holder, indv_03_state);
+				free_indv_agent(current_xmachine_indv_holder, indv_09_state);
 			}
 			else
 			{
-				transition_indv_agent(current_xmachine_indv_holder, indv_03_state, indv_end_state);
+				transition_indv_agent(current_xmachine_indv_holder, indv_09_state, indv_10_state);
 			}
 		
 
@@ -3062,6 +6624,41 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 		current_xmachine_indv_holder = temp_xmachine_indv_holder;
 	}
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish survive\n");
+
+	if(FLAME_death_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_death)\n");
+		rc = MB_SyncStart(b_death);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_death)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'death' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'death' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'death' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
 
 	if(FLAME_leader_message_board_write == 1)
 	{
@@ -3099,10 +6696,144 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
     
 
 
-/* End of layer number 7 */
+/* End of layer number 19 */
 
 /* Clear message boards that have finished being used
  * and sync complete if doing late sync complete */
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_death_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_death)\n");
+		rc = MB_SyncComplete(b_death);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_death)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'death' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'death' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start update_status\n");
+	current_xmachine_indv_holder = indv_10_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_11_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_death, &i_death, &FLAME_filter_indv_update_status_10_11_death, current_xmachine_indv);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'death'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'death' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'death' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = update_status();
+
+		
+		    rc = MB_Iterator_Delete(&i_death);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'death' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'death' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_10_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_10_state, indv_11_state);
+			}
+		
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish update_status\n");
 
 
 	/* If mb is not read then leave sync complete until last possible moment */
@@ -3140,12 +6871,12 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 	}
 	
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start new_leader\n");
-	current_xmachine_clan_holder = clan_03_state->agents;
+	current_xmachine_clan_holder = clan_09_state->agents;
 	while(current_xmachine_clan_holder)
 	{
 		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
 		current_xmachine_clan = current_xmachine_clan_holder->agent;
-		current_xmachine_clan_next_state = clan_end_state;
+		current_xmachine_clan_next_state = clan_10_state;
 		/* For backwards compatibility set current_xmachine */
 		current_xmachine->xmachine_indv = NULL;
 		current_xmachine->xmachine_clan = NULL;
@@ -3160,7 +6891,7 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
           
                   
           
-		    rc = MB_Iterator_CreateFiltered(b_leader, &i_leader, &FLAME_filter_clan_new_leader_03_end_leader, current_xmachine_clan);
+		    rc = MB_Iterator_CreateFiltered(b_leader, &i_leader, &FLAME_filter_clan_new_leader_09_10_leader, current_xmachine_clan);
 		    
 		  
 		
@@ -3224,11 +6955,11 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 
 			if(i == 1)
 			{
-				free_clan_agent(current_xmachine_clan_holder, clan_03_state);
+				free_clan_agent(current_xmachine_clan_holder, clan_09_state);
 			}
 			else
 			{
-				transition_clan_agent(current_xmachine_clan_holder, clan_03_state, clan_end_state);
+				transition_clan_agent(current_xmachine_clan_holder, clan_09_state, clan_10_state);
 			}
 		
 
@@ -3239,7 +6970,7 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish new_leader\n");
 
 
-/* End of layer number 8 */
+/* End of layer number 20 */
 
 /* Clear message boards that have finished being used
  * and sync complete if doing late sync complete */
@@ -3304,10 +7035,1425 @@ if(FLAME_leader_message_board_read == 0)
     }
     #endif
 
+if(FLAME_death_message_board_read == 0)
+{
+	/*printf("%d> death message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_death)\n");
+	rc = MB_SyncComplete(b_death);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_death)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'death' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'death' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_death);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'death' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'death' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'death' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_indv_holder = indv_11_state->agents;
+		while(current_xmachine_indv_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_indv_idle_11_12(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: husband_request */
+			if(FLAME_condition_indv_husband_request_11_12(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'indv' leaving state '11'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start husband_request\n");
+	current_xmachine_indv_holder = indv_11_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_12_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_husband_request_11_12(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = husband_request();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_11_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_11_state, indv_12_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish husband_request\n");
+
+	if(FLAME_widow_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_widow)\n");
+		rc = MB_SyncStart(b_widow);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_widow)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'widow' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'widow' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_indv_holder = indv_11_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_12_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_idle_11_12(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_11_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_11_state, indv_12_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+/* End of layer number 21 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_indv_holder = indv_12_state->agents;
+		while(current_xmachine_indv_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_indv_idle_12_13(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: local_marriage */
+			if(FLAME_condition_indv_local_marriage_12_13(current_xmachine_indv_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'indv' leaving state '12'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		}
+	
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_widow_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_widow)\n");
+		rc = MB_SyncComplete(b_widow);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_widow)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'widow' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start again_marriable\n");
+	current_xmachine_clan_holder = clan_10_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_11_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_widow, &i_widow, &FLAME_filter_clan_again_marriable_10_11_widow, current_xmachine_clan);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'widow'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'widow' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = again_marriable();
+
+		
+		    rc = MB_Iterator_Delete(&i_widow);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'widow' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'widow' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_10_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_10_state, clan_11_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish again_marriable\n");
+
+	if(FLAME_lmarriage_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_lmarriage)\n");
+		rc = MB_SyncStart(b_lmarriage);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_lmarriage)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'lmarriage' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_indv_holder = indv_12_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_13_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_idle_12_13(current_xmachine_indv)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_12_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_12_state, indv_13_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+/* End of layer number 22 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_widow_message_board_read == 0)
+{
+	/*printf("%d> widow message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_widow)\n");
+	rc = MB_SyncComplete(b_widow);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_widow)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'widow' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_widow);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'widow' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'widow' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'widow' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_clan_holder = clan_11_state->agents;
+		while(current_xmachine_clan_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_clan_idle_11_13(current_xmachine_clan_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: dividir_clan */
+			if(FLAME_condition_clan_dividir_clan_11_12(current_xmachine_clan_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'clan' leaving state '11'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start dividir_clan\n");
+	current_xmachine_clan_holder = clan_11_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_12_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		if(FLAME_condition_clan_dividir_clan_11_12(current_xmachine_clan)==1)
+		{
+
+		
+
+			i = dividir_clan();
+
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_11_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_11_state, clan_12_state);
+			}
+		}
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish dividir_clan\n");
+
+	if(FLAME_warningDivide_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_warningDivide)\n");
+		rc = MB_SyncStart(b_warningDivide);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_warningDivide)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'warningDivide' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_clan_holder = clan_11_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_13_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		if(FLAME_condition_clan_idle_11_13(current_xmachine_clan)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_11_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_11_state, clan_13_state);
+			}
+		}
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_lmarriage_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_lmarriage)\n");
+		rc = MB_SyncComplete(b_lmarriage);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_lmarriage)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'lmarriage' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start local_marriage\n");
+	current_xmachine_indv_holder = indv_12_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_13_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		if(FLAME_condition_indv_local_marriage_12_13(current_xmachine_indv)==1)
+		{
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_lmarriage, &i_lmarriage, &FLAME_filter_indv_local_marriage_12_13_lmarriage, current_xmachine_indv);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'lmarriage'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = local_marriage();
+
+		
+		    rc = MB_Iterator_Delete(&i_lmarriage);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'lmarriage' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'lmarriage' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_12_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_12_state, indv_13_state);
+			}
+		}
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish local_marriage\n");
+
+
+/* End of layer number 23 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_lmarriage_message_board_read == 0)
+{
+	/*printf("%d> lmarriage message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_lmarriage)\n");
+	rc = MB_SyncComplete(b_lmarriage);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_lmarriage)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'lmarriage' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_lmarriage);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'lmarriage' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'lmarriage' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'lmarriage' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_warningDivide_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_warningDivide)\n");
+		rc = MB_SyncComplete(b_warningDivide);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_warningDivide)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'warningDivide' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start dividir_info\n");
+	current_xmachine_indv_holder = indv_13_state->agents;
+	while(current_xmachine_indv_holder)
+	{
+		temp_xmachine_indv_holder = current_xmachine_indv_holder->next;
+		current_xmachine_indv = current_xmachine_indv_holder->agent;
+		current_xmachine_indv_next_state = indv_end_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_indv = current_xmachine_indv;
+
+		
+
+		
+		
+          
+                  
+          
+		    rc = MB_Iterator_CreateFiltered(b_warningDivide, &i_warningDivide, &FLAME_filter_indv_dividir_info_13_end_warningDivide, current_xmachine_indv);
+		    
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'warningDivide'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = dividir_info();
+
+		
+		    rc = MB_Iterator_Delete(&i_warningDivide);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'warningDivide' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'warningDivide' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_indv_agent(current_xmachine_indv_holder, indv_13_state);
+			}
+			else
+			{
+				transition_indv_agent(current_xmachine_indv_holder, indv_13_state, indv_end_state);
+			}
+		
+
+		current_xmachine_indv = NULL;
+
+		current_xmachine_indv_holder = temp_xmachine_indv_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish dividir_info\n");
+
+	if(FLAME_informationDivide_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_informationDivide)\n");
+		rc = MB_SyncStart(b_informationDivide);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_informationDivide)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'informationDivide' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+/* End of layer number 24 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_warningDivide_message_board_read == 0)
+{
+	/*printf("%d> warningDivide message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_warningDivide)\n");
+	rc = MB_SyncComplete(b_warningDivide);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_warningDivide)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'warningDivide' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_warningDivide);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'warningDivide' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'warningDivide' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_informationDivide_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_informationDivide)\n");
+		rc = MB_SyncComplete(b_informationDivide);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_informationDivide)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'informationDivide' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    
+    
+    
+	}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start creacion_clan\n");
+	current_xmachine_clan_holder = clan_12_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_13_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		
+
+		
+		
+          
+                  
+          
+		    
+		    rc = MB_Iterator_CreateFilteredSorted(b_informationDivide, &i_informationDivide, &FLAME_filter_clan_creacion_clan_12_13_informationDivide, current_xmachine_clan, &FLAME_sort_clan_creacion_clan_12_13_informationDivide);
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'informationDivide'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
+
+			i = creacion_clan();
+
+		
+		    rc = MB_Iterator_Delete(&i_informationDivide);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'informationDivide' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'informationDivide' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_12_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_12_state, clan_13_state);
+			}
+		
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish creacion_clan\n");
+
+
+/* End of layer number 25 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
+if(FLAME_informationDivide_message_board_read == 0)
+{
+	/*printf("%d> informationDivide message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_informationDivide)\n");
+	rc = MB_SyncComplete(b_informationDivide);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_informationDivide)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'informationDivide' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+
+    rc = MB_Clear(b_informationDivide);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'informationDivide' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'informationDivide' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'informationDivide' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+	/* DEBUG: States with branching functions */
+		current_xmachine_clan_holder = clan_13_state->agents;
+		while(current_xmachine_clan_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: idle */
+			if(FLAME_condition_clan_idle_13_end(current_xmachine_clan_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: vocabulary_review */
+			if(FLAME_condition_clan_vocabulary_review_13_end(current_xmachine_clan_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'clan' leaving state '13'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		}
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle\n");
+	current_xmachine_clan_holder = clan_13_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_end_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		if(FLAME_condition_clan_idle_13_end(current_xmachine_clan)==1)
+		{
+
+		
+
+			i = idle();
+
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_13_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_13_state, clan_end_state);
+			}
+		}
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish idle\n");
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start vocabulary_review\n");
+	current_xmachine_clan_holder = clan_13_state->agents;
+	while(current_xmachine_clan_holder)
+	{
+		temp_xmachine_clan_holder = current_xmachine_clan_holder->next;
+		current_xmachine_clan = current_xmachine_clan_holder->agent;
+		current_xmachine_clan_next_state = clan_end_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_clan = current_xmachine_clan;
+
+		if(FLAME_condition_clan_vocabulary_review_13_end(current_xmachine_clan)==1)
+		{
+
+		
+
+			i = vocabulary_review();
+
+		
+
+			if(i == 1)
+			{
+				free_clan_agent(current_xmachine_clan_holder, clan_13_state);
+			}
+			else
+			{
+				transition_clan_agent(current_xmachine_clan_holder, clan_13_state, clan_end_state);
+			}
+		}
+
+		current_xmachine_clan = NULL;
+
+		current_xmachine_clan_holder = temp_xmachine_clan_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish vocabulary_review\n");
+
+
+/* End of layer number 26 */
+
+/* Clear message boards that have finished being used
+ * and sync complete if doing late sync complete */
+
 
 
 	/*printf("indv_end_state->count = %d\n", indv_end_state->count);*/
 	indv_end_state->count = 0;
+
+	/*printf("indv_13_state->count = %d\n", indv_13_state->count);*/
+	indv_13_state->count = 0;
+
+	/*printf("indv_12_state->count = %d\n", indv_12_state->count);*/
+	indv_12_state->count = 0;
+
+	/*printf("indv_11_state->count = %d\n", indv_11_state->count);*/
+	indv_11_state->count = 0;
+
+	/*printf("indv_10_state->count = %d\n", indv_10_state->count);*/
+	indv_10_state->count = 0;
+
+	/*printf("indv_08_state->count = %d\n", indv_08_state->count);*/
+	indv_08_state->count = 0;
+
+	/*printf("indv_07_state->count = %d\n", indv_07_state->count);*/
+	indv_07_state->count = 0;
+
+	/*printf("indv_09_state->count = %d\n", indv_09_state->count);*/
+	indv_09_state->count = 0;
+
+	/*printf("indv_05_state->count = %d\n", indv_05_state->count);*/
+	indv_05_state->count = 0;
+
+	/*printf("indv_06_state->count = %d\n", indv_06_state->count);*/
+	indv_06_state->count = 0;
+
+	/*printf("indv_04_state->count = %d\n", indv_04_state->count);*/
+	indv_04_state->count = 0;
 
 	/*printf("indv_03_state->count = %d\n", indv_03_state->count);*/
 	indv_03_state->count = 0;
@@ -3323,6 +8469,36 @@ if(FLAME_leader_message_board_read == 0)
 
 	/*printf("clan_end_state->count = %d\n", clan_end_state->count);*/
 	clan_end_state->count = 0;
+
+	/*printf("clan_13_state->count = %d\n", clan_13_state->count);*/
+	clan_13_state->count = 0;
+
+	/*printf("clan_12_state->count = %d\n", clan_12_state->count);*/
+	clan_12_state->count = 0;
+
+	/*printf("clan_11_state->count = %d\n", clan_11_state->count);*/
+	clan_11_state->count = 0;
+
+	/*printf("clan_10_state->count = %d\n", clan_10_state->count);*/
+	clan_10_state->count = 0;
+
+	/*printf("clan_09_state->count = %d\n", clan_09_state->count);*/
+	clan_09_state->count = 0;
+
+	/*printf("clan_08_state->count = %d\n", clan_08_state->count);*/
+	clan_08_state->count = 0;
+
+	/*printf("clan_07_state->count = %d\n", clan_07_state->count);*/
+	clan_07_state->count = 0;
+
+	/*printf("clan_06_state->count = %d\n", clan_06_state->count);*/
+	clan_06_state->count = 0;
+
+	/*printf("clan_05_state->count = %d\n", clan_05_state->count);*/
+	clan_05_state->count = 0;
+
+	/*printf("clan_04_state->count = %d\n", clan_04_state->count);*/
+	clan_04_state->count = 0;
 
 	/*printf("clan_03_state->count = %d\n", clan_03_state->count);*/
 	clan_03_state->count = 0;

@@ -55,6 +55,16 @@
 				</variable>
 				<variable>
 					<type>int</type>
+					<name>targetX</name>
+					<description>Coordenada objetivo x de la manada</description>
+				</variable>
+				<variable>
+					<type>int</type>
+					<name>targetY</name>
+					<description>Coordenada objetivo y de la manada</description>
+				</variable>
+				<variable>
+					<type>int</type>
 					<name>count</name>
 					<description>Numero de guanacos de la manada</description>
 				</variable>

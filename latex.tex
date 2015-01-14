@@ -78,6 +78,26 @@
 \parbox{5cm}{\url{int} \url{pregnant}} \index{\url{pregnant}} & \parbox{10cm}{0 if I am not pregnant, 1 if I am} \\
 \midrule
 \parbox{5cm}{\url{int} \url{lead}} \index{\url{lead}} & \parbox{10cm}{0 if I am not the leader, 1 if I am} \\
+\midrule
+\parbox{5cm}{\url{int} \url{marriable}} \index{\url{marriable}} & \parbox{10cm}{ 0 if i am not marriable, 1 if i am} \\
+\midrule
+\parbox{5cm}{\url{int} \url{ancestors}} \index{\url{ancestors}} & \parbox{10cm}{ array with ancestors information} \\
+\midrule
+\parbox{5cm}{\url{int} \url{ancestorsClan}} \index{\url{ancestorsClan}} & \parbox{10cm}{ array with ancestors information} \\
+\midrule
+\parbox{5cm}{\url{int} \url{married}} \index{\url{married}} & \parbox{10cm}{0 if i'm not married, 1 if i'm } \\
+\midrule
+\parbox{5cm}{\url{int} \url{pareja}} \index{\url{pareja}} & \parbox{10cm}{id de la pareja , sino -1 } \\
+\midrule
+\parbox{5cm}{\url{int} \url{embarazable}} \index{\url{embarazable}} & \parbox{10cm}{si es 1 cumple con: casada + no embarazada + fertil, sino 0 } \\
+\midrule
+\parbox{5cm}{\url{int} \url{month}} \index{\url{month}} & \parbox{10cm}{contador de mes para embarazos} \\
+\midrule
+\parbox{5cm}{\url{int} \url{motherID}} \index{\url{motherID}} & \parbox{10cm}{id de la madre } \\
+\midrule
+\parbox{5cm}{\url{int} \url{husband_info}} \index{\url{husband_info}} & \parbox{10cm}{informacion de la familia del marido } \\
+\midrule
+\parbox{5cm}{\url{int} \url{widow}} \index{\url{widow}} & \parbox{10cm}{indicador para la mujer que vuelva a casarse con alguien de su clan } \\
 \end{longtable}
 \begin{longtable}[H!]{ll}
 \caption{{\bfseries List of functions for indv agent.}}
@@ -105,7 +125,41 @@
 \midrule
 \parbox{5cm}{\url{idle_indv}} \index{\url{idle_indv}} & \parbox{10cm}{The rest of the month there are no age increments} \\
 \midrule
+\parbox{5cm}{\url{freeIndv}} \index{\url{freeIndv}} & \parbox{10cm}{free indv send to clan their information } \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{casamiento_female}} \index{\url{casamiento_female}} & \parbox{10cm}{chica recive los datos de su pareja} \\
+\midrule
+\parbox{5cm}{\url{casamiento_male}} \index{\url{casamiento_male}} & \parbox{10cm}{hombre recive los datos de su pareja} \\
+\midrule
+\parbox{5cm}{\url{info_husband}} \index{\url{info_husband}} & \parbox{10cm}{la chica recive los ancestros de su marido nesesarios en caso de embarazo} \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{pregnancy}} \index{\url{pregnancy}} & \parbox{10cm}{comprobacion si la mujer esta embarazada} \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{child_inf}} \index{\url{child_inf}} & \parbox{10cm}{peticion de un id disponible} \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{birth}} \index{\url{birth}} & \parbox{10cm}{creacion del nuevo individuo por parte de la madre} \\
+\midrule
 \parbox{5cm}{\url{survive}} \index{\url{survive}} & \parbox{10cm}{Depending on the age, calories gotten, pregnancy, and so on, the probability of survival is computed and according to that probability and a random value the survival of the individual determined} \\
+\midrule
+\parbox{5cm}{\url{update_status}} \index{\url{update_status}} & \parbox{10cm}{indv receives a notification if their couple is death } \\
+\midrule
+\parbox{5cm}{\url{husband_request}} \index{\url{husband_request}} & \parbox{10cm}{girl send husband request to their clan } \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{local_marriage}} \index{\url{local_marriage}} & \parbox{10cm}{Se comprueba si hay casamiento local } \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{dividir_info}} \index{\url{dividir_info}} & \parbox{10cm}{Envia informacion al clan cuando comienza la division del clan} \\
 \end{longtable}
 
 \subsection{clan}
@@ -136,15 +190,23 @@
 \midrule
 \parbox{5cm}{\url{int} \url{cal_stored}} \index{\url{cal_stored}} & \parbox{10cm}{calories available and not consumed} \\
 \midrule
-\parbox{5cm}{\url{int} \url{xcord}} \index{\url{xcord}} & \parbox{10cm}{x coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)} \\
+\parbox{5cm}{\url{int} \url{x}} \index{\url{x}} & \parbox{10cm}{x coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)} \\
 \midrule
-\parbox{5cm}{\url{int} \url{ycord}} \index{\url{ycord}} & \parbox{10cm}{y coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)} \\
+\parbox{5cm}{\url{int} \url{y}} \index{\url{y}} & \parbox{10cm}{y coordinate of the current patch where the bulk of the clan is (maybe the leader is away hunting)} \\
 \midrule
 \parbox{5cm}{\url{int} \url{tcalories}} \index{\url{tcalories}} & \parbox{10cm}{extra carrying capacity of the clan (depending of the resources in the patch, maybe the clan can get something else, or maybe the reserves should be used to complement a poor recollection} \\
 \midrule
 \parbox{5cm}{\url{int} \url{leaderID}} \index{\url{leaderID}} & \parbox{10cm}{who is the clan leader} \\
 \midrule
 \parbox{5cm}{\url{members_needs} \url{mneeds}} \index{\url{mneeds}} & \parbox{10cm}{place for storing the needs of every clan member} \\
+\midrule
+\parbox{5cm}{\url{indv_free} \url{ifree}} \index{\url{ifree}} & \parbox{10cm}{place for storing the information of every free clan member} \\
+\midrule
+\parbox{5cm}{\url{int} \url{indexID}} \index{\url{indexID}} & \parbox{10cm}{ a partir de ese id los demas estan libres } \\
+\midrule
+\parbox{5cm}{\url{int} \url{members}} \index{\url{members}} & \parbox{10cm}{ numero actual de miembros del clan } \\
+\midrule
+\parbox{5cm}{\url{int} \url{linguistics}} \index{\url{linguistics}} & \parbox{10cm}{ muestra de la linguistica del clan } \\
 \end{longtable}
 \begin{longtable}[H!]{ll}
 \caption{{\bfseries List of functions for clan agent.}}
@@ -170,7 +232,31 @@
 \midrule
 \parbox{5cm}{\url{distribute_calories}} \index{\url{distribute_calories}} & \parbox{10cm}{now the clan should distribute calories among its members} \\
 \midrule
+\parbox{5cm}{\url{marriable_indv}} \index{\url{marriable_indv}} & \parbox{10cm}{informacion de los individuos que estan en edad de casarse} \\
+\midrule
+\parbox{5cm}{\url{send_girls}} \index{\url{send_girls}} & \parbox{10cm}{intencambio de mujeres entre clanes} \\
+\midrule
+\parbox{5cm}{\url{match}} \index{\url{match}} & \parbox{10cm}{recivo de mujeres casaderas de otros clanes} \\
+\midrule
+\parbox{5cm}{\url{aceptar_prop}} \index{\url{aceptar_prop}} & \parbox{10cm}{comprobacion de si se aceptan las propuestas de emparejamiento} \\
+\midrule
+\parbox{5cm}{\url{recive_conf}} \index{\url{recive_conf}} & \parbox{10cm}{recibe confirmacion de la propuesta y envia la informacion a los individuos} \\
+\midrule
+\parbox{5cm}{\url{repartir_id}} \index{\url{repartir_id}} & \parbox{10cm}{obtencion de un nuevo id} \\
+\midrule
 \parbox{5cm}{\url{new_leader}} \index{\url{new_leader}} & \parbox{10cm}{Some individuals may die, maybe the leader, so after this step all survivors send a message to the clan in order to decide if there should be a new leader... it can be because the leader has died, but also because the leader is too old and a new male becomes the leader} \\
+\midrule
+\parbox{5cm}{\url{again_marriable}} \index{\url{again_marriable}} & \parbox{10cm}{recibe peticiones de las mujeres que su marido a muerto y las intenta emparejar con un hombre del clan} \\
+\midrule
+\parbox{5cm}{\url{dividir_clan}} \index{\url{dividir_clan}} & \parbox{10cm}{Al superar la capacidad maxima de indv, el clan se divide} \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
+\midrule
+\parbox{5cm}{\url{creacion_clan}} \index{\url{creacion_clan}} & \parbox{10cm}{selecciona los individuos y crea el nuevo clan} \\
+\midrule
+\parbox{5cm}{\url{vocabulary_review}} \index{\url{vocabulary_review}} & \parbox{10cm}{modifica aleatoriamente el gen linguistico del clan} \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{} \\
 \end{longtable}
 
 \subsection{patch}
@@ -349,6 +435,41 @@ See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
     \url{int} \url{sex} \index{\url{sex}} & \parbox{10cm}{}\\
     \url{int} \url{age} \index{\url{age}} & \parbox{10cm}{}\\
 \midrule
+\url{ancestor} & \parbox{10cm}{indv send their information ancestors}\\
+    \url{int} \url{ancest} \index{\url{ancest}} & \parbox{10cm}{}\\
+    \url{int} \url{ancestClan} \index{\url{ancestClan}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{indvID} \index{\url{indvID}} & \parbox{10cm}{}\\
+    \url{int} \url{sex} \index{\url{sex}} & \parbox{10cm}{}\\
+\midrule
+\url{peticionID} & \parbox{10cm}{la madre notifica al padre el nacimiento de su hijo}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{id} \index{\url{id}} & \parbox{10cm}{}\\
+\midrule
+\url{family} & \parbox{10cm}{el marido envia a su mujer la parte de sus ancestros para el hijo}\\
+    \url{int} \url{wife} \index{\url{wife}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{husband} \index{\url{husband}} & \parbox{10cm}{}\\
+    \url{int} \url{info} \index{\url{info}} & \parbox{10cm}{}\\
+\midrule
+\url{death} & \parbox{10cm}{el fallecido notifica a su pareja que vuelve a estar libre}\\
+    \url{int} \url{parejaID} \index{\url{parejaID}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+\midrule
+\url{widow} & \parbox{10cm}{ju}\\
+    \url{int} \url{ancestors} \index{\url{ancestors}} & \parbox{10cm}{}\\
+    \url{int} \url{Cancestors} \index{\url{Cancestors}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{indvID} \index{\url{indvID}} & \parbox{10cm}{}\\
+\midrule
+\url{informationDivide} & \parbox{10cm}{informacion nesesaria del indv para la division del clan}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{indvID} \index{\url{indvID}} & \parbox{10cm}{}\\
+    \url{int} \url{parejaID} \index{\url{parejaID}} & \parbox{10cm}{}\\
+    \url{int} \url{sex} \index{\url{sex}} & \parbox{10cm}{}\\
+    \url{int} \url{momID} \index{\url{momID}} & \parbox{10cm}{}\\
+    \url{int} \url{age} \index{\url{age}} & \parbox{10cm}{}\\
+\midrule
 \url{clan_info} & \parbox{10cm}{}\\
     \url{int} \url{px} \index{\url{px}} & \parbox{10cm}{The x-axis}\\
     \url{int} \url{py} \index{\url{py}} & \parbox{10cm}{The y-axis}\\
@@ -359,6 +480,52 @@ See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
 \url{clangetcalories} & \parbox{10cm}{amount of calories gotten by the clan from the patch}\\
     \url{int} \url{cID} \index{\url{cID}} & \parbox{10cm}{}\\
     \url{int} \url{clcalories} \index{\url{clcalories}} & \parbox{10cm}{}\\
+\midrule
+\url{freeGirls} & \parbox{10cm}{envio de lista de mujeres en edad de emparejarse}\\
+    \url{int} \url{girls} \index{\url{girls}} & \parbox{10cm}{}\\
+    \url{int} \url{num_chicas} \index{\url{num_chicas}} & \parbox{10cm}{}\\
+    \url{int} \url{y} \index{\url{y}} & \parbox{10cm}{}\\
+    \url{int} \url{x} \index{\url{x}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{lancestors} \index{\url{lancestors}} & \parbox{10cm}{}\\
+    \url{int} \url{lancestorsClan} \index{\url{lancestorsClan}} & \parbox{10cm}{}\\
+    \url{int} \url{linguistic} \index{\url{linguistic}} & \parbox{10cm}{}\\
+\midrule
+\url{propuesta} & \parbox{10cm}{gtgt}\\
+    \url{int} \url{id_list} \index{\url{id_list}} & \parbox{10cm}{lista propuestas}\\
+    \url{int} \url{id_man} \index{\url{id_man}} & \parbox{10cm}{lista id de los hombres}\\
+    \url{int} \url{oclanID} \index{\url{oclanID}} & \parbox{10cm}{clan origen}\\
+    \url{int} \url{dclanID} \index{\url{dclanID}} & \parbox{10cm}{clan destino}\\
+    \url{int} \url{count} \index{\url{count}} & \parbox{10cm}{cantidad}\\
+\midrule
+\url{confirProp} & \parbox{10cm}{envia al clan las propuestas que ha aceptado }\\
+    \url{int} \url{girlID} \index{\url{girlID}} & \parbox{10cm}{id chica}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{clan destino del individuo}\\
+    \url{int} \url{manID} \index{\url{manID}} & \parbox{10cm}{id pareja}\\
+    \url{int} \url{oclanID} \index{\url{oclanID}} & \parbox{10cm}{clan actual}\\
+    \url{int} \url{linguistic} \index{\url{linguistic}} & \parbox{10cm}{gen linguistico del clan origen}\\
+\midrule
+\url{marriage} & \parbox{10cm}{envia, el clan, la informacion al la chica para que actualize su información }\\
+    \url{int} \url{girlID} \index{\url{girlID}} & \parbox{10cm}{id chica}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{clan destino del individuo}\\
+    \url{int} \url{manID} \index{\url{manID}} & \parbox{10cm}{id pareja}\\
+    \url{int} \url{oclanID} \index{\url{oclanID}} & \parbox{10cm}{clan actual}\\
+    \url{int} \url{newID} \index{\url{newID}} & \parbox{10cm}{nuevo id para la chica}\\
+\midrule
+\url{respuestaID} & \parbox{10cm}{ }\\
+    \url{int} \url{freeID} \index{\url{freeID}} & \parbox{10cm}{}\\
+    \url{int} \url{indvID} \index{\url{indvID}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+\midrule
+\url{lmarriage} & \parbox{10cm}{ }\\
+    \url{int} \url{manID} \index{\url{manID}} & \parbox{10cm}{}\\
+    \url{int} \url{girlID} \index{\url{girlID}} & \parbox{10cm}{}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{}\\
+    \url{int} \url{mancestorsID} \index{\url{mancestorsID}} & \parbox{10cm}{}\\
+    \url{int} \url{mancestorsCID} \index{\url{mancestorsCID}} & \parbox{10cm}{}\\
+\midrule
+\url{warningDivide} & \parbox{10cm}{ aviso de separacion del clan a sus miembros}\\
+    \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{id del clan}\\
 \midrule
 \url{adultospatch} & \parbox{10cm}{manda los adultos que hay en el patch}\\
     \url{int} \url{xcord} \index{\url{xcord}} & \parbox{10cm}{posicion x de la manada de guanacos}\\
@@ -390,6 +557,11 @@ See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
 \endfoot
 \bottomrule
 \endlastfoot
+\url{int} \url{propegnant} \index{\url{propegnant}} & \parbox{10cm}{probabilidad de embarazo}\\
+\url{int} \url{nancestors} \index{\url{nancestors}} & \parbox{10cm}{Number of ancestors remembered by indv}\\
+\url{int} \url{learn} \index{\url{learn}} & \parbox{10cm}{probabilidad de aprender palabras nuevas}\\
+\url{int} \url{forget} \index{\url{forget}} & \parbox{10cm}{probabilidad de olvidar palabras}\\
+\url{int} \url{lang_threshold} \index{\url{lang_threshold}} & \parbox{10cm}{umbral de coincidencia entre dos genes linguisticos}\\
 \url{int} \url{max_manada} \index{\url{max_manada}} & \parbox{10cm}{numero maximo de guanacos por manada}\\
 \url{int} \url{max_familia} \index{\url{max_familia}} & \parbox{10cm}{numero maximo de guanacos por familia}\\
 \url{int} \url{cal_adulto} \index{\url{cal_adulto}} & \parbox{10cm}{numero de calorias dadas por cada guanaco adulto}\\
@@ -416,6 +588,16 @@ See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
     \url{int} \url{id_list} & \parbox{8cm}{list of individual ids}\\
     \url{int} \url{cal_list} & \parbox{8cm}{list of corresponding calory needs}\\
     \url{int} \url{age} & \parbox{8cm}{age of each individual (needed for the distribution)}\\
+\midrule
+\url{indv_free} \index{\url{indv_free}} & \parbox{10cm}{Structure to remember free member of the clan } \\
+    \url{int} \url{male_list} & \parbox{8cm}{list of male individual ids}\\
+    \url{int} \url{female_list} & \parbox{8cm}{list of female individual ids}\\
+    \url{int} \url{mancestor_list} & \parbox{8cm}{list of ancestors}\\
+    \url{int} \url{fancestor_list} & \parbox{8cm}{list of ancestors}\\
+    \url{int} \url{mancestorClan_list} & \parbox{8cm}{list of individual sex}\\
+    \url{int} \url{fancestorClan_list} & \parbox{8cm}{list of individual sex}\\
+    \url{int} \url{numMale} & \parbox{8cm}{num of male indv}\\
+    \url{int} \url{numFemale} & \parbox{8cm}{num of female indv}\\
 \end{longtable}
 
 \printindex

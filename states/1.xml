@@ -1,6 +1,11 @@
 <states>
 <itno>1</itno>
 <environment>
+<propegnant>0</propegnant>
+<nancestors>0</nancestors>
+<learn>0</learn>
+<forget>0</forget>
+<lang_threshold>0</lang_threshold>
 <max_manada>50</max_manada>
 <max_familia>10</max_familia>
 <cal_adulto>1</cal_adulto>

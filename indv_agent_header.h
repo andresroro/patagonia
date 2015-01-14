@@ -30,3 +30,33 @@
 /** \def LEAD
  * \brief Direct access to lead of indv agent memory variable. */
 #define LEAD (current_xmachine_indv->lead)
+/** \def MARRIABLE
+ * \brief Direct access to marriable of indv agent memory variable. */
+#define MARRIABLE (current_xmachine_indv->marriable)
+/** \def ANCESTORS
+ * \brief Direct access to ancestors of indv agent memory variable. */
+#define ANCESTORS (current_xmachine_indv->ancestors)
+/** \def ANCESTORSCLAN
+ * \brief Direct access to ancestorsClan of indv agent memory variable. */
+#define ANCESTORSCLAN (current_xmachine_indv->ancestorsClan)
+/** \def MARRIED
+ * \brief Direct access to married of indv agent memory variable. */
+#define MARRIED (current_xmachine_indv->married)
+/** \def PAREJA
+ * \brief Direct access to pareja of indv agent memory variable. */
+#define PAREJA (current_xmachine_indv->pareja)
+/** \def EMBARAZABLE
+ * \brief Direct access to embarazable of indv agent memory variable. */
+#define EMBARAZABLE (current_xmachine_indv->embarazable)
+/** \def MONTH
+ * \brief Direct access to month of indv agent memory variable. */
+#define MONTH (current_xmachine_indv->month)
+/** \def MOTHERID
+ * \brief Direct access to motherID of indv agent memory variable. */
+#define MOTHERID (current_xmachine_indv->motherID)
+/** \def HUSBAND_INFO
+ * \brief Direct access to husband_info of indv agent memory variable. */
+#define HUSBAND_INFO (current_xmachine_indv->husband_info)
+/** \def WIDOW
+ * \brief Direct access to widow of indv agent memory variable. */
+#define WIDOW (current_xmachine_indv->widow)
