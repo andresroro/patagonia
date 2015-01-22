@@ -78,6 +78,10 @@
 					<name>adultos</name>
 					<description>Numero de adultos que contiene la manada</description>
 				</variable>
+				<variable>
+					<type>int</type>
+					<name>season</name>
+				</variable>
 			</memory>
 			<functions>
 				<function>
@@ -85,6 +89,24 @@
 					<description>informacion de la manada</description>
 					<currentState>start</currentState>
 					<nextState>1</nextState>
+					<condition>
+						<not><time>
+							<period>season</period>
+							<phase>0</phase>
+						</time></not>
+					</condition>
+				</function>
+				<function>
+					<name>seasonSwitch</name>
+					<description>cambio de estacion</description>
+					<currentState>start</currentState>
+					<nextState>1</nextState>
+					<condition>
+						<time>
+							<period>season</period>
+							<phase>0</phase>
+						</time>
+					</condition>
 				</function>
 				<function>
 					<name>manada_idle</name>
@@ -99,14 +121,16 @@
 				</function>
 				<function>
 					<name>move</name>
-					<description>Calculamos el movimiento de la manada (depende de la estación)</description>
+					<description>Calculamos el movimiento de la manada</description>
 					<currentState>1</currentState>
 					<nextState>2</nextState>
 					<condition>
-						<time>
-							<period>dias_por_patch</period>
-							<phase>0</phase>
-						</time>
+
+							<time>
+								<period>dias_por_patch</period>
+								<phase>0</phase>
+							</time>
+
 					</condition>
 					<outputs>
 						<output>
@@ -114,6 +138,7 @@
 						</output>
 					</outputs>
 				</function>
+				
 				<function>
 					<name>reproduccion</name>
 					<description>los guanacos dentro del patch crean nuevas manadas</description>

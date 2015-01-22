@@ -756,6 +756,8 @@ int readAgentXML(char * location,
 	int in_season = 0;
 	int in_adultos = 0;
 	int in_familia = 0;
+	int in_targetX = 0;
+	int in_targetY = 0;
 	int in_count = 0;
 	int in_calorias = 0;
 	
@@ -1097,6 +1099,10 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/adultos") == 0) { in_adultos = 0; }
 			if(strcmp(buffer, "familia") == 0) { in_familia = 1; }
 			if(strcmp(buffer, "/familia") == 0) { in_familia = 0; }
+			if(strcmp(buffer, "targetX") == 0) { in_targetX = 1; }
+			if(strcmp(buffer, "/targetX") == 0) { in_targetX = 0; }
+			if(strcmp(buffer, "targetY") == 0) { in_targetY = 1; }
+			if(strcmp(buffer, "/targetY") == 0) { in_targetY = 0; }
 			if(strcmp(buffer, "count") == 0) { in_count = 1; }
 			if(strcmp(buffer, "/count") == 0) { in_count = 0; }
 			if(strcmp(buffer, "calorias") == 0) { in_calorias = 1; }
@@ -1208,9 +1214,12 @@ int readAgentXML(char * location,
 					if(in_familia) { current_manada_guanacos_agent->familia = atoi(buffer); }
 					if(in_xcord) { current_manada_guanacos_agent->xcord = atoi(buffer); }
 					if(in_ycord) { current_manada_guanacos_agent->ycord = atoi(buffer); }
+					if(in_targetX) { current_manada_guanacos_agent->targetX = atoi(buffer); }
+					if(in_targetY) { current_manada_guanacos_agent->targetY = atoi(buffer); }
 					if(in_count) { current_manada_guanacos_agent->count = atoi(buffer); }
 					if(in_calorias) { current_manada_guanacos_agent->calorias = atoi(buffer); }
 					if(in_adultos) { current_manada_guanacos_agent->adultos = atoi(buffer); }
+					if(in_season) { current_manada_guanacos_agent->season = atoi(buffer); }
 				 }
 			}
 			index = 0;
@@ -2063,6 +2072,14 @@ void write_manada_guanacos_agent(FILE *file, xmachine_memory_manada_guanacos * c
 	sprintf(data, "%i", current->ycord);
 	fputs(data, file);
 	fputs("</ycord>\n", file);
+		fputs("<targetX>", file);
+	sprintf(data, "%i", current->targetX);
+	fputs(data, file);
+	fputs("</targetX>\n", file);
+		fputs("<targetY>", file);
+	sprintf(data, "%i", current->targetY);
+	fputs(data, file);
+	fputs("</targetY>\n", file);
 		fputs("<count>", file);
 	sprintf(data, "%i", current->count);
 	fputs(data, file);
@@ -2075,6 +2092,10 @@ void write_manada_guanacos_agent(FILE *file, xmachine_memory_manada_guanacos * c
 	sprintf(data, "%i", current->adultos);
 	fputs(data, file);
 	fputs("</adultos>\n", file);
+		fputs("<season>", file);
+	sprintf(data, "%i", current->season);
+	fputs(data, file);
+	fputs("</season>\n", file);
 
 	fputs("</xagent>\n", file);
 }

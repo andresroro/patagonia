@@ -19,7 +19,7 @@
 <format>xml</format>
 <location></location>
 <time>
-<period>360</period>
+<period>10</period>
 <phase>1</phase>
 </time>
 </output>

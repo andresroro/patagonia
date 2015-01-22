@@ -139,7 +139,7 @@
               <nextState>4</nextState>
                 <condition><time>
                   <period>season</period>
-                  <phase>6</phase>
+                  <phase>0</phase>
                 </time></condition>
               </function>
 
@@ -149,7 +149,7 @@
                 <currentState>3</currentState>
                 <nextState>4</nextState>
                 <condition><not><time><period>season</period>
-                <phase>6</phase>
+                <phase>0</phase>
                 </time></not></condition>
               </function>
 

@@ -1979,7 +1979,30 @@ printf("Iterations: %i\n", iteration_total);
 		}
 		
 		
-
+	/* DEBUG: States with branching functions */
+		current_xmachine_manada_guanacos_holder = manada_guanacos_start_state->agents;
+		while(current_xmachine_manada_guanacos_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: seasonSwitch */
+			if(FLAME_condition_manada_guanacos_seasonSwitch_start_1(current_xmachine_manada_guanacos_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: manadaInfo */
+			if(FLAME_condition_manada_guanacos_manadaInfo_start_1(current_xmachine_manada_guanacos_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'manada_guanacos' leaving state 'start'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		}
+	
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start indvInformation\n");
 	current_xmachine_indv_holder = indv_start_state->agents;
 	while(current_xmachine_indv_holder)
@@ -2054,6 +2077,46 @@ printf("Iterations: %i\n", iteration_total);
     
 
 
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start seasonSwitch\n");
+	current_xmachine_manada_guanacos_holder = manada_guanacos_start_state->agents;
+	while(current_xmachine_manada_guanacos_holder)
+	{
+		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		current_xmachine_manada_guanacos = current_xmachine_manada_guanacos_holder->agent;
+		current_xmachine_manada_guanacos_next_state = manada_guanacos_1_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
+
+		if(FLAME_condition_manada_guanacos_seasonSwitch_start_1(current_xmachine_manada_guanacos)==1)
+		{
+
+		
+
+			i = seasonSwitch();
+
+		
+
+			if(i == 1)
+			{
+				free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_start_state);
+			}
+			else
+			{
+				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_start_state, manada_guanacos_1_state);
+			}
+		}
+
+		current_xmachine_manada_guanacos = NULL;
+
+		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish seasonSwitch\n");
+
+
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start manadaInfo\n");
 	current_xmachine_manada_guanacos_holder = manada_guanacos_start_state->agents;
 	while(current_xmachine_manada_guanacos_holder)
@@ -2068,7 +2131,8 @@ printf("Iterations: %i\n", iteration_total);
 		current_xmachine->xmachine_manada_guanacos = NULL;
 		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
 
-		
+		if(FLAME_condition_manada_guanacos_manadaInfo_start_1(current_xmachine_manada_guanacos)==1)
+		{
 
 		
 
@@ -2084,7 +2148,7 @@ printf("Iterations: %i\n", iteration_total);
 			{
 				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_start_state, manada_guanacos_1_state);
 			}
-		
+		}
 
 		current_xmachine_manada_guanacos = NULL;
 
@@ -2142,8 +2206,8 @@ printf("Iterations: %i\n", iteration_total);
 		while(current_xmachine_manada_guanacos_holder)
 		{
 			FLAME_debug_count = 0;
-			/* Function: move */
-			if(FLAME_condition_manada_guanacos_move_1_2(current_xmachine_manada_guanacos_holder->agent)==1)
+			/* Function: moveWet */
+			if(FLAME_condition_manada_guanacos_moveWet_1_2(current_xmachine_manada_guanacos_holder->agent)==1)
 			{ FLAME_debug_count++; }
 			/* Function: manada_idle */
 			if(FLAME_condition_manada_guanacos_manada_idle_1_2(current_xmachine_manada_guanacos_holder->agent)==1)
@@ -2161,7 +2225,7 @@ printf("Iterations: %i\n", iteration_total);
 			current_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
 		}
 	
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start move\n");
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start moveWet\n");
 	current_xmachine_manada_guanacos_holder = manada_guanacos_1_state->agents;
 	while(current_xmachine_manada_guanacos_holder)
 	{
@@ -2175,12 +2239,12 @@ printf("Iterations: %i\n", iteration_total);
 		current_xmachine->xmachine_manada_guanacos = NULL;
 		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
 
-		if(FLAME_condition_manada_guanacos_move_1_2(current_xmachine_manada_guanacos)==1)
+		if(FLAME_condition_manada_guanacos_moveWet_1_2(current_xmachine_manada_guanacos)==1)
 		{
 
 		
 
-			i = move();
+			i = moveWet();
 
 		
 
@@ -2198,7 +2262,7 @@ printf("Iterations: %i\n", iteration_total);
 
 		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
 	}
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish move\n");
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish moveWet\n");
 
 	if(FLAME_adultospatch_message_board_write == 1)
 	{

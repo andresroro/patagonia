@@ -13,7 +13,7 @@
 <xagent>
 <name>patch</name>
 <patchID>0</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -27,7 +27,7 @@
 <xagent>
 <name>patch</name>
 <patchID>1</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -41,7 +41,7 @@
 <xagent>
 <name>patch</name>
 <patchID>2</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -55,7 +55,7 @@
 <xagent>
 <name>patch</name>
 <patchID>3</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -69,7 +69,7 @@
 <xagent>
 <name>patch</name>
 <patchID>4</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -83,7 +83,7 @@
 <xagent>
 <name>patch</name>
 <patchID>5</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -97,7 +97,7 @@
 <xagent>
 <name>patch</name>
 <patchID>6</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -111,7 +111,7 @@
 <xagent>
 <name>patch</name>
 <patchID>7</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -125,7 +125,7 @@
 <xagent>
 <name>patch</name>
 <patchID>8</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -139,7 +139,7 @@
 <xagent>
 <name>patch</name>
 <patchID>9</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -153,7 +153,7 @@
 <xagent>
 <name>patch</name>
 <patchID>10</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -167,7 +167,7 @@
 <xagent>
 <name>patch</name>
 <patchID>11</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -181,7 +181,7 @@
 <xagent>
 <name>patch</name>
 <patchID>12</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -195,7 +195,7 @@
 <xagent>
 <name>patch</name>
 <patchID>13</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -209,7 +209,7 @@
 <xagent>
 <name>patch</name>
 <patchID>14</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1102</pcalories>
 <gcalories>0</gcalories>
 <repo>0.001000</repo>
 <tpatch>0</tpatch>
@@ -223,7 +223,7 @@
 <xagent>
 <name>patch</name>
 <patchID>15</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -237,7 +237,7 @@
 <xagent>
 <name>patch</name>
 <patchID>16</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -251,7 +251,7 @@
 <xagent>
 <name>patch</name>
 <patchID>17</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -265,7 +265,7 @@
 <xagent>
 <name>patch</name>
 <patchID>18</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -279,7 +279,7 @@
 <xagent>
 <name>patch</name>
 <patchID>19</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -293,7 +293,7 @@
 <xagent>
 <name>patch</name>
 <patchID>20</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -307,7 +307,7 @@
 <xagent>
 <name>patch</name>
 <patchID>21</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -321,7 +321,7 @@
 <xagent>
 <name>patch</name>
 <patchID>22</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -335,7 +335,7 @@
 <xagent>
 <name>patch</name>
 <patchID>23</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -349,7 +349,7 @@
 <xagent>
 <name>patch</name>
 <patchID>24</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -363,7 +363,7 @@
 <xagent>
 <name>patch</name>
 <patchID>25</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -377,7 +377,7 @@
 <xagent>
 <name>patch</name>
 <patchID>26</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -391,7 +391,7 @@
 <xagent>
 <name>patch</name>
 <patchID>27</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -405,7 +405,7 @@
 <xagent>
 <name>patch</name>
 <patchID>28</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -419,7 +419,7 @@
 <xagent>
 <name>patch</name>
 <patchID>29</patchID>
-<pcalories>1000</pcalories>
+<pcalories>1966</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -433,7 +433,7 @@
 <xagent>
 <name>patch</name>
 <patchID>30</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -447,8 +447,8 @@
 <xagent>
 <name>patch</name>
 <patchID>31</patchID>
-<pcalories>1000</pcalories>
-<gcalories>0</gcalories>
+<pcalories>7388</pcalories>
+<gcalories>4</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>2</xcord>
@@ -456,12 +456,12 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>4</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>32</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -475,7 +475,7 @@
 <xagent>
 <name>patch</name>
 <patchID>33</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -489,7 +489,7 @@
 <xagent>
 <name>patch</name>
 <patchID>34</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -503,7 +503,7 @@
 <xagent>
 <name>patch</name>
 <patchID>35</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -517,7 +517,7 @@
 <xagent>
 <name>patch</name>
 <patchID>36</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -531,7 +531,7 @@
 <xagent>
 <name>patch</name>
 <patchID>37</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -545,7 +545,7 @@
 <xagent>
 <name>patch</name>
 <patchID>38</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -559,7 +559,7 @@
 <xagent>
 <name>patch</name>
 <patchID>39</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -573,7 +573,7 @@
 <xagent>
 <name>patch</name>
 <patchID>40</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -587,7 +587,7 @@
 <xagent>
 <name>patch</name>
 <patchID>41</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -601,7 +601,7 @@
 <xagent>
 <name>patch</name>
 <patchID>42</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -615,7 +615,7 @@
 <xagent>
 <name>patch</name>
 <patchID>43</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -629,7 +629,7 @@
 <xagent>
 <name>patch</name>
 <patchID>44</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -643,7 +643,7 @@
 <xagent>
 <name>patch</name>
 <patchID>45</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -657,7 +657,7 @@
 <xagent>
 <name>patch</name>
 <patchID>46</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -671,7 +671,7 @@
 <xagent>
 <name>patch</name>
 <patchID>47</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -685,7 +685,7 @@
 <xagent>
 <name>patch</name>
 <patchID>48</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -699,7 +699,7 @@
 <xagent>
 <name>patch</name>
 <patchID>49</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -713,7 +713,7 @@
 <xagent>
 <name>patch</name>
 <patchID>50</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -727,7 +727,7 @@
 <xagent>
 <name>patch</name>
 <patchID>51</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -741,7 +741,7 @@
 <xagent>
 <name>patch</name>
 <patchID>52</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -755,7 +755,7 @@
 <xagent>
 <name>patch</name>
 <patchID>53</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -769,7 +769,7 @@
 <xagent>
 <name>patch</name>
 <patchID>54</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -783,7 +783,7 @@
 <xagent>
 <name>patch</name>
 <patchID>55</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -797,7 +797,7 @@
 <xagent>
 <name>patch</name>
 <patchID>56</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -811,7 +811,7 @@
 <xagent>
 <name>patch</name>
 <patchID>57</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -825,7 +825,7 @@
 <xagent>
 <name>patch</name>
 <patchID>58</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -839,7 +839,7 @@
 <xagent>
 <name>patch</name>
 <patchID>59</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -853,7 +853,7 @@
 <xagent>
 <name>patch</name>
 <patchID>60</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -867,7 +867,7 @@
 <xagent>
 <name>patch</name>
 <patchID>61</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -881,7 +881,7 @@
 <xagent>
 <name>patch</name>
 <patchID>62</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -895,7 +895,7 @@
 <xagent>
 <name>patch</name>
 <patchID>63</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -909,7 +909,7 @@
 <xagent>
 <name>patch</name>
 <patchID>64</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -923,7 +923,7 @@
 <xagent>
 <name>patch</name>
 <patchID>65</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -937,7 +937,7 @@
 <xagent>
 <name>patch</name>
 <patchID>66</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -951,7 +951,7 @@
 <xagent>
 <name>patch</name>
 <patchID>67</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -965,7 +965,7 @@
 <xagent>
 <name>patch</name>
 <patchID>68</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -979,7 +979,7 @@
 <xagent>
 <name>patch</name>
 <patchID>69</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -993,7 +993,7 @@
 <xagent>
 <name>patch</name>
 <patchID>70</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1007,7 +1007,7 @@
 <xagent>
 <name>patch</name>
 <patchID>71</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1021,7 +1021,7 @@
 <xagent>
 <name>patch</name>
 <patchID>72</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1035,7 +1035,7 @@
 <xagent>
 <name>patch</name>
 <patchID>73</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1049,7 +1049,7 @@
 <xagent>
 <name>patch</name>
 <patchID>74</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1063,7 +1063,7 @@
 <xagent>
 <name>patch</name>
 <patchID>75</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1077,7 +1077,7 @@
 <xagent>
 <name>patch</name>
 <patchID>76</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1091,7 +1091,7 @@
 <xagent>
 <name>patch</name>
 <patchID>77</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1105,7 +1105,7 @@
 <xagent>
 <name>patch</name>
 <patchID>78</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1119,7 +1119,7 @@
 <xagent>
 <name>patch</name>
 <patchID>79</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1133,7 +1133,7 @@
 <xagent>
 <name>patch</name>
 <patchID>80</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1147,7 +1147,7 @@
 <xagent>
 <name>patch</name>
 <patchID>81</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1161,7 +1161,7 @@
 <xagent>
 <name>patch</name>
 <patchID>82</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1175,7 +1175,7 @@
 <xagent>
 <name>patch</name>
 <patchID>83</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1189,7 +1189,7 @@
 <xagent>
 <name>patch</name>
 <patchID>84</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1203,7 +1203,7 @@
 <xagent>
 <name>patch</name>
 <patchID>85</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1217,7 +1217,7 @@
 <xagent>
 <name>patch</name>
 <patchID>86</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1231,7 +1231,7 @@
 <xagent>
 <name>patch</name>
 <patchID>87</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1245,7 +1245,7 @@
 <xagent>
 <name>patch</name>
 <patchID>88</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1259,7 +1259,7 @@
 <xagent>
 <name>patch</name>
 <patchID>89</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1273,7 +1273,7 @@
 <xagent>
 <name>patch</name>
 <patchID>90</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1287,7 +1287,7 @@
 <xagent>
 <name>patch</name>
 <patchID>91</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1301,7 +1301,7 @@
 <xagent>
 <name>patch</name>
 <patchID>92</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1315,7 +1315,7 @@
 <xagent>
 <name>patch</name>
 <patchID>93</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1329,7 +1329,7 @@
 <xagent>
 <name>patch</name>
 <patchID>94</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1343,7 +1343,7 @@
 <xagent>
 <name>patch</name>
 <patchID>95</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1357,7 +1357,7 @@
 <xagent>
 <name>patch</name>
 <patchID>96</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1371,7 +1371,7 @@
 <xagent>
 <name>patch</name>
 <patchID>97</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1385,7 +1385,7 @@
 <xagent>
 <name>patch</name>
 <patchID>98</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1399,7 +1399,7 @@
 <xagent>
 <name>patch</name>
 <patchID>99</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1413,7 +1413,7 @@
 <xagent>
 <name>patch</name>
 <patchID>100</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1427,7 +1427,7 @@
 <xagent>
 <name>patch</name>
 <patchID>101</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1441,7 +1441,7 @@
 <xagent>
 <name>patch</name>
 <patchID>102</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1455,7 +1455,7 @@
 <xagent>
 <name>patch</name>
 <patchID>103</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1469,7 +1469,7 @@
 <xagent>
 <name>patch</name>
 <patchID>104</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1483,7 +1483,7 @@
 <xagent>
 <name>patch</name>
 <patchID>105</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1497,7 +1497,7 @@
 <xagent>
 <name>patch</name>
 <patchID>106</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1511,7 +1511,7 @@
 <xagent>
 <name>patch</name>
 <patchID>107</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1525,7 +1525,7 @@
 <xagent>
 <name>patch</name>
 <patchID>108</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1539,7 +1539,7 @@
 <xagent>
 <name>patch</name>
 <patchID>109</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1553,7 +1553,7 @@
 <xagent>
 <name>patch</name>
 <patchID>110</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>40</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1567,7 +1567,7 @@
 <xagent>
 <name>patch</name>
 <patchID>111</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1581,7 +1581,7 @@
 <xagent>
 <name>patch</name>
 <patchID>112</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1595,7 +1595,7 @@
 <xagent>
 <name>patch</name>
 <patchID>113</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1609,7 +1609,7 @@
 <xagent>
 <name>patch</name>
 <patchID>114</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1623,7 +1623,7 @@
 <xagent>
 <name>patch</name>
 <patchID>115</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1637,7 +1637,7 @@
 <xagent>
 <name>patch</name>
 <patchID>116</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1651,7 +1651,7 @@
 <xagent>
 <name>patch</name>
 <patchID>117</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1665,7 +1665,7 @@
 <xagent>
 <name>patch</name>
 <patchID>118</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1679,7 +1679,7 @@
 <xagent>
 <name>patch</name>
 <patchID>119</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1693,8 +1693,8 @@
 <xagent>
 <name>patch</name>
 <patchID>120</patchID>
-<pcalories>1000</pcalories>
-<gcalories>0</gcalories>
+<pcalories>7388</pcalories>
+<gcalories>-9</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>8</xcord>
@@ -1702,12 +1702,12 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>-9</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>121</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1721,7 +1721,7 @@
 <xagent>
 <name>patch</name>
 <patchID>122</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1735,7 +1735,7 @@
 <xagent>
 <name>patch</name>
 <patchID>123</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1749,7 +1749,7 @@
 <xagent>
 <name>patch</name>
 <patchID>124</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1763,7 +1763,7 @@
 <xagent>
 <name>patch</name>
 <patchID>125</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1777,7 +1777,7 @@
 <xagent>
 <name>patch</name>
 <patchID>126</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1791,7 +1791,7 @@
 <xagent>
 <name>patch</name>
 <patchID>127</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1805,7 +1805,7 @@
 <xagent>
 <name>patch</name>
 <patchID>128</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1819,7 +1819,7 @@
 <xagent>
 <name>patch</name>
 <patchID>129</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1833,7 +1833,7 @@
 <xagent>
 <name>patch</name>
 <patchID>130</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1847,7 +1847,7 @@
 <xagent>
 <name>patch</name>
 <patchID>131</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1861,7 +1861,7 @@
 <xagent>
 <name>patch</name>
 <patchID>132</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1875,7 +1875,7 @@
 <xagent>
 <name>patch</name>
 <patchID>133</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1889,7 +1889,7 @@
 <xagent>
 <name>patch</name>
 <patchID>134</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1903,7 +1903,7 @@
 <xagent>
 <name>patch</name>
 <patchID>135</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -1917,7 +1917,7 @@
 <xagent>
 <name>patch</name>
 <patchID>136</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1931,7 +1931,7 @@
 <xagent>
 <name>patch</name>
 <patchID>137</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1945,7 +1945,7 @@
 <xagent>
 <name>patch</name>
 <patchID>138</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1959,7 +1959,7 @@
 <xagent>
 <name>patch</name>
 <patchID>139</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1973,7 +1973,7 @@
 <xagent>
 <name>patch</name>
 <patchID>140</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -1987,7 +1987,7 @@
 <xagent>
 <name>patch</name>
 <patchID>141</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2001,7 +2001,7 @@
 <xagent>
 <name>patch</name>
 <patchID>142</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2015,7 +2015,7 @@
 <xagent>
 <name>patch</name>
 <patchID>143</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2029,7 +2029,7 @@
 <xagent>
 <name>patch</name>
 <patchID>144</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2043,7 +2043,7 @@
 <xagent>
 <name>patch</name>
 <patchID>145</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2057,7 +2057,7 @@
 <xagent>
 <name>patch</name>
 <patchID>146</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2071,7 +2071,7 @@
 <xagent>
 <name>patch</name>
 <patchID>147</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2085,7 +2085,7 @@
 <xagent>
 <name>patch</name>
 <patchID>148</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2099,7 +2099,7 @@
 <xagent>
 <name>patch</name>
 <patchID>149</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2113,7 +2113,7 @@
 <xagent>
 <name>patch</name>
 <patchID>150</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2127,7 +2127,7 @@
 <xagent>
 <name>patch</name>
 <patchID>151</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2141,7 +2141,7 @@
 <xagent>
 <name>patch</name>
 <patchID>152</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2155,7 +2155,7 @@
 <xagent>
 <name>patch</name>
 <patchID>153</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2169,7 +2169,7 @@
 <xagent>
 <name>patch</name>
 <patchID>154</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2183,7 +2183,7 @@
 <xagent>
 <name>patch</name>
 <patchID>155</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2197,7 +2197,7 @@
 <xagent>
 <name>patch</name>
 <patchID>156</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2211,7 +2211,7 @@
 <xagent>
 <name>patch</name>
 <patchID>157</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2225,7 +2225,7 @@
 <xagent>
 <name>patch</name>
 <patchID>158</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2239,7 +2239,7 @@
 <xagent>
 <name>patch</name>
 <patchID>159</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2253,7 +2253,7 @@
 <xagent>
 <name>patch</name>
 <patchID>160</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2267,7 +2267,7 @@
 <xagent>
 <name>patch</name>
 <patchID>161</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2281,7 +2281,7 @@
 <xagent>
 <name>patch</name>
 <patchID>162</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2295,7 +2295,7 @@
 <xagent>
 <name>patch</name>
 <patchID>163</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2309,8 +2309,8 @@
 <xagent>
 <name>patch</name>
 <patchID>164</patchID>
-<pcalories>1000</pcalories>
-<gcalories>0</gcalories>
+<pcalories>7388</pcalories>
+<gcalories>5</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>10</xcord>
@@ -2318,12 +2318,12 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>5</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>165</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2337,7 +2337,7 @@
 <xagent>
 <name>patch</name>
 <patchID>166</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2351,7 +2351,7 @@
 <xagent>
 <name>patch</name>
 <patchID>167</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2365,8 +2365,8 @@
 <xagent>
 <name>patch</name>
 <patchID>168</patchID>
-<pcalories>1000</pcalories>
-<gcalories>-9</gcalories>
+<pcalories>7388</pcalories>
+<gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>11</xcord>
@@ -2374,12 +2374,12 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>-9</adultos>
+<adultos>0</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>169</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2393,7 +2393,7 @@
 <xagent>
 <name>patch</name>
 <patchID>170</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2407,7 +2407,7 @@
 <xagent>
 <name>patch</name>
 <patchID>171</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2421,7 +2421,7 @@
 <xagent>
 <name>patch</name>
 <patchID>172</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2435,7 +2435,7 @@
 <xagent>
 <name>patch</name>
 <patchID>173</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2449,7 +2449,7 @@
 <xagent>
 <name>patch</name>
 <patchID>174</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2463,7 +2463,7 @@
 <xagent>
 <name>patch</name>
 <patchID>175</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2477,7 +2477,7 @@
 <xagent>
 <name>patch</name>
 <patchID>176</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2491,7 +2491,7 @@
 <xagent>
 <name>patch</name>
 <patchID>177</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2505,7 +2505,7 @@
 <xagent>
 <name>patch</name>
 <patchID>178</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2519,7 +2519,7 @@
 <xagent>
 <name>patch</name>
 <patchID>179</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2533,7 +2533,7 @@
 <xagent>
 <name>patch</name>
 <patchID>180</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2547,7 +2547,7 @@
 <xagent>
 <name>patch</name>
 <patchID>181</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2561,7 +2561,7 @@
 <xagent>
 <name>patch</name>
 <patchID>182</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2575,7 +2575,7 @@
 <xagent>
 <name>patch</name>
 <patchID>183</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2589,7 +2589,7 @@
 <xagent>
 <name>patch</name>
 <patchID>184</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2603,7 +2603,7 @@
 <xagent>
 <name>patch</name>
 <patchID>185</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2617,7 +2617,7 @@
 <xagent>
 <name>patch</name>
 <patchID>186</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2631,7 +2631,7 @@
 <xagent>
 <name>patch</name>
 <patchID>187</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2645,7 +2645,7 @@
 <xagent>
 <name>patch</name>
 <patchID>188</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2659,7 +2659,7 @@
 <xagent>
 <name>patch</name>
 <patchID>189</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2673,7 +2673,7 @@
 <xagent>
 <name>patch</name>
 <patchID>190</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2687,7 +2687,7 @@
 <xagent>
 <name>patch</name>
 <patchID>191</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2701,8 +2701,8 @@
 <xagent>
 <name>patch</name>
 <patchID>192</patchID>
-<pcalories>1000</pcalories>
-<gcalories>9</gcalories>
+<pcalories>7388</pcalories>
+<gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>12</xcord>
@@ -2710,12 +2710,12 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>9</adultos>
+<adultos>0</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>193</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2729,7 +2729,7 @@
 <xagent>
 <name>patch</name>
 <patchID>194</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2743,7 +2743,7 @@
 <xagent>
 <name>patch</name>
 <patchID>195</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2757,7 +2757,7 @@
 <xagent>
 <name>patch</name>
 <patchID>196</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2771,7 +2771,7 @@
 <xagent>
 <name>patch</name>
 <patchID>197</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2785,7 +2785,7 @@
 <xagent>
 <name>patch</name>
 <patchID>198</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2799,7 +2799,7 @@
 <xagent>
 <name>patch</name>
 <patchID>199</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2813,7 +2813,7 @@
 <xagent>
 <name>patch</name>
 <patchID>200</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2827,7 +2827,7 @@
 <xagent>
 <name>patch</name>
 <patchID>201</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2841,7 +2841,7 @@
 <xagent>
 <name>patch</name>
 <patchID>202</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2855,7 +2855,7 @@
 <xagent>
 <name>patch</name>
 <patchID>203</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2869,7 +2869,7 @@
 <xagent>
 <name>patch</name>
 <patchID>204</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2883,7 +2883,7 @@
 <xagent>
 <name>patch</name>
 <patchID>205</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2897,7 +2897,7 @@
 <xagent>
 <name>patch</name>
 <patchID>206</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2911,8 +2911,8 @@
 <xagent>
 <name>patch</name>
 <patchID>207</patchID>
-<pcalories>1000</pcalories>
-<gcalories>10</gcalories>
+<pcalories>7388</pcalories>
+<gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>13</xcord>
@@ -2920,12 +2920,12 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>10</adultos>
+<adultos>0</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>208</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
@@ -2939,7 +2939,7 @@
 <xagent>
 <name>patch</name>
 <patchID>209</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2953,7 +2953,7 @@
 <xagent>
 <name>patch</name>
 <patchID>210</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2967,7 +2967,7 @@
 <xagent>
 <name>patch</name>
 <patchID>211</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2981,7 +2981,7 @@
 <xagent>
 <name>patch</name>
 <patchID>212</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -2995,7 +2995,7 @@
 <xagent>
 <name>patch</name>
 <patchID>213</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3009,7 +3009,7 @@
 <xagent>
 <name>patch</name>
 <patchID>214</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3023,7 +3023,7 @@
 <xagent>
 <name>patch</name>
 <patchID>215</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3037,7 +3037,7 @@
 <xagent>
 <name>patch</name>
 <patchID>216</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3051,7 +3051,7 @@
 <xagent>
 <name>patch</name>
 <patchID>217</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3065,7 +3065,7 @@
 <xagent>
 <name>patch</name>
 <patchID>218</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3079,7 +3079,7 @@
 <xagent>
 <name>patch</name>
 <patchID>219</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3093,7 +3093,7 @@
 <xagent>
 <name>patch</name>
 <patchID>220</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3107,7 +3107,7 @@
 <xagent>
 <name>patch</name>
 <patchID>221</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3121,7 +3121,7 @@
 <xagent>
 <name>patch</name>
 <patchID>222</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3135,7 +3135,7 @@
 <xagent>
 <name>patch</name>
 <patchID>223</patchID>
-<pcalories>1000</pcalories>
+<pcalories>7388</pcalories>
 <gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
@@ -3149,8 +3149,8 @@
 <xagent>
 <name>patch</name>
 <patchID>224</patchID>
-<pcalories>1000</pcalories>
-<gcalories>0</gcalories>
+<pcalories>7388</pcalories>
+<gcalories>10</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>14</xcord>
@@ -3158,60 +3158,78 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>10</adultos>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
 <familia>0</familia>
-<xcord>12</xcord>
-<ycord>12</ycord>
-<count>3</count>
+<xcord>2</xcord>
+<ycord>1</ycord>
+<targetX>2</targetX>
+<targetY>1</targetY>
+<count>4</count>
 <calorias>0</calorias>
-<adultos>3</adultos>
+<adultos>4</adultos>
+<season>0</season>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
 <familia>1</familia>
-<xcord>12</xcord>
-<ycord>12</ycord>
+<xcord>10</xcord>
+<ycord>14</ycord>
+<targetX>10</targetX>
+<targetY>14</targetY>
 <count>9</count>
 <calorias>0</calorias>
 <adultos>5</adultos>
+<season>0</season>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
 <familia>1</familia>
-<xcord>12</xcord>
-<ycord>12</ycord>
+<xcord>10</xcord>
+<ycord>14</ycord>
+<targetX>10</targetX>
+<targetY>14</targetY>
 <count>19</count>
 <calorias>0</calorias>
 <adultos>10</adultos>
+<season>0</season>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
 <familia>0</familia>
-<xcord>13</xcord>
-<ycord>12</ycord>
-<count>6</count>
+<xcord>14</xcord>
+<ycord>14</ycord>
+<targetX>14</targetX>
+<targetY>14</targetY>
+<count>1</count>
 <calorias>0</calorias>
-<adultos>6</adultos>
+<adultos>1</adultos>
+<season>0</season>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
 <familia>1</familia>
-<xcord>13</xcord>
-<ycord>12</ycord>
-<count>5</count>
+<xcord>14</xcord>
+<ycord>14</ycord>
+<targetX>14</targetX>
+<targetY>14</targetY>
+<count>15</count>
 <calorias>0</calorias>
-<adultos>3</adultos>
+<adultos>8</adultos>
+<season>0</season>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
 <familia>1</familia>
-<xcord>13</xcord>
-<ycord>12</ycord>
+<xcord>14</xcord>
+<ycord>14</ycord>
+<targetX>14</targetX>
+<targetY>14</targetY>
 <count>19</count>
 <calorias>0</calorias>
 <adultos>10</adultos>
+<season>0</season>
 </xagent>
 </states>

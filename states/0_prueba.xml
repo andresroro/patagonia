@@ -5,8 +5,11 @@
         <familia>1</familia>
         <xcord>7</xcord>
         <ycord>5</ycord>
+        <targetX>7</targetX>
+        <targetY>5</targetY>
         <count>19</count>
         <calorias>0</calorias>
         <adultos>10</adultos>
+        <season>0</season>
     </xagent>
 </agents>

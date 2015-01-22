@@ -825,6 +825,13 @@ void unittest_manadaInfo_start_1()
 	//return manadaInfo();
 }
 
+void unittest_seasonSwitch_start_1()
+{
+	
+	
+	//return seasonSwitch();
+}
+
 void unittest_manada_idle_1_2()
 {
 	
@@ -832,11 +839,11 @@ void unittest_manada_idle_1_2()
 	//return manada_idle();
 }
 
-void unittest_move_1_2()
+void unittest_moveWet_1_2()
 {
 	
 	
-	//return move();
+	//return moveWet();
 }
 
 void unittest_reproduccion_2_end()
@@ -3077,9 +3084,12 @@ xmachine_memory_manada_guanacos * init_manada_guanacos_agent()
 	current->familia = 0;
 	current->xcord = 0;
 	current->ycord = 0;
+	current->targetX = 0;
+	current->targetY = 0;
 	current->count = 0;
 	current->calorias = 0;
 	current->adultos = 0;
+	current->season = 0;
 
 	return current;
 }
@@ -3104,9 +3114,12 @@ void unittest_init_manada_guanacos_agent()
 		current_xmachine_manada_guanacos->familia = 0;
 		current_xmachine_manada_guanacos->xcord = 0;
 		current_xmachine_manada_guanacos->ycord = 0;
+		current_xmachine_manada_guanacos->targetX = 0;
+		current_xmachine_manada_guanacos->targetY = 0;
 		current_xmachine_manada_guanacos->count = 0;
 		current_xmachine_manada_guanacos->calorias = 0;
 		current_xmachine_manada_guanacos->adultos = 0;
+		current_xmachine_manada_guanacos->season = 0;
 	
 }
 
@@ -3185,16 +3198,19 @@ void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent,
 
 }
 
-/** \fn void add_manada_guanacos_agent(int familia, int xcord, int ycord, int count, int calorias, int adultos)
+/** \fn void add_manada_guanacos_agent(int familia, int xcord, int ycord, int targetX, int targetY, int count, int calorias, int adultos, int season)
  * \brief Add manada_guanacos X-machine to the current being used X-machine list.
  * \param familia Variable for the X-machine memory.
  * \param xcord Variable for the X-machine memory.
  * \param ycord Variable for the X-machine memory.
+ * \param targetX Variable for the X-machine memory.
+ * \param targetY Variable for the X-machine memory.
  * \param count Variable for the X-machine memory.
  * \param calorias Variable for the X-machine memory.
  * \param adultos Variable for the X-machine memory.
+ * \param season Variable for the X-machine memory.
  */
-void add_manada_guanacos_agent(int familia, int xcord, int ycord, int count, int calorias, int adultos)
+void add_manada_guanacos_agent(int familia, int xcord, int ycord, int targetX, int targetY, int count, int calorias, int adultos, int season)
 {
 	xmachine_memory_manada_guanacos * current;
 
@@ -3206,9 +3222,12 @@ void add_manada_guanacos_agent(int familia, int xcord, int ycord, int count, int
 	current->familia = familia;
 	current->xcord = xcord;
 	current->ycord = ycord;
+	current->targetX = targetX;
+	current->targetY = targetY;
 	current->count = count;
 	current->calorias = calorias;
 	current->adultos = adultos;
+	current->season = season;
 }
 
 
@@ -4045,6 +4064,7 @@ float get_repods()
 void set_season(int season)
 {
 	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).season = season;
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).season = season;
 }
 
 /** \fn int get_season()
@@ -4054,6 +4074,7 @@ void set_season(int season)
 int get_season()
 {
 	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).season;
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).season;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -4100,6 +4121,50 @@ void set_familia(int familia)
 int get_familia()
 {
 	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).familia;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_targetX(int targetX)
+ * \brief Set targetX memory variable for current X-machine.
+ * \param targetX New value for variable.
+ */
+void set_targetX(int targetX)
+{
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).targetX = targetX;
+}
+
+/** \fn int get_targetX()
+ * \brief Get targetX memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_targetX()
+{
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).targetX;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_targetY(int targetY)
+ * \brief Set targetY memory variable for current X-machine.
+ * \param targetY New value for variable.
+ */
+void set_targetY(int targetY)
+{
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).targetY = targetY;
+}
+
+/** \fn int get_targetY()
+ * \brief Get targetY memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_targetY()
+{
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).targetY;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /

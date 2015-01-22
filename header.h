@@ -473,9 +473,12 @@ struct xmachine_memory_manada_guanacos
 	int familia;	/**< X-machine memory variable familia of type int. */
 	int xcord;	/**< X-machine memory variable xcord of type int. */
 	int ycord;	/**< X-machine memory variable ycord of type int. */
+	int targetX;	/**< X-machine memory variable targetX of type int. */
+	int targetY;	/**< X-machine memory variable targetY of type int. */
 	int count;	/**< X-machine memory variable count of type int. */
 	int calorias;	/**< X-machine memory variable calorias of type int. */
 	int adultos;	/**< X-machine memory variable adultos of type int. */
+	int season;	/**< X-machine memory variable season of type int. */
 };
 
 /** \struct xmachine_memory_manada_guanacos_holder
@@ -1565,7 +1568,7 @@ xmachine_memory_manada_guanacos * init_manada_guanacos_agent();
 void free_manada_guanacos_agent(xmachine_memory_manada_guanacos_holder * tmp, xmachine_memory_manada_guanacos_state * state);
 void transition_manada_guanacos_agent(xmachine_memory_manada_guanacos_holder * tmp, xmachine_memory_manada_guanacos_state * from_state, xmachine_memory_manada_guanacos_state * to_state);
 void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent, xmachine_memory_manada_guanacos_state * state);
-void add_manada_guanacos_agent(int familia, int xcord, int ycord, int count, int calorias, int adultos);
+void add_manada_guanacos_agent(int familia, int xcord, int ycord, int targetX, int targetY, int count, int calorias, int adultos, int season);
 void unittest_init_manada_guanacos_agent();
 void unittest_free_manada_guanacos_agent();
 
@@ -1768,6 +1771,10 @@ void set_adultos(int adultos);
 int get_adultos();
 void set_familia(int familia);
 int get_familia();
+void set_targetX(int targetX);
+int get_targetX();
+void set_targetY(int targetY);
+int get_targetY();
 void set_count(int count);
 int get_count();
 void set_calorias(int calorias);
@@ -1979,10 +1986,13 @@ int FLAME_filter_patch_reproduccion_guanacos_5_end_reproduccionguanacos(const vo
 int idle_patch(void);
 int FLAME_condition_patch_idle_patch_5_end(xmachine_memory_patch *a);
 int manadaInfo(void);
+int FLAME_condition_manada_guanacos_manadaInfo_start_1(xmachine_memory_manada_guanacos *a);
+int seasonSwitch(void);
+int FLAME_condition_manada_guanacos_seasonSwitch_start_1(xmachine_memory_manada_guanacos *a);
 int manada_idle(void);
 int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guanacos *a);
-int move(void);
-int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a);
+int moveWet(void);
+int FLAME_condition_manada_guanacos_moveWet_1_2(xmachine_memory_manada_guanacos *a);
 int reproduccion(void);
 int FLAME_condition_manada_guanacos_reproduccion_2_end(xmachine_memory_manada_guanacos *a);
 int manada_idle2(void);

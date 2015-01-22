@@ -365,11 +365,17 @@
 \midrule
 \parbox{5cm}{\url{int} \url{ycord}} \index{\url{ycord}} & \parbox{10cm}{Coordenada y de la manada} \\
 \midrule
+\parbox{5cm}{\url{int} \url{targetX}} \index{\url{targetX}} & \parbox{10cm}{Coordenada objetivo x de la manada} \\
+\midrule
+\parbox{5cm}{\url{int} \url{targetY}} \index{\url{targetY}} & \parbox{10cm}{Coordenada objetivo y de la manada} \\
+\midrule
 \parbox{5cm}{\url{int} \url{count}} \index{\url{count}} & \parbox{10cm}{Numero de guanacos de la manada} \\
 \midrule
 \parbox{5cm}{\url{int} \url{calorias}} \index{\url{calorias}} & \parbox{10cm}{Numero de calorias que proporciona la manada} \\
 \midrule
 \parbox{5cm}{\url{int} \url{adultos}} \index{\url{adultos}} & \parbox{10cm}{Numero de adultos que contiene la manada} \\
+\midrule
+\parbox{5cm}{\url{int} \url{season}} \index{\url{season}} & \parbox{10cm}{} \\
 \end{longtable}
 \begin{longtable}[H!]{ll}
 \caption{{\bfseries List of functions for manada\_guanacos agent.}}
@@ -391,9 +397,11 @@
 \midrule
 \parbox{5cm}{\url{manadaInfo}} \index{\url{manadaInfo}} & \parbox{10cm}{informacion de la manada} \\
 \midrule
+\parbox{5cm}{\url{seasonSwitch}} \index{\url{seasonSwitch}} & \parbox{10cm}{cambio de estacion} \\
+\midrule
 \parbox{5cm}{\url{manada_idle}} \index{\url{manada_idle}} & \parbox{10cm}{no se hace nada} \\
 \midrule
-\parbox{5cm}{\url{move}} \index{\url{move}} & \parbox{10cm}{Calculamos el movimiento de la manada (depende de la estación)} \\
+\parbox{5cm}{\url{moveWet}} \index{\url{moveWet}} & \parbox{10cm}{Calculamos el movimiento de la manada} \\
 \midrule
 \parbox{5cm}{\url{reproduccion}} \index{\url{reproduccion}} & \parbox{10cm}{los guanacos dentro del patch crean nuevas manadas} \\
 \midrule

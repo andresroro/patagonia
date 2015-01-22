@@ -72,7 +72,7 @@ int regenerate()
 {
 	int avail = get_pcalories();
 	if ( !avail ) avail = 1000;
-	else avail = avail*get_repo();
+	else avail += avail*get_repo();
 	set_pcalories( avail );
 	return 0;
 }
@@ -99,11 +99,11 @@ int snregenerate()
     int pt=get_tpatch();
     int season = get_season(); 
 
-    if (season == DRY){
-	set_season( DRY );
+    if (season == 0){
+	set_season( 1 );
 	set_repo( get_repods());
     } else {
-        set_season( WET );
+        set_season( 0 );
 	set_repo( get_repows());
 
 	return 0;
@@ -153,22 +153,22 @@ int reproduccion_guanacos()
 		    }
 	    }*/
 		while (hembras > MAX_FAMILIA-1){
-			add_manada_guanacos_agent(1, get_xcord(), get_ycord(), (MAX_FAMILIA*2)-1, 0, MAX_FAMILIA); //creamos familias
+			add_manada_guanacos_agent(1, get_xcord(), get_ycord(), get_xcord(), get_ycord(),(MAX_FAMILIA*2)-1, 0, MAX_FAMILIA, get_season()); //creamos familias
 		    machos--;
 		    hembras -= MAX_FAMILIA-1;
 		}
 		if (hembras >= 1){
-			add_manada_guanacos_agent(1, get_xcord(), get_ycord(), (hembras*2)+1, 0, hembras+1);
+			add_manada_guanacos_agent(1, get_xcord(), get_ycord(), get_xcord(), get_ycord(), (hembras*2)+1, 0, hembras+1, get_season());
 			machos--;
 			hembras = 0;
 		}
 
 	    while(machos >= MAX_MANADA){
-	    	add_manada_guanacos_agent(0, get_xcord(), get_ycord(), MAX_MANADA, 0, MAX_MANADA); //creamos manadas
+	    	add_manada_guanacos_agent(0, get_xcord(), get_ycord(), get_xcord(), get_ycord(), MAX_MANADA, 0, MAX_MANADA, get_season()); //creamos manadas
 	    	machos-= MAX_MANADA;
 	    }
 	    if(machos >= 1){
-	    	add_manada_guanacos_agent(0, get_xcord(), get_ycord(), machos, 0, machos); //creamos la manada con los ultimos machos
+	    	add_manada_guanacos_agent(0, get_xcord(), get_ycord(), get_xcord(), get_ycord(), machos, 0, machos, get_season()); //creamos la manada con los ultimos machos
 	    	machos= 0;
 	    }
     }

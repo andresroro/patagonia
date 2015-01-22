@@ -336,7 +336,7 @@ int FLAME_condition_patch_idle_patch_2_3(xmachine_memory_patch *a)
  */
 int FLAME_condition_patch_snregenerate_3_4(xmachine_memory_patch *a)
 {
-	if((iteration_loop%180 == 6)) return 1;
+	if((iteration_loop%180 == 0)) return 1;
 	else return 0;
 }
 
@@ -348,7 +348,7 @@ int FLAME_condition_patch_snregenerate_3_4(xmachine_memory_patch *a)
  */
 int FLAME_condition_patch_idle_patch_3_4(xmachine_memory_patch *a)
 {
-	if(!(iteration_loop%180 == 6)) return 1;
+	if(!(iteration_loop%180 == 0)) return 1;
 	else return 0;
 }
 
@@ -377,6 +377,30 @@ int FLAME_condition_patch_idle_patch_5_end(xmachine_memory_patch *a)
 }
 
 
+/** \fn int FLAME_condition_manada_guanacos_manadaInfo_start_1(xmachine_memory_manada_guanacos *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_manada_guanacos_manadaInfo_start_1(xmachine_memory_manada_guanacos *a)
+{
+	if(!(iteration_loop%180 == 0)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_manada_guanacos_seasonSwitch_start_1(xmachine_memory_manada_guanacos *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_manada_guanacos_seasonSwitch_start_1(xmachine_memory_manada_guanacos *a)
+{
+	if((iteration_loop%180 == 0)) return 1;
+	else return 0;
+}
+
+
 /** \fn int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guanacos *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
@@ -389,12 +413,12 @@ int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guana
 }
 
 
-/** \fn int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a)
+/** \fn int FLAME_condition_manada_guanacos_moveWet_1_2(xmachine_memory_manada_guanacos *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
  * \return The success (1) or failure (0) of the condition.
  */
-int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a)
+int FLAME_condition_manada_guanacos_moveWet_1_2(xmachine_memory_manada_guanacos *a)
 {
 	if((iteration_loop%10 == 0)) return 1;
 	else return 0;
