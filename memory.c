@@ -839,25 +839,32 @@ void unittest_manada_idle_1_2()
 	//return manada_idle();
 }
 
-void unittest_moveWet_1_2()
+void unittest_move_1_2()
 {
 	
 	
-	//return moveWet();
+	//return move();
 }
 
-void unittest_reproduccion_2_end()
+void unittest_reproduccion_2_3()
 {
 	
 	
 	//return reproduccion();
 }
 
-void unittest_manada_idle2_2_end()
+void unittest_manada_idle2_2_3()
 {
 	
 	
 	//return manada_idle2();
+}
+
+void unittest_surviveGuanacos_3_end()
+{
+	
+	
+	//return surviveGuanacos();
 }
 
 
@@ -2010,6 +2017,8 @@ int rc;
 
 	manada_guanacos_end_state = init_manada_guanacos_state();
 
+	manada_guanacos_3_state = init_manada_guanacos_state();
+
 	manada_guanacos_2_state = init_manada_guanacos_state();
 
 	manada_guanacos_1_state = init_manada_guanacos_state();
@@ -3139,6 +3148,14 @@ void free_manada_guanacos_agents()
 		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
 	}
 	manada_guanacos_end_state->count = 0;
+	current_xmachine_manada_guanacos_holder = manada_guanacos_3_state->agents;
+	while(current_xmachine_manada_guanacos_holder)
+	{
+		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_3_state);
+		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
+	}
+	manada_guanacos_3_state->count = 0;
 	current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
 	while(current_xmachine_manada_guanacos_holder)
 	{
@@ -3168,6 +3185,7 @@ void free_manada_guanacos_agents()
 void free_manada_guanacos_states()
 {
 	free(manada_guanacos_end_state);
+	free(manada_guanacos_3_state);
 	free(manada_guanacos_2_state);
 	free(manada_guanacos_1_state);
 	free(manada_guanacos_start_state);
@@ -5811,6 +5829,14 @@ int FLAME_get_environment_variable_max_familia()
 int FLAME_get_environment_variable_cal_adulto()
 {
 	return FLAME_environment_variable_cal_adulto;
+}
+int FLAME_get_environment_variable_surviveChanceAdult()
+{
+	return FLAME_environment_variable_surviveChanceAdult;
+}
+int FLAME_get_environment_variable_surviveChanceChild()
+{
+	return FLAME_environment_variable_surviveChanceChild;
 }
 
 

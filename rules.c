@@ -413,36 +413,36 @@ int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guana
 }
 
 
-/** \fn int FLAME_condition_manada_guanacos_moveWet_1_2(xmachine_memory_manada_guanacos *a)
+/** \fn int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
  * \return The success (1) or failure (0) of the condition.
  */
-int FLAME_condition_manada_guanacos_moveWet_1_2(xmachine_memory_manada_guanacos *a)
+int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a)
 {
 	if((iteration_loop%10 == 0)) return 1;
 	else return 0;
 }
 
 
-/** \fn int FLAME_condition_manada_guanacos_reproduccion_2_end(xmachine_memory_manada_guanacos *a)
+/** \fn int FLAME_condition_manada_guanacos_reproduccion_2_3(xmachine_memory_manada_guanacos *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
  * \return The success (1) or failure (0) of the condition.
  */
-int FLAME_condition_manada_guanacos_reproduccion_2_end(xmachine_memory_manada_guanacos *a)
+int FLAME_condition_manada_guanacos_reproduccion_2_3(xmachine_memory_manada_guanacos *a)
 {
 	if((iteration_loop%360 == 0)) return 1;
 	else return 0;
 }
 
 
-/** \fn int FLAME_condition_manada_guanacos_manada_idle2_2_end(xmachine_memory_manada_guanacos *a)
+/** \fn int FLAME_condition_manada_guanacos_manada_idle2_2_3(xmachine_memory_manada_guanacos *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
  * \return The success (1) or failure (0) of the condition.
  */
-int FLAME_condition_manada_guanacos_manada_idle2_2_end(xmachine_memory_manada_guanacos *a)
+int FLAME_condition_manada_guanacos_manada_idle2_2_3(xmachine_memory_manada_guanacos *a)
 {
 	if(!(iteration_loop%360 == 0)) return 1;
 	else return 0;

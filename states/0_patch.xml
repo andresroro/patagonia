@@ -12,6 +12,11 @@
     <format>xml</format>
     <type>environment</type>
 	</import>
+	<import>
+		<location>0_clans.xml</location>
+		<format>xml</format>
+		<type>agent</type>
+	</import>
 </imports>
 <outputs>
 <output>

@@ -215,6 +215,24 @@ int manada_idle2(){
 	return 0;
 }
 
+int surviveGuanacos(){
+	int r;
+	r = rand() % 100;
+	if(r >= SURVIVECHANCEADULT){
+		if(get_adultos() > 0){
+			set_adultos(get_adultos()-1);
+			set_count(get_count()-1);
+		}
+	}else if(r >= SURVIVECHANCECHILD){
+		if(get_count() > get_adultos()){
+			set_count(get_count()-1);
+		}
+	}
+	if(get_count() == 0){
+		return 1;
+	}else return 0;
+}
+
 int leviflight(int posX, int posY, int *targetX, int *targetY){
 	int r;
 	//si estamos en nuestro target recalcular nuevo target

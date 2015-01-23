@@ -58,17 +58,23 @@
                     <type>float</type>
                     <name>repods</name>
                     <description>reposition rate for dry season</description>
-                 </variable>
+                </variable>
                 <variable>
                     <type>int</type>
                     <name>season</name>
                     <description>current season, initially it must be wet season</description>
-                 </variable>
-                 <variable>
+                </variable>
+                <variable>
                     <type>int</type>
                     <name>adultos</name>
                     <description>numero de guanacos adultos</description>
-                 </variable>
+                </variable>
+                <variable>
+                    <type>int</type>
+                    <name>pclans</name>
+                    <description>clans in patch</description>
+                </variable>
+
                </memory>
             <functions>
                 <function>
@@ -155,9 +161,14 @@
 
               <function>
             <name>guanacos_move</name>
-                <description>calorias aportadas por los guanacos</description>
+                <description>entrada y salida de guanacos al patch</description>
                 <currentState>4</currentState>
                 <nextState>5</nextState>
+                <outputs>
+                  <output>
+                    <messageName>clanspatch</messageName>
+                  </output>
+                </outputs>
                 <inputs>
                     <input>
                         <messageName>adultospatch</messageName>
@@ -240,5 +251,26 @@
         </xagent>
     </agents>
 <messages>
+  <message>
+    <name>clanspatch</name>
+    <description>sends clan coordinates and the number of clans in patch</description>
+    <variables>
+      <variable>
+        <type>int</type>
+        <name>xcord</name>
+        <description>coordinate x of the patch</description>
+      </variable>
+      <variable>
+        <type>int</type>
+        <name>ycord</name>
+        <description>coordinate y of the patch</description>
+      </variable>
+      <variable>
+        <type>int</type>
+        <name>pclans</name>
+        <description>number of clans in patch</description>
+      </variable>
+    </variables>
+  </message>
 </messages>
 </xmodel>

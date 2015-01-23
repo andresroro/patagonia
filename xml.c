@@ -620,6 +620,8 @@ int readEnvironmentXML(char * location)
 	int in_max_manada = 0;
 	int in_max_familia = 0;
 	int in_cal_adulto = 0;
+	int in_surviveChanceAdult = 0;
+	int in_surviveChanceChild = 0;
 	
 
 	buffer[0] = '\0';
@@ -657,6 +659,10 @@ int readEnvironmentXML(char * location)
 			if(strcmp(buffer, "/max_familia") == 0) in_max_familia = 0;
 			if(strcmp(buffer, "cal_adulto") == 0) in_cal_adulto = 1;
 			if(strcmp(buffer, "/cal_adulto") == 0) in_cal_adulto = 0;
+			if(strcmp(buffer, "surviveChanceAdult") == 0) in_surviveChanceAdult = 1;
+			if(strcmp(buffer, "/surviveChanceAdult") == 0) in_surviveChanceAdult = 0;
+			if(strcmp(buffer, "surviveChanceChild") == 0) in_surviveChanceChild = 1;
+			if(strcmp(buffer, "/surviveChanceChild") == 0) in_surviveChanceChild = 0;
 			
 			index = 0;
 			buffer[index] = '\0';
@@ -674,6 +680,8 @@ int readEnvironmentXML(char * location)
 				if(in_max_manada == 1) { FLAME_environment_variable_max_manada = atoi(buffer); }
 				if(in_max_familia == 1) { FLAME_environment_variable_max_familia = atoi(buffer); }
 				if(in_cal_adulto == 1) { FLAME_environment_variable_cal_adulto = atoi(buffer); }
+				if(in_surviveChanceAdult == 1) { FLAME_environment_variable_surviveChanceAdult = atoi(buffer); }
+				if(in_surviveChanceChild == 1) { FLAME_environment_variable_surviveChanceChild = atoi(buffer); }
 				
 			}
 			index = 0;
@@ -1340,6 +1348,8 @@ void readinitialstates(char * filename, char * filelocation, int * itno, double 
 	FLAME_environment_variable_max_manada = 0;
 	FLAME_environment_variable_max_familia = 0;
 	FLAME_environment_variable_cal_adulto = 0;
+	FLAME_environment_variable_surviveChanceAdult = 0;
+	FLAME_environment_variable_surviveChanceChild = 0;
 	
 
 	/* Open config file to read-only */
@@ -2156,6 +2166,14 @@ void FLAME_write_xml(char * location, int iteration_number, int * output_types, 
 		sprintf(data, "%i", FLAME_environment_variable_cal_adulto);
 		fputs(data, file);
 		fputs("</cal_adulto>\n", file);
+			fputs("<surviveChanceAdult>", file);
+		sprintf(data, "%i", FLAME_environment_variable_surviveChanceAdult);
+		fputs(data, file);
+		fputs("</surviveChanceAdult>\n", file);
+			fputs("<surviveChanceChild>", file);
+		sprintf(data, "%i", FLAME_environment_variable_surviveChanceChild);
+		fputs(data, file);
+		fputs("</surviveChanceChild>\n", file);
 			fputs("</environment>\n" , file);
 	}
 	

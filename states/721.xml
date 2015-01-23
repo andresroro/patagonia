@@ -1,15 +1,253 @@
 <states>
 <itno>721</itno>
 <environment>
-<propegnant>0</propegnant>
-<nancestors>0</nancestors>
+<propegnant>9</propegnant>
+<nancestors>6</nancestors>
 <learn>0</learn>
 <forget>0</forget>
-<lang_threshold>0</lang_threshold>
+<lang_threshold>98</lang_threshold>
 <max_manada>50</max_manada>
 <max_familia>10</max_familia>
 <cal_adulto>1</cal_adulto>
+<surviveChanceAdult>99</surviveChanceAdult>
+<surviveChanceChild>98</surviveChanceChild>
 </environment>
+<xagent>
+<name>indv</name>
+<indvID>9</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>204</age>
+<sex>0</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{54, 55, 56, 57, 58, 59}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>0</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>8</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>204</age>
+<sex>0</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{48, 49, 50, 51, 52, 53}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>0</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>7</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>204</age>
+<sex>0</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{42, 43, 44, 45, 46, 47}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>0</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>6</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>204</age>
+<sex>0</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{36, 37, 38, 39, 40, 41}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>0</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>3</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>129</age>
+<sex>1</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{0, 1, 20, 21, 22, 23}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>0</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>2</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>39</age>
+<sex>0</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{0, 1, 14, 15, 16, 17}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>0</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>1</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>274</age>
+<sex>1</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{6, 7, 8, 9, 10, 11}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>1</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>1</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>5</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>204</age>
+<sex>1</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{30, 31, 32, 33, 34, 35}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>1</married>
+<pareja>-1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>1</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>4</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>204</age>
+<sex>0</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{0, 1, 26, 27, 28, 29}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>1</married>
+<pareja>5</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>indv</name>
+<indvID>0</indvID>
+<cID>0</cID>
+<cal_needs>0</cal_needs>
+<icalories>0</icalories>
+<patchID>0</patchID>
+<age>269</age>
+<sex>0</sex>
+<pregnant>0</pregnant>
+<lead>0</lead>
+<marriable>0</marriable>
+<ancestors>{0, 1, 2, 3, 4, 5}</ancestors>
+<ancestorsClan>{0, 0, 0, 0, 0, 0}</ancestorsClan>
+<married>1</married>
+<pareja>1</pareja>
+<embarazable>0</embarazable>
+<month>0</month>
+<motherID>0</motherID>
+<husband_info>{0, 0, 0, 0}</husband_info>
+<widow>0</widow>
+</xagent>
+<xagent>
+<name>clan</name>
+<cID>0</cID>
+<cal_need>17476440</cal_need>
+<cal_got>0</cal_got>
+<cal_stored>0</cal_stored>
+<x>1</x>
+<y>0</y>
+<tcalories>-2147483648</tcalories>
+<leaderID>3</leaderID>
+<mneeds>{{9, 8, 7, 6, 3, 2, 1, 5, 4, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, {204, 204, 204, 204, 129, 39, 274, 204, 204, 269, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}</mneeds>
+<ifree>{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 0, 0}</ifree>
+<indexID>3</indexID>
+<members>10</members>
+<linguistics>{0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0}</linguistics>
+</xagent>
 <xagent>
 <name>patch</name>
 <patchID>0</patchID>
@@ -223,7 +461,7 @@
 <xagent>
 <name>patch</name>
 <patchID>15</patchID>
-<pcalories>1966</pcalories>
+<pcalories>-2147482648</pcalories>
 <gcalories>0</gcalories>
 <repo>0.007000</repo>
 <tpatch>1</tpatch>
@@ -434,7 +672,7 @@
 <name>patch</name>
 <patchID>30</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>3</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>2</xcord>
@@ -442,13 +680,13 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>3</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>31</patchID>
 <pcalories>7388</pcalories>
-<gcalories>4</gcalories>
+<gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>2</xcord>
@@ -456,7 +694,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>4</adultos>
+<adultos>0</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -532,7 +770,7 @@
 <name>patch</name>
 <patchID>37</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>8</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>2</xcord>
@@ -540,7 +778,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>8</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -644,7 +882,7 @@
 <name>patch</name>
 <patchID>45</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>3</xcord>
@@ -652,7 +890,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -1666,7 +1904,7 @@
 <name>patch</name>
 <patchID>118</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>7</xcord>
@@ -1674,7 +1912,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -1694,7 +1932,7 @@
 <name>patch</name>
 <patchID>120</patchID>
 <pcalories>7388</pcalories>
-<gcalories>-9</gcalories>
+<gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>8</xcord>
@@ -1702,7 +1940,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>-9</adultos>
+<adultos>0</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -1890,7 +2128,7 @@
 <name>patch</name>
 <patchID>134</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>8</xcord>
@@ -1898,7 +2136,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -2016,7 +2254,7 @@
 <name>patch</name>
 <patchID>143</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>9</xcord>
@@ -2024,7 +2262,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -2086,7 +2324,7 @@
 <name>patch</name>
 <patchID>148</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>9</xcord>
@@ -2094,13 +2332,13 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>149</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>-11</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>9</xcord>
@@ -2108,7 +2346,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>-11</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -2226,7 +2464,7 @@
 <name>patch</name>
 <patchID>158</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>10</xcord>
@@ -2234,7 +2472,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -2268,7 +2506,7 @@
 <name>patch</name>
 <patchID>161</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>10</xcord>
@@ -2276,7 +2514,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -2296,7 +2534,7 @@
 <name>patch</name>
 <patchID>163</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>4</tpatch>
 <xcord>10</xcord>
@@ -2304,13 +2542,13 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>164</patchID>
 <pcalories>7388</pcalories>
-<gcalories>5</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>10</xcord>
@@ -2318,7 +2556,7 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>5</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
@@ -3136,7 +3374,7 @@
 <name>patch</name>
 <patchID>223</patchID>
 <pcalories>7388</pcalories>
-<gcalories>0</gcalories>
+<gcalories>1</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>14</xcord>
@@ -3144,13 +3382,13 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>0</adultos>
+<adultos>1</adultos>
 </xagent>
 <xagent>
 <name>patch</name>
 <patchID>224</patchID>
 <pcalories>7388</pcalories>
-<gcalories>10</gcalories>
+<gcalories>0</gcalories>
 <repo>0.020000</repo>
 <tpatch>2</tpatch>
 <xcord>14</xcord>
@@ -3158,39 +3396,15 @@
 <repows>0.020000</repows>
 <repods>0.010000</repods>
 <season>0</season>
-<adultos>10</adultos>
+<adultos>0</adultos>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
-<familia>0</familia>
+<familia>1</familia>
 <xcord>2</xcord>
-<ycord>1</ycord>
+<ycord>7</ycord>
 <targetX>2</targetX>
-<targetY>1</targetY>
-<count>4</count>
-<calorias>0</calorias>
-<adultos>4</adultos>
-<season>0</season>
-</xagent>
-<xagent>
-<name>manada_guanacos</name>
-<familia>1</familia>
-<xcord>10</xcord>
-<ycord>14</ycord>
-<targetX>10</targetX>
-<targetY>14</targetY>
-<count>9</count>
-<calorias>0</calorias>
-<adultos>5</adultos>
-<season>0</season>
-</xagent>
-<xagent>
-<name>manada_guanacos</name>
-<familia>1</familia>
-<xcord>10</xcord>
-<ycord>14</ycord>
-<targetX>10</targetX>
-<targetY>14</targetY>
+<targetY>7</targetY>
 <count>19</count>
 <calorias>0</calorias>
 <adultos>10</adultos>
@@ -3198,35 +3412,23 @@
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
-<familia>0</familia>
-<xcord>14</xcord>
-<ycord>14</ycord>
-<targetX>14</targetX>
-<targetY>14</targetY>
-<count>1</count>
+<familia>1</familia>
+<xcord>2</xcord>
+<ycord>7</ycord>
+<targetX>2</targetX>
+<targetY>7</targetY>
+<count>7</count>
 <calorias>0</calorias>
-<adultos>1</adultos>
+<adultos>4</adultos>
 <season>0</season>
 </xagent>
 <xagent>
 <name>manada_guanacos</name>
 <familia>1</familia>
-<xcord>14</xcord>
-<ycord>14</ycord>
-<targetX>14</targetX>
-<targetY>14</targetY>
-<count>15</count>
-<calorias>0</calorias>
-<adultos>8</adultos>
-<season>0</season>
-</xagent>
-<xagent>
-<name>manada_guanacos</name>
-<familia>1</familia>
-<xcord>14</xcord>
-<ycord>14</ycord>
-<targetX>14</targetX>
-<targetY>14</targetY>
+<xcord>2</xcord>
+<ycord>0</ycord>
+<targetX>2</targetX>
+<targetY>0</targetY>
 <count>19</count>
 <calorias>0</calorias>
 <adultos>10</adultos>

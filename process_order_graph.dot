@@ -12,27 +12,29 @@ digraph communication_graph {
 	patch_patchtype_start_1 -> manada_guanacos_manadaInfo_start_1;
 	layer_1 [ color="#ff0000" label="layer 1"];
 	layer_1 ->patch_patchtype_start_1;
-	manada_guanacos_moveWet_1_2 [ shape = rect label="manada_guanacos_moveWet_1_2 [-12]" ];
-	manada_guanacos_moveWet_1_2 -> layer_1;
+	manada_guanacos_move_1_2 [ shape = rect label="manada_guanacos_move_1_2 [-13]" ];
+	manada_guanacos_move_1_2 -> layer_1;
 	manada_guanacos_manada_idle_1_2 [ shape = rect label="manada_guanacos_manada_idle_1_2 [0]" ];
-	manada_guanacos_manada_idle_1_2 -> manada_guanacos_moveWet_1_2;
+	manada_guanacos_manada_idle_1_2 -> manada_guanacos_move_1_2;
 	clan_clan_Information_start_01 [ shape = rect label="clan_clan_Information_start_01 [0]" ];
 	clan_clan_Information_start_01 -> manada_guanacos_manada_idle_1_2;
 	layer_2 [ color="#ff0000" label="layer 2"];
 	layer_2 ->clan_clan_Information_start_01;
-	manada_guanacos_reproduccion_2_end [ shape = rect label="manada_guanacos_reproduccion_2_end [-11]" ];
-	manada_guanacos_reproduccion_2_end -> layer_2;
-	manada_guanacos_manada_idle2_2_end [ shape = rect label="manada_guanacos_manada_idle2_2_end [0]" ];
-	manada_guanacos_manada_idle2_2_end -> manada_guanacos_reproduccion_2_end;
-	patch_patchcalories_1_2 [ shape = rect label="patch_patchcalories_1_2 [0]" ];
-	patch_patchcalories_1_2 -> manada_guanacos_manada_idle2_2_end;
+	patch_patchcalories_1_2 [ shape = rect label="patch_patchcalories_1_2 [-4]" ];
+	patch_patchcalories_1_2 -> layer_2;
+	manada_guanacos_reproduccion_2_3 [ shape = rect label="manada_guanacos_reproduccion_2_3 [-12]" ];
+	manada_guanacos_reproduccion_2_3 -> patch_patchcalories_1_2;
+	manada_guanacos_manada_idle2_2_3 [ shape = rect label="manada_guanacos_manada_idle2_2_3 [0]" ];
+	manada_guanacos_manada_idle2_2_3 -> manada_guanacos_reproduccion_2_3;
 	layer_3 [ color="#ff0000" label="layer 3"];
-	layer_3 ->patch_patchcalories_1_2;
+	layer_3 ->manada_guanacos_manada_idle2_2_3;
+	manada_guanacos_surviveGuanacos_3_end [ shape = rect label="manada_guanacos_surviveGuanacos_3_end [0]" ];
+	manada_guanacos_surviveGuanacos_3_end -> layer_3;
 	patch_idle_patch_2_3 [ shape = rect label="patch_idle_patch_2_3 [0]" ];
-	patch_idle_patch_2_3 -> layer_3;
+	patch_idle_patch_2_3 -> manada_guanacos_surviveGuanacos_3_end;
 	patch_regenerate_2_3 [ shape = rect label="patch_regenerate_2_3 [0]" ];
 	patch_regenerate_2_3 -> patch_idle_patch_2_3;
-	clan_clan_extract_calories_01_02 [ shape = rect label="clan_clan_extract_calories_01_02 [3]" ];
+	clan_clan_extract_calories_01_02 [ shape = rect label="clan_clan_extract_calories_01_02 [4]" ];
 	clan_clan_extract_calories_01_02 -> patch_regenerate_2_3;
 	layer_4 [ color="#ff0000" label="layer 4"];
 	layer_4 ->clan_clan_extract_calories_01_02;
@@ -44,7 +46,7 @@ digraph communication_graph {
 	patch_snregenerate_3_4 -> patch_idle_patch_3_4;
 	layer_5 [ color="#ff0000" label="layer 5"];
 	layer_5 ->patch_snregenerate_3_4;
-	patch_guanacos_move_4_5 [ shape = rect label="patch_guanacos_move_4_5 [12]" ];
+	patch_guanacos_move_4_5 [ shape = rect label="patch_guanacos_move_4_5 [13]" ];
 	patch_guanacos_move_4_5 -> layer_5;
 	indv_extractcalories_01_02 [ shape = rect label="indv_extractcalories_01_02 [2]" ];
 	indv_extractcalories_01_02 -> patch_guanacos_move_4_5;
@@ -56,7 +58,7 @@ digraph communication_graph {
 	indv_idle_indv_02_03 -> patch_idle_patch_5_end;
 	indv_getolder_02_03 [ shape = rect label="indv_getolder_02_03 [0]" ];
 	indv_getolder_02_03 -> indv_idle_indv_02_03;
-	patch_reproduccion_guanacos_5_end [ shape = rect label="patch_reproduccion_guanacos_5_end [11]" ];
+	patch_reproduccion_guanacos_5_end [ shape = rect label="patch_reproduccion_guanacos_5_end [12]" ];
 	patch_reproduccion_guanacos_5_end -> indv_getolder_02_03;
 	layer_7 [ color="#ff0000" label="layer 7"];
 	layer_7 ->patch_reproduccion_guanacos_5_end;
@@ -326,20 +328,20 @@ digraph communication_graph {
 	adultospatch_message [ label = "adultospatch" color="#00ff00" shape = parallelogram];
 	adultospatch_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
 	adultospatch_message_sync_start_0 -> adultospatch_message [ color="#00ff00" label="adultospatch_5"];
-	{ rank=same; manada_guanacos_moveWet_1_2; adultospatch_message_sync_start_0; }
+	{ rank=same; manada_guanacos_move_1_2; adultospatch_message_sync_start_0; }
 	adultospatch_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
 	adultospatch_message_sync_end_0 -> adultospatch_message_sync_start_0 [ color="#00ff00" ];
 	adultospatch_message_sync_end_0 -> patch_guanacos_move_4_5 [ color="#00ff00" constraint=false ];
-	adultospatch_message_sync_start_0 -> manada_guanacos_moveWet_1_2 [ color="#00ff00", constraint=false, style=dashed ];
+	adultospatch_message_sync_start_0 -> manada_guanacos_move_1_2 [ color="#00ff00", constraint=false, style=dashed ];
 	{ rank=same; patch_guanacos_move_4_5; adultospatch_message_sync_end_0; }
 	reproduccionguanacos_message [ label = "reproduccionguanacos" color="#00ff00" shape = parallelogram];
 	reproduccionguanacos_message_sync_start_0 [ label = "start" color="#00ff00" shape = parallelogram];
 	reproduccionguanacos_message_sync_start_0 -> reproduccionguanacos_message [ color="#00ff00" label="reproduccionguanacos_6"];
-	{ rank=same; manada_guanacos_reproduccion_2_end; reproduccionguanacos_message_sync_start_0; }
+	{ rank=same; manada_guanacos_reproduccion_2_3; reproduccionguanacos_message_sync_start_0; }
 	reproduccionguanacos_message_sync_end_0 [ label = "end" color="#00ff00" shape = parallelogram];
 	reproduccionguanacos_message_sync_end_0 -> reproduccionguanacos_message_sync_start_0 [ color="#00ff00" ];
 	reproduccionguanacos_message_sync_end_0 -> patch_reproduccion_guanacos_5_end [ color="#00ff00" constraint=false ];
-	reproduccionguanacos_message_sync_start_0 -> manada_guanacos_reproduccion_2_end [ color="#00ff00", constraint=false, style=dashed ];
+	reproduccionguanacos_message_sync_start_0 -> manada_guanacos_reproduccion_2_3 [ color="#00ff00", constraint=false, style=dashed ];
 	{ rank=same; patch_reproduccion_guanacos_5_end; reproduccionguanacos_message_sync_end_0; }
 	indv_indvInformation_start_01 -> information_message [ color="#00ff00" constraint=false ];
 	indv_freeIndv_03_04 -> ancestor_message [ color="#00ff00" constraint=false ];
@@ -359,6 +361,6 @@ digraph communication_graph {
 	clan_again_marriable_10_11 -> lmarriage_message [ color="#00ff00" constraint=false ];
 	clan_dividir_clan_11_12 -> warningDivide_message [ color="#00ff00" constraint=false ];
 	patch_patchcalories_1_2 -> clangetcalories_message [ color="#00ff00" constraint=false ];
-	manada_guanacos_moveWet_1_2 -> adultospatch_message [ color="#00ff00" constraint=false ];
-	manada_guanacos_reproduccion_2_end -> reproduccionguanacos_message [ color="#00ff00" constraint=false ];
+	manada_guanacos_move_1_2 -> adultospatch_message [ color="#00ff00" constraint=false ];
+	manada_guanacos_reproduccion_2_3 -> reproduccionguanacos_message [ color="#00ff00" constraint=false ];
 }

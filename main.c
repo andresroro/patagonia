@@ -2206,8 +2206,8 @@ printf("Iterations: %i\n", iteration_total);
 		while(current_xmachine_manada_guanacos_holder)
 		{
 			FLAME_debug_count = 0;
-			/* Function: moveWet */
-			if(FLAME_condition_manada_guanacos_moveWet_1_2(current_xmachine_manada_guanacos_holder->agent)==1)
+			/* Function: move */
+			if(FLAME_condition_manada_guanacos_move_1_2(current_xmachine_manada_guanacos_holder->agent)==1)
 			{ FLAME_debug_count++; }
 			/* Function: manada_idle */
 			if(FLAME_condition_manada_guanacos_manada_idle_1_2(current_xmachine_manada_guanacos_holder->agent)==1)
@@ -2225,7 +2225,7 @@ printf("Iterations: %i\n", iteration_total);
 			current_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
 		}
 	
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start moveWet\n");
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start move\n");
 	current_xmachine_manada_guanacos_holder = manada_guanacos_1_state->agents;
 	while(current_xmachine_manada_guanacos_holder)
 	{
@@ -2239,12 +2239,12 @@ printf("Iterations: %i\n", iteration_total);
 		current_xmachine->xmachine_manada_guanacos = NULL;
 		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
 
-		if(FLAME_condition_manada_guanacos_moveWet_1_2(current_xmachine_manada_guanacos)==1)
+		if(FLAME_condition_manada_guanacos_move_1_2(current_xmachine_manada_guanacos)==1)
 		{
 
 		
 
-			i = moveWet();
+			i = move();
 
 		
 
@@ -2262,7 +2262,7 @@ printf("Iterations: %i\n", iteration_total);
 
 		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
 	}
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish moveWet\n");
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish move\n");
 
 	if(FLAME_adultospatch_message_board_write == 1)
 	{
@@ -2580,10 +2580,10 @@ if(FLAME_information_message_board_read == 0)
 		{
 			FLAME_debug_count = 0;
 			/* Function: manada_idle2 */
-			if(FLAME_condition_manada_guanacos_manada_idle2_2_end(current_xmachine_manada_guanacos_holder->agent)==1)
+			if(FLAME_condition_manada_guanacos_manada_idle2_2_3(current_xmachine_manada_guanacos_holder->agent)==1)
 			{ FLAME_debug_count++; }
 			/* Function: reproduccion */
-			if(FLAME_condition_manada_guanacos_reproduccion_2_end(current_xmachine_manada_guanacos_holder->agent)==1)
+			if(FLAME_condition_manada_guanacos_reproduccion_2_3(current_xmachine_manada_guanacos_holder->agent)==1)
 			{ FLAME_debug_count++; }
 			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
 			if(FLAME_debug_count != 1)
@@ -2598,121 +2598,6 @@ if(FLAME_information_message_board_read == 0)
 			current_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
 		}
 	
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start reproduccion\n");
-	current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
-	while(current_xmachine_manada_guanacos_holder)
-	{
-		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
-		current_xmachine_manada_guanacos = current_xmachine_manada_guanacos_holder->agent;
-		current_xmachine_manada_guanacos_next_state = manada_guanacos_end_state;
-		/* For backwards compatibility set current_xmachine */
-		current_xmachine->xmachine_indv = NULL;
-		current_xmachine->xmachine_clan = NULL;
-		current_xmachine->xmachine_patch = NULL;
-		current_xmachine->xmachine_manada_guanacos = NULL;
-		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
-
-		if(FLAME_condition_manada_guanacos_reproduccion_2_end(current_xmachine_manada_guanacos)==1)
-		{
-
-		
-
-			i = reproduccion();
-
-		
-
-			if(i == 1)
-			{
-				free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state);
-			}
-			else
-			{
-				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state, manada_guanacos_end_state);
-			}
-		}
-
-		current_xmachine_manada_guanacos = NULL;
-
-		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
-	}
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish reproduccion\n");
-
-	if(FLAME_reproduccionguanacos_message_board_write == 1)
-	{
-
-		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_reproduccionguanacos)\n");
-		rc = MB_SyncStart(b_reproduccionguanacos);
-		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_reproduccionguanacos)\n");
-		#ifdef ERRCHECK
-		if (rc != MB_SUCCESS)
-		{
-		   fprintf(stderr, "ERROR: Could not start sync of 'reproduccionguanacos' board\n");
-		   switch(rc) {
-			   case MB_ERR_INVALID:
-				   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
-				   break;
-			   case MB_ERR_LOCKED:
-				   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
-				   break;
-			   case MB_ERR_MEMALLOC:
-				   fprintf(stderr, "\t reason: out of memory\n");
-				   break;
-			   case MB_ERR_INTERNAL:
-				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
-				   break;
-			   default:
-				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
-				   break;
-		   }
-
-			
-			exit(rc);
-		}
-		#endif
-    }
-    
-
-
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start manada_idle2\n");
-	current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
-	while(current_xmachine_manada_guanacos_holder)
-	{
-		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
-		current_xmachine_manada_guanacos = current_xmachine_manada_guanacos_holder->agent;
-		current_xmachine_manada_guanacos_next_state = manada_guanacos_end_state;
-		/* For backwards compatibility set current_xmachine */
-		current_xmachine->xmachine_indv = NULL;
-		current_xmachine->xmachine_clan = NULL;
-		current_xmachine->xmachine_patch = NULL;
-		current_xmachine->xmachine_manada_guanacos = NULL;
-		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
-
-		if(FLAME_condition_manada_guanacos_manada_idle2_2_end(current_xmachine_manada_guanacos)==1)
-		{
-
-		
-
-			i = manada_idle2();
-
-		
-
-			if(i == 1)
-			{
-				free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state);
-			}
-			else
-			{
-				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state, manada_guanacos_end_state);
-			}
-		}
-
-		current_xmachine_manada_guanacos = NULL;
-
-		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
-	}
-	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish manada_idle2\n");
-
-
 	/* If mb is not read then leave sync complete until last possible moment */
 	if(FLAME_clan_info_message_board_read == 1)
 	{
@@ -2882,6 +2767,121 @@ if(FLAME_information_message_board_read == 0)
     
 
 
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start reproduccion\n");
+	current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
+	while(current_xmachine_manada_guanacos_holder)
+	{
+		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		current_xmachine_manada_guanacos = current_xmachine_manada_guanacos_holder->agent;
+		current_xmachine_manada_guanacos_next_state = manada_guanacos_3_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
+
+		if(FLAME_condition_manada_guanacos_reproduccion_2_3(current_xmachine_manada_guanacos)==1)
+		{
+
+		
+
+			i = reproduccion();
+
+		
+
+			if(i == 1)
+			{
+				free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state);
+			}
+			else
+			{
+				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state, manada_guanacos_3_state);
+			}
+		}
+
+		current_xmachine_manada_guanacos = NULL;
+
+		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish reproduccion\n");
+
+	if(FLAME_reproduccionguanacos_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_reproduccionguanacos)\n");
+		rc = MB_SyncStart(b_reproduccionguanacos);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_reproduccionguanacos)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'reproduccionguanacos' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'reproduccionguanacos' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start manada_idle2\n");
+	current_xmachine_manada_guanacos_holder = manada_guanacos_2_state->agents;
+	while(current_xmachine_manada_guanacos_holder)
+	{
+		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		current_xmachine_manada_guanacos = current_xmachine_manada_guanacos_holder->agent;
+		current_xmachine_manada_guanacos_next_state = manada_guanacos_3_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
+
+		if(FLAME_condition_manada_guanacos_manada_idle2_2_3(current_xmachine_manada_guanacos)==1)
+		{
+
+		
+
+			i = manada_idle2();
+
+		
+
+			if(i == 1)
+			{
+				free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state);
+			}
+			else
+			{
+				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_2_state, manada_guanacos_3_state);
+			}
+		}
+
+		current_xmachine_manada_guanacos = NULL;
+
+		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish manada_idle2\n");
+
+
 /* End of layer number 2 */
 
 /* Clear message boards that have finished being used
@@ -2971,6 +2971,45 @@ if(FLAME_clan_info_message_board_read == 0)
 			current_xmachine_patch_holder = current_xmachine_patch_holder->next;
 		}
 	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start surviveGuanacos\n");
+	current_xmachine_manada_guanacos_holder = manada_guanacos_3_state->agents;
+	while(current_xmachine_manada_guanacos_holder)
+	{
+		temp_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
+		current_xmachine_manada_guanacos = current_xmachine_manada_guanacos_holder->agent;
+		current_xmachine_manada_guanacos_next_state = manada_guanacos_end_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_manada_guanacos = current_xmachine_manada_guanacos;
+
+		
+
+		
+
+			i = surviveGuanacos();
+
+		
+
+			if(i == 1)
+			{
+				free_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_3_state);
+			}
+			else
+			{
+				transition_manada_guanacos_agent(current_xmachine_manada_guanacos_holder, manada_guanacos_3_state, manada_guanacos_end_state);
+			}
+		
+
+		current_xmachine_manada_guanacos = NULL;
+
+		current_xmachine_manada_guanacos_holder = temp_xmachine_manada_guanacos_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish surviveGuanacos\n");
+
+
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start idle_patch\n");
 	current_xmachine_patch_holder = patch_2_state->agents;
 	while(current_xmachine_patch_holder)
@@ -8599,6 +8638,9 @@ if(FLAME_informationDivide_message_board_read == 0)
 
 	/*printf("manada_guanacos_end_state->count = %d\n", manada_guanacos_end_state->count);*/
 	manada_guanacos_end_state->count = 0;
+
+	/*printf("manada_guanacos_3_state->count = %d\n", manada_guanacos_3_state->count);*/
+	manada_guanacos_3_state->count = 0;
 
 	/*printf("manada_guanacos_2_state->count = %d\n", manada_guanacos_2_state->count);*/
 	manada_guanacos_2_state->count = 0;

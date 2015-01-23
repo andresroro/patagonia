@@ -19,6 +19,16 @@
 				<name>cal_adulto</name>
 				<description>numero de calorias dadas por cada guanaco adulto</description>
 			</variable>
+			<variable>
+				<type>int</type>
+				<name>surviveChanceAdult</name>
+				<description>probabilidad de que un guanaco adulto sobreviva</description>
+			</variable>
+			<variable>
+				<type>int</type>
+				<name>surviveChanceChild</name>
+				<description>probabilidad que un guanaco cria sobreviva</description>
+			</variable>
 		</constants>
 		<functionFiles>
 			<file>guanacos.c</file>
@@ -132,6 +142,14 @@
 							</time>
 
 					</condition>
+					<inputs>
+						<input>
+							<messageName>clanspatch</messageName>
+							<filter>
+								<box2d>1.0</box2d>
+							</filter>
+						</input>
+					</inputs>
 					<outputs>
 						<output>
 							<messageName>adultospatch</messageName>
@@ -143,7 +161,7 @@
 					<name>reproduccion</name>
 					<description>los guanacos dentro del patch crean nuevas manadas</description>
 					<currentState>2</currentState>
-					<nextState>end</nextState>
+					<nextState>3</nextState>
 					<condition>
 						<time>
 							<period>yearly</period>
@@ -160,13 +178,19 @@
 					<name>manada_idle2</name>
 					<description>la manada no hace nada</description>
 					<currentState>2</currentState>
-					<nextState>end</nextState>
+					<nextState>3</nextState>
 					<condition>
 						<not><time>
 							<period>yearly</period>
 							<phase>0</phase>
 						</time></not>
 					</condition>
+				</function>
+				<function>
+					<name>surviveGuanacos</name>
+					<description>la manada no hace nada</description>
+					<currentState>3</currentState>
+					<nextState>end</nextState>
 				</function>
 			</functions>
 		</xagent>

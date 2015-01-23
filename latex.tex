@@ -401,11 +401,13 @@
 \midrule
 \parbox{5cm}{\url{manada_idle}} \index{\url{manada_idle}} & \parbox{10cm}{no se hace nada} \\
 \midrule
-\parbox{5cm}{\url{moveWet}} \index{\url{moveWet}} & \parbox{10cm}{Calculamos el movimiento de la manada} \\
+\parbox{5cm}{\url{move}} \index{\url{move}} & \parbox{10cm}{Calculamos el movimiento de la manada} \\
 \midrule
 \parbox{5cm}{\url{reproduccion}} \index{\url{reproduccion}} & \parbox{10cm}{los guanacos dentro del patch crean nuevas manadas} \\
 \midrule
 \parbox{5cm}{\url{manada_idle2}} \index{\url{manada_idle2}} & \parbox{10cm}{la manada no hace nada} \\
+\midrule
+\parbox{5cm}{\url{surviveGuanacos}} \index{\url{surviveGuanacos}} & \parbox{10cm}{la manada no hace nada} \\
 \end{longtable}
 \subsection{Messages}
 See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
@@ -573,6 +575,8 @@ See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
 \url{int} \url{max_manada} \index{\url{max_manada}} & \parbox{10cm}{numero maximo de guanacos por manada}\\
 \url{int} \url{max_familia} \index{\url{max_familia}} & \parbox{10cm}{numero maximo de guanacos por familia}\\
 \url{int} \url{cal_adulto} \index{\url{cal_adulto}} & \parbox{10cm}{numero de calorias dadas por cada guanaco adulto}\\
+\url{int} \url{surviveChanceAdult} \index{\url{surviveChanceAdult}} & \parbox{10cm}{probabilidad de que un guanaco adulto sobreviva}\\
+\url{int} \url{surviveChanceChild} \index{\url{surviveChanceChild}} & \parbox{10cm}{probabilidad que un guanaco cria sobreviva}\\
 \end{longtable}
 \subsection{Datatypes}
 \begin{longtable}[H!]{ll}

@@ -56,6 +56,12 @@
 /** \def CAL_ADULTO
  * \brief Provide access to environment variables in uppercase. */
 #define CAL_ADULTO (FLAME_get_environment_variable_cal_adulto())
+/** \def SURVIVECHANCEADULT
+ * \brief Provide access to environment variables in uppercase. */
+#define SURVIVECHANCEADULT (FLAME_get_environment_variable_surviveChanceAdult())
+/** \def SURVIVECHANCECHILD
+ * \brief Provide access to environment variables in uppercase. */
+#define SURVIVECHANCECHILD (FLAME_get_environment_variable_surviveChanceChild())
 /** \def ARRAY_BLOCK_SIZE
  * \brief The block size to allocate to dynamic arrays. */
 #define ARRAY_BLOCK_SIZE 10
@@ -1046,6 +1052,12 @@ int FLAME_environment_variable_max_familia;
 /** \var int cal_adulto
 * \brief A constant variable from the environment. */
 int FLAME_environment_variable_cal_adulto;
+/** \var int surviveChanceAdult
+* \brief A constant variable from the environment. */
+int FLAME_environment_variable_surviveChanceAdult;
+/** \var int surviveChanceChild
+* \brief A constant variable from the environment. */
+int FLAME_environment_variable_surviveChanceChild;
 /** \var xmachine * temp_xmachine
 * \brief Pointer to xmachine to initialise linked list. */
 xmachine * temp_xmachine;
@@ -1265,6 +1277,9 @@ xmachine_memory_manada_guanacos_state * current_xmachine_manada_guanacos_next_st
 /* Pointer to list of manada_guanacos agents in state end state */
 //xmachine_memory_manada_guanacos * temp_xmachine_manada_guanacos_end;
 xmachine_memory_manada_guanacos_state * manada_guanacos_end_state;
+/* Pointer to list of manada_guanacos agents in state 3 state */
+//xmachine_memory_manada_guanacos * temp_xmachine_manada_guanacos_3;
+xmachine_memory_manada_guanacos_state * manada_guanacos_3_state;
 /* Pointer to list of manada_guanacos agents in state 2 state */
 //xmachine_memory_manada_guanacos * temp_xmachine_manada_guanacos_2;
 xmachine_memory_manada_guanacos_state * manada_guanacos_2_state;
@@ -1882,6 +1897,8 @@ int FLAME_get_environment_variable_lang_threshold();
 int FLAME_get_environment_variable_max_manada();
 int FLAME_get_environment_variable_max_familia();
 int FLAME_get_environment_variable_cal_adulto();
+int FLAME_get_environment_variable_surviveChanceAdult();
+int FLAME_get_environment_variable_surviveChanceChild();
 
 
 /* rules.c */
@@ -1991,10 +2008,11 @@ int seasonSwitch(void);
 int FLAME_condition_manada_guanacos_seasonSwitch_start_1(xmachine_memory_manada_guanacos *a);
 int manada_idle(void);
 int FLAME_condition_manada_guanacos_manada_idle_1_2(xmachine_memory_manada_guanacos *a);
-int moveWet(void);
-int FLAME_condition_manada_guanacos_moveWet_1_2(xmachine_memory_manada_guanacos *a);
+int move(void);
+int FLAME_condition_manada_guanacos_move_1_2(xmachine_memory_manada_guanacos *a);
 int reproduccion(void);
-int FLAME_condition_manada_guanacos_reproduccion_2_end(xmachine_memory_manada_guanacos *a);
+int FLAME_condition_manada_guanacos_reproduccion_2_3(xmachine_memory_manada_guanacos *a);
 int manada_idle2(void);
-int FLAME_condition_manada_guanacos_manada_idle2_2_end(xmachine_memory_manada_guanacos *a);
+int FLAME_condition_manada_guanacos_manada_idle2_2_3(xmachine_memory_manada_guanacos *a);
+int surviveGuanacos(void);
 #endif
