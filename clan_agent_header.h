@@ -42,3 +42,9 @@
 /** \def LINGUISTICS
  * \brief Direct access to linguistics of clan agent memory variable. */
 #define LINGUISTICS (current_xmachine_clan->linguistics)
+/** \def TARGETX
+ * \brief Direct access to targetX of clan agent memory variable. */
+#define TARGETX (current_xmachine_clan->targetX)
+/** \def TARGETY
+ * \brief Direct access to targetY of clan agent memory variable. */
+#define TARGETY (current_xmachine_clan->targetY)

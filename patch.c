@@ -216,3 +216,27 @@ int idle_patch()
 	return 0;
 }
 
+int infoGuanacosPatch(){
+
+	add_guanacospatch_message(get_x(), get_y(), get_adultos(), get_season());
+
+	return 0;
+}
+
+int clans_move(){
+
+	int clanes = get_pclans();
+	START_CLANMOVE_MESSAGE_LOOP
+		if(clanmove_message->sentido == 1){
+			clanes++;
+		}
+		if(clanmove_message->sentido == 0){
+			clanes--;
+		}
+	FINISH_CLANMOVE_MESSAGE_LOOP
+
+	if(clanes < 0) clanes = 0;
+	set_pclans(clanes);
+
+	return 0;
+}

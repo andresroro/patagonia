@@ -3,6 +3,12 @@
 #include "header.h"
 #include "clan_agent_header.h"
 
+struct guanacosAround {
+	int x;
+	int y;
+	int guanacos;
+};
+
 
 /* posting individual information*/
 int clan_Information()
@@ -449,4 +455,185 @@ int vocabulary_review ()
 	return 0;
 }
 //-----------------------------------------------------------
+int move_clan()
+{
+	int season, targetX, targetY, nextX, nextY, max, i, j;
+	struct guanacosAround guanacos[9] = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1},{-1,-1,-1},{-1,-1,-1},{-1,-1,-1},{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+	nextX = get_x();
+	nextY = get_y();
+	targetX = get_targetX();
+	targetY = get_targetY();
 
+	add_clanmove_message(get_x(), get_y(), 0);
+
+	START_GUANACOSPATCH_MESSAGE_LOOP
+		if(guanacospatch_message->x == get_x() -1){
+			if(guanacospatch_message->y == get_y() -1){
+				guanacos[0].x = guanacospatch_message->x;
+				guanacos[0].y = guanacospatch_message->y;
+				guanacos[0].guanacos = guanacospatch_message->adultos;
+			}if(guanacospatch_message->y == get_y()){
+				guanacos[3].x = guanacospatch_message->x;
+				guanacos[3].y = guanacospatch_message->y;
+				guanacos[3].guanacos = guanacospatch_message->adultos;
+			}if(guanacospatch_message->y == get_y() +1){
+				guanacos[6].x = guanacospatch_message->x;
+				guanacos[6].y = guanacospatch_message->y;
+				guanacos[6].guanacos = guanacospatch_message->adultos;
+			}
+		}
+		if(guanacospatch_message->x == get_x()){
+			if(guanacospatch_message->y == get_y() -1){
+				guanacos[1].x = guanacospatch_message->x;
+				guanacos[1].y = guanacospatch_message->y;
+				guanacos[1].guanacos = guanacospatch_message->adultos;
+			}if(guanacospatch_message->y == get_y()){
+				guanacos[4].x = guanacospatch_message->x;
+				guanacos[4].y = guanacospatch_message->y;
+				guanacos[4].guanacos = guanacospatch_message->adultos;
+			}if(guanacospatch_message->y == get_y() +1){
+				guanacos[7].x = guanacospatch_message->x;
+				guanacos[7].y = guanacospatch_message->y;
+				guanacos[7].guanacos = guanacospatch_message->adultos;
+			}
+		}
+		if(guanacospatch_message->x == get_x() +1){
+			if(guanacospatch_message->y == get_y() -1){
+				guanacos[2].x = guanacospatch_message->x;
+				guanacos[2].y = guanacospatch_message->y;
+				guanacos[2].guanacos = guanacospatch_message->adultos;
+			}if(guanacospatch_message->y == get_y()){
+				guanacos[5].x = guanacospatch_message->x;
+				guanacos[5].y = guanacospatch_message->y;
+				guanacos[5].guanacos = guanacospatch_message->adultos;
+			}if(guanacospatch_message->y == get_y() +1){
+				guanacos[8].x = guanacospatch_message->x;
+				guanacos[8].y = guanacospatch_message->y;
+				guanacos[8].guanacos = guanacospatch_message->adultos;
+			}
+		}
+		season = guanacospatch_message->season;
+
+	FINISH_GUANACOSPATCH_MESSAGE_LOOP
+
+	max = 0;
+	j = 0;
+	for(i = 0; i < 9; i++){
+		if(guanacos[i].guanacos > max){
+			j = i;
+			max = guanacos[i].guanacos;	
+		}
+	}
+	if(max > 0){
+		targetX = guanacos[j].x;
+		targetY = guanacos[j].y;
+		nextX = targetX;
+		nextY = targetY;
+	}
+	else{
+		if(leviflightclan(get_x(), get_y(), &targetX, &targetY)){
+			//no estamos en la posicion, calcular nueva posicion segun target
+			if(targetX < get_x()){
+				nextX = get_x()-1;
+			}else if(targetX > get_x()){
+				nextX = get_x()+1;
+			}
+			if(targetY < get_y()){
+				nextY = get_y()-1;
+			}else if(targetY > get_y()){
+				nextY = get_y()+1;
+			}
+		}else{ //movimiento corto
+			if(targetY < 0){
+				targetY = 0;
+			}
+			else if(targetY > GRIDSIZE-1){
+				targetY = GRIDSIZE-1;
+			}
+			if(targetX < 1){
+				targetX = 1;
+			}
+			else if(targetX > GRIDSIZE-1){
+				targetX = GRIDSIZE-1;
+			}
+			nextX = targetX;
+			nextY = targetY;
+			//movernos a la posicion target
+		}
+		if (season==1){
+			if(get_y() <= ((GRIDSIZE-1)/2)){
+				i = get_y();
+			}
+			else i = (GRIDSIZE-1) - get_y();
+			j = (GRIDSIZE-1) - get_x();
+			if(i <= j){
+				if(get_y() <= ((GRIDSIZE-1)/2)){
+				targetY = 0;
+				}
+				else targetY = GRIDSIZE-1;
+			}
+			else targetX = GRIDSIZE-1;
+		}
+	}
+	set_targetX(targetX);
+	set_targetY(targetY);
+	set_y(nextY);
+	set_x(nextX);
+
+
+	add_clanmove_message(get_x(), get_y(), 1);
+	return 0;
+}
+
+int leviflightclan(int posX, int posY, int *targetX, int *targetY){
+	int r;
+	//si estamos en nuestro target recalcular nuevo target
+	if(posX == *targetX && posY == *targetY){
+		r = rand() % 100;
+		//movimiento largo, aleatorio por todo el mapa
+		if(r >= 90){
+			r = rand()%GRIDSIZE;
+			if(r < 1) r = 1; 
+			*targetX = r;
+			r = rand()%GRIDSIZE;
+			*targetY = r;
+			return 1;
+		}
+		else{//movimiento corto
+			r = rand()%3;
+			if(r == 0){
+				if(posX > 1){
+					*targetX = posX-1;
+				}
+			}
+			else if(r == 1){
+				*targetX = posX+1;
+ 			}else{ //si no cambiamos el targetX cambiamos si o si el targetY
+ 				r = rand()%2;
+ 				*targetX = posX;
+ 				if(r == 0){
+ 					*targetY = posY-1;
+ 					return 0;
+ 				}
+ 				else{
+ 					*targetY = posY+1;
+ 					return 0;
+ 				}
+ 			}
+ 			r = rand()%3;
+ 			if(r == 0){
+ 				*targetY = posY-1;
+ 				return 0;
+ 			}
+ 			else if(r == 1){
+ 				*targetY = posY+1;
+ 				return 0;
+ 			}
+ 			else{
+ 				*targetY = posY;
+ 				return 0;
+ 			}
+		}
+	}
+	else return 1;
+}

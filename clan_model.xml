@@ -30,6 +30,13 @@
 		<description>umbral de coincidencia entre dos genes linguisticos</description>
 	    </variable>
 	</constants>
+    <timeUnits>
+        <timeUnit>
+            <name>clan_dias_por_patch</name>
+            <unit>iteration</unit>
+            <period>45</period>
+        </timeUnit>
+    </timeUnits>
 	<dataTypes>
 		<dataType>
 			<name>members_needs</name>
@@ -171,7 +178,19 @@
 		    <type>int</type>
 		    <name>linguistics[100]</name>
 		    <description> muestra de la linguistica del clan </description>
-		</variable>	
+		</variable>
+        <!-- vars for move -->
+        <variable>
+            <type>int</type>
+            <name>targetX</name>
+            <description>coordinate X for the next movement</description>
+        </variable>
+        <variable>
+            <type>int</type>
+            <name>targetY</name>
+            <description>coordinate Y for the next movement</description>
+        </variable>
+        <!-- end of move vars-->	
             </memory>
             <functions>
                 <function>
@@ -222,12 +241,50 @@
 			</output>
 		    </outputs>
 		</function>
+<!-- new move *********************************************************** -->
+        <function>
+            <name>move_clan</name>
+            <description>clan moves</description>
+            <currentState>03</currentState>
+            <nextState>04</nextState>
+            <condition>
+                <time>
+                    <period>clan_dias_por_patch</period>
+                    <phase>0</phase>
+                </time>
+            </condition>
+            <inputs>
+                <input>
+                    <messageName>guanacospatch</messageName>
+                    <filter>
+                        <box2d>2.0</box2d>
+                    </filter>
+                </input>
+            </inputs>
+            <outputs>
+                <output>
+                    <messageName>clanmove</messageName>
+                </output>
+            </outputs>
+        </function>
+        <function>
+            <name>idle</name>
+            <description>clan idle</description>
+            <currentState>03</currentState>
+            <nextState>04</nextState>
+            <condition><not>
+                <time>
+                    <period>clan_dias_por_patch</period>
+                    <phase>0</phase>
+                </time>
+            </not></condition>
+        </function>
 <!-- new **************************************************************** -->
 		<function>
 		    <name>marriable_indv</name>
 		    <description>informacion de los individuos que estan en edad de casarse</description>
-		    <currentState>03</currentState>
-		    <nextState>04</nextState>
+		    <currentState>04</currentState>
+		    <nextState>05</nextState>
 		    <input>
 		    	<messageName>ancestor</messageName>
 			<filter>
@@ -240,8 +297,8 @@
 		<function>
 		    <name>send_girls</name>
 		    <description>intencambio de mujeres entre clanes</description>
-		    <currentState>04</currentState>
-		    <nextState>05</nextState>
+		    <currentState>05</currentState>
+		    <nextState>06</nextState>
 		    <output>
 		    	<messageName>freeGirls</messageName>
 		    </output>
@@ -249,8 +306,8 @@
 		<function>
 		    <name>match</name>
 		    <description>recivo de mujeres casaderas de otros clanes</description>
-		    <currentState>05</currentState>
-		    <nextState>06</nextState>
+		    <currentState>06</currentState>
+		    <nextState>07</nextState>
 		    <input>
 		    	<messageName>freeGirls</messageName> 
 			<filter>
@@ -264,8 +321,8 @@
 		<function>
 		    <name>aceptar_prop</name>
 		    <description>comprobacion de si se aceptan las propuestas de emparejamiento</description>
-		    <currentState>06</currentState>
-		    <nextState>07</nextState>
+		    <currentState>07</currentState>
+		    <nextState>08</nextState>
 		    <input>
 		    	<messageName>propuesta</messageName> 
 			<filter>
@@ -283,8 +340,8 @@
 		<function>
 		    <name>recive_conf</name>
 		    <description>recibe confirmacion de la propuesta y envia la informacion a los individuos</description>
-		    <currentState>07</currentState>
-		    <nextState>08</nextState>
+		    <currentState>08</currentState>
+		    <nextState>09</nextState>
 		    <input>
 		    	<messageName>confirProp</messageName> 
 			<filter>
@@ -302,8 +359,8 @@
 		<function>
 		    <name>repartir_id</name>
 		    <description>obtencion de un nuevo id</description>
-		    <currentState>08</currentState>
-		    <nextState>09</nextState>
+		    <currentState>09</currentState>
+		    <nextState>10</nextState>
 		    <input>
 		    	<messageName>peticionID</messageName> 
 			<filter>
@@ -321,8 +378,8 @@
 		<function>
 		    <name>new_leader</name>
 		    <description>Some individuals may die, maybe the leader, so after this step all survivors send a message to the clan in order to decide if there should be a new leader... it can be because the leader has died, but also because the leader is too old and a new male becomes the leader</description>
-		    <currentState>09</currentState>
-		    <nextState>10</nextState>
+		    <currentState>10</currentState>
+		    <nextState>11</nextState>
 		    <inputs>
 			<input>
 			    <messageName>leader</messageName>
@@ -337,8 +394,8 @@
 		<function>
 		    <name>again_marriable</name>
 		    <description>recibe peticiones de las mujeres que su marido a muerto y las intenta emparejar con un hombre del clan</description>
-		    <currentState>10</currentState>
-		    <nextState>11</nextState>
+		    <currentState>11</currentState>
+		    <nextState>12</nextState>
 		    <inputs>
 			<input>
 			    <messageName>widow</messageName>
@@ -356,8 +413,8 @@
 		<function>
 		    <name>dividir_clan</name>
 		    <description>Al superar la capacidad maxima de indv, el clan se divide</description>
-		    <currentState>11</currentState>
-		    <nextState>12</nextState>
+		    <currentState>12</currentState>
+		    <nextState>13</nextState>
 		    <condition>
 			<lhs><value>a.members</value></lhs>
 			<op>GEQ</op>
@@ -370,8 +427,8 @@
 		<function>
 		    <name>idle</name>
 		    <description></description>
-		    <currentState>11</currentState>
-	   	    <nextState>13</nextState>
+		    <currentState>12</currentState>
+	   	    <nextState>14</nextState>
 		    <condition>
 			<not>
 			<lhs><value>a.members</value></lhs>
@@ -383,8 +440,8 @@
 		<function>
 		    <name>creacion_clan</name>
 		    <description>selecciona los individuos y crea el nuevo clan</description>
-		    <currentState>12</currentState>
-		    <nextState>13</nextState>
+		    <currentState>13</currentState>
+		    <nextState>14</nextState>
 		    <input>
 			<messageName>informationDivide</messageName>
 			<filter>
@@ -404,7 +461,7 @@
 		<function>
 		    <name>vocabulary_review</name>
 		    <description>modifica aleatoriamente el gen linguistico del clan</description>
-		    <currentState>13</currentState>
+		    <currentState>14</currentState>
 		    <nextState>end</nextState>
 		    <condition>
 			<time>
@@ -416,7 +473,7 @@
 		<function>
 		    <name>idle</name>
 		    <description></description>
-		    <currentState>13</currentState>
+		    <currentState>14</currentState>
 		    <nextState>end</nextState>
 		    <condition>
 			<not>
@@ -704,6 +761,29 @@
             </variables>
         </message>-->
 <!-- new ******************************************************** -->
+<!--new move message ******************************************** -->
+    <message>
+        <name>clanmove</name>
+        <description>movement of clan</description>
+        <variables>
+            <variable>
+                <type>int</type>
+                <name>x</name>
+                <description>coordinate x where clan goes</description>
+            </variable>
+            <variable>
+                <type>int</type>
+                <name>y</name>
+                <description>coordinate y where clan goes</description>
+            </variable>
+            <variable>
+                <type>int</type>
+                <name>sentido</name>
+                <description>if clan goes(1) or leaves(0) </description>
+            </variable>
+        </variables>
+    </message>
+<!-- ************************************************************ -->
     </messages>
 </xmodel>
 

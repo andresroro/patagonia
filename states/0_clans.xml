@@ -150,6 +150,8 @@
                 <leaderID>0</leaderID>
                 <x>1</x>
                 <y>0</y>
+                <targetX>1</targetX>
+                <targetY>0</targetY>
 		<indexID>3</indexID>
 		<members>4</members>
 	</xagent>

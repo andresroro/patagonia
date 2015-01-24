@@ -72,6 +72,7 @@ digraph state_graph {
 	indv_01 [label = "01"]
 	indv_start [label = "start"]
 	clan_end [label = "end"]
+	clan_14 [label = "14"]
 	clan_13 [label = "13"]
 	clan_12 [label = "12"]
 	clan_11 [label = "11"]
@@ -87,6 +88,8 @@ digraph state_graph {
 	clan_01 [label = "01"]
 	clan_start [label = "start"]
 	patch_end [label = "end"]
+	patch_7 [label = "7"]
+	patch_6 [label = "6"]
 	patch_5 [label = "5"]
 	patch_4 [label = "4"]
 	patch_3 [label = "3"]
@@ -123,29 +126,34 @@ digraph state_graph {
 	clan_clan_Information_start_01 [label = "clan_Information", shape = box,style=filled,color=aquamarine];
 	clan_clan_extract_calories_01_02 [label = "clan_extract_calories", shape = box,style=filled,color=aquamarine];
 	clan_distribute_calories_02_03 [label = "distribute_calories", shape = box,style=filled,color=aquamarine];
-	clan_marriable_indv_03_04 [label = "marriable_indv", shape = box,style=filled,color=aquamarine];
-	clan_send_girls_04_05 [label = "send_girls", shape = box,style=filled,color=aquamarine];
-	clan_match_05_06 [label = "match", shape = box,style=filled,color=aquamarine];
-	clan_aceptar_prop_06_07 [label = "aceptar_prop", shape = box,style=filled,color=aquamarine];
-	clan_recive_conf_07_08 [label = "recive_conf", shape = box,style=filled,color=aquamarine];
-	clan_repartir_id_08_09 [label = "repartir_id", shape = box,style=filled,color=aquamarine];
-	clan_new_leader_09_10 [label = "new_leader", shape = box,style=filled,color=aquamarine];
-	clan_again_marriable_10_11 [label = "again_marriable", shape = box,style=filled,color=aquamarine];
-	clan_dividir_clan_11_12 [label = "dividir_clan", shape = box,style=filled,color=aquamarine];
-	clan_idle_11_13 [label = "idle", shape = box,style=filled,color=aquamarine];
-	clan_creacion_clan_12_13 [label = "creacion_clan", shape = box,style=filled,color=aquamarine];
-	clan_vocabulary_review_13_end [label = "vocabulary_review", shape = box,style=filled,color=aquamarine];
-	clan_idle_13_end [label = "idle", shape = box,style=filled,color=aquamarine];
+	clan_move_clan_03_04 [label = "move_clan", shape = box,style=filled,color=aquamarine];
+	clan_idle_03_04 [label = "idle", shape = box,style=filled,color=aquamarine];
+	clan_marriable_indv_04_05 [label = "marriable_indv", shape = box,style=filled,color=aquamarine];
+	clan_send_girls_05_06 [label = "send_girls", shape = box,style=filled,color=aquamarine];
+	clan_match_06_07 [label = "match", shape = box,style=filled,color=aquamarine];
+	clan_aceptar_prop_07_08 [label = "aceptar_prop", shape = box,style=filled,color=aquamarine];
+	clan_recive_conf_08_09 [label = "recive_conf", shape = box,style=filled,color=aquamarine];
+	clan_repartir_id_09_10 [label = "repartir_id", shape = box,style=filled,color=aquamarine];
+	clan_new_leader_10_11 [label = "new_leader", shape = box,style=filled,color=aquamarine];
+	clan_again_marriable_11_12 [label = "again_marriable", shape = box,style=filled,color=aquamarine];
+	clan_dividir_clan_12_13 [label = "dividir_clan", shape = box,style=filled,color=aquamarine];
+	clan_idle_12_14 [label = "idle", shape = box,style=filled,color=aquamarine];
+	clan_creacion_clan_13_14 [label = "creacion_clan", shape = box,style=filled,color=aquamarine];
+	clan_vocabulary_review_14_end [label = "vocabulary_review", shape = box,style=filled,color=aquamarine];
+	clan_idle_14_end [label = "idle", shape = box,style=filled,color=aquamarine];
 	patch_patchtype_start_1 [label = "patchtype", shape = box,style=filled,color=azure3];
 	patch_infoClansInPatch_start_1 [label = "infoClansInPatch", shape = box,style=filled,color=azure3];
-	patch_patchcalories_1_2 [label = "patchcalories", shape = box,style=filled,color=azure3];
-	patch_regenerate_2_3 [label = "regenerate", shape = box,style=filled,color=azure3];
-	patch_idle_patch_2_3 [label = "idle_patch", shape = box,style=filled,color=azure3];
-	patch_snregenerate_3_4 [label = "snregenerate", shape = box,style=filled,color=azure3];
+	patch_idle_patch_1_2 [label = "idle_patch", shape = box,style=filled,color=azure3];
+	patch_infoGuanacosPatch_1_2 [label = "infoGuanacosPatch", shape = box,style=filled,color=azure3];
+	patch_patchcalories_2_3 [label = "patchcalories", shape = box,style=filled,color=azure3];
+	patch_regenerate_3_4 [label = "regenerate", shape = box,style=filled,color=azure3];
 	patch_idle_patch_3_4 [label = "idle_patch", shape = box,style=filled,color=azure3];
-	patch_guanacos_move_4_5 [label = "guanacos_move", shape = box,style=filled,color=azure3];
-	patch_reproduccion_guanacos_5_end [label = "reproduccion_guanacos", shape = box,style=filled,color=azure3];
-	patch_idle_patch_5_end [label = "idle_patch", shape = box,style=filled,color=azure3];
+	patch_snregenerate_4_5 [label = "snregenerate", shape = box,style=filled,color=azure3];
+	patch_idle_patch_4_5 [label = "idle_patch", shape = box,style=filled,color=azure3];
+	patch_guanacos_move_5_6 [label = "guanacos_move", shape = box,style=filled,color=azure3];
+	patch_clans_move_6_7 [label = "clans_move", shape = box,style=filled,color=azure3];
+	patch_reproduccion_guanacos_7_end [label = "reproduccion_guanacos", shape = box,style=filled,color=azure3];
+	patch_idle_patch_7_end [label = "idle_patch", shape = box,style=filled,color=azure3];
 	manada_guanacos_manadaInfo_start_1 [label = "manadaInfo", shape = box,style=filled,color=brown1];
 	manada_guanacos_seasonSwitch_start_1 [label = "seasonSwitch", shape = box,style=filled,color=brown1];
 	manada_guanacos_manada_idle_1_2 [label = "manada_idle", shape = box,style=filled,color=brown1];
@@ -205,52 +213,62 @@ digraph state_graph {
 	clan_clan_extract_calories_01_02 -> clan_02;
 	clan_02 -> clan_distribute_calories_02_03;
 	clan_distribute_calories_02_03 -> clan_03;
-	clan_03 -> clan_marriable_indv_03_04;
-	clan_marriable_indv_03_04 -> clan_04;
-	clan_04 -> clan_send_girls_04_05;
-	clan_send_girls_04_05 -> clan_05;
-	clan_05 -> clan_match_05_06;
-	clan_match_05_06 -> clan_06;
-	clan_06 -> clan_aceptar_prop_06_07;
-	clan_aceptar_prop_06_07 -> clan_07;
-	clan_07 -> clan_recive_conf_07_08;
-	clan_recive_conf_07_08 -> clan_08;
-	clan_08 -> clan_repartir_id_08_09;
-	clan_repartir_id_08_09 -> clan_09;
-	clan_09 -> clan_new_leader_09_10;
-	clan_new_leader_09_10 -> clan_10;
-	clan_10 -> clan_again_marriable_10_11;
-	clan_again_marriable_10_11 -> clan_11;
-	clan_11 -> clan_dividir_clan_11_12 [ label = "a.members GEQ 10"];
-	clan_dividir_clan_11_12 -> clan_12;
-	clan_11 -> clan_idle_11_13 [ label = "not ( a.members GEQ 10 )"];
-	clan_idle_11_13 -> clan_13;
-	clan_12 -> clan_creacion_clan_12_13;
-	clan_creacion_clan_12_13 -> clan_13;
-	clan_13 -> clan_vocabulary_review_13_end [ label = "Periodicity: yearly\nPhase: 348"];
-	clan_vocabulary_review_13_end -> clan_end;
-	clan_13 -> clan_idle_13_end [ label = "not ( Periodicity: yearly\nPhase: 348 )"];
-	clan_idle_13_end -> clan_end;
+	clan_03 -> clan_move_clan_03_04 [ label = "Periodicity: clan_dias_por_patch\nPhase: 0"];
+	clan_move_clan_03_04 -> clan_04;
+	clan_03 -> clan_idle_03_04 [ label = "not ( Periodicity: clan_dias_por_patch\nPhase: 0 )"];
+	clan_idle_03_04 -> clan_04;
+	clan_04 -> clan_marriable_indv_04_05;
+	clan_marriable_indv_04_05 -> clan_05;
+	clan_05 -> clan_send_girls_05_06;
+	clan_send_girls_05_06 -> clan_06;
+	clan_06 -> clan_match_06_07;
+	clan_match_06_07 -> clan_07;
+	clan_07 -> clan_aceptar_prop_07_08;
+	clan_aceptar_prop_07_08 -> clan_08;
+	clan_08 -> clan_recive_conf_08_09;
+	clan_recive_conf_08_09 -> clan_09;
+	clan_09 -> clan_repartir_id_09_10;
+	clan_repartir_id_09_10 -> clan_10;
+	clan_10 -> clan_new_leader_10_11;
+	clan_new_leader_10_11 -> clan_11;
+	clan_11 -> clan_again_marriable_11_12;
+	clan_again_marriable_11_12 -> clan_12;
+	clan_12 -> clan_dividir_clan_12_13 [ label = "a.members GEQ 10"];
+	clan_dividir_clan_12_13 -> clan_13;
+	clan_12 -> clan_idle_12_14 [ label = "not ( a.members GEQ 10 )"];
+	clan_idle_12_14 -> clan_14;
+	clan_13 -> clan_creacion_clan_13_14;
+	clan_creacion_clan_13_14 -> clan_14;
+	clan_14 -> clan_vocabulary_review_14_end [ label = "Periodicity: yearly\nPhase: 348"];
+	clan_vocabulary_review_14_end -> clan_end;
+	clan_14 -> clan_idle_14_end [ label = "not ( Periodicity: yearly\nPhase: 348 )"];
+	clan_idle_14_end -> clan_end;
 	patch_start -> patch_patchtype_start_1 [ label = "not ( Periodicity: dias_por_patch\nPhase: 0 )"];
 	patch_patchtype_start_1 -> patch_1;
 	patch_start -> patch_infoClansInPatch_start_1 [ label = "Periodicity: dias_por_patch\nPhase: 0"];
 	patch_infoClansInPatch_start_1 -> patch_1;
-	patch_1 -> patch_patchcalories_1_2;
-	patch_patchcalories_1_2 -> patch_2;
-	patch_2 -> patch_regenerate_2_3 [ label = "Periodicity: weekly\nPhase: 6"];
-	patch_regenerate_2_3 -> patch_3;
-	patch_2 -> patch_idle_patch_2_3 [ label = "not ( Periodicity: weekly\nPhase: 6 )"];
-	patch_idle_patch_2_3 -> patch_3;
-	patch_3 -> patch_snregenerate_3_4 [ label = "Periodicity: season\nPhase: 0"];
-	patch_snregenerate_3_4 -> patch_4;
-	patch_3 -> patch_idle_patch_3_4 [ label = "not ( Periodicity: season\nPhase: 0 )"];
+	patch_1 -> patch_idle_patch_1_2 [ label = "not ( Periodicity: clan_dias_por_patch\nPhase: 0 )"];
+	patch_idle_patch_1_2 -> patch_2;
+	patch_1 -> patch_infoGuanacosPatch_1_2 [ label = "Periodicity: clan_dias_por_patch\nPhase: 0"];
+	patch_infoGuanacosPatch_1_2 -> patch_2;
+	patch_2 -> patch_patchcalories_2_3;
+	patch_patchcalories_2_3 -> patch_3;
+	patch_3 -> patch_regenerate_3_4 [ label = "Periodicity: weekly\nPhase: 6"];
+	patch_regenerate_3_4 -> patch_4;
+	patch_3 -> patch_idle_patch_3_4 [ label = "not ( Periodicity: weekly\nPhase: 6 )"];
 	patch_idle_patch_3_4 -> patch_4;
-	patch_4 -> patch_guanacos_move_4_5;
-	patch_guanacos_move_4_5 -> patch_5;
-	patch_5 -> patch_reproduccion_guanacos_5_end [ label = "Periodicity: yearly\nPhase: 0"];
-	patch_reproduccion_guanacos_5_end -> patch_end;
-	patch_5 -> patch_idle_patch_5_end [ label = "not ( Periodicity: yearly\nPhase: 0 )"];
-	patch_idle_patch_5_end -> patch_end;
+	patch_4 -> patch_snregenerate_4_5 [ label = "Periodicity: season\nPhase: 0"];
+	patch_snregenerate_4_5 -> patch_5;
+	patch_4 -> patch_idle_patch_4_5 [ label = "not ( Periodicity: season\nPhase: 0 )"];
+	patch_idle_patch_4_5 -> patch_5;
+	patch_5 -> patch_guanacos_move_5_6;
+	patch_guanacos_move_5_6 -> patch_6;
+	patch_6 -> patch_clans_move_6_7;
+	patch_clans_move_6_7 -> patch_7;
+	patch_7 -> patch_reproduccion_guanacos_7_end [ label = "Periodicity: yearly\nPhase: 0"];
+	patch_reproduccion_guanacos_7_end -> patch_end;
+	patch_7 -> patch_idle_patch_7_end [ label = "not ( Periodicity: yearly\nPhase: 0 )"];
+	patch_idle_patch_7_end -> patch_end;
 	manada_guanacos_start -> manada_guanacos_manadaInfo_start_1 [ label = "not ( Periodicity: season\nPhase: 0 )"];
 	manada_guanacos_manadaInfo_start_1 -> manada_guanacos_1;
 	manada_guanacos_start -> manada_guanacos_seasonSwitch_start_1 [ label = "Periodicity: season\nPhase: 0"];
@@ -268,52 +286,54 @@ digraph state_graph {
 	
 	/* Communications */
 	patch_infoClansInPatch_start_1 -> manada_guanacos_move_1_2 [ label = "clanspatch" color="#00ff00" constraint=false];
-	manada_guanacos_reproduccion_2_3 -> patch_reproduccion_guanacos_5_end [ label = "reproduccionguanacos" color="#00ff00" constraint=false];
-	manada_guanacos_move_1_2 -> patch_guanacos_move_4_5 [ label = "adultospatch" color="#00ff00" constraint=false];
-	clan_clan_Information_start_01 -> patch_patchcalories_1_2 [ label = "clan_info" color="#00ff00" constraint=false];
-	indv_dividir_info_13_end -> clan_creacion_clan_12_13 [ label = "informationDivide" color="#00ff00" constraint=false];
-	indv_husband_request_11_12 -> clan_again_marriable_10_11 [ label = "widow" color="#00ff00" constraint=false];
-	indv_survive_09_10 -> clan_new_leader_09_10 [ label = "leader" color="#00ff00" constraint=false];
-	indv_child_inf_07_08 -> clan_repartir_id_08_09 [ label = "peticionID" color="#00ff00" constraint=false];
-	clan_aceptar_prop_06_07 -> clan_recive_conf_07_08 [ label = "confirProp" color="#00ff00" constraint=false];
-	clan_match_05_06 -> clan_aceptar_prop_06_07 [ label = "propuesta" color="#00ff00" constraint=false];
-	clan_send_girls_04_05 -> clan_match_05_06 [ label = "freeGirls" color="#00ff00" constraint=false];
-	indv_freeIndv_03_04 -> clan_marriable_indv_03_04 [ label = "ancestor" color="#00ff00" constraint=false];
-	patch_patchcalories_1_2 -> clan_clan_extract_calories_01_02 [ label = "clangetcalories" color="#00ff00" constraint=false];
+	manada_guanacos_reproduccion_2_3 -> patch_reproduccion_guanacos_7_end [ label = "reproduccionguanacos" color="#00ff00" constraint=false];
+	clan_move_clan_03_04 -> patch_clans_move_6_7 [ label = "clanmove" color="#00ff00" constraint=false];
+	manada_guanacos_move_1_2 -> patch_guanacos_move_5_6 [ label = "adultospatch" color="#00ff00" constraint=false];
+	clan_clan_Information_start_01 -> patch_patchcalories_2_3 [ label = "clan_info" color="#00ff00" constraint=false];
+	indv_dividir_info_13_end -> clan_creacion_clan_13_14 [ label = "informationDivide" color="#00ff00" constraint=false];
+	indv_husband_request_11_12 -> clan_again_marriable_11_12 [ label = "widow" color="#00ff00" constraint=false];
+	indv_survive_09_10 -> clan_new_leader_10_11 [ label = "leader" color="#00ff00" constraint=false];
+	indv_child_inf_07_08 -> clan_repartir_id_09_10 [ label = "peticionID" color="#00ff00" constraint=false];
+	clan_aceptar_prop_07_08 -> clan_recive_conf_08_09 [ label = "confirProp" color="#00ff00" constraint=false];
+	clan_match_06_07 -> clan_aceptar_prop_07_08 [ label = "propuesta" color="#00ff00" constraint=false];
+	clan_send_girls_05_06 -> clan_match_06_07 [ label = "freeGirls" color="#00ff00" constraint=false];
+	indv_freeIndv_03_04 -> clan_marriable_indv_04_05 [ label = "ancestor" color="#00ff00" constraint=false];
+	patch_infoGuanacosPatch_1_2 -> clan_move_clan_03_04 [ label = "guanacospatch" color="#00ff00" constraint=false];
+	patch_patchcalories_2_3 -> clan_clan_extract_calories_01_02 [ label = "clangetcalories" color="#00ff00" constraint=false];
 	indv_indvInformation_start_01 -> clan_clan_Information_start_01 [ label = "information" color="#00ff00" constraint=false];
-	clan_dividir_clan_11_12 -> indv_dividir_info_13_end [ label = "warningDivide" color="#00ff00" constraint=false];
-	clan_again_marriable_10_11 -> indv_local_marriage_12_13 [ label = "lmarriage" color="#00ff00" constraint=false];
+	clan_dividir_clan_12_13 -> indv_dividir_info_13_end [ label = "warningDivide" color="#00ff00" constraint=false];
+	clan_again_marriable_11_12 -> indv_local_marriage_12_13 [ label = "lmarriage" color="#00ff00" constraint=false];
 	indv_survive_09_10 -> indv_update_status_10_11 [ label = "death" color="#00ff00" constraint=false];
-	clan_repartir_id_08_09 -> indv_birth_08_09 [ label = "respuestaID" color="#00ff00" constraint=false];
+	clan_repartir_id_09_10 -> indv_birth_08_09 [ label = "respuestaID" color="#00ff00" constraint=false];
 	indv_casamiento_male_04_06 -> indv_info_husband_05_06 [ label = "family" color="#00ff00" constraint=false];
-	clan_recive_conf_07_08 -> indv_casamiento_male_04_06 [ label = "marriage" color="#00ff00" constraint=false];
-	clan_recive_conf_07_08 -> indv_casamiento_female_04_05 [ label = "marriage" color="#00ff00" constraint=false];
+	clan_recive_conf_08_09 -> indv_casamiento_male_04_06 [ label = "marriage" color="#00ff00" constraint=false];
+	clan_recive_conf_08_09 -> indv_casamiento_female_04_05 [ label = "marriage" color="#00ff00" constraint=false];
 	clan_distribute_calories_02_03 -> indv_extractcalories_01_02 [ label = "indgetcalories" color="#00ff00" constraint=false];
 	{ rank=same; layer_0;  indv_indvInformation_start_01;  patch_patchtype_start_1;  patch_infoClansInPatch_start_1;  manada_guanacos_manadaInfo_start_1;  manada_guanacos_seasonSwitch_start_1; }
-	{ rank=same; layer_1;  clan_clan_Information_start_01;  manada_guanacos_manada_idle_1_2;  manada_guanacos_move_1_2; }
-	{ rank=same; layer_2;  patch_patchcalories_1_2;  manada_guanacos_reproduccion_2_3;  manada_guanacos_manada_idle2_2_3; }
-	{ rank=same; layer_3;  clan_clan_extract_calories_01_02;  patch_regenerate_2_3;  patch_idle_patch_2_3;  manada_guanacos_surviveGuanacos_3_end; }
-	{ rank=same; layer_4;  clan_distribute_calories_02_03;  patch_snregenerate_3_4;  patch_idle_patch_3_4; }
-	{ rank=same; layer_5;  indv_extractcalories_01_02;  patch_guanacos_move_4_5; }
-	{ rank=same; layer_6;  indv_getolder_02_03;  indv_idle_indv_02_03;  patch_reproduccion_guanacos_5_end;  patch_idle_patch_5_end; }
-	{ rank=same; layer_7;  indv_freeIndv_03_04;  indv_idle_03_06; }
-	{ rank=same; layer_8;  clan_marriable_indv_03_04; }
-	{ rank=same; layer_9;  clan_send_girls_04_05; }
-	{ rank=same; layer_10;  clan_match_05_06; }
-	{ rank=same; layer_11;  clan_aceptar_prop_06_07; }
-	{ rank=same; layer_12;  clan_recive_conf_07_08; }
+	{ rank=same; layer_1;  clan_clan_Information_start_01;  patch_idle_patch_1_2;  patch_infoGuanacosPatch_1_2;  manada_guanacos_manada_idle_1_2;  manada_guanacos_move_1_2; }
+	{ rank=same; layer_2;  patch_patchcalories_2_3;  manada_guanacos_reproduccion_2_3;  manada_guanacos_manada_idle2_2_3; }
+	{ rank=same; layer_3;  clan_clan_extract_calories_01_02;  patch_regenerate_3_4;  patch_idle_patch_3_4;  manada_guanacos_surviveGuanacos_3_end; }
+	{ rank=same; layer_4;  clan_distribute_calories_02_03;  patch_snregenerate_4_5;  patch_idle_patch_4_5; }
+	{ rank=same; layer_5;  indv_extractcalories_01_02;  clan_move_clan_03_04;  clan_idle_03_04;  patch_guanacos_move_5_6; }
+	{ rank=same; layer_6;  indv_getolder_02_03;  indv_idle_indv_02_03;  patch_clans_move_6_7; }
+	{ rank=same; layer_7;  indv_freeIndv_03_04;  indv_idle_03_06;  patch_reproduccion_guanacos_7_end;  patch_idle_patch_7_end; }
+	{ rank=same; layer_8;  clan_marriable_indv_04_05; }
+	{ rank=same; layer_9;  clan_send_girls_05_06; }
+	{ rank=same; layer_10;  clan_match_06_07; }
+	{ rank=same; layer_11;  clan_aceptar_prop_07_08; }
+	{ rank=same; layer_12;  clan_recive_conf_08_09; }
 	{ rank=same; layer_13;  indv_casamiento_female_04_05;  indv_casamiento_male_04_06; }
 	{ rank=same; layer_14;  indv_info_husband_05_06;  indv_idle_05_06; }
 	{ rank=same; layer_15;  indv_pregnancy_06_09;  indv_idle_06_07; }
 	{ rank=same; layer_16;  indv_child_inf_07_08;  indv_idle_07_09; }
-	{ rank=same; layer_17;  clan_repartir_id_08_09; }
+	{ rank=same; layer_17;  clan_repartir_id_09_10; }
 	{ rank=same; layer_18;  indv_birth_08_09; }
 	{ rank=same; layer_19;  indv_survive_09_10; }
-	{ rank=same; layer_20;  indv_update_status_10_11;  clan_new_leader_09_10; }
+	{ rank=same; layer_20;  indv_update_status_10_11;  clan_new_leader_10_11; }
 	{ rank=same; layer_21;  indv_husband_request_11_12;  indv_idle_11_12; }
-	{ rank=same; layer_22;  indv_idle_12_13;  clan_again_marriable_10_11; }
-	{ rank=same; layer_23;  indv_local_marriage_12_13;  clan_dividir_clan_11_12;  clan_idle_11_13; }
+	{ rank=same; layer_22;  indv_idle_12_13;  clan_again_marriable_11_12; }
+	{ rank=same; layer_23;  indv_local_marriage_12_13;  clan_dividir_clan_12_13;  clan_idle_12_14; }
 	{ rank=same; layer_24;  indv_dividir_info_13_end; }
-	{ rank=same; layer_25;  clan_creacion_clan_12_13; }
-	{ rank=same; layer_26;  clan_vocabulary_review_13_end;  clan_idle_13_end; }
+	{ rank=same; layer_25;  clan_creacion_clan_13_14; }
+	{ rank=same; layer_26;  clan_vocabulary_review_14_end;  clan_idle_14_end; }
 }

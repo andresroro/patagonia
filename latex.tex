@@ -207,6 +207,10 @@
 \parbox{5cm}{\url{int} \url{members}} \index{\url{members}} & \parbox{10cm}{ numero actual de miembros del clan } \\
 \midrule
 \parbox{5cm}{\url{int} \url{linguistics}} \index{\url{linguistics}} & \parbox{10cm}{ muestra de la linguistica del clan } \\
+\midrule
+\parbox{5cm}{\url{int} \url{targetX}} \index{\url{targetX}} & \parbox{10cm}{coordinate X for the next movement} \\
+\midrule
+\parbox{5cm}{\url{int} \url{targetY}} \index{\url{targetY}} & \parbox{10cm}{coordinate Y for the next movement} \\
 \end{longtable}
 \begin{longtable}[H!]{ll}
 \caption{{\bfseries List of functions for clan agent.}}
@@ -231,6 +235,10 @@
 \parbox{5cm}{\url{clan_extract_calories}} \index{\url{clan_extract_calories}} & \parbox{10cm}{every clan takes calories in their own patch} \\
 \midrule
 \parbox{5cm}{\url{distribute_calories}} \index{\url{distribute_calories}} & \parbox{10cm}{now the clan should distribute calories among its members} \\
+\midrule
+\parbox{5cm}{\url{move_clan}} \index{\url{move_clan}} & \parbox{10cm}{clan moves} \\
+\midrule
+\parbox{5cm}{\url{idle}} \index{\url{idle}} & \parbox{10cm}{clan idle} \\
 \midrule
 \parbox{5cm}{\url{marriable_indv}} \index{\url{marriable_indv}} & \parbox{10cm}{informacion de los individuos que estan en edad de casarse} \\
 \midrule
@@ -325,6 +333,10 @@
 \midrule
 \parbox{5cm}{\url{infoClansInPatch}} \index{\url{infoClansInPatch}} & \parbox{10cm}{gives clans in patch info to guanacos } \\
 \midrule
+\parbox{5cm}{\url{idle_patch}} \index{\url{idle_patch}} & \parbox{10cm}{idle patch} \\
+\midrule
+\parbox{5cm}{\url{infoGuanacosPatch}} \index{\url{infoGuanacosPatch}} & \parbox{10cm}{gives guanacos in patch info to clans} \\
+\midrule
 \parbox{5cm}{\url{patchcalories}} \index{\url{patchcalories}} & \parbox{10cm}{patch sends available calories} \\
 \midrule
 \parbox{5cm}{\url{regenerate}} \index{\url{regenerate}} & \parbox{10cm}{patch generates some new calories each week} \\
@@ -336,6 +348,8 @@
 \parbox{5cm}{\url{idle_patch}} \index{\url{idle_patch}} & \parbox{10cm}{the time the patch does not generate new calories this function should be executed instead of regenerate } \\
 \midrule
 \parbox{5cm}{\url{guanacos_move}} \index{\url{guanacos_move}} & \parbox{10cm}{entrada y salida de guanacos al patch} \\
+\midrule
+\parbox{5cm}{\url{clans_move}} \index{\url{clans_move}} & \parbox{10cm}{entrada salida de clanes al patch} \\
 \midrule
 \parbox{5cm}{\url{reproduccion_guanacos}} \index{\url{reproduccion_guanacos}} & \parbox{10cm}{reproduccion de guanacos} \\
 \midrule
@@ -541,10 +555,21 @@ See Table \ref{Table: Messages}.\begin{longtable}[H!]{ll}
 \url{warningDivide} & \parbox{10cm}{ aviso de separacion del clan a sus miembros}\\
     \url{int} \url{clanID} \index{\url{clanID}} & \parbox{10cm}{id del clan}\\
 \midrule
+\url{clanmove} & \parbox{10cm}{movement of clan}\\
+    \url{int} \url{x} \index{\url{x}} & \parbox{10cm}{coordinate x where clan goes}\\
+    \url{int} \url{y} \index{\url{y}} & \parbox{10cm}{coordinate y where clan goes}\\
+    \url{int} \url{sentido} \index{\url{sentido}} & \parbox{10cm}{if clan goes(1) or leaves(0) }\\
+\midrule
 \url{clanspatch} & \parbox{10cm}{sends clan coordinates and the number of clans in patch}\\
     \url{int} \url{x} \index{\url{x}} & \parbox{10cm}{coordinate x of the patch}\\
     \url{int} \url{y} \index{\url{y}} & \parbox{10cm}{coordinate y of the patch}\\
     \url{int} \url{pclans} \index{\url{pclans}} & \parbox{10cm}{number of clans in patch}\\
+\midrule
+\url{guanacospatch} & \parbox{10cm}{sends guanacos coordinates and the number of adults in patch}\\
+    \url{int} \url{x} \index{\url{x}} & \parbox{10cm}{coordinate x of the patch}\\
+    \url{int} \url{y} \index{\url{y}} & \parbox{10cm}{coordinate y of the patch}\\
+    \url{int} \url{adultos} \index{\url{adultos}} & \parbox{10cm}{adult guanacos in patch}\\
+    \url{int} \url{season} \index{\url{season}} & \parbox{10cm}{season of the year}\\
 \midrule
 \url{adultospatch} & \parbox{10cm}{manda los adultos que hay en el patch}\\
     \url{int} \url{x} \index{\url{x}} & \parbox{10cm}{posicion x de la manada de guanacos}\\

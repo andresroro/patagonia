@@ -788,7 +788,7 @@
 		<x>6</x>
                 <y>4</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -796,7 +796,7 @@
 		<x>6</x>
                 <y>5</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -804,7 +804,7 @@
 		<x>6</x>
                 <y>6</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -898,7 +898,7 @@
 		<x>7</x>
                 <y>3</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -906,7 +906,7 @@
 		<x>7</x>
                 <y>4</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -914,7 +914,7 @@
 		<x>7</x>
                 <y>5</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
                 <adultos>50</adultos>
 	</xagent>
 	<xagent>
@@ -923,7 +923,7 @@
 		<x>7</x>
                 <y>6</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1018,7 +1018,7 @@
 		<x>8</x>
                 <y>3</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1034,7 +1034,7 @@
 		<x>8</x>
                 <y>5</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1042,7 +1042,7 @@
 		<x>8</x>
                 <y>6</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1137,7 +1137,7 @@
 		<x>9</x>
                 <y>3</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1153,7 +1153,7 @@
 		<x>9</x>
                 <y>5</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1161,7 +1161,7 @@
 		<x>9</x>
                 <y>6</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1169,7 +1169,7 @@
 		<x>9</x>
                 <y>7</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1257,7 +1257,7 @@
 		<x>10</x>
                 <y>3</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1289,7 +1289,7 @@
 		<x>10</x>
                 <y>7</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1377,7 +1377,7 @@
 		<x>11</x>
                 <y>3</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1385,7 +1385,7 @@
 		<x>11</x>
                 <y>4</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1393,7 +1393,7 @@
 		<x>11</x>
                 <y>5</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>
@@ -1401,14 +1401,14 @@
 		<x>11</x>
                 <y>6</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent><xagent>
 		<name>patch</name>
 		<patchID>172</patchID>
 		<x>11</x>
                 <y>7</y>
                 <repows>0</repows>
-<pclans>1</pclans>
+<pclans>0</pclans>
 </xagent>
 	<xagent>
 		<name>patch</name>

@@ -753,6 +753,8 @@ int readAgentXML(char * location,
 	int in_indexID = 0;
 	int in_members = 0;
 	int in_linguistics = 0;
+	int in_targetX = 0;
+	int in_targetY = 0;
 	int in_pcalories = 0;
 	int in_gcalories = 0;
 	int in_repo = 0;
@@ -763,8 +765,6 @@ int readAgentXML(char * location,
 	int in_adultos = 0;
 	int in_pclans = 0;
 	int in_familia = 0;
-	int in_targetX = 0;
-	int in_targetY = 0;
 	int in_count = 0;
 	int in_calorias = 0;
 	
@@ -1084,6 +1084,10 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/members") == 0) { in_members = 0; }
 			if(strcmp(buffer, "linguistics") == 0) { in_linguistics = 1; }
 			if(strcmp(buffer, "/linguistics") == 0) { in_linguistics = 0; }
+			if(strcmp(buffer, "targetX") == 0) { in_targetX = 1; }
+			if(strcmp(buffer, "/targetX") == 0) { in_targetX = 0; }
+			if(strcmp(buffer, "targetY") == 0) { in_targetY = 1; }
+			if(strcmp(buffer, "/targetY") == 0) { in_targetY = 0; }
 			if(strcmp(buffer, "pcalories") == 0) { in_pcalories = 1; }
 			if(strcmp(buffer, "/pcalories") == 0) { in_pcalories = 0; }
 			if(strcmp(buffer, "gcalories") == 0) { in_gcalories = 1; }
@@ -1104,10 +1108,6 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/pclans") == 0) { in_pclans = 0; }
 			if(strcmp(buffer, "familia") == 0) { in_familia = 1; }
 			if(strcmp(buffer, "/familia") == 0) { in_familia = 0; }
-			if(strcmp(buffer, "targetX") == 0) { in_targetX = 1; }
-			if(strcmp(buffer, "/targetX") == 0) { in_targetX = 0; }
-			if(strcmp(buffer, "targetY") == 0) { in_targetY = 1; }
-			if(strcmp(buffer, "/targetY") == 0) { in_targetY = 0; }
 			if(strcmp(buffer, "count") == 0) { in_count = 1; }
 			if(strcmp(buffer, "/count") == 0) { in_count = 0; }
 			if(strcmp(buffer, "calorias") == 0) { in_calorias = 1; }
@@ -1201,6 +1201,8 @@ int readAgentXML(char * location,
 					if(in_linguistics) { j = 0;
 						rc = read_int_static_array(buffer, index, &j, current_clan_agent->linguistics, 100);
 						if(rc != 0) { printf("Error: reading 'clan' agent variable 'linguistics' of type 'int'\n"); exit(0); } }
+					if(in_targetX) { current_clan_agent->targetX = atoi(buffer); }
+					if(in_targetY) { current_clan_agent->targetY = atoi(buffer); }
 				 }else if(in_patch_agent == 1)
 				{
 					if(in_patchID) { current_patch_agent->patchID = atoi(buffer); }
@@ -2006,6 +2008,14 @@ void write_clan_agent(FILE *file, xmachine_memory_clan * current)
 		fputs("<linguistics>", file);
 	write_int_static_array(file, current->linguistics, 100);
 	fputs("</linguistics>\n", file);
+		fputs("<targetX>", file);
+	sprintf(data, "%i", current->targetX);
+	fputs(data, file);
+	fputs("</targetX>\n", file);
+		fputs("<targetY>", file);
+	sprintf(data, "%i", current->targetY);
+	fputs(data, file);
+	fputs("</targetY>\n", file);
 
 	fputs("</xagent>\n", file);
 }
