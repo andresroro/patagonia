@@ -6,12 +6,12 @@
 /** \def FAMILIA
  * \brief Direct access to familia of manada_guanacos agent memory variable. */
 #define FAMILIA (current_xmachine_manada_guanacos->familia)
-/** \def XCORD
- * \brief Direct access to xcord of manada_guanacos agent memory variable. */
-#define XCORD (current_xmachine_manada_guanacos->xcord)
-/** \def YCORD
- * \brief Direct access to ycord of manada_guanacos agent memory variable. */
-#define YCORD (current_xmachine_manada_guanacos->ycord)
+/** \def X
+ * \brief Direct access to x of manada_guanacos agent memory variable. */
+#define X (current_xmachine_manada_guanacos->x)
+/** \def Y
+ * \brief Direct access to y of manada_guanacos agent memory variable. */
+#define Y (current_xmachine_manada_guanacos->y)
 /** \def TARGETX
  * \brief Direct access to targetX of manada_guanacos agent memory variable. */
 #define TARGETX (current_xmachine_manada_guanacos->targetX)

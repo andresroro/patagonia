@@ -2532,6 +2532,144 @@ m_warningDivide * get_next_warningDivide_message(m_warningDivide * current)
 
 
 /* Box filtering functions */
+double clanspatch_message_extract_x(void *msg_ptr) { return (double)((m_clanspatch*)msg_ptr)->x; }
+double clanspatch_message_extract_y(void *msg_ptr) { return (double)((m_clanspatch*)msg_ptr)->y; }
+
+
+union pu_clanspatch 
+{
+    m_clanspatch *ptr;
+    void *ptr_anon;
+};
+
+/** \fn void add_clanspatch_message(int x, int y, int pclans)
+ * \brief Add clanspatch message by calling internal and processing.
+ * \param x Message variable.
+ * \param y Message variable.
+ * \param pclans Message variable.
+ */
+void add_clanspatch_message(int x, int y, int pclans)
+{
+    int rc;
+	m_clanspatch msg;
+    
+    msg.x = x;
+    msg.y = y;
+    msg.pclans = pclans;
+    
+    
+    rc = MB_AddMessage(b_clanspatch, &msg);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not add message to 'clanspatch' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'clanspatch' board has not been created?\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_AddMessage returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	   }
+	      
+	   
+       exit(rc);
+    }
+    #endif
+}
+
+inline static m_clanspatch* getInternalMessage_clanspatch(void)
+{
+    static m_clanspatch *msg_prev = NULL;
+    union pu_clanspatch msg_pu;
+    int rc;
+    
+    /* deallocate previously returned message */
+    if (msg_prev != NULL) 
+    {
+        free(msg_prev);
+    }
+    else 
+    {
+        rc = MB_Iterator_Rewind(i_clanspatch); 
+        #ifdef ERRCHECK
+        if (rc != MB_SUCCESS)
+        {
+            fprintf(stderr, "ERROR: Could not rewind 'clanspatch' Iterator\n");
+            switch(rc) {
+                case MB_ERR_INVALID:
+                    fprintf(stderr, "\t reason: 'clanspatch' Iterator has not been created?\n");
+                    break;
+	            default:
+                    fprintf(stderr, "\t MB_Iterator_Rewind returned error code: %d (see libmboard docs for details)\n", rc);
+                    break;
+	        }
+	       
+	       
+       	   exit(rc);
+        }
+        #endif
+    }
+    
+    /* get next message from iterator */
+    rc = MB_Iterator_GetMessage(i_clanspatch, &(msg_pu.ptr_anon));
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not get message from 'clanspatch' Iterator\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'clanspatch' Iterator has not been created?\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Iterator_GetMessage returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+	       
+	       
+       	   exit(rc);
+    }
+    #endif
+    
+    /* store pointer so memory can be deallocated later */
+    msg_prev = msg_pu.ptr;
+    
+    return msg_pu.ptr;
+}
+
+/** \fn xmachine_message_clanspatch * get_first_clanspatch_message()
+ * \brief Get the first clanspatch message in the clanspatch message list.
+ * \return The first message in the list.
+ */
+m_clanspatch * get_first_clanspatch_message()
+{
+	return getInternalMessage_clanspatch();
+}
+
+/** \fn xmachine_message_clanspatch * get_next_clanspatch_message(xmachine_message_clanspatch * current)
+ * \brief Get the next clanspatch message in the clanspatch message list after the current message.
+ * \param current The current message in the list.
+ * \return The next message in the list.
+ */
+m_clanspatch * get_next_clanspatch_message(m_clanspatch * current)
+{
+	return getInternalMessage_clanspatch();
+}
+
+
+/* Box filtering functions */
 
 
 
@@ -2542,20 +2680,20 @@ union pu_adultospatch
     void *ptr_anon;
 };
 
-/** \fn void add_adultospatch_message(int xcord, int ycord, int adultos, int sentido)
+/** \fn void add_adultospatch_message(int x, int y, int adultos, int sentido)
  * \brief Add adultospatch message by calling internal and processing.
- * \param xcord Message variable.
- * \param ycord Message variable.
+ * \param x Message variable.
+ * \param y Message variable.
  * \param adultos Message variable.
  * \param sentido Message variable.
  */
-void add_adultospatch_message(int xcord, int ycord, int adultos, int sentido)
+void add_adultospatch_message(int x, int y, int adultos, int sentido)
 {
     int rc;
 	m_adultospatch msg;
     
-    msg.xcord = xcord;
-    msg.ycord = ycord;
+    msg.x = x;
+    msg.y = y;
     msg.adultos = adultos;
     msg.sentido = sentido;
     
@@ -2682,20 +2820,20 @@ union pu_reproduccionguanacos
     void *ptr_anon;
 };
 
-/** \fn void add_reproduccionguanacos_message(int xcord, int ycord, int count, int familia)
+/** \fn void add_reproduccionguanacos_message(int x, int y, int count, int familia)
  * \brief Add reproduccionguanacos message by calling internal and processing.
- * \param xcord Message variable.
- * \param ycord Message variable.
+ * \param x Message variable.
+ * \param y Message variable.
  * \param count Message variable.
  * \param familia Message variable.
  */
-void add_reproduccionguanacos_message(int xcord, int ycord, int count, int familia)
+void add_reproduccionguanacos_message(int x, int y, int count, int familia)
 {
     int rc;
 	m_reproduccionguanacos msg;
     
-    msg.xcord = xcord;
-    msg.ycord = ycord;
+    msg.x = x;
+    msg.y = y;
     msg.count = count;
     msg.familia = familia;
     

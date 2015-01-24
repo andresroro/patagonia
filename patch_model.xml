@@ -41,13 +41,13 @@
                  </variable>
                <variable>
                     <type>int</type>
-                    <name>xcord</name>
-                    <description>xcordinate of the patch</description>
+                    <name>x</name>
+                    <description>xinate of the patch</description>
                  </variable>
                <variable>
                     <type>int</type>
-                    <name>ycord</name>
-                    <description>ycordinate of the patch</description>
+                    <name>y</name>
+                    <description>yinate of the patch</description>
                  </variable>
                 <variable>
                     <type>float</type>
@@ -82,6 +82,30 @@
                     <description>the type of patch</description>
                     <currentState>start</currentState>
                     <nextState>1</nextState>
+                    <condition>
+                      <not><time>
+                        <period>dias_por_patch</period>
+                        <phase>0</phase>
+                      </time></not>
+                    </condition>
+                 </function>
+                 <function>
+                  
+                  <name>infoClansInPatch</name>
+                  <description>gives clans in patch info to guanacos </description>
+                  <currentState>start</currentState>
+                  <nextState>1</nextState>
+                  <condition>
+                    <time>
+                      <period>dias_por_patch</period>
+                      <phase>0</phase>
+                    </time>
+                  </condition>
+                  <outputs>
+                    <output>
+                      <messageName>clanspatch</messageName>
+                    </output>
+                  </outputs>
                  </function>
 
                  <function>
@@ -94,13 +118,13 @@
                         <messageName>clan_info</messageName>
                           <filter>
 				                    <lhs>
-                                <lhs><value>a.xcord</value></lhs>
+                                <lhs><value>a.x</value></lhs>
                                 <op>EQ</op>
                                 <rhs><value>m.px</value></rhs>
 				                    </lhs>
                                 <op>AND</op>
 				                    <rhs>
-                                <lhs><value>a.ycord</value></lhs>
+                                <lhs><value>a.y</value></lhs>
                                 <op>EQ</op>
                                 <rhs><value>m.py</value></rhs>
 				                    </rhs>
@@ -164,24 +188,19 @@
                 <description>entrada y salida de guanacos al patch</description>
                 <currentState>4</currentState>
                 <nextState>5</nextState>
-                <outputs>
-                  <output>
-                    <messageName>clanspatch</messageName>
-                  </output>
-                </outputs>
                 <inputs>
                     <input>
                         <messageName>adultospatch</messageName>
                         <filter><lhs>
-                            <lhs><value>a.xcord</value></lhs>
+                            <lhs><value>a.x</value></lhs>
                             <op>EQ</op>
-                            <rhs><value>m.xcord</value></rhs>
+                            <rhs><value>m.x</value></rhs>
                         </lhs>
                             <op>AND</op>
                         <rhs>
-                            <lhs><value>a.ycord</value></lhs>
+                            <lhs><value>a.y</value></lhs>
                             <op>EQ</op>
-                            <rhs><value>m.ycord</value></rhs>
+                            <rhs><value>m.y</value></rhs>
                         </rhs></filter>
                     </input>
                 </inputs>
@@ -219,15 +238,15 @@
                     <input>
                         <messageName>reproduccionguanacos</messageName>
                         <filter><lhs>
-                            <lhs><value>a.xcord</value></lhs>
+                            <lhs><value>a.x</value></lhs>
                             <op>EQ</op>
-                            <rhs><value>m.xcord</value></rhs>
+                            <rhs><value>m.x</value></rhs>
                         </lhs>
                             <op>AND</op>
                         <rhs>
-                            <lhs><value>a.ycord</value></lhs>
+                            <lhs><value>a.y</value></lhs>
                             <op>EQ</op>
-                            <rhs><value>m.ycord</value></rhs>
+                            <rhs><value>m.y</value></rhs>
                         </rhs></filter>
                     </input>
         </inputs>
@@ -257,12 +276,12 @@
     <variables>
       <variable>
         <type>int</type>
-        <name>xcord</name>
+        <name>x</name>
         <description>coordinate x of the patch</description>
       </variable>
       <variable>
         <type>int</type>
-        <name>ycord</name>
+        <name>y</name>
         <description>coordinate y of the patch</description>
       </variable>
       <variable>

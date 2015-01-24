@@ -305,6 +305,30 @@ int FLAME_condition_clan_idle_13_end(xmachine_memory_clan *a)
 }
 
 
+/** \fn int FLAME_condition_patch_patchtype_start_1(xmachine_memory_patch *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_patch_patchtype_start_1(xmachine_memory_patch *a)
+{
+	if(!(iteration_loop%10 == 0)) return 1;
+	else return 0;
+}
+
+
+/** \fn int FLAME_condition_patch_infoClansInPatch_start_1(xmachine_memory_patch *a)
+ * \brief The condition function for an agent function.
+ * \param a The agent memory.
+ * \return The success (1) or failure (0) of the condition.
+ */
+int FLAME_condition_patch_infoClansInPatch_start_1(xmachine_memory_patch *a)
+{
+	if((iteration_loop%10 == 0)) return 1;
+	else return 0;
+}
+
+
 /** \fn int FLAME_condition_patch_regenerate_2_3(xmachine_memory_patch *a)
  * \brief The condition function for an agent function.
  * \param a The agent memory.
@@ -806,7 +830,7 @@ int FLAME_filter_patch_patchcalories_1_2_clan_info(const void *msg, const void *
 	xmachine_memory_patch *a = (xmachine_memory_patch *)params;
 
 	/* The filter */
-	if(((a->xcord == m->px) && (a->ycord == m->py))) return 1;
+	if(((a->x == m->px) && (a->y == m->py))) return 1;
 	else return 0;
 }
 
@@ -826,7 +850,7 @@ int FLAME_filter_patch_guanacos_move_4_5_adultospatch(const void *msg, const voi
 	xmachine_memory_patch *a = (xmachine_memory_patch *)params;
 
 	/* The filter */
-	if(((a->xcord == m->xcord) && (a->ycord == m->ycord))) return 1;
+	if(((a->x == m->x) && (a->y == m->y))) return 1;
 	else return 0;
 }
 
@@ -846,7 +870,7 @@ int FLAME_filter_patch_reproduccion_guanacos_5_end_reproduccionguanacos(const vo
 	xmachine_memory_patch *a = (xmachine_memory_patch *)params;
 
 	/* The filter */
-	if(((a->xcord == m->xcord) && (a->ycord == m->ycord))) return 1;
+	if(((a->x == m->x) && (a->y == m->y))) return 1;
 	else return 0;
 }
 

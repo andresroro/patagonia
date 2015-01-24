@@ -55,12 +55,12 @@
 				</variable>
 				<variable>
 					<type>int</type>
-					<name>xcord</name>
+					<name>x</name>
 					<description>Coordenada x de la manada</description>
 				</variable>
 				<variable>
 					<type>int</type>
-					<name>ycord</name>
+					<name>y</name>
 					<description>Coordenada y de la manada</description>
 				</variable>
 				<variable>
@@ -146,7 +146,7 @@
 						<input>
 							<messageName>clanspatch</messageName>
 							<filter>
-								<box2d>1.0</box2d>
+								<box2d>2.0</box2d>
 							</filter>
 						</input>
 					</inputs>
@@ -202,12 +202,12 @@
 			<variables>
 				<variable>
 					<type>int</type>
-					<name>xcord</name>
+					<name>x</name>
 					<description>posicion x de la manada de guanacos</description>
 				</variable>
 				<variable>
 					<type>int</type>
-					<name>ycord</name>
+					<name>y</name>
 					<description>posicion y de la manada de guanacos</description>
 				</variable>
 				<variable>
@@ -228,12 +228,12 @@
 			<variables>
 				<variable>
 					<type>int</type>
-					<name>xcord</name>
+					<name>x</name>
 					<description>posicion x de la manada de guanacos</description>
 				</variable>
 				<variable>
 					<type>int</type>
-					<name>ycord</name>
+					<name>y</name>
 					<description>posicion y de la manada de guanacos</description>
 				</variable>
 				<variable>

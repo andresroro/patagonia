@@ -1,0 +1,12 @@
+<environment>
+	<propegnant>9</propegnant>
+	<nancestors>6</nancestors>
+	<learn>0</learn>
+	<forget>0</forget>
+	<lang_threshold>98</lang_threshold>
+	<max_manada>50</max_manada>
+	<max_familia>10</max_familia>
+	<cal_adulto>1</cal_adulto>
+	<surviveChanceAdult>99</surviveChanceAdult>
+	<surviveChanceChild>98</surviveChanceChild>
+</environment>

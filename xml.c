@@ -757,12 +757,11 @@ int readAgentXML(char * location,
 	int in_gcalories = 0;
 	int in_repo = 0;
 	int in_tpatch = 0;
-	int in_xcord = 0;
-	int in_ycord = 0;
 	int in_repows = 0;
 	int in_repods = 0;
 	int in_season = 0;
 	int in_adultos = 0;
+	int in_pclans = 0;
 	int in_familia = 0;
 	int in_targetX = 0;
 	int in_targetY = 0;
@@ -914,8 +913,8 @@ int readAgentXML(char * location,
 				{
 					if(current_patch_agent == NULL) { printf("Memory error reading patch agent\n"); exit(0); }
 					
-					posx = (double)0.0;
-					posy = (double)0.0;
+					posx = (double)current_patch_agent->x;
+					posy = (double)current_patch_agent->y;
 					posz = (double)0.0;
 					
 					/* If flag is zero just read the data. We'll partition later.
@@ -963,8 +962,8 @@ int readAgentXML(char * location,
 				{
 					if(current_manada_guanacos_agent == NULL) { printf("Memory error reading manada_guanacos agent\n"); exit(0); }
 					
-					posx = (double)0.0;
-					posy = (double)0.0;
+					posx = (double)current_manada_guanacos_agent->x;
+					posy = (double)current_manada_guanacos_agent->y;
 					posz = (double)0.0;
 					
 					/* If flag is zero just read the data. We'll partition later.
@@ -1093,10 +1092,6 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/repo") == 0) { in_repo = 0; }
 			if(strcmp(buffer, "tpatch") == 0) { in_tpatch = 1; }
 			if(strcmp(buffer, "/tpatch") == 0) { in_tpatch = 0; }
-			if(strcmp(buffer, "xcord") == 0) { in_xcord = 1; }
-			if(strcmp(buffer, "/xcord") == 0) { in_xcord = 0; }
-			if(strcmp(buffer, "ycord") == 0) { in_ycord = 1; }
-			if(strcmp(buffer, "/ycord") == 0) { in_ycord = 0; }
 			if(strcmp(buffer, "repows") == 0) { in_repows = 1; }
 			if(strcmp(buffer, "/repows") == 0) { in_repows = 0; }
 			if(strcmp(buffer, "repods") == 0) { in_repods = 1; }
@@ -1105,6 +1100,8 @@ int readAgentXML(char * location,
 			if(strcmp(buffer, "/season") == 0) { in_season = 0; }
 			if(strcmp(buffer, "adultos") == 0) { in_adultos = 1; }
 			if(strcmp(buffer, "/adultos") == 0) { in_adultos = 0; }
+			if(strcmp(buffer, "pclans") == 0) { in_pclans = 1; }
+			if(strcmp(buffer, "/pclans") == 0) { in_pclans = 0; }
 			if(strcmp(buffer, "familia") == 0) { in_familia = 1; }
 			if(strcmp(buffer, "/familia") == 0) { in_familia = 0; }
 			if(strcmp(buffer, "targetX") == 0) { in_targetX = 1; }
@@ -1211,17 +1208,18 @@ int readAgentXML(char * location,
 					if(in_gcalories) { current_patch_agent->gcalories = atoi(buffer); }
 					if(in_repo) { current_patch_agent->repo = atof(buffer); }
 					if(in_tpatch) { current_patch_agent->tpatch = atoi(buffer); }
-					if(in_xcord) { current_patch_agent->xcord = atoi(buffer); }
-					if(in_ycord) { current_patch_agent->ycord = atoi(buffer); }
+					if(in_x) { current_patch_agent->x = atoi(buffer); }
+					if(in_y) { current_patch_agent->y = atoi(buffer); }
 					if(in_repows) { current_patch_agent->repows = atof(buffer); }
 					if(in_repods) { current_patch_agent->repods = atof(buffer); }
 					if(in_season) { current_patch_agent->season = atoi(buffer); }
 					if(in_adultos) { current_patch_agent->adultos = atoi(buffer); }
+					if(in_pclans) { current_patch_agent->pclans = atoi(buffer); }
 				 }else if(in_manada_guanacos_agent == 1)
 				{
 					if(in_familia) { current_manada_guanacos_agent->familia = atoi(buffer); }
-					if(in_xcord) { current_manada_guanacos_agent->xcord = atoi(buffer); }
-					if(in_ycord) { current_manada_guanacos_agent->ycord = atoi(buffer); }
+					if(in_x) { current_manada_guanacos_agent->x = atoi(buffer); }
+					if(in_y) { current_manada_guanacos_agent->y = atoi(buffer); }
 					if(in_targetX) { current_manada_guanacos_agent->targetX = atoi(buffer); }
 					if(in_targetY) { current_manada_guanacos_agent->targetY = atoi(buffer); }
 					if(in_count) { current_manada_guanacos_agent->count = atoi(buffer); }
@@ -2037,14 +2035,14 @@ void write_patch_agent(FILE *file, xmachine_memory_patch * current)
 	sprintf(data, "%i", current->tpatch);
 	fputs(data, file);
 	fputs("</tpatch>\n", file);
-		fputs("<xcord>", file);
-	sprintf(data, "%i", current->xcord);
+		fputs("<x>", file);
+	sprintf(data, "%i", current->x);
 	fputs(data, file);
-	fputs("</xcord>\n", file);
-		fputs("<ycord>", file);
-	sprintf(data, "%i", current->ycord);
+	fputs("</x>\n", file);
+		fputs("<y>", file);
+	sprintf(data, "%i", current->y);
 	fputs(data, file);
-	fputs("</ycord>\n", file);
+	fputs("</y>\n", file);
 		fputs("<repows>", file);
 	sprintf(data, "%f", current->repows);
 	fputs(data, file);
@@ -2061,6 +2059,10 @@ void write_patch_agent(FILE *file, xmachine_memory_patch * current)
 	sprintf(data, "%i", current->adultos);
 	fputs(data, file);
 	fputs("</adultos>\n", file);
+		fputs("<pclans>", file);
+	sprintf(data, "%i", current->pclans);
+	fputs(data, file);
+	fputs("</pclans>\n", file);
 
 	fputs("</xagent>\n", file);
 }
@@ -2074,14 +2076,14 @@ void write_manada_guanacos_agent(FILE *file, xmachine_memory_manada_guanacos * c
 	sprintf(data, "%i", current->familia);
 	fputs(data, file);
 	fputs("</familia>\n", file);
-		fputs("<xcord>", file);
-	sprintf(data, "%i", current->xcord);
+		fputs("<x>", file);
+	sprintf(data, "%i", current->x);
 	fputs(data, file);
-	fputs("</xcord>\n", file);
-		fputs("<ycord>", file);
-	sprintf(data, "%i", current->ycord);
+	fputs("</x>\n", file);
+		fputs("<y>", file);
+	sprintf(data, "%i", current->y);
 	fputs(data, file);
-	fputs("</ycord>\n", file);
+	fputs("</y>\n", file);
 		fputs("<targetX>", file);
 	sprintf(data, "%i", current->targetX);
 	fputs(data, file);

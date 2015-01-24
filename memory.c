@@ -693,6 +693,13 @@ void unittest_patchtype_start_1()
 	//return patchtype();
 }
 
+void unittest_infoClansInPatch_start_1()
+{
+	
+	
+	//return infoClansInPatch();
+}
+
 void unittest_patchcalories_1_2()
 {
 	int rc;
@@ -841,7 +848,30 @@ void unittest_manada_idle_1_2()
 
 void unittest_move_1_2()
 {
+	int rc;
 	
+	
+	
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not create Iterator for 'clanspatch'\n");
+	   switch(rc) {
+	       case MB_ERR_INVALID:
+	           fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+	           break;
+	       case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
+               break;
+           case MB_ERR_MEMALLOC:
+               fprintf(stderr, "\t reason: out of memory\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	   }
+	}
+	#endif
 	
 	//return move();
 }
@@ -1308,6 +1338,31 @@ void free_messages()
 	               break;
 	           case MB_ERR_LOCKED:
 	               fprintf(stderr, "\t reason: 'warningDivide' board is locked\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	    rc = MB_Clear(b_clanspatch);
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not clear 'clanspatch' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+	               break;
+	           case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
 	               break;
 	           case MB_ERR_INTERNAL:
 	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
@@ -1865,6 +1920,34 @@ int rc;
 	    if (rc != MB_SUCCESS)
 	    {
 	       fprintf(stderr, "ERROR: Could not create 'warningDivide' board\n");
+	       switch(rc) {
+	           case MB_ERR_INVALID:
+	               fprintf(stderr, "\t reason: Invalid message size\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+                   fprintf(stderr, "\t MB_Create returned error code: %d (see libmboard docs for details)\n", rc);
+                   break;
+	       }
+
+	       
+       	   exit(rc);
+	    }
+	    #endif
+	
+	/* Initialise message sync composite params as NULL */
+	FLAME_m_clanspatch_composite_params = NULL;
+
+	    rc = MB_Create(&b_clanspatch, sizeof(m_clanspatch));
+	    #ifdef ERRCHECK
+	    if (rc != MB_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: Could not create 'clanspatch' board\n");
 	       switch(rc) {
 	           case MB_ERR_INVALID:
 	               fprintf(stderr, "\t reason: Invalid message size\n");
@@ -2895,12 +2978,13 @@ xmachine_memory_patch * init_patch_agent()
 	current->gcalories = 0;
 	current->repo = 0.0;
 	current->tpatch = 0;
-	current->xcord = 0;
-	current->ycord = 0;
+	current->x = 0;
+	current->y = 0;
 	current->repows = 0.0;
 	current->repods = 0.0;
 	current->season = 0;
 	current->adultos = 0;
+	current->pclans = 0;
 
 	return current;
 }
@@ -2927,12 +3011,13 @@ void unittest_init_patch_agent()
 		current_xmachine_patch->gcalories = 0;
 		current_xmachine_patch->repo = 0.0;
 		current_xmachine_patch->tpatch = 0;
-		current_xmachine_patch->xcord = 0;
-		current_xmachine_patch->ycord = 0;
+		current_xmachine_patch->x = 0;
+		current_xmachine_patch->y = 0;
 		current_xmachine_patch->repows = 0.0;
 		current_xmachine_patch->repods = 0.0;
 		current_xmachine_patch->season = 0;
 		current_xmachine_patch->adultos = 0;
+		current_xmachine_patch->pclans = 0;
 	
 }
 
@@ -3038,21 +3123,22 @@ void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_pat
 
 }
 
-/** \fn void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
+/** \fn void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int x, int y, float repows, float repods, int season, int adultos, int pclans)
  * \brief Add patch X-machine to the current being used X-machine list.
  * \param patchID Variable for the X-machine memory.
  * \param pcalories Variable for the X-machine memory.
  * \param gcalories Variable for the X-machine memory.
  * \param repo Variable for the X-machine memory.
  * \param tpatch Variable for the X-machine memory.
- * \param xcord Variable for the X-machine memory.
- * \param ycord Variable for the X-machine memory.
+ * \param x Variable for the X-machine memory.
+ * \param y Variable for the X-machine memory.
  * \param repows Variable for the X-machine memory.
  * \param repods Variable for the X-machine memory.
  * \param season Variable for the X-machine memory.
  * \param adultos Variable for the X-machine memory.
+ * \param pclans Variable for the X-machine memory.
  */
-void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int xcord, int ycord, float repows, float repods, int season, int adultos)
+void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int x, int y, float repows, float repods, int season, int adultos, int pclans)
 {
 	xmachine_memory_patch * current;
 
@@ -3066,12 +3152,13 @@ void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int 
 	current->gcalories = gcalories;
 	current->repo = repo;
 	current->tpatch = tpatch;
-	current->xcord = xcord;
-	current->ycord = ycord;
+	current->x = x;
+	current->y = y;
 	current->repows = repows;
 	current->repods = repods;
 	current->season = season;
 	current->adultos = adultos;
+	current->pclans = pclans;
 }
 
 xmachine_memory_manada_guanacos_state * init_manada_guanacos_state()
@@ -3091,8 +3178,8 @@ xmachine_memory_manada_guanacos * init_manada_guanacos_agent()
 	CHECK_POINTER(current);
 
 	current->familia = 0;
-	current->xcord = 0;
-	current->ycord = 0;
+	current->x = 0;
+	current->y = 0;
 	current->targetX = 0;
 	current->targetY = 0;
 	current->count = 0;
@@ -3121,8 +3208,8 @@ void unittest_init_manada_guanacos_agent()
 	CHECK_POINTER(current);
 
 		current_xmachine_manada_guanacos->familia = 0;
-		current_xmachine_manada_guanacos->xcord = 0;
-		current_xmachine_manada_guanacos->ycord = 0;
+		current_xmachine_manada_guanacos->x = 0;
+		current_xmachine_manada_guanacos->y = 0;
 		current_xmachine_manada_guanacos->targetX = 0;
 		current_xmachine_manada_guanacos->targetY = 0;
 		current_xmachine_manada_guanacos->count = 0;
@@ -3216,11 +3303,11 @@ void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent,
 
 }
 
-/** \fn void add_manada_guanacos_agent(int familia, int xcord, int ycord, int targetX, int targetY, int count, int calorias, int adultos, int season)
+/** \fn void add_manada_guanacos_agent(int familia, int x, int y, int targetX, int targetY, int count, int calorias, int adultos, int season)
  * \brief Add manada_guanacos X-machine to the current being used X-machine list.
  * \param familia Variable for the X-machine memory.
- * \param xcord Variable for the X-machine memory.
- * \param ycord Variable for the X-machine memory.
+ * \param x Variable for the X-machine memory.
+ * \param y Variable for the X-machine memory.
  * \param targetX Variable for the X-machine memory.
  * \param targetY Variable for the X-machine memory.
  * \param count Variable for the X-machine memory.
@@ -3228,7 +3315,7 @@ void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent,
  * \param adultos Variable for the X-machine memory.
  * \param season Variable for the X-machine memory.
  */
-void add_manada_guanacos_agent(int familia, int xcord, int ycord, int targetX, int targetY, int count, int calorias, int adultos, int season)
+void add_manada_guanacos_agent(int familia, int x, int y, int targetX, int targetY, int count, int calorias, int adultos, int season)
 {
 	xmachine_memory_manada_guanacos * current;
 
@@ -3238,8 +3325,8 @@ void add_manada_guanacos_agent(int familia, int xcord, int ycord, int targetX, i
 	add_manada_guanacos_agent_internal(current, current_xmachine_manada_guanacos_next_state);
 
 	current->familia = familia;
-	current->xcord = xcord;
-	current->ycord = ycord;
+	current->x = x;
+	current->y = y;
 	current->targetX = targetX;
 	current->targetY = targetY;
 	current->count = count;
@@ -3731,6 +3818,8 @@ int get_cal_stored()
 void set_x(int x)
 {
 	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).x = x;
+	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).x = x;
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).x = x;
 }
 
 /** \fn int get_x()
@@ -3740,6 +3829,8 @@ void set_x(int x)
 int get_x()
 {
 	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).x;
+	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).x;
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).x;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -3753,6 +3844,8 @@ int get_x()
 void set_y(int y)
 {
 	if(current_xmachine->xmachine_clan) (*current_xmachine->xmachine_clan).y = y;
+	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).y = y;
+	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).y = y;
 }
 
 /** \fn int get_y()
@@ -3762,6 +3855,8 @@ void set_y(int y)
 int get_y()
 {
 	if(current_xmachine->xmachine_clan) return (*current_xmachine->xmachine_clan).y;
+	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).y;
+	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).y;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -3983,54 +4078,6 @@ int get_tpatch()
     return (int)0;
 }
 
-/** \fn void set_xcord(int xcord)
- * \brief Set xcord memory variable for current X-machine.
- * \param xcord New value for variable.
- */
-void set_xcord(int xcord)
-{
-	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).xcord = xcord;
-	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).xcord = xcord;
-}
-
-/** \fn int get_xcord()
- * \brief Get xcord memory variable from current X-machine.
- * \return Value for variable.
- */
-int get_xcord()
-{
-	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).xcord;
-	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).xcord;
-
-    // suppress compiler warning by returning dummy value /
-    // this statement should rightfully NEVER be reached /
-    return (int)0;
-}
-
-/** \fn void set_ycord(int ycord)
- * \brief Set ycord memory variable for current X-machine.
- * \param ycord New value for variable.
- */
-void set_ycord(int ycord)
-{
-	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).ycord = ycord;
-	if(current_xmachine->xmachine_manada_guanacos) (*current_xmachine->xmachine_manada_guanacos).ycord = ycord;
-}
-
-/** \fn int get_ycord()
- * \brief Get ycord memory variable from current X-machine.
- * \return Value for variable.
- */
-int get_ycord()
-{
-	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).ycord;
-	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).ycord;
-
-    // suppress compiler warning by returning dummy value /
-    // this statement should rightfully NEVER be reached /
-    return (int)0;
-}
-
 /** \fn void set_repows(float repows)
  * \brief Set repows memory variable for current X-machine.
  * \param repows New value for variable.
@@ -4117,6 +4164,28 @@ int get_adultos()
 {
 	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).adultos;
 	if(current_xmachine->xmachine_manada_guanacos) return (*current_xmachine->xmachine_manada_guanacos).adultos;
+
+    // suppress compiler warning by returning dummy value /
+    // this statement should rightfully NEVER be reached /
+    return (int)0;
+}
+
+/** \fn void set_pclans(int pclans)
+ * \brief Set pclans memory variable for current X-machine.
+ * \param pclans New value for variable.
+ */
+void set_pclans(int pclans)
+{
+	if(current_xmachine->xmachine_patch) (*current_xmachine->xmachine_patch).pclans = pclans;
+}
+
+/** \fn int get_pclans()
+ * \brief Get pclans memory variable from current X-machine.
+ * \return Value for variable.
+ */
+int get_pclans()
+{
+	if(current_xmachine->xmachine_patch) return (*current_xmachine->xmachine_patch).pclans;
 
     // suppress compiler warning by returning dummy value /
     // this statement should rightfully NEVER be reached /
@@ -4273,8 +4342,8 @@ double agent_get_x()
     double value = 0.0;
     /*if (current_xmachine->xmachine_indv) value = current_xmachine->xmachine_indv->0.0;*/
     /*if (current_xmachine->xmachine_clan) value = current_xmachine->xmachine_clan->x;*/
-    /*if (current_xmachine->xmachine_patch) value = current_xmachine->xmachine_patch->0.0;*/
-    /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->0.0;*/
+    /*if (current_xmachine->xmachine_patch) value = current_xmachine->xmachine_patch->x;*/
+    /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->x;*/
 
     return value;
 }
@@ -4287,8 +4356,8 @@ double agent_get_y()
     double value = 0.0;
     /*if (current_xmachine->xmachine_indv) value = current_xmachine->xmachine_indv->0.0;*/
     /*if (current_xmachine->xmachine_clan) value = current_xmachine->xmachine_clan->y;*/
-    /*if (current_xmachine->xmachine_patch) value = current_xmachine->xmachine_patch->0.0;*/
-    /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->0.0;*/
+    /*if (current_xmachine->xmachine_patch) value = current_xmachine->xmachine_patch->y;*/
+    /*if (current_xmachine->xmachine_manada_guanacos) value = current_xmachine->xmachine_manada_guanacos->y;*/
 
     return value;
 }
@@ -4359,6 +4428,7 @@ void add_node(int node_id, double minx, double maxx, double miny, double maxy, d
 	current->respuestaID_messages = NULL;
 	current->lmarriage_messages = NULL;
 	current->warningDivide_messages = NULL;
+	current->clanspatch_messages = NULL;
 	current->adultospatch_messages = NULL;
 	current->reproduccionguanacos_messages = NULL;
 
@@ -4868,6 +4938,31 @@ void clean_up(int code)
     }
     #endif
 
+	rc = MB_Delete(&b_clanspatch);
+	#ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not delete 'clanspatch' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'clanspatch' board has not been created?\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+	       default:
+               fprintf(stderr, "\t MB_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+	       }
+
+	       
+       	   exit(rc);
+    }
+    #endif
+
 	rc = MB_Delete(&b_adultospatch);
 	#ifdef ERRCHECK
     if (rc != MB_SUCCESS)
@@ -4995,14 +5090,14 @@ void propagate_agents()
 		}
 		else if(current_xmachine->xmachine_patch != NULL)
 		{
-			x_xmachine = current_xmachine->xmachine_patch->0.0;
-			y_xmachine = current_xmachine->xmachine_patch->0.0;
+			x_xmachine = current_xmachine->xmachine_patch->x;
+			y_xmachine = current_xmachine->xmachine_patch->y;
 			z_xmachine = 0.0;
 		}
 		else if(current_xmachine->xmachine_manada_guanacos != NULL)
 		{
-			x_xmachine = current_xmachine->xmachine_manada_guanacos->0.0;
-			y_xmachine = current_xmachine->xmachine_manada_guanacos->0.0;
+			x_xmachine = current_xmachine->xmachine_manada_guanacos->x;
+			y_xmachine = current_xmachine->xmachine_manada_guanacos->y;
 			z_xmachine = 0.0;
 		}
 

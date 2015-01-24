@@ -249,6 +249,7 @@ digraph state_graph {
 	clan_vocabulary_review_13_end [label = "vocabulary_review", shape = rect]
 	clan_idle_13_end [label = "idle", shape = rect]
 	patch_patchtype_start_1 [label = "patchtype", shape = rect]
+	patch_infoClansInPatch_start_1 [label = "infoClansInPatch", shape = rect]
 	patch_patchcalories_1_2 [label = "patchcalories", shape = rect]
 	patch_regenerate_2_3 [label = "regenerate", shape = rect]
 	patch_idle_patch_2_3 [label = "idle_patch", shape = rect]
@@ -325,7 +326,7 @@ digraph state_graph {
 	clan_info_message_start_0 [ label = "start 1" color="#00ff00" shape = parallelogram];
 	clan_info_message_start_0 -> clan_info_message_end_0 [ color="#00ff00" ];
 	clan_info_message_end_0 [ label = "end 2" color="#00ff00" shape = parallelogram];
-	clan_info_message_end_0 -> patch_patchcalories_1_2 [ color="#00ff00" label = "a.xcord EQ m.px AND\na.ycord EQ m.py" ];
+	clan_info_message_end_0 -> patch_patchcalories_1_2 [ color="#00ff00" label = "a.x EQ m.px AND\na.y EQ m.py" ];
 	clangetcalories_message [ label = "clangetcalories" color="#00ff00" shape = parallelogram];
 	clangetcalories_message -> clangetcalories_message_start_0 [ color="#00ff00" ];
 	clangetcalories_message_start_0 [ label = "start 2" color="#00ff00" shape = parallelogram];
@@ -375,18 +376,24 @@ digraph state_graph {
 	warningDivide_message_start_0 -> warningDivide_message_end_0 [ color="#00ff00" ];
 	warningDivide_message_end_0 [ label = "end 24" color="#00ff00" shape = parallelogram];
 	warningDivide_message_end_0 -> indv_dividir_info_13_end [ color="#00ff00" label = "a.cID EQ m.clanID" ];
+	clanspatch_message [ label = "clanspatch" color="#00ff00" shape = parallelogram];
+	clanspatch_message -> clanspatch_message_start_0 [ color="#00ff00" ];
+	clanspatch_message_start_0 [ label = "start 0" color="#00ff00" shape = parallelogram];
+	clanspatch_message_start_0 -> clanspatch_message_end_0 [ color="#00ff00" ];
+	clanspatch_message_end_0 [ label = "end 1" color="#00ff00" shape = parallelogram];
+	clanspatch_message_end_0 -> manada_guanacos_move_1_2 [ color="#00ff00" label = "Box2d: 2.0" ];
 	adultospatch_message [ label = "adultospatch" color="#00ff00" shape = parallelogram];
 	adultospatch_message -> adultospatch_message_start_0 [ color="#00ff00" ];
 	adultospatch_message_start_0 [ label = "start 1" color="#00ff00" shape = parallelogram];
 	adultospatch_message_start_0 -> adultospatch_message_end_0 [ color="#00ff00" ];
 	adultospatch_message_end_0 [ label = "end 5" color="#00ff00" shape = parallelogram];
-	adultospatch_message_end_0 -> patch_guanacos_move_4_5 [ color="#00ff00" label = "a.xcord EQ m.xcord AND\na.ycord EQ m.ycord" ];
+	adultospatch_message_end_0 -> patch_guanacos_move_4_5 [ color="#00ff00" label = "a.x EQ m.x AND\na.y EQ m.y" ];
 	reproduccionguanacos_message [ label = "reproduccionguanacos" color="#00ff00" shape = parallelogram];
 	reproduccionguanacos_message -> reproduccionguanacos_message_start_0 [ color="#00ff00" ];
 	reproduccionguanacos_message_start_0 [ label = "start 2" color="#00ff00" shape = parallelogram];
 	reproduccionguanacos_message_start_0 -> reproduccionguanacos_message_end_0 [ color="#00ff00" ];
 	reproduccionguanacos_message_end_0 [ label = "end 6" color="#00ff00" shape = parallelogram];
-	reproduccionguanacos_message_end_0 -> patch_reproduccion_guanacos_5_end [ color="#00ff00" label = "a.xcord EQ m.xcord AND\na.ycord EQ m.ycord" ];
+	reproduccionguanacos_message_end_0 -> patch_reproduccion_guanacos_5_end [ color="#00ff00" label = "a.x EQ m.x AND\na.y EQ m.y" ];
 	
 	/* Transitions */
 	indv_start -> indv_indvInformation_start_01;
@@ -465,8 +472,10 @@ digraph state_graph {
 	clan_vocabulary_review_13_end -> clan_end;
 	clan_13 -> clan_idle_13_end [ label = "not ( Periodicity: yearly\nPhase: 348 )"];
 	clan_idle_13_end -> clan_end;
-	patch_start -> patch_patchtype_start_1;
+	patch_start -> patch_patchtype_start_1 [ label = "not ( Periodicity: dias_por_patch\nPhase: 0 )"];
 	patch_patchtype_start_1 -> patch_1;
+	patch_start -> patch_infoClansInPatch_start_1 [ label = "Periodicity: dias_por_patch\nPhase: 0"];
+	patch_infoClansInPatch_start_1 -> patch_1;
 	patch_1 -> patch_patchcalories_1_2;
 	patch_patchcalories_1_2 -> patch_2;
 	patch_2 -> patch_regenerate_2_3 [ label = "Periodicity: weekly\nPhase: 6"];
@@ -516,14 +525,15 @@ digraph state_graph {
 	clan_repartir_id_08_09 -> respuestaID_message [ color="#00ff00" ];
 	clan_again_marriable_10_11 -> lmarriage_message [ color="#00ff00" ];
 	clan_dividir_clan_11_12 -> warningDivide_message [ color="#00ff00" ];
+	patch_infoClansInPatch_start_1 -> clanspatch_message [ color="#00ff00" ];
 	patch_patchcalories_1_2 -> clangetcalories_message [ color="#00ff00" ];
 	manada_guanacos_move_1_2 -> adultospatch_message [ color="#00ff00" ];
 	manada_guanacos_reproduccion_2_3 -> reproduccionguanacos_message [ color="#00ff00" ];
-	{ rank=same; layer_0;  indv_indvInformation_start_01;  patch_patchtype_start_1;  manada_guanacos_manadaInfo_start_1;  manada_guanacos_seasonSwitch_start_1; }
+	{ rank=same; layer_0;  indv_indvInformation_start_01;  patch_patchtype_start_1;  patch_infoClansInPatch_start_1;  manada_guanacos_manadaInfo_start_1;  manada_guanacos_seasonSwitch_start_1; }
 	{ rank=same; layer_0_b; }
-	{ rank=same; layer_0_a; information_message_start_0; }
+	{ rank=same; layer_0_a; information_message_start_0; clanspatch_message_start_0; }
 	{ rank=same; layer_1;  clan_clan_Information_start_01;  manada_guanacos_manada_idle_1_2;  manada_guanacos_move_1_2; }
-	{ rank=same; layer_1_b; information_message_end_0; }
+	{ rank=same; layer_1_b; information_message_end_0; clanspatch_message_end_0; }
 	{ rank=same; layer_1_a; clan_info_message_start_0; adultospatch_message_start_0; }
 	{ rank=same; layer_2;  patch_patchcalories_1_2;  manada_guanacos_reproduccion_2_3;  manada_guanacos_manada_idle2_2_3; }
 	{ rank=same; layer_2_b; clan_info_message_end_0; }

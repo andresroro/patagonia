@@ -68,6 +68,9 @@ int main(int argc, char * argv[])
 	int FLAME_lmarriage_message_board_read;
 	int FLAME_warningDivide_message_board_write;
 	int FLAME_warningDivide_message_board_read;
+	int FLAME_clanspatch_message_board_write;
+	int FLAME_clanspatch_message_board_read;
+	MBt_SearchTree tree_ptr_2d_clanspatch;
 	int FLAME_adultospatch_message_board_write;
 	int FLAME_adultospatch_message_board_read;
 	int FLAME_reproduccionguanacos_message_board_write;
@@ -86,7 +89,7 @@ int main(int argc, char * argv[])
 	/* Output frequency is 1 as default */
 	output_frequency = 1;
 	/* Set random seed */
-/*	srand(time(NULL)); */
+	srand(time(NULL));
 
 	
 
@@ -1130,6 +1133,52 @@ printf("Iterations: %i\n", iteration_total);
 		   exit(rc);
 	}
 	#endif
+	FLAME_clanspatch_message_board_write = 0;
+	FLAME_clanspatch_message_board_read = 0;
+	/* Sending agents */
+	if(patch_start_state->agents != NULL) FLAME_clanspatch_message_board_write = 1;
+	
+	/* Reading agents */
+	if(manada_guanacos_start_state->agents != NULL) FLAME_clanspatch_message_board_read = 1;
+	
+	/* Call message board library with details */
+	if(FLAME_clanspatch_message_board_write == 0 &&
+		FLAME_clanspatch_message_board_read == 0)
+			rc = MB_SetAccessMode(b_clanspatch, MB_MODE_IDLE);
+	if(FLAME_clanspatch_message_board_write == 1 &&
+		FLAME_clanspatch_message_board_read == 0)
+			rc = MB_SetAccessMode(b_clanspatch, MB_MODE_WRITEONLY);
+	if(FLAME_clanspatch_message_board_write == 0 &&
+		FLAME_clanspatch_message_board_read == 1)
+			rc = MB_SetAccessMode(b_clanspatch, MB_MODE_READONLY);
+	if(FLAME_clanspatch_message_board_write == 1 &&
+		FLAME_clanspatch_message_board_read == 1)
+			rc = MB_SetAccessMode(b_clanspatch, MB_MODE_READWRITE);
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not set access mode of 'clanspatch' board\n");
+	   switch(rc) {
+		   case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+			   break;
+		   case MB_ERR_LOCKED:
+			   fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+		   
+		   exit(rc);
+	}
+	#endif
 	FLAME_adultospatch_message_board_write = 0;
 	FLAME_adultospatch_message_board_read = 0;
 	/* Sending agents */
@@ -1905,6 +1954,43 @@ printf("Iterations: %i\n", iteration_total);
 		}
 		
 		/* Start sync message boards that don't write */
+		if(FLAME_clanspatch_message_board_write == 0)
+		{
+			/*printf("%d> clanspatch message board sync start early as no agents sending any messages of this type\n", node_number);*/
+			
+			/* ********** sync message board here **********  */
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_clanspatch)\n");
+			rc = MB_SyncStart(b_clanspatch);
+			if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_clanspatch)\n");
+			#ifdef ERRCHECK
+			if (rc != MB_SUCCESS)
+			{
+			   fprintf(stderr, "ERROR: Could not start sync of 'clanspatch' board\n");
+			   switch(rc) {
+				   case MB_ERR_INVALID:
+					   fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+					   break;
+				   case MB_ERR_LOCKED:
+					   fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
+					   break;
+				   case MB_ERR_MEMALLOC:
+					   fprintf(stderr, "\t reason: out of memory\n");
+					   break;
+				   case MB_ERR_INTERNAL:
+					   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+					   break;
+				   default:
+					   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+					   break;
+			   }
+			   
+					   
+					   exit(rc);
+			   }
+			   #endif
+		}
+		
+		/* Start sync message boards that don't write */
 		if(FLAME_adultospatch_message_board_write == 0)
 		{
 			/*printf("%d> adultospatch message board sync start early as no agents sending any messages of this type\n", node_number);*/
@@ -1980,6 +2066,29 @@ printf("Iterations: %i\n", iteration_total);
 		
 		
 	/* DEBUG: States with branching functions */
+		current_xmachine_patch_holder = patch_start_state->agents;
+		while(current_xmachine_patch_holder)
+		{
+			FLAME_debug_count = 0;
+			/* Function: infoClansInPatch */
+			if(FLAME_condition_patch_infoClansInPatch_start_1(current_xmachine_patch_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/* Function: patchtype */
+			if(FLAME_condition_patch_patchtype_start_1(current_xmachine_patch_holder->agent)==1)
+			{ FLAME_debug_count++; }
+			/*printf("FLAME_debug_count = %d\n", FLAME_debug_count);*/
+			if(FLAME_debug_count != 1)
+			{
+				fprintf(stderr, "ERROR: A function condition test has failed for agent type 'patch' leaving state 'start'\n");
+				if(FLAME_debug_count > 1)
+					fprintf(stderr, "\t reason: there was more than one possible outgoing transition function\n");
+				if(FLAME_debug_count == 0)
+					fprintf(stderr, "\t reason: there was no possible outgoing transition function\n");
+			}
+			
+			current_xmachine_patch_holder = current_xmachine_patch_holder->next;
+		}
+		/* DEBUG: States with branching functions */
 		current_xmachine_manada_guanacos_holder = manada_guanacos_start_state->agents;
 		while(current_xmachine_manada_guanacos_holder)
 		{
@@ -2003,6 +2112,81 @@ printf("Iterations: %i\n", iteration_total);
 			current_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
 		}
 	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start infoClansInPatch\n");
+	current_xmachine_patch_holder = patch_start_state->agents;
+	while(current_xmachine_patch_holder)
+	{
+		temp_xmachine_patch_holder = current_xmachine_patch_holder->next;
+		current_xmachine_patch = current_xmachine_patch_holder->agent;
+		current_xmachine_patch_next_state = patch_1_state;
+		/* For backwards compatibility set current_xmachine */
+		current_xmachine->xmachine_indv = NULL;
+		current_xmachine->xmachine_clan = NULL;
+		current_xmachine->xmachine_patch = NULL;
+		current_xmachine->xmachine_manada_guanacos = NULL;
+		current_xmachine->xmachine_patch = current_xmachine_patch;
+
+		if(FLAME_condition_patch_infoClansInPatch_start_1(current_xmachine_patch)==1)
+		{
+
+		
+
+			i = infoClansInPatch();
+
+		
+
+			if(i == 1)
+			{
+				free_patch_agent(current_xmachine_patch_holder, patch_start_state);
+			}
+			else
+			{
+				transition_patch_agent(current_xmachine_patch_holder, patch_start_state, patch_1_state);
+			}
+		}
+
+		current_xmachine_patch = NULL;
+
+		current_xmachine_patch_holder = temp_xmachine_patch_holder;
+	}
+	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("finish infoClansInPatch\n");
+
+	if(FLAME_clanspatch_message_board_write == 1)
+	{
+
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncStart(b_clanspatch)\n");
+		rc = MB_SyncStart(b_clanspatch);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finish MB_SyncStart(b_clanspatch)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not start sync of 'clanspatch' board\n");
+		   switch(rc) {
+			   case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+				   break;
+			   case MB_ERR_LOCKED:
+				   fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+
+			
+			exit(rc);
+		}
+		#endif
+    }
+    
+
+
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start indvInformation\n");
 	current_xmachine_indv_holder = indv_start_state->agents;
 	while(current_xmachine_indv_holder)
@@ -2171,7 +2355,8 @@ printf("Iterations: %i\n", iteration_total);
 		current_xmachine->xmachine_manada_guanacos = NULL;
 		current_xmachine->xmachine_patch = current_xmachine_patch;
 
-		
+		if(FLAME_condition_patch_patchtype_start_1(current_xmachine_patch)==1)
+		{
 
 		
 
@@ -2187,7 +2372,7 @@ printf("Iterations: %i\n", iteration_total);
 			{
 				transition_patch_agent(current_xmachine_patch_holder, patch_start_state, patch_1_state);
 			}
-		
+		}
 
 		current_xmachine_patch = NULL;
 
@@ -2225,6 +2410,51 @@ printf("Iterations: %i\n", iteration_total);
 			current_xmachine_manada_guanacos_holder = current_xmachine_manada_guanacos_holder->next;
 		}
 	
+	/* If mb is not read then leave sync complete until last possible moment */
+	if(FLAME_clanspatch_message_board_read == 1)
+	{
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_clanspatch)\n");
+		rc = MB_SyncComplete(b_clanspatch);
+		if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_clanspatch)\n");
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not complete sync of 'clanspatch' board\n");
+		   switch(rc) {
+				case MB_ERR_INVALID:
+				   fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+				   break;
+			   case MB_ERR_MEMALLOC:
+				   fprintf(stderr, "\t reason: out of memory\n");
+				   break;
+			   case MB_ERR_INTERNAL:
+				   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+				   break;
+			   default:
+				   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+				   break;
+		   }
+	
+		   
+		   exit(rc);
+		}
+		#endif
+    /* Built 2d tree */
+    rc = MB_SearchTree_Create2D(b_clanspatch, &tree_ptr_2d_clanspatch,
+                           &clanspatch_message_extract_x,
+                           &clanspatch_message_extract_y);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not create MB_SearchTree_Create2D for 'clanspatch'\n");
+       
+       exit(rc);
+    }
+    #endif
+    
+    
+	}
+	
 	if(FLAME_TEST_PRINT_START_AND_END_OF_MODEL_FUNCTIONS) printf("start move\n");
 	current_xmachine_manada_guanacos_holder = manada_guanacos_1_state->agents;
 	while(current_xmachine_manada_guanacos_holder)
@@ -2243,9 +2473,73 @@ printf("Iterations: %i\n", iteration_total);
 		{
 
 		
+		
+          /* MB_Iterator 2d tree */
+          rc = MB_SearchTree_Search2D(tree_ptr_2d_clanspatch, &i_clanspatch,
+                           (double)current_xmachine_manada_guanacos->x - (double)2.0,
+                           (double)current_xmachine_manada_guanacos->x + (double)2.0,
+                           (double)current_xmachine_manada_guanacos->y - (double)2.0,
+                           (double)current_xmachine_manada_guanacos->y + (double)2.0);
+                  
+          
+		  
+		
+		#ifdef ERRCHECK
+		if (rc != MB_SUCCESS)
+		{
+		   fprintf(stderr, "ERROR: Could not create Iterator for 'clanspatch'\n");
+		   switch(rc) {
+		       case MB_ERR_INVALID:
+		           fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+		           break;
+		       case MB_ERR_LOCKED:
+	               fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
+	               break;
+	           case MB_ERR_MEMALLOC:
+	               fprintf(stderr, "\t reason: out of memory\n");
+	               break;
+	           case MB_ERR_INTERNAL:
+	               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+	               break;
+	           default:
+	           
+                   fprintf(stderr, "\t MB_Iterator_CreateFiltered returned error code: %d (see libmboard docs for details)\n", rc);
+               
+               
+                   break;
+		   }
+
+		   
+           exit(rc);
+		}
+		#endif
+		
+		
 
 			i = move();
 
+		
+		    rc = MB_Iterator_Delete(&i_clanspatch);
+		    #ifdef ERRCHECK
+		    if (rc != MB_SUCCESS)
+		    {
+		       fprintf(stderr, "ERROR: Could not delete 'clanspatch' iterator\n");
+		       switch(rc) {
+		           case MB_ERR_INVALID:
+		               fprintf(stderr, "\t reason: 'clanspatch' iterator is invalid\n");
+		               break;
+		           case MB_ERR_INTERNAL:
+		               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+		               break;
+		           default:
+                       fprintf(stderr, "\t MB_Iterator_Delete returned error code: %d (see libmboard docs for details)\n", rc);
+                       break;
+		       }
+
+		       
+               exit(rc);
+		    }
+		    #endif
 		
 
 			if(i == 1)
@@ -2559,6 +2853,67 @@ if(FLAME_information_message_board_read == 0)
                break;
            case MB_ERR_LOCKED:
                fprintf(stderr, "\t reason: 'information' board is locked\n");
+               break;
+           case MB_ERR_INTERNAL:
+               fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+               break;
+           default:
+               fprintf(stderr, "\t MB_Clear returned error code: %d (see libmboard docs for details)\n", rc);
+               break;
+
+       }
+
+       
+       exit(rc);
+    }
+    #endif
+
+if(FLAME_clanspatch_message_board_read == 0)
+{
+	/*printf("%d> clanspatch message board sync complete late as no agents reading any messages of this type\n", node_number);*/
+	
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("start MB_SyncComplete(b_clanspatch)\n");
+	rc = MB_SyncComplete(b_clanspatch);
+	if(FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS) printf("finsh MB_SyncComplete(b_clanspatch)\n");
+	#ifdef ERRCHECK
+	if (rc != MB_SUCCESS)
+	{
+	   fprintf(stderr, "ERROR: Could not complete sync of 'clanspatch' board\n");
+	   switch(rc) {
+			case MB_ERR_INVALID:
+			   fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+			   break;
+		   case MB_ERR_MEMALLOC:
+			   fprintf(stderr, "\t reason: out of memory\n");
+			   break;
+		   case MB_ERR_INTERNAL:
+			   fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
+			   break;
+		   default:
+			   fprintf(stderr, "\t MB_SyncComplete returned error code: %d (see libmboard docs for details)\n", rc);
+			   break;
+	   }
+
+	   
+	   exit(rc);
+	}
+	#endif
+}
+
+    /* Delete any search trees */
+    rc = MB_SearchTree_Delete(&tree_ptr_2d_clanspatch);
+
+    rc = MB_Clear(b_clanspatch);
+    #ifdef ERRCHECK
+    if (rc != MB_SUCCESS)
+    {
+       fprintf(stderr, "ERROR: Could not clear 'clanspatch' board\n");
+       switch(rc) {
+           case MB_ERR_INVALID:
+               fprintf(stderr, "\t reason: 'clanspatch' board is invalid\n");
+               break;
+           case MB_ERR_LOCKED:
+               fprintf(stderr, "\t reason: 'clanspatch' board is locked\n");
                break;
            case MB_ERR_INTERNAL:
                fprintf(stderr, "\t reason: internal error. Recompile libmoard in debug mode for more info \n");
