@@ -61,7 +61,7 @@ void add_information_message(int id, int clanID, int cal, int age, int pregnant)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -94,7 +94,7 @@ inline static m_information* getInternalMessage_information(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -118,7 +118,7 @@ inline static m_information* getInternalMessage_information(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -197,7 +197,7 @@ void add_indgetcalories_message(int icalories, int indvID)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -230,7 +230,7 @@ inline static m_indgetcalories* getInternalMessage_indgetcalories(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -254,7 +254,7 @@ inline static m_indgetcalories* getInternalMessage_indgetcalories(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -339,7 +339,7 @@ void add_leader_message(int id, int clanID, int leader, int sex, int age)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -372,7 +372,7 @@ inline static m_leader* getInternalMessage_leader(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -396,7 +396,7 @@ inline static m_leader* getInternalMessage_leader(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -481,7 +481,7 @@ void add_ancestor_message(int ancest[], int ancestClan[], int clanID, int indvID
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -514,7 +514,7 @@ inline static m_ancestor* getInternalMessage_ancestor(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -538,7 +538,7 @@ inline static m_ancestor* getInternalMessage_ancestor(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -617,7 +617,7 @@ void add_peticionID_message(int clanID, int id)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -650,7 +650,7 @@ inline static m_peticionID* getInternalMessage_peticionID(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -674,7 +674,7 @@ inline static m_peticionID* getInternalMessage_peticionID(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -757,7 +757,7 @@ void add_family_message(int wife, int clanID, int husband, int info[])
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -790,7 +790,7 @@ inline static m_family* getInternalMessage_family(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -814,7 +814,7 @@ inline static m_family* getInternalMessage_family(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -893,7 +893,7 @@ void add_death_message(int parejaID, int clanID)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -926,7 +926,7 @@ inline static m_death* getInternalMessage_death(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -950,7 +950,7 @@ inline static m_death* getInternalMessage_death(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -1033,7 +1033,7 @@ void add_widow_message(int ancestors[], int Cancestors[], int clanID, int indvID
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -1066,7 +1066,7 @@ inline static m_widow* getInternalMessage_widow(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -1090,7 +1090,7 @@ inline static m_widow* getInternalMessage_widow(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -1177,7 +1177,7 @@ void add_informationDivide_message(int clanID, int indvID, int parejaID, int sex
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -1210,7 +1210,7 @@ inline static m_informationDivide* getInternalMessage_informationDivide(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -1234,7 +1234,7 @@ inline static m_informationDivide* getInternalMessage_informationDivide(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -1319,7 +1319,7 @@ void add_clan_info_message(int px, int py, int cID, int wf, int maxcc)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -1352,7 +1352,7 @@ inline static m_clan_info* getInternalMessage_clan_info(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -1376,7 +1376,7 @@ inline static m_clan_info* getInternalMessage_clan_info(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -1455,7 +1455,7 @@ void add_clangetcalories_message(int cID, int clcalories)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -1488,7 +1488,7 @@ inline static m_clangetcalories* getInternalMessage_clangetcalories(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -1512,7 +1512,7 @@ inline static m_clangetcalories* getInternalMessage_clangetcalories(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -1603,7 +1603,7 @@ void add_freeGirls_message(int girls[], int num_chicas, int y, int x, int clanID
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -1636,7 +1636,7 @@ inline static m_freeGirls* getInternalMessage_freeGirls(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -1660,7 +1660,7 @@ inline static m_freeGirls* getInternalMessage_freeGirls(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -1745,7 +1745,7 @@ void add_propuesta_message(int id_list[], int id_man[], int oclanID, int dclanID
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -1778,7 +1778,7 @@ inline static m_propuesta* getInternalMessage_propuesta(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -1802,7 +1802,7 @@ inline static m_propuesta* getInternalMessage_propuesta(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -1887,7 +1887,7 @@ void add_confirProp_message(int girlID, int clanID, int manID, int oclanID, int 
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -1920,7 +1920,7 @@ inline static m_confirProp* getInternalMessage_confirProp(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -1944,7 +1944,7 @@ inline static m_confirProp* getInternalMessage_confirProp(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2029,7 +2029,7 @@ void add_marriage_message(int girlID, int clanID, int manID, int oclanID, int ne
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2062,7 +2062,7 @@ inline static m_marriage* getInternalMessage_marriage(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -2086,7 +2086,7 @@ inline static m_marriage* getInternalMessage_marriage(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2167,7 +2167,7 @@ void add_respuestaID_message(int freeID, int indvID, int clanID)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2200,7 +2200,7 @@ inline static m_respuestaID* getInternalMessage_respuestaID(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -2224,7 +2224,7 @@ inline static m_respuestaID* getInternalMessage_respuestaID(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2309,7 +2309,7 @@ void add_lmarriage_message(int manID, int girlID, int clanID, int mancestorsID[]
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2342,7 +2342,7 @@ inline static m_lmarriage* getInternalMessage_lmarriage(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -2366,7 +2366,7 @@ inline static m_lmarriage* getInternalMessage_lmarriage(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2443,7 +2443,7 @@ void add_warningDivide_message(int clanID)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2476,7 +2476,7 @@ inline static m_warningDivide* getInternalMessage_warningDivide(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -2500,7 +2500,7 @@ inline static m_warningDivide* getInternalMessage_warningDivide(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2581,7 +2581,7 @@ void add_clanmove_message(int x, int y, int sentido)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2614,7 +2614,7 @@ inline static m_clanmove* getInternalMessage_clanmove(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -2638,7 +2638,7 @@ inline static m_clanmove* getInternalMessage_clanmove(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2719,7 +2719,7 @@ void add_clanspatch_message(int x, int y, int pclans)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2752,7 +2752,7 @@ inline static m_clanspatch* getInternalMessage_clanspatch(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -2776,7 +2776,7 @@ inline static m_clanspatch* getInternalMessage_clanspatch(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2859,7 +2859,7 @@ void add_guanacospatch_message(int x, int y, int adultos, int season)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2892,7 +2892,7 @@ inline static m_guanacospatch* getInternalMessage_guanacospatch(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -2916,7 +2916,7 @@ inline static m_guanacospatch* getInternalMessage_guanacospatch(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -2999,7 +2999,7 @@ void add_adultospatch_message(int x, int y, int adultos, int sentido)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -3032,7 +3032,7 @@ inline static m_adultospatch* getInternalMessage_adultospatch(void)
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -3056,7 +3056,7 @@ inline static m_adultospatch* getInternalMessage_adultospatch(void)
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -3139,7 +3139,7 @@ void add_reproduccionguanacos_message(int x, int y, int count, int familia)
                break;
 	   }
 	      
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -3172,7 +3172,7 @@ inline static m_reproduccionguanacos* getInternalMessage_reproduccionguanacos(vo
                     break;
 	        }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
         }
         #endif
@@ -3196,7 +3196,7 @@ inline static m_reproduccionguanacos* getInternalMessage_reproduccionguanacos(vo
                break;
 	       }
 	       
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif

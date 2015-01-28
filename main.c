@@ -90,6 +90,18 @@ int main(int argc, char * argv[])
 	int partition_method=1;
 
 
+	int err; /* MPI errors */
+	char processor_name[MPI_MAX_PROCESSOR_NAME];
+	int processor_name_length;
+	MPI_Aint baseaddress;
+	/* Variables needed to construct spacePartitionType */
+	space_partition tmp_space_partition;
+	int array_of_block_lengths[2] = {1, 6};
+	MPI_Aint array_of_displacements[2];
+	MPI_Datatype array_of_types[2] = {MPI_INT, MPI_DOUBLE};
+	/* Variable to indicate if initial data is pre-partitioned. 0 = no, 1 = yes */
+	int is_prepartitioned = 0;
+
 
 	/* Output frequency is 1 as default */
 	output_frequency = 1;
@@ -97,6 +109,26 @@ int main(int argc, char * argv[])
 /*	srand(time(NULL)); */
 
 	
+	/* MPI initialisation routine */
+        err = MPI_Init(&argc, &argv);
+        if (err != MPI_SUCCESS)
+        {
+            printf("MPI initialization failed!\n");
+            exit(1);
+        }
+
+        /* Get total number of nodes and own node number */
+        MPI_Comm_size(MPI_COMM_WORLD, &totalnodes);
+        MPI_Comm_rank(MPI_COMM_WORLD, &node_number);
+        /* Initialise spacePartitionType */
+        MPI_Address(&tmp_space_partition, &baseaddress);
+        MPI_Address(&tmp_space_partition.node_id, &array_of_displacements[0]);
+        array_of_displacements[0] -= baseaddress;
+        MPI_Address(&tmp_space_partition.partition_data[0], &array_of_displacements[1]);
+        array_of_displacements[1] -= baseaddress;
+        MPI_Type_struct(2, array_of_block_lengths, array_of_displacements, array_of_types, &spacePartitionType);
+        MPI_Type_commit(&spacePartitionType);
+    
 
 	rc = MB_Env_Init();
 	#ifdef ERRCHECK
@@ -115,7 +147,7 @@ int main(int argc, char * argv[])
                break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
 
 	}
@@ -130,8 +162,10 @@ int main(int argc, char * argv[])
 	initialise_pointers();
 
 
-	printf("FLAME Application: GlobalDefs \n");
 
+	if(node_number == 0) {
+		printf("MPI FLAME Application: GlobalDefs \n");
+	}
 
 	printf("Debug mode enabled \n");
 FLAME_debug_count = 0;
@@ -144,15 +178,19 @@ if(FLAME_debug_count == 0) {}
 if(argc < 2)
 	{
 
-		printf("Usage: %s <number of iterations> [<states_directory>]/<init_state> <partitions> [-f # | -f #+#]\n",argv[0]);
-		printf("\t-f\tOutput frequency, 1st # is frequency, 2nd # is the offset if required\n");
 
+		if(node_number == 0) {
+			printf("Usage: mpirun -np <partitions> %s <number of iterations> [<states_directory>]/<init_state> [-r | -g] [-f # | -f #+#]\n",argv[0]);
+			printf("\t-r\tRound-robin partitioning\n");
+			printf("\t-g\tGeometric partitioning\n");
+			printf("\t-f\tOutput frequency, 1st # is frequency, 2nd # is the offset if required\n");
+		}
 
 
 		exit(0);
 	}
 	iteration_total = atoi(argv[1]);
-printf("Iterations: %i\n", iteration_total);
+	if(node_number == 0) printf("Iterations: %i\n", iteration_total);
 
 	/* Read initial states of x-machines */
 	if(argc < 3)
@@ -161,7 +199,7 @@ printf("Iterations: %i\n", iteration_total);
 		exit(0);
 	}
 	strcpy(inputpath, argv[2]);
-/*printf("Initial states: %s\n", inputpath);*/
+/*	if(node_number == 0) printf("Initial states: %s\n", inputpath);*/
 
 	i = 0;
 	lastd = -1;
@@ -176,15 +214,17 @@ printf("Iterations: %i\n", iteration_total);
 	strcpy(outputpath, inputpath);
 	outputpath[lastd+1] = '\0';
 
-/*printf("Ouput dir: %s\n", outputpath);*/
+    /* Need to check input path for .xml on the end. If so we read one input file if not */
+    /* it's the root for pre-partitioned input files */
+    if ( (i > 3) && (inputpath[i-1] == 'l') && (inputpath[i-2] == 'm') && (inputpath[i-3] == 'x') &&
+         (inputpath[i-4] == '.') ) {
+        is_prepartitioned = 0;
+    }
+    else {
+        is_prepartitioned = 1;
+    }
 
-
-	/* Read number of space partitions (1 by default) */
-	totalnodes = 1;
-	if(argc > 3)
-	{
-		totalnodes = atoi(argv[3]);
-	}
+/*	if(node_number == 0) printf("Ouput dir: %s\n", outputpath);*/
 
 
 	i = 3;
@@ -231,7 +271,19 @@ printf("Iterations: %i\n", iteration_total);
 	}
 
 
-	    /* Read initial data into p_xmachine  */
+    /* If user has already pre-partitioned initial data */
+    if (is_prepartitioned == 1) {
+        /* Each process adds its own node */
+        add_node(node_number, 0.0,0.0, 0.0,0.0, 0.0,0.0);
+        /* Now we can read the data */
+        readprepartitionedinitialstates(inputpath, outputpath, p_iteration_number);
+    }
+    else {
+
+	    /* Read initial data into p_xmachine on the master node */
+
+    if (node_number == 0)
+    {
 
        //agent_list = p_xmachine;
        readinitialstates(inputpath, outputpath, p_iteration_number, cloud_data, partition_method, 0);
@@ -239,14 +291,26 @@ printf("Iterations: %i\n", iteration_total);
        generate_partitions(cloud_data,totalnodes,partition_method);
        save_partition_data();
 
+    }
+
+
+
+    /* Broadcast node data */
+    broadcast_node_data(totalnodes, node_number);
 
 
 
 
-    /* Partition data */
-    /* stc: no partitions in serial */
-	//partition_data(totalnodes, agent_list, cloud_data, partition_method);
+    /* Clear previously populated agent list before readinitialstates()
+     *  overwrite the pointers and dereference allocated memory.
+     */
+    freexmachines();
 
+    /* Partition the data by reading it in. Partitions are known so get the read function
+     * to do the partitioning for us.
+     */
+    readinitialstates(inputpath, outputpath, p_iteration_number, cloud_data, partition_method, 1);
+    }
 
 
 /* Use MB_IndexMap routines from libmboard v0.2 */
@@ -255,23 +319,38 @@ printf("Iterations: %i\n", iteration_total);
 
 
 
-		/*i = 0;
-		current_node = *p_node_info;
-		while(current_node)
-		{
-			printf("No of agents on partition %d: %d\n", current_node->node_id, current_node->agent_total);
-			i += current_node->agent_total;
-			current_node = current_node->next;
-		}
-		printf("Agent total check: %d\n", i);*/
 
-        /* restore current_node pointer */
-		//current_node = *p_node_info;
+		/* Print processor name */
+		printf("%d> ", node_number);
+		MPI_Get_processor_name(processor_name, &processor_name_length);
+		printf("Processor name: %s\n", processor_name);
+		/* Print number of agents on node */
+		printf("%d> ", node_number);
+		printf("No of agents on node: %d\n", current_node->agent_total);
+		
+		/* Number of each agent type */
+		
+		printf("%d> ", node_number);
+		printf("indv agents on node: %d\n", indv_start_state->count);
+		
+		printf("%d> ", node_number);
+		printf("clan agents on node: %d\n", clan_start_state->count);
+		
+		printf("%d> ", node_number);
+		printf("patch agents on node: %d\n", patch_start_state->count);
+		
+		printf("%d> ", node_number);
+		printf("manada_guanacos agents on node: %d\n", manada_guanacos_start_state->count);
+		
 
+		/* Quickly check account for all agents */
+		MPI_Reduce(&current_node->agent_total, &i, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+		if(node_number == 0) printf("%d> Agent total check: %d\n",node_number, i);
 
 
 	/* Start log file (now so that xvisualiser can read straight away) */
-
+	if(node_number == 0)
+	{
 	/* Write log file */
 	sprintf(logfilepath, "%slog.xml", outputpath);
 	if((file = fopen(logfilepath, "w"))==NULL)
@@ -281,8 +360,8 @@ printf("Iterations: %i\n", iteration_total);
 	}
 	(void)fputs("<model_run>\n", file);
 	(void)fputs("<codetype>", file);
-	(void)fputs("serial", file);
 
+	(void)fputs("parallel", file);
 	(void)fputs("</codetype>\n", file);
 	(void)fputs("<nodes>", file);
 	sprintf(data, "%i", totalnodes);
@@ -292,8 +371,8 @@ printf("Iterations: %i\n", iteration_total);
 	/* print timer into */
 	(void)fputs("<!-- <time> unit: milliseconds -->\n", file);
 
-	sprintf(data, "unspecified");
 	
+	sprintf(data, "%.2e ms", MPI_Wtick() * 1000.0);
 	(void)fputs("<!-- <time> timer resolution: ", file);
 	(void)fputs(data, file);
 	(void)fputs(")-->\n", file);
@@ -307,7 +386,7 @@ printf("Iterations: %i\n", iteration_total);
 
 
 	(void)fclose(file);
-
+	}
 
 	/* For each message check if their exists agents that input/output the message */
 	FLAME_information_message_board_write = 0;
@@ -352,7 +431,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -398,7 +477,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -444,7 +523,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -490,7 +569,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -536,7 +615,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -582,7 +661,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -628,7 +707,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -674,7 +753,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -720,7 +799,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -766,7 +845,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -812,7 +891,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -858,7 +937,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -904,7 +983,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -950,7 +1029,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -996,7 +1075,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1042,7 +1121,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1088,7 +1167,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1134,7 +1213,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1180,7 +1259,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1226,7 +1305,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1272,7 +1351,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1318,7 +1397,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1364,7 +1443,7 @@ printf("Iterations: %i\n", iteration_total);
 			   fprintf(stderr, "\t MB_SyncStart returned error code: %d (see libmboard docs for details)\n", rc);
 			   break;
 	   }
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 	}
 	#endif
@@ -1379,7 +1458,20 @@ printf("Iterations: %i\n", iteration_total);
 
 		/* Print out iteration number */
 		
-		fprintf(stdout, "Iteration - %d\n", iteration_loop);
+        if (totalnodes <= COMPACT_PRINTOUT_P_THRESHOLD)
+        {
+            for (i = 0; i < node_number; i++) fprintf(stdout, "-------\t");
+            fprintf(stdout, "P%d:%d\t", node_number, iteration_loop);
+            for (i = node_number + 1; i < totalnodes; i++) fprintf(stdout, "-------\t");
+            fprintf(stdout, "\n");
+        }
+        else
+        {
+            fprintf(stdout, "P%d:%d\n", node_number, iteration_loop);
+        }
+
+        
+		
 		(void)fflush(stdout);
         
 		/* START OF ITERATION */
@@ -1415,7 +1507,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1452,7 +1544,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1489,7 +1581,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1526,7 +1618,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1563,7 +1655,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1600,7 +1692,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1637,7 +1729,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1674,7 +1766,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1711,7 +1803,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1748,7 +1840,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1785,7 +1877,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1822,7 +1914,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1859,7 +1951,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1896,7 +1988,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1933,7 +2025,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -1970,7 +2062,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2007,7 +2099,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2044,7 +2136,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2081,7 +2173,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2118,7 +2210,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2155,7 +2247,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2192,7 +2284,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2229,7 +2321,7 @@ printf("Iterations: %i\n", iteration_total);
 					   break;
 			   }
 			   
-					   
+					   MPI_Abort(MPI_COMM_WORLD, rc);
 					   exit(rc);
 			   }
 			   #endif
@@ -2350,7 +2442,7 @@ printf("Iterations: %i\n", iteration_total);
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -2424,7 +2516,7 @@ printf("Iterations: %i\n", iteration_total);
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -2629,7 +2721,7 @@ printf("Iterations: %i\n", iteration_total);
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -2641,7 +2733,7 @@ printf("Iterations: %i\n", iteration_total);
     if (rc != MB_SUCCESS)
     {
        fprintf(stderr, "ERROR: Could not create MB_SearchTree_Create2D for 'clanspatch'\n");
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -2703,7 +2795,7 @@ printf("Iterations: %i\n", iteration_total);
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -2730,7 +2822,7 @@ printf("Iterations: %i\n", iteration_total);
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -2780,7 +2872,7 @@ printf("Iterations: %i\n", iteration_total);
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -2855,7 +2947,7 @@ printf("Iterations: %i\n", iteration_total);
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -2968,7 +3060,7 @@ printf("Iterations: %i\n", iteration_total);
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -3027,7 +3119,7 @@ printf("Iterations: %i\n", iteration_total);
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -3054,7 +3146,7 @@ printf("Iterations: %i\n", iteration_total);
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -3104,7 +3196,7 @@ printf("Iterations: %i\n", iteration_total);
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -3143,7 +3235,7 @@ if(FLAME_information_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -3172,7 +3264,7 @@ if(FLAME_information_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -3203,7 +3295,7 @@ if(FLAME_clanspatch_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -3233,7 +3325,7 @@ if(FLAME_clanspatch_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -3287,7 +3379,7 @@ if(FLAME_clanspatch_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -3346,7 +3438,7 @@ if(FLAME_clanspatch_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -3373,7 +3465,7 @@ if(FLAME_clanspatch_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -3423,7 +3515,7 @@ if(FLAME_clanspatch_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -3498,7 +3590,7 @@ if(FLAME_clanspatch_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -3577,7 +3669,7 @@ if(FLAME_clan_info_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -3606,7 +3698,7 @@ if(FLAME_clan_info_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -3779,7 +3871,7 @@ if(FLAME_clan_info_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -3838,7 +3930,7 @@ if(FLAME_clan_info_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -3865,7 +3957,7 @@ if(FLAME_clan_info_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -3919,7 +4011,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -3948,7 +4040,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -4043,7 +4135,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -4225,7 +4317,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -4284,7 +4376,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -4311,7 +4403,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -4359,7 +4451,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -4371,7 +4463,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
     if (rc != MB_SUCCESS)
     {
        fprintf(stderr, "ERROR: Could not create MB_SearchTree_Create2D for 'guanacospatch'\n");
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -4433,7 +4525,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -4460,7 +4552,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -4510,7 +4602,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -4543,7 +4635,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -4602,7 +4694,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -4629,7 +4721,7 @@ if(FLAME_clangetcalories_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -4683,7 +4775,7 @@ if(FLAME_indgetcalories_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -4712,7 +4804,7 @@ if(FLAME_indgetcalories_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -4743,7 +4835,7 @@ if(FLAME_guanacospatch_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -4773,7 +4865,7 @@ if(FLAME_guanacospatch_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -4804,7 +4896,7 @@ if(FLAME_adultospatch_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -4833,7 +4925,7 @@ if(FLAME_adultospatch_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -4967,7 +5059,7 @@ if(FLAME_adultospatch_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -5026,7 +5118,7 @@ if(FLAME_adultospatch_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -5053,7 +5145,7 @@ if(FLAME_adultospatch_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -5107,7 +5199,7 @@ if(FLAME_clanmove_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -5136,7 +5228,7 @@ if(FLAME_clanmove_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -5255,7 +5347,7 @@ if(FLAME_clanmove_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -5368,7 +5460,7 @@ if(FLAME_clanmove_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -5428,7 +5520,7 @@ if(FLAME_clanmove_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -5455,7 +5547,7 @@ if(FLAME_clanmove_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -5509,7 +5601,7 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -5538,7 +5630,7 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -5592,7 +5684,7 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -5651,7 +5743,7 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -5678,7 +5770,7 @@ if(FLAME_reproduccionguanacos_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -5732,7 +5824,7 @@ if(FLAME_ancestor_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -5761,7 +5853,7 @@ if(FLAME_ancestor_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -5833,7 +5925,7 @@ if(FLAME_ancestor_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -5872,7 +5964,7 @@ if(FLAME_ancestor_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -5884,7 +5976,7 @@ if(FLAME_ancestor_message_board_read == 0)
     if (rc != MB_SUCCESS)
     {
        fprintf(stderr, "ERROR: Could not create MB_SearchTree_Create2D for 'freeGirls'\n");
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -5945,7 +6037,7 @@ if(FLAME_ancestor_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -5972,7 +6064,7 @@ if(FLAME_ancestor_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -6022,7 +6114,7 @@ if(FLAME_ancestor_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -6061,7 +6153,7 @@ if(FLAME_freeGirls_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -6091,7 +6183,7 @@ if(FLAME_freeGirls_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -6122,7 +6214,7 @@ if(FLAME_freeGirls_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -6181,7 +6273,7 @@ if(FLAME_freeGirls_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -6208,7 +6300,7 @@ if(FLAME_freeGirls_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -6258,7 +6350,7 @@ if(FLAME_freeGirls_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -6297,7 +6389,7 @@ if(FLAME_propuesta_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -6326,7 +6418,7 @@ if(FLAME_propuesta_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -6357,7 +6449,7 @@ if(FLAME_propuesta_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -6416,7 +6508,7 @@ if(FLAME_propuesta_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -6443,7 +6535,7 @@ if(FLAME_propuesta_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -6493,7 +6585,7 @@ if(FLAME_propuesta_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -6532,7 +6624,7 @@ if(FLAME_confirProp_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -6561,7 +6653,7 @@ if(FLAME_confirProp_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -6592,7 +6684,7 @@ if(FLAME_confirProp_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -6652,7 +6744,7 @@ if(FLAME_confirProp_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -6679,7 +6771,7 @@ if(FLAME_confirProp_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -6729,7 +6821,7 @@ if(FLAME_confirProp_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -6788,7 +6880,7 @@ if(FLAME_confirProp_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -6815,7 +6907,7 @@ if(FLAME_confirProp_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -6869,7 +6961,7 @@ if(FLAME_marriage_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -6898,7 +6990,7 @@ if(FLAME_marriage_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -6992,7 +7084,7 @@ if(FLAME_marriage_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -7052,7 +7144,7 @@ if(FLAME_marriage_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -7079,7 +7171,7 @@ if(FLAME_marriage_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -7133,7 +7225,7 @@ if(FLAME_family_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -7162,7 +7254,7 @@ if(FLAME_family_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -7367,7 +7459,7 @@ if(FLAME_family_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -7446,7 +7538,7 @@ if(FLAME_family_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -7505,7 +7597,7 @@ if(FLAME_family_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -7532,7 +7624,7 @@ if(FLAME_family_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -7582,7 +7674,7 @@ if(FLAME_family_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -7621,7 +7713,7 @@ if(FLAME_peticionID_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -7650,7 +7742,7 @@ if(FLAME_peticionID_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -7681,7 +7773,7 @@ if(FLAME_peticionID_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -7740,7 +7832,7 @@ if(FLAME_peticionID_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -7767,7 +7859,7 @@ if(FLAME_peticionID_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -7821,7 +7913,7 @@ if(FLAME_respuestaID_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -7850,7 +7942,7 @@ if(FLAME_respuestaID_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -7922,7 +8014,7 @@ if(FLAME_respuestaID_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -7957,7 +8049,7 @@ if(FLAME_respuestaID_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -7996,7 +8088,7 @@ if(FLAME_respuestaID_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -8055,7 +8147,7 @@ if(FLAME_respuestaID_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -8082,7 +8174,7 @@ if(FLAME_respuestaID_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -8130,7 +8222,7 @@ if(FLAME_respuestaID_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -8189,7 +8281,7 @@ if(FLAME_respuestaID_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -8216,7 +8308,7 @@ if(FLAME_respuestaID_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -8270,7 +8362,7 @@ if(FLAME_leader_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -8299,7 +8391,7 @@ if(FLAME_leader_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -8330,7 +8422,7 @@ if(FLAME_death_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -8359,7 +8451,7 @@ if(FLAME_death_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -8455,7 +8547,7 @@ if(FLAME_death_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -8557,7 +8649,7 @@ if(FLAME_death_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -8616,7 +8708,7 @@ if(FLAME_death_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -8643,7 +8735,7 @@ if(FLAME_death_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -8693,7 +8785,7 @@ if(FLAME_death_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -8772,7 +8864,7 @@ if(FLAME_widow_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -8801,7 +8893,7 @@ if(FLAME_widow_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -8897,7 +8989,7 @@ if(FLAME_widow_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -8970,7 +9062,7 @@ if(FLAME_widow_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -9030,7 +9122,7 @@ if(FLAME_widow_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -9057,7 +9149,7 @@ if(FLAME_widow_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -9111,7 +9203,7 @@ if(FLAME_lmarriage_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -9140,7 +9232,7 @@ if(FLAME_lmarriage_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -9171,7 +9263,7 @@ if(FLAME_lmarriage_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -9230,7 +9322,7 @@ if(FLAME_lmarriage_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -9257,7 +9349,7 @@ if(FLAME_lmarriage_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -9307,7 +9399,7 @@ if(FLAME_lmarriage_message_board_read == 0)
 				   break;
 		   }
 
-			
+			MPI_Abort(MPI_COMM_WORLD, rc);
 			exit(rc);
 		}
 		#endif
@@ -9346,7 +9438,7 @@ if(FLAME_warningDivide_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -9375,7 +9467,7 @@ if(FLAME_warningDivide_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -9406,7 +9498,7 @@ if(FLAME_warningDivide_message_board_read == 0)
 				   break;
 		   }
 	
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
 		   exit(rc);
 		}
 		#endif
@@ -9465,7 +9557,7 @@ if(FLAME_warningDivide_message_board_read == 0)
                    break;
 		   }
 
-		   
+		   MPI_Abort(MPI_COMM_WORLD, rc);
            exit(rc);
 		}
 		#endif
@@ -9492,7 +9584,7 @@ if(FLAME_warningDivide_message_board_read == 0)
                        break;
 		       }
 
-		       
+		       MPI_Abort(MPI_COMM_WORLD, rc);
                exit(rc);
 		    }
 		    #endif
@@ -9546,7 +9638,7 @@ if(FLAME_informationDivide_message_board_read == 0)
 			   break;
 	   }
 
-	   
+	   MPI_Abort(MPI_COMM_WORLD, rc);
 	   exit(rc);
 	}
 	#endif
@@ -9575,7 +9667,7 @@ if(FLAME_informationDivide_message_board_read == 0)
 
        }
 
-       
+       MPI_Abort(MPI_COMM_WORLD, rc);
        exit(rc);
     }
     #endif
@@ -9872,7 +9964,8 @@ if(FLAME_informationDivide_message_board_read == 0)
 		/* Calculate if any agents need to jump S.P. */
 		/* propagate_agents(); */
 	/* Save iteration time to log file */
-
+		if(node_number == 0)
+		{
 		if((file = fopen(logfilepath, "a"))==NULL)
 		{
 			printf("Error: cannot open file '%s' for writing\n", logfilepath);
@@ -9886,15 +9979,18 @@ if(FLAME_informationDivide_message_board_read == 0)
 		(void)fputs(data, file);
 		(void)fputs("</time></iteration>\n", file);
 		(void)fclose(file);
-
+		}
 	}
 
+
+    /* Wait till all procs are done */
+    MPI_Barrier(MPI_COMM_WORLD);
     
 
 	/* Stop timing and print total time */
 	stop = get_time();
 	total_time = stop - start;
-	printf("Execution time - %d:%02d:%03d [mins:secs:msecs]\n",
+	if(node_number == 0) printf("Execution time - %d:%02d:%03d [mins:secs:msecs]\n",
        (int)(total_time/60), ((int)total_time)%60, (((int)(total_time * 1000.0)) % 1000));
 
 	clean_up(0);

@@ -1003,7 +1003,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1028,7 +1028,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1053,7 +1053,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1078,7 +1078,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1103,7 +1103,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1128,7 +1128,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1153,7 +1153,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1178,7 +1178,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1203,7 +1203,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1228,7 +1228,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1253,7 +1253,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1278,7 +1278,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1303,7 +1303,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1328,7 +1328,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1353,7 +1353,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1378,7 +1378,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1403,7 +1403,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1428,7 +1428,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1453,7 +1453,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1478,7 +1478,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1503,7 +1503,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1528,7 +1528,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1553,7 +1553,7 @@ void free_messages()
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1590,7 +1590,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1618,7 +1618,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1646,7 +1646,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1674,7 +1674,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1702,7 +1702,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1730,7 +1730,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1758,7 +1758,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1786,7 +1786,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1814,7 +1814,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1842,7 +1842,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1870,7 +1870,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1898,7 +1898,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1926,7 +1926,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1954,7 +1954,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -1982,7 +1982,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2010,7 +2010,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2038,7 +2038,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2066,7 +2066,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2094,7 +2094,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2122,7 +2122,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2150,7 +2150,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2178,7 +2178,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2206,7 +2206,7 @@ int rc;
                    break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 	    }
 	    #endif
@@ -2329,7 +2329,7 @@ void initialise_unit_testing()
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
 
 	}
@@ -2811,7 +2811,7 @@ void add_indv_agent_internal(xmachine_memory_indv * agent, xmachine_memory_indv_
 	current->agent = agent;
 
 	state->count++;
-
+    current_node->agent_total++;
 }
 
 /** \fn void add_indv_agent(int indvID, int cID, int cal_needs, int icalories, int patchID, int age, int sex, int pregnant, int lead, int marriable, int ancestors[], int ancestorsClan[], int married, int pareja, int embarazable, int month, int motherID, int husband_info[], int widow)
@@ -3120,7 +3120,7 @@ void add_clan_agent_internal(xmachine_memory_clan * agent, xmachine_memory_clan_
 	current->agent = agent;
 
 	state->count++;
-
+    current_node->agent_total++;
 }
 
 /** \fn void add_clan_agent(int cID, int cal_need, int cal_got, int cal_stored, int x, int y, int tcalories, int leaderID, members_needs * mneeds, indv_free * ifree, int indexID, int members, int linguistics[], int targetX, int targetY)
@@ -3348,7 +3348,7 @@ void add_patch_agent_internal(xmachine_memory_patch * agent, xmachine_memory_pat
 	current->agent = agent;
 
 	state->count++;
-
+    current_node->agent_total++;
 }
 
 /** \fn void add_patch_agent(int patchID, int pcalories, int gcalories, float repo, int tpatch, int x, int y, float repows, float repods, int season, int adultos, int pclans)
@@ -3528,7 +3528,7 @@ void add_manada_guanacos_agent_internal(xmachine_memory_manada_guanacos * agent,
 	current->agent = agent;
 
 	state->count++;
-
+    current_node->agent_total++;
 }
 
 /** \fn void add_manada_guanacos_agent(int familia, int x, int y, int targetX, int targetY, int count, int calorias, int adultos, int season)
@@ -4627,7 +4627,7 @@ void add_node(int node_id, double minx, double maxx, double miny, double maxy, d
 
 	current = (node_information *)malloc(sizeof(node_information));
 		CHECK_POINTER(current);
-
+	if(node_id == node_number) current_node = current;
 	if(tmp)
 	{
 		tmp->next = current;
@@ -4665,6 +4665,38 @@ void add_node(int node_id, double minx, double maxx, double miny, double maxy, d
 	current->guanacospatch_messages = NULL;
 	current->adultospatch_messages = NULL;
 	current->reproduccionguanacos_messages = NULL;
+
+	current->information_message_no = 0;
+	current->indgetcalories_message_no = 0;
+	current->leader_message_no = 0;
+	current->ancestor_message_no = 0;
+	current->peticionID_message_no = 0;
+	current->family_message_no = 0;
+	current->death_message_no = 0;
+	current->widow_message_no = 0;
+	current->informationDivide_message_no = 0;
+	current->clan_info_message_no = 0;
+	current->clangetcalories_message_no = 0;
+	current->freeGirls_message_no = 0;
+	current->propuesta_message_no = 0;
+	current->confirProp_message_no = 0;
+	current->marriage_message_no = 0;
+	current->respuestaID_message_no = 0;
+	current->lmarriage_message_no = 0;
+	current->warningDivide_message_no = 0;
+	current->clanmove_message_no = 0;
+	current->clanspatch_message_no = 0;
+	current->guanacospatch_message_no = 0;
+	current->adultospatch_message_no = 0;
+	current->reproduccionguanacos_message_no = 0;
+	current->indv_agents = NULL;
+	current->indv_agent_no = 0;
+	current->clan_agents = NULL;
+	current->clan_agent_no = 0;
+	current->patch_agents = NULL;
+	current->patch_agent_no = 0;
+	current->manada_guanacos_agents = NULL;
+	current->manada_guanacos_agent_no = 0;
 
 
 	current->partition_data[0] = minx;
@@ -4742,7 +4774,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4767,7 +4799,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4792,7 +4824,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4817,7 +4849,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4842,7 +4874,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4867,7 +4899,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4892,7 +4924,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4917,7 +4949,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4942,7 +4974,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4967,7 +4999,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -4992,7 +5024,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5017,7 +5049,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5042,7 +5074,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5067,7 +5099,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5092,7 +5124,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5117,7 +5149,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5142,7 +5174,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5167,7 +5199,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5192,7 +5224,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5217,7 +5249,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5242,7 +5274,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5267,7 +5299,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5292,7 +5324,7 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
@@ -5312,12 +5344,78 @@ void clean_up(int code)
                break;
 	       }
 
-	       
+	       MPI_Abort(MPI_COMM_WORLD, rc);
        	   exit(rc);
     }
     #endif
 
 
+
+        /* Clear MPI_Datatypes */
+        MPI_Type_free(&spacePartitionType);
+        
+        /* MPI_Type_free(&xmachineindvType); */
+        
+        /* MPI_Type_free(&xmachineclanType); */
+        
+        /* MPI_Type_free(&xmachinepatchType); */
+        
+        /* MPI_Type_free(&xmachinemanada_guanacosType); */
+        
+        
+        /* MPI_Type_free(&messageinformationType); */
+        
+        /* MPI_Type_free(&messageindgetcaloriesType); */
+        
+        /* MPI_Type_free(&messageleaderType); */
+        
+        /* MPI_Type_free(&messageancestorType); */
+        
+        /* MPI_Type_free(&messagepeticionIDType); */
+        
+        /* MPI_Type_free(&messagefamilyType); */
+        
+        /* MPI_Type_free(&messagedeathType); */
+        
+        /* MPI_Type_free(&messagewidowType); */
+        
+        /* MPI_Type_free(&messageinformationDivideType); */
+        
+        /* MPI_Type_free(&messageclan_infoType); */
+        
+        /* MPI_Type_free(&messageclangetcaloriesType); */
+        
+        /* MPI_Type_free(&messagefreeGirlsType); */
+        
+        /* MPI_Type_free(&messagepropuestaType); */
+        
+        /* MPI_Type_free(&messageconfirPropType); */
+        
+        /* MPI_Type_free(&messagemarriageType); */
+        
+        /* MPI_Type_free(&messagerespuestaIDType); */
+        
+        /* MPI_Type_free(&messagelmarriageType); */
+        
+        /* MPI_Type_free(&messagewarningDivideType); */
+        
+        /* MPI_Type_free(&messageclanmoveType); */
+        
+        /* MPI_Type_free(&messageclanspatchType); */
+        
+        /* MPI_Type_free(&messageguanacospatchType); */
+        
+        /* MPI_Type_free(&messageadultospatchType); */
+        
+        /* MPI_Type_free(&messagereproduccionguanacosType); */
+        
+
+
+		/* MPI finalise routine */
+		MPI_Finalize();
+
+		if(node_number == 0)
+		{
 
 	/* Write log file */
 	sprintf(data, "%slog.xml", outputpath);
@@ -5333,7 +5431,7 @@ void clean_up(int code)
 	fputs("</totalmessages>", file);*/
 	fputs("</model_run>", file);
 	fclose(file);
-
+	}
 
 	if(code != 0)
 	{
@@ -5346,81 +5444,6 @@ void clean_up(int code)
 	}
 }
 
-
-/** \fn void propagate_agents()
- * \brief Check agent positions to see if any need to be moved to a another node.
- */
-void propagate_agents()
-{
-/*	node_information * node_info;
-	xmachine * before_xmachine, * temp_xmachine;
-	xmachine ** p_temp_xmachine;
-	double x_xmachine, y_xmachine, z_xmachine;
-	current_xmachine = *p_xmachine;
-	before_xmachine = NULL;
-	while(current_xmachine)
-	{
-		if(current_xmachine->xmachine_indv != NULL)
-		{
-			x_xmachine = current_xmachine->xmachine_indv->0.0;
-			y_xmachine = current_xmachine->xmachine_indv->0.0;
-			z_xmachine = 0.0;
-		}
-		else if(current_xmachine->xmachine_clan != NULL)
-		{
-			x_xmachine = current_xmachine->xmachine_clan->x;
-			y_xmachine = current_xmachine->xmachine_clan->y;
-			z_xmachine = 0.0;
-		}
-		else if(current_xmachine->xmachine_patch != NULL)
-		{
-			x_xmachine = current_xmachine->xmachine_patch->x;
-			y_xmachine = current_xmachine->xmachine_patch->y;
-			z_xmachine = 0.0;
-		}
-		else if(current_xmachine->xmachine_manada_guanacos != NULL)
-		{
-			x_xmachine = current_xmachine->xmachine_manada_guanacos->x;
-			y_xmachine = current_xmachine->xmachine_manada_guanacos->y;
-			z_xmachine = 0.0;
-		}
-
-		if(x_xmachine < current_node->partition_data[0] ||
-		   x_xmachine > current_node->partition_data[1] ||
-		   y_xmachine < current_node->partition_data[2] ||
-		   y_xmachine > current_node->partition_data[3] ||
-		   z_xmachine < current_node->partition_data[4] ||
-		   z_xmachine > current_node->partition_data[5])
-		{
-			node_info = *p_node_info;
-			while(node_info)
-			{
-				if(node_info->node_id != current_node->node_id &&
-				node_info->partition_data[0] < x_xmachine && node_info->partition_data[1] > x_xmachine &&
-				node_info->partition_data[2] < y_xmachine && node_info->partition_data[3] > y_xmachine &&
-				node_info->partition_data[4] < z_xmachine && node_info->partition_data[5] > z_xmachine)
-				{
-                    // Remove agent
-                    if(before_xmachine) before_xmachine->next = current_xmachine->next;
-                    else *p_xmachine = current_xmachine->next;
-                    current_node->agent_total--;
-                    // Add agent
-                    p_temp_xmachine = &node_info->agents;
-                    temp_xmachine = *p_temp_xmachine;
-                    current_xmachine->next = temp_xmachine;
-                    *p_temp_xmachine = current_xmachine;
-                    node_info->agent_total++;
-                    node_info = NULL;
-				}
-				else node_info = node_info->next;
-				}
-			}
-			else before_xmachine = current_xmachine;
-
-			if(before_xmachine) current_xmachine = before_xmachine->next;
-			else current_xmachine = NULL;
-		}*/
-}
 
 
 /** \fn int_array * init_int_array()

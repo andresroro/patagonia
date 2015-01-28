@@ -3,7 +3,7 @@
 
 <imports>
 	<import>
-    <location>0_prueba.xml</location>
+    <location>0_guanacos.xml</location>
     <format>xml</format>
     <type>agent</type>
 	</import>
@@ -24,8 +24,8 @@
 <format>xml</format>
 <location></location>
 <time>
-<period>10</period>
-<phase>1</phase>
+<period>500</period>
+<phase>0</phase>
 </time>
 </output>
 </outputs>

@@ -1276,6 +1276,330 @@ int check_location_exists(char * location)
 }
 
 
+/** \fn void readprepartitionedinitialstates(char * filename, int * itno, xmachine ** agent_list)
+ * \brief Read prepartitioned initial X-machine memory starting values from a set of files. The root for
+ * these files is filename and the actual filenames are formed as filename<node_id>-0.xml. NOTE that
+ * this must only be called for parallel applications.
+ * \param fileroot The path to the file with root for filenames.
+ * \param filelocation The directory of the location
+ * \param itno Pointer to the iteration number.
+ */
+void readprepartitionedinitialstates(char * fileroot, char * filelocation, int * itno)
+{
+	/* Pointer to file */
+	FILE *file;
+	/* Char and char buffer for reading file to */
+	char c = '\0';
+	char buffer[100000];
+	char FLAME_location[10000];
+	char FLAME_format[10000];
+	char FLAME_type[10000];
+	FLAME_output * current_FLAME_output = NULL;
+	/* Temporary node and head of associated agent list to allow adding agents */
+	/*@unused@*/ //node_information temp_node;
+	/* Variables for checking tags */
+	int reading = 1;
+	int i = 0;
+	int rc;
+	int in_tag = 0;
+	int in_itno = 0;
+	int FLAME_in_imports = 0;
+	int FLAME_in_import = 0;
+	int FLAME_in_outputs = 0;
+	int FLAME_in_output = 0;
+	int FLAME_in_location = 0;
+	int FLAME_in_format = 0;
+	int FLAME_in_type = 0;
+	int FLAME_in_time = 0;
+	int FLAME_in_period = 0;
+	int FLAME_in_phase = 0;
+	int FLAME_in_name = 0;
+	
+	int number_partitions=0;
+	int node_number=0;
+	int agent_count = 0;
+	/* Filename must be constructed from fileroot argument */ 
+	char filename[100000];
+	/* Following variables required by readAgentXML. */
+	double cloud_data[6];
+	int flag = 0; /* Set flag=0 so readAgentXML reads and adds agents and does nothing else. */
+	int partition_method = 0; /* This is irrelevant because flag = 0 */
+
+	/* Initialise environment vars */
+	FLAME_environment_variable_propegnant = 0;
+	FLAME_environment_variable_nancestors = 0;
+	FLAME_environment_variable_learn = 0;
+	FLAME_environment_variable_forget = 0;
+	FLAME_environment_variable_lang_threshold = 0;
+	FLAME_environment_variable_max_manada = 0;
+	FLAME_environment_variable_max_familia = 0;
+	FLAME_environment_variable_cal_adulto = 0;
+	FLAME_environment_variable_surviveChanceAdult = 0;
+	FLAME_environment_variable_surviveChanceChild = 0;
+	
+
+	MPI_Comm_size (MPI_COMM_WORLD, &number_partitions);
+	MPI_Comm_rank (MPI_COMM_WORLD, &node_number);
+	agent_count = node_number;
+	 
+	sprintf(filename, "%s%d-0.xml", fileroot, node_number);
+	/* Open config file to read-only */
+    if((file = fopen(filename, "r"))==NULL)
+	{
+		printf("No input file '%s'\n", filename);
+		return ;
+	}
+	
+	/* Initialise variables */
+    *itno = 0;
+
+	printf("Reading initial data file: %s\n", filename);
+	/* Read file until end of xml */
+	while(reading==1)
+	{
+		/* Get the next char from the file */
+		c = (char)fgetc(file);
+
+		/* If the end of a tag */
+		if(c == '>')
+		{
+			/* Place 0 at end of buffer to make chars a string */
+			buffer[i] = 0;
+
+			if(strcmp(buffer, "states") == 0) reading = 1;
+			if(strcmp(buffer, "/states") == 0) reading = 0;
+			if(strcmp(buffer, "itno") == 0) in_itno = 1;
+			if(strcmp(buffer, "/itno") == 0) in_itno = 0;
+			if(strcmp(buffer, "imports") == 0) FLAME_in_imports = 1;
+			if(strcmp(buffer, "/imports") == 0) FLAME_in_imports = 0;
+			if(strcmp(buffer, "import") == 0)
+			{
+				/*FLAME_location[0] = '\0';*/
+				strcpy(FLAME_location, filelocation);
+				FLAME_format[0] = '\0';
+				FLAME_type[0] = '\0';
+
+				FLAME_in_import = 1;
+			}
+			if(strcmp(buffer, "/import") == 0)
+			{
+				if(strcmp("agent", FLAME_type) == 0 || strcmp("environment", FLAME_type) == 0)
+				{
+					if(strcmp("xml", FLAME_format) == 0)
+					{
+						if(strcmp("agent", FLAME_type) == 0) readAgentXML(FLAME_location, cloud_data, partition_method, flag, number_partitions, agent_count, itno);
+						if(strcmp("environment", FLAME_type) == 0) readEnvironmentXML(FLAME_location);
+					}
+					else
+					{
+						printf("Error: import format '%s' is unsupported\n", FLAME_format);
+						exit(0);
+					}
+				}
+				else
+				{
+					printf("Error: import type '%s' is not agent or environment\n", FLAME_type);
+					exit(0);
+				}
+
+				FLAME_in_import = 0;
+			}
+			if(strcmp(buffer, "location") == 0) FLAME_in_location = 1;
+			if(strcmp(buffer, "/location") == 0) FLAME_in_location = 0;
+			if(strcmp(buffer, "format") == 0) FLAME_in_format = 1;
+			if(strcmp(buffer, "/format") == 0) FLAME_in_format = 0;
+			if(strcmp(buffer, "type") == 0) FLAME_in_type = 1;
+			if(strcmp(buffer, "/type") == 0) FLAME_in_type = 0;
+			if(strcmp(buffer, "outputs") == 0) FLAME_in_outputs = 1;
+			if(strcmp(buffer, "/outputs") == 0) FLAME_in_outputs = 0;
+			if(strcmp(buffer, "output") == 0)
+			{
+				if(FLAME_in_outputs == 1)
+				{
+					current_FLAME_output = add_FLAME_output(&FLAME_outputs);
+	
+					FLAME_in_output = 1;
+				}
+			}
+			if(strcmp(buffer, "/output") == 0)
+			{
+				if(FLAME_in_outputs == 1)
+				{
+					if(current_FLAME_output->type == -1)
+					{
+						printf("Error: an output type has not been set\n");
+						exit(0);
+					}
+					if(current_FLAME_output->format == -1)
+					{
+						printf("Error: an output format has not been set\n");
+						exit(0);
+					}
+					if(current_FLAME_output->location == NULL)
+					{
+						printf("Error: an output location has not been set\n");
+						exit(0);
+					}
+					/* If type is xml check if location exists */
+					if(current_FLAME_output->type == 0)
+					{
+						rc = check_location_exists(current_FLAME_output->location);
+						if(rc == 0)
+						{
+							printf("Error: location directory '%s' does not exist\n", current_FLAME_output->location);
+							exit(0);
+						}
+					}
+					/* Period has to be larger than 0 */
+					if(current_FLAME_output->period < 1)
+					{
+						printf("Error: output period is less than 1: '%d'\n", current_FLAME_output->period);
+						exit(0);
+					}
+					/* Phase cannot be equal or larger than period */
+					if(current_FLAME_output->phase >= current_FLAME_output->period)
+					{
+						printf("Error: output phase is more or equal to period: '%d'\n", current_FLAME_output->phase);
+						exit(0);
+					}
+	
+					FLAME_in_output = 0;
+				}
+			}
+			if(strcmp(buffer, "time") == 0) FLAME_in_time = 1;
+			if(strcmp(buffer, "/time") == 0) FLAME_in_time = 0;
+			if(strcmp(buffer, "period") == 0) FLAME_in_period = 1;
+			if(strcmp(buffer, "/period") == 0) FLAME_in_period = 0;
+			if(strcmp(buffer, "phase") == 0) FLAME_in_phase = 1;
+			if(strcmp(buffer, "/phase") == 0) FLAME_in_phase = 0;
+			if(strcmp(buffer, "name") == 0) FLAME_in_name = 1;
+			if(strcmp(buffer, "/name") == 0) FLAME_in_name = 0;
+
+			/* End of tag and reset buffer */
+			in_tag = 0;
+			i = 0;
+		}
+		/* If start of tag */
+		else if(c == '<')
+		{
+			/* Place /0 at end of buffer to end numbers */
+			buffer[i] = 0;
+			/* Flag in tag */
+			in_tag = 1;
+
+			if(in_itno) *itno = atoi(buffer);
+			if(FLAME_in_imports == 1)
+			{
+				if(FLAME_in_import == 1)
+				{
+					if(FLAME_in_location == 1) strcat(FLAME_location, buffer);
+					if(FLAME_in_format == 1) strcpy(FLAME_format, buffer);
+					if(FLAME_in_type == 1) strcpy(FLAME_type, buffer);
+				}
+			}
+			if(FLAME_in_outputs == 1)
+			{
+				if(FLAME_in_output == 1)
+				{
+					if(FLAME_in_type == 1)
+					{
+						if(strcmp("snapshot", buffer) == 0) current_FLAME_output->type = 0;
+						else if(strcmp("agent", buffer) != 0)
+						{
+							printf("Error: output type is not 'snapshot' or an 'agent': '%s'\n", buffer);
+							exit(0);
+						}
+					}
+					if(FLAME_in_name == 1)
+					{
+						if(strcmp("indv", buffer) == 0) current_FLAME_output->type = 1;
+						else if(strcmp("clan", buffer) == 0) current_FLAME_output->type = 2;
+						else if(strcmp("patch", buffer) == 0) current_FLAME_output->type = 3;
+						else if(strcmp("manada_guanacos", buffer) == 0) current_FLAME_output->type = 4;
+						else 
+						{
+							printf("Error: output name is not an agent name: '%s'\n", buffer);
+							exit(0);
+						}
+					}
+					if(FLAME_in_format == 1)
+					{
+						if(strcmp("xml", buffer) == 0) current_FLAME_output->format = 0;
+						else
+						{
+							printf("Error: output format is unsupported: '%s'\n", buffer);
+							exit(0);
+						}
+					}
+					if(FLAME_in_location == 1)
+					{
+						current_FLAME_output->location = (char *)malloc( (strlen(filelocation) + strlen(buffer) + 1) * sizeof(char));
+						strcpy(current_FLAME_output->location, filelocation);
+						strcat(current_FLAME_output->location, buffer);
+					}
+					if(FLAME_in_time == 1)
+					{
+						if(FLAME_in_period == 1) current_FLAME_output->period = atoi(buffer);
+						if(FLAME_in_phase == 1)  current_FLAME_output->phase = atoi(buffer);
+					}
+				}
+			}
+			/* Reset buffer */
+			i = 0;
+		}
+		/* If in tag put read char into buffer */
+		else if(in_tag)
+		{
+			buffer[i] = c;
+			i++;
+		}
+		/* If in data read char into buffer */
+		else
+		{
+			buffer[i] = c;
+			i++;
+		}
+	}
+
+	/* Close the file */
+	(void)fclose(file);
+	
+    /* Also try and read environment and agents from 0.xml */
+	readEnvironmentXML(filename);
+	readAgentXML(filename, cloud_data, partition_method, flag, number_partitions, agent_count, itno);
+
+	/* If outputs is empty add default snapshot for every iteration */
+	if(FLAME_outputs == NULL)
+	{
+		current_FLAME_output = add_FLAME_output(&FLAME_outputs);
+		current_FLAME_output->type   = 0; /* snapshot */
+		current_FLAME_output->format = 0; /* xml */
+		current_FLAME_output->location = (char *)malloc( (strlen(filelocation) +  1) * sizeof(char));
+		strcpy(current_FLAME_output->location, filelocation); /* location = 0.xml location */
+		current_FLAME_output->period = 1; /* every iteration */
+		current_FLAME_output->phase  = 0; /* no phase */
+	}
+	
+	/* Print output settings to CLI */
+	for(current_FLAME_output = FLAME_outputs; current_FLAME_output != NULL; current_FLAME_output = current_FLAME_output->next)
+	{
+		printf("output: type='");
+		if(current_FLAME_output->type == 0) printf("snapshot");
+		else if(current_FLAME_output->type == 1) printf("agent' name='indv");
+		else if(current_FLAME_output->type == 2) printf("agent' name='clan");
+		else if(current_FLAME_output->type == 3) printf("agent' name='patch");
+		else if(current_FLAME_output->type == 4) printf("agent' name='manada_guanacos");
+		else printf("undefined");
+		printf("' format='");
+		if(current_FLAME_output->format == 0) printf("xml");
+		else printf("undefined");
+		printf("' location='%s'", current_FLAME_output->location);
+		printf(" period='%d' phase='%d'\n", current_FLAME_output->period, current_FLAME_output->phase);
+	}
+
+
+}
+
 /** \fn void readinitialstates(char * filename, int * itno, xmachine ** agent_list, double cloud_data[6], int flag)
  * \brief Read initial X-machine memory starting values from a file.
  * \param filename The path to the file.
@@ -1304,7 +1628,7 @@ void readinitialstates(char * filename, char * filelocation, int * itno, double 
 	int number_partitions = 0;
 	int geometric=1;
 	int other=2;
-	
+	int node_number;
 
 	/* Cloud data array initialisation */
 	# ifndef S_SPLINT_S
@@ -1363,12 +1687,19 @@ void readinitialstates(char * filename, char * filelocation, int * itno, double 
     *itno = 0;
 
 
+/* Initialisation */
+	 MPI_Comm_size (MPI_COMM_WORLD, &number_partitions);
+	 MPI_Comm_rank (MPI_COMM_WORLD, &node_number);
+	 agent_count = node_number;
 
 
 
-	if(partition_method==geometric) printf("xml: Geometric partitioning\n");
-	else if(partition_method==other) printf("xml: Round-robin partitioning\n");
-	else printf("xml: Error - invalid partitioning method\n");
+	if(node_number==0 && flag==0){
+		if(partition_method==geometric) printf("%d> xml: Geometric partitioning\n",node_number);
+		else if(partition_method==other) printf("%d> xml: Round-robin partitioning\n",node_number);
+		else printf("%d> xml: Error - invalid partitioning method\n",node_number);
+	}
+
 
 
 	/* Set p_xmachine to the agent list passed in then new agents are added to this list
@@ -2129,15 +2460,15 @@ void FLAME_write_xml(char * location, int iteration_number, int * output_types, 
 	FILE *file;
 	char data[1000];
 	
-		sprintf(data, "%s%i.xml", location, iteration_number);
 	
+		sprintf(data, "%snode%i-%i.xml", location, node_number, iteration_number);
 	if((file = fopen(data, "w"))==NULL)
 	{
 		printf("Error: cannot open file '%s' for writing\n", data);
 		exit(0);
 	}
 	
-	
+		if(node_number == 0){
 	fputs("<states>\n", file);
 	if(FLAME_integer_in_array(0, output_types, output_type_size))
 	{
@@ -2188,7 +2519,7 @@ void FLAME_write_xml(char * location, int iteration_number, int * output_types, 
 		fputs("</surviveChanceChild>\n", file);
 			fputs("</environment>\n" , file);
 	}
-	
+		}
 	
 	if(FLAME_integer_in_array(0, output_types, output_type_size) || FLAME_integer_in_array(1, output_types, output_type_size))
 	{
@@ -2234,7 +2565,7 @@ void FLAME_write_xml(char * location, int iteration_number, int * output_types, 
 			}
 	}
 	
-	fputs("</states>\n" , file);
+	if(node_number == totalnodes-1) fputs("</states>\n" , file);
 
 	/* Close the file */
 	(void)fclose(file);

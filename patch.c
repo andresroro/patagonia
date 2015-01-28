@@ -140,9 +140,9 @@ int snregenerate()
     } else {
         set_season( 0 );
 	set_repo( get_repows());
-
+	}
 	return 0;
-    }
+    
 }
 
 int reproduccion_guanacos()

@@ -7,18 +7,18 @@
 # and a model files <file>.xml
 #
 DEFINES       = -DNONE
-LIBMBOARD_DIR = libmboard
+LIBMBOARD_DIR = ../../libmboard-0.3.1
 LIBMBOARD_INC = $(LIBMBOARD_DIR)/include
 LIBMBOARD_LIB = $(LIBMBOARD_DIR)/lib
 
-CC      = gcc
+CC      = mpicc
 CFLAGS  = -std=c99 -Wall -I$(LIBMBOARD_INC) ${DEFINES}
 
 CFLAGS += -D_DEBUG_MODE -g
 
 
 LDFLAGS = -L$(LIBMBOARD_LIB)
-LIBS    = -lmboard_sd  -lm
+LIBS    = -lmboard_pd  -lm
 
 #FLAME source files
 FLAME   = main.c memory.c xml.c messageboards.c partitioning.c rules.c timing.c

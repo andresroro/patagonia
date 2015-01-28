@@ -134,11 +134,9 @@ int move(){
 		
 		i = (1+(targetX -get_x()))+(3+(3*(targetY-get_y())));
 		if(clanes[i].clans > 0){ 
-			printf("%d, %d, %d \n", clanes[i].x, clanes[i].y, clanes[i].clans);
 			fleed = 0;
 			j = (i+1)%9;
 			while(fleed == 0 && j != i){
-				printf("%d, %d, %d \n", clanes[j].x, clanes[j].y, clanes[j].clans);
 				if(j == 4) j++;
 				if(clanes[j].clans == 0){
 					fleed = 1;

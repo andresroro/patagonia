@@ -156,8 +156,12 @@ void generate_partitions(double cloud_data[], int partitions, int partition_meth
         }
     }
 
-    printf("xdiv=%d ydiv=%d\n",xdiv,ydiv);
 
+    if(node_number ==0){
+        printf("%d> xdiv=%d ydiv=%d\n",node_number, xdiv,ydiv);
+        if(partition_method==geometric) printf("%d> Geometric partitioning\n",node_number);
+        if(partition_method==other) printf("%d> Round-robin partitioning\n",node_number);
+    }
 
 
 /* Geometric partitioning */
@@ -217,9 +221,9 @@ void generate_partitions(double cloud_data[], int partitions, int partition_meth
             */
             }
 
-            printf("Partition %d: %f, %f, %f, %f\n",
-                            id,xlo,xhi,ylo,yhi); 
 
+            printf("%d> Partition %d : %f, %f, %f, %f\n",
+                            node_number,id,xlo,xhi,ylo,yhi); 
 
             add_node(id++,xlo,xhi,ylo,yhi,-SPINF,SPINF);
             py=py+dy;
@@ -241,24 +245,84 @@ void generate_partitions(double cloud_data[], int partitions, int partition_meth
 }
 
 
-/**
- * Distribute the agents to their partition based on agent positions. 
+
+
+/** \fn void broadcast_node_data(int totalnodes, int node_number)
+ * \brief Broadcast the space partitions from master node to others.
  *
- * This serial version moves agents from agent_list to the agent list on each node.
+ * \param totalnodes The number of partitions
+ * \param node_number This node's id from MPI
  *
- * \param totalnodes    Number of partitions to create.
- * \param agent_list    List of agents in the model.
- * \param cloud_data    Limits of agent positions: {xmin, xmax, ymin, ymax}
- *
- * \author  DJ Worth CCLRC
+ * \author  DJ Worth & LS Chin (CCLRC)
  * \date    2007
+ * 
+ * \note Function optimised to use a single MPI_Bcast statement.
+ *
  */
-void partition_data(int totalnodes, xmachine ** agent_list, double cloud_data[], int partition_method)
+void broadcast_node_data(int totalnodes, int node_number)
 {
+    int i, offset;
     
+    /* datatype used to store each partition data */
+    typedef double part_datatype;
+    MPI_Datatype part_datatype_mpi = MPI_DOUBLE; /* mpi equivalent */
+    
+    /* Pointer to head of "node" linked list */
+    node_information *node_data = NULL;
+
+    /* array of partition data 
+     * - store in blocks of 6 (xmin,xmay,ymin,ymax,zmin,zmax) for each node
+     */
+    part_datatype *pdata;
+    pdata = malloc(sizeof(part_datatype) * (totalnodes * 6));
+
+    /* master node (node_number == 0) sends partition info to all */
+    if (0 == node_number)
+    {
+        /* iterate through node info list and populate pdata array */
+        node_data = *p_node_info;
+        while (node_data)
+        {
+            offset = 6 * node_data->node_id;
+            for (i = 0; i < 6; i++)
+            {
+                pdata[offset + i] = node_data->partition_data[i];
+            }
+            
+            node_data = node_data->next;
+        }
+    }
+
+    /* master node sends, other nodes receive */
+    MPI_Bcast(pdata, totalnodes * 6, part_datatype_mpi, 0, MPI_COMM_WORLD);
+    
+    /* other nodes (node_number != 0) adds partition data to node list */
+    if (0 != node_number)
+    {
+        for (i = 0; i < totalnodes; i++)
+        {
+            offset = i * 6;
+            add_node(i,                 /* id */
+                    pdata[offset + 0],  /* x min */
+                    pdata[offset + 1],  /* x max */
+                    pdata[offset + 2],  /* y min */
+                    pdata[offset + 3],  /* y max */
+                    pdata[offset + 4],  /* z min */
+                    pdata[offset + 5]   /* z max */
+                    );
+        }
+    }
+    
+    printf("Node %d found its partition data :  %f, %f, %f, %f\n", node_number, 
+            pdata[(node_number * 6) + 0],  /* x min */
+            pdata[(node_number * 6) + 1],  /* x min */
+            pdata[(node_number * 6) + 2],  /* x min */
+            pdata[(node_number * 6) + 3]   /* x min */
+          );
+
+    free(pdata);
+
 }
-
-
 
 
 /** \fn void save_partition_data()

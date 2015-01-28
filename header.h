@@ -23,6 +23,7 @@
 #define FLAME_TEST_PRINT_START_AND_END_OF_LIBMBOARD_CALLS 0
 #define FLAME_USE_FILTERS_IN_SYNC 1
 
+#include <mpi.h>
 
 /* Checking macros */
 #ifdef CHECK_MEMORY
@@ -1096,11 +1097,53 @@ struct node_information
 	struct m_guanacospatch * guanacospatch_messages;	/**< Pointer to guanacospatch message list. */
 	struct m_adultospatch * adultospatch_messages;	/**< Pointer to adultospatch message list. */
 	struct m_reproduccionguanacos * reproduccionguanacos_messages;	/**< Pointer to reproduccionguanacos message list. */
+	int information_message_no;	/**< Number of information messages in list to send. */
+	int indgetcalories_message_no;	/**< Number of indgetcalories messages in list to send. */
+	int leader_message_no;	/**< Number of leader messages in list to send. */
+	int ancestor_message_no;	/**< Number of ancestor messages in list to send. */
+	int peticionID_message_no;	/**< Number of peticionID messages in list to send. */
+	int family_message_no;	/**< Number of family messages in list to send. */
+	int death_message_no;	/**< Number of death messages in list to send. */
+	int widow_message_no;	/**< Number of widow messages in list to send. */
+	int informationDivide_message_no;	/**< Number of informationDivide messages in list to send. */
+	int clan_info_message_no;	/**< Number of clan_info messages in list to send. */
+	int clangetcalories_message_no;	/**< Number of clangetcalories messages in list to send. */
+	int freeGirls_message_no;	/**< Number of freeGirls messages in list to send. */
+	int propuesta_message_no;	/**< Number of propuesta messages in list to send. */
+	int confirProp_message_no;	/**< Number of confirProp messages in list to send. */
+	int marriage_message_no;	/**< Number of marriage messages in list to send. */
+	int respuestaID_message_no;	/**< Number of respuestaID messages in list to send. */
+	int lmarriage_message_no;	/**< Number of lmarriage messages in list to send. */
+	int warningDivide_message_no;	/**< Number of warningDivide messages in list to send. */
+	int clanmove_message_no;	/**< Number of clanmove messages in list to send. */
+	int clanspatch_message_no;	/**< Number of clanspatch messages in list to send. */
+	int guanacospatch_message_no;	/**< Number of guanacospatch messages in list to send. */
+	int adultospatch_message_no;	/**< Number of adultospatch messages in list to send. */
+	int reproduccionguanacos_message_no;	/**< Number of reproduccionguanacos messages in list to send. */
+	struct xmachine * indv_agents;	/**< Pointer to indv agent list. */
+	int indv_agent_no;	/**< Number of indv agents in list to send. */
+	struct xmachine * clan_agents;	/**< Pointer to clan agent list. */
+	int clan_agent_no;	/**< Number of clan agents in list to send. */
+	struct xmachine * patch_agents;	/**< Pointer to patch agent list. */
+	int patch_agent_no;	/**< Number of patch agents in list to send. */
+	struct xmachine * manada_guanacos_agents;	/**< Pointer to manada_guanacos agent list. */
+	int manada_guanacos_agent_no;	/**< Number of manada_guanacos agents in list to send. */
 
 	struct node_information * next;	/**< Pointer to next node on the list. */
 };
 
-
+/** \struct space_partition
+ * \brief Holds space partition information .
+ */
+struct space_partition
+{
+	int node_id;	/**< Node ID. */
+	double partition_data[6];	/**< Defines bounding box. */
+};
+/** \typedef struct space_partition space_partition
+ * \brief Typedef for space_partition struct.
+ */
+typedef struct space_partition space_partition;
 /** \typedef struct location location
  * \brief Typedef for location struct.
  */
@@ -1541,6 +1584,126 @@ node_information ** p_node_info;
 * \brief Pointer to current node */
 node_information * current_node;
 
+/** \var MPI_Status status
+* \brief MPI status */
+MPI_Status status;
+/** \var MPI_Datatype spacePartitionType
+* \brief MPI space partition type */
+MPI_Datatype spacePartitionType;
+
+/** \var MPI_Datatype xmachineindvType
+* \brief MPI ", indv xmachine */
+/* MPI_Datatype xmachineindvType; */
+
+/** \var MPI_Datatype xmachineclanType
+* \brief MPI ", clan xmachine */
+/* MPI_Datatype xmachineclanType; */
+
+/** \var MPI_Datatype xmachinepatchType
+* \brief MPI ", patch xmachine */
+/* MPI_Datatype xmachinepatchType; */
+
+/** \var MPI_Datatype xmachinemanada_guanacosType
+* \brief MPI ", manada_guanacos xmachine */
+/* MPI_Datatype xmachinemanada_guanacosType; */
+
+
+/** \var MPI_Datatype messageinformationType
+* \brief MPI ", information message */
+/* MPI_Datatype messageinformationType; */
+
+/** \var MPI_Datatype messageindgetcaloriesType
+* \brief MPI ", indgetcalories message */
+/* MPI_Datatype messageindgetcaloriesType; */
+
+/** \var MPI_Datatype messageleaderType
+* \brief MPI ", leader message */
+/* MPI_Datatype messageleaderType; */
+
+/** \var MPI_Datatype messageancestorType
+* \brief MPI ", ancestor message */
+/* MPI_Datatype messageancestorType; */
+
+/** \var MPI_Datatype messagepeticionIDType
+* \brief MPI ", peticionID message */
+/* MPI_Datatype messagepeticionIDType; */
+
+/** \var MPI_Datatype messagefamilyType
+* \brief MPI ", family message */
+/* MPI_Datatype messagefamilyType; */
+
+/** \var MPI_Datatype messagedeathType
+* \brief MPI ", death message */
+/* MPI_Datatype messagedeathType; */
+
+/** \var MPI_Datatype messagewidowType
+* \brief MPI ", widow message */
+/* MPI_Datatype messagewidowType; */
+
+/** \var MPI_Datatype messageinformationDivideType
+* \brief MPI ", informationDivide message */
+/* MPI_Datatype messageinformationDivideType; */
+
+/** \var MPI_Datatype messageclan_infoType
+* \brief MPI ", clan_info message */
+/* MPI_Datatype messageclan_infoType; */
+
+/** \var MPI_Datatype messageclangetcaloriesType
+* \brief MPI ", clangetcalories message */
+/* MPI_Datatype messageclangetcaloriesType; */
+
+/** \var MPI_Datatype messagefreeGirlsType
+* \brief MPI ", freeGirls message */
+/* MPI_Datatype messagefreeGirlsType; */
+
+/** \var MPI_Datatype messagepropuestaType
+* \brief MPI ", propuesta message */
+/* MPI_Datatype messagepropuestaType; */
+
+/** \var MPI_Datatype messageconfirPropType
+* \brief MPI ", confirProp message */
+/* MPI_Datatype messageconfirPropType; */
+
+/** \var MPI_Datatype messagemarriageType
+* \brief MPI ", marriage message */
+/* MPI_Datatype messagemarriageType; */
+
+/** \var MPI_Datatype messagerespuestaIDType
+* \brief MPI ", respuestaID message */
+/* MPI_Datatype messagerespuestaIDType; */
+
+/** \var MPI_Datatype messagelmarriageType
+* \brief MPI ", lmarriage message */
+/* MPI_Datatype messagelmarriageType; */
+
+/** \var MPI_Datatype messagewarningDivideType
+* \brief MPI ", warningDivide message */
+/* MPI_Datatype messagewarningDivideType; */
+
+/** \var MPI_Datatype messageclanmoveType
+* \brief MPI ", clanmove message */
+/* MPI_Datatype messageclanmoveType; */
+
+/** \var MPI_Datatype messageclanspatchType
+* \brief MPI ", clanspatch message */
+/* MPI_Datatype messageclanspatchType; */
+
+/** \var MPI_Datatype messageguanacospatchType
+* \brief MPI ", guanacospatch message */
+/* MPI_Datatype messageguanacospatchType; */
+
+/** \var MPI_Datatype messageadultospatchType
+* \brief MPI ", adultospatch message */
+/* MPI_Datatype messageadultospatchType; */
+
+/** \var MPI_Datatype messagereproduccionguanacosType
+* \brief MPI ", reproduccionguanacos message */
+/* MPI_Datatype messagereproduccionguanacosType; */
+
+/** \var int node_number\n
+ * \brief Node number (identifier for node) */
+int node_number;
+
 /** \var int iteration_loop
 * \brief The current iteration number */
 int iteration_loop;
@@ -1658,6 +1821,8 @@ int read_indv_free_static_array(char * buffer, int buffer_size, int * j, indv_fr
 void write_indv_free(FILE *file, indv_free * temp_datatype);
 void write_indv_free_static_array(FILE *file, indv_free * temp_datatype, int size);
 void write_indv_free_dynamic_array(FILE *file, indv_free_array * temp_datatype);
+
+void readprepartitionedinitialstates(char * filename, char * filelocation, int * itno);
 
 void readinitialstates(char * filename, char * filelocation, int * itno, double cloud_data[],
 					   int partition_method, int flag);
@@ -1933,9 +2098,9 @@ double agent_get_x(void);
 double agent_get_y(void);
 double agent_get_z(void);
 /* partitioning.c */
-void partition_data(int totalnodes, xmachine ** agent_list, double cloud_data[], int partition_method);
 
-
+void send_spacepartition(int node_id, double minx, double maxx, double miny, double maxy, double minz, double maxz);
+void broadcast_node_data(int totalnodes, int node_number);
 void save_partition_data(void);
 void generate_partitions(double cloud_data[], int partitions, int partition_method);
 
